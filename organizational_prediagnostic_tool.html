@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizational Performance Diagnostic Tool & Proposal Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Top Branding / Header Bar -->
+    <header class="bg-slate-900 text-white shadow-md no-print">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                <!-- Replace src with your actual consulting firm logo URL if needed -->
+                <img src="https://i.ibb.co.com/qMHcWzjh/Logo-Only-performa.png" alt="Consulting Firm Logo" class="h-16 md:h-20 object-contain bg-white p-1 rounded">
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Performa Consulting (PT. Performa International Indonesia)</h1>
+                    <p class="text-xs text-slate-400">Strategic & Performance Consultant</p>
+                </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- INTRO & CLIENT INTAKE SCREEN -->
+        <section id="intake-screen" class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8">
+            <div class="max-w-3xl mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Pre-Diagnosis Session Intake</h2>
+                <p class="text-slate-600 text-sm">Fill in the client details below before conducting the preliminary discovery assessment. This data will automatically configure the diagnostic matrix and the generated Phase 1 proposal.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Client Company Name</label>
+                    <input type="text" id="client-name" placeholder="e.g., PT Maju Sejahtera" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Industry</label>
+                    <input type="text" id="client-industry" placeholder="e.g., Manufacturing / Tech / Logistics" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Headcount (Approx.)</label>
+                    <input type="number" id="client-headcount" placeholder="e.g., 500" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" value="500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Scope of Assessment</label>
+                    <input type="text" id="client-scope" placeholder="e.g., Enterprise-wide / Operations Dept" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" value="Company-wide Operations">
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4">Diagnostic Evaluation (13 Core Questions)</h3>
+                <p class="text-xs text-slate-500 mb-6">Rate each operational dimension using the behaviorally anchored scale (1 to 4) based on discovery findings.</p>
+                
+                <div id="questions-container" class="space-y-8">
+                    <!-- JavaScript will inject questions here -->
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-slate-200 flex justify-end">
+                <button onclick="generateReport()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg shadow transition text-sm flex items-center space-x-2">
+                    <span>Generate Summary Analysis & Proposal</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- REPORT & PROPOSAL OUTPUT SCREEN (Hidden by default) -->
+        <div id="report-screen" class="hidden space-y-8">
+            
+            <!-- Actions Toolbar -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex justify-between items-center no-print">
+                <button onclick="resetForm()" class="text-slate-600 hover:text-slate-900 text-sm font-medium flex items-center space-x-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span>Back to Intake Form</span>
+                </button>
+                <div class="space-x-3">
+                    <button onclick="window.print()" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium px-5 py-2 rounded-lg shadow transition">
+                        Print / Save as PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- DIAGNOSTIC REPORT CONTAINER -->
+            <div id="printable-report" class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 space-y-8">
+                
+                <!-- Report Header -->
+                <div class="border-b border-slate-200 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Confidential Client Deliverable</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-1">Operational Pre-Diagnosis Report</h2>
+                        <p class="text-sm text-slate-500 mt-1">Prepared for <strong id="report-client-name" class="text-slate-800"></strong> | Industry: <span id="report-client-industry"></span></p>
+                    </div>
+                    <div class="mt-4 md:mt-0 text-right">
+                        <img src="https://i.ibb.co.com/qMHcWzjh/Logo-Only-performa.png" alt="Logo" class="h-12 object-contain ml-auto">
+                        <p class="text-xs text-slate-400 mt-1">Date: <span id="report-date"></span></p>
+                    </div>
+                </div>
+
+                <!-- Executive Synthesis Summary -->
+                <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 mb-2">Executive Synthesis & Diagnostic Findings</h3>
+                    <p id="executive-summary-text" class="text-sm text-slate-700 leading-relaxed mb-4"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-200">
+                        <div>
+                            <span class="text-xs text-slate-500 block">Total Red Flags (Score 1 or 2):</span>
+                            <strong id="stat-redflags" class="text-xl font-bold text-red-600">0</strong>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block">Intervention Complexity:</span>
+                            <strong id="stat-complexity" class="text-xl font-bold text-slate-900">Targeted</strong>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block">Overall Maturity Level:</span>
+                            <strong id="stat-maturity" class="text-xl font-bold text-blue-600">Level 2.4</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domain Breakdown Summary Table -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">IPO Domain Breakdown</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-slate-200 text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700">
+                                    <th class="p-3 border border-slate-200">Domain</th>
+                                    <th class="p-3 border border-slate-200">Focus Area</th>
+                                    <th class="p-3 border border-slate-200 text-center">Average Score</th>
+                                    <th class="p-3 border border-slate-200">Status / Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="breakdown-table-body">
+                                <!-- Injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Flagged Observations List -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">Key Operational Gaps Flagged</h3>
+                    <div id="flagged-list-container" class="space-y-3">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- PRINT BREAK FOR PROPOSAL -->
+                <div class="print-break pt-6"></div>
+
+                <!-- AUTOMATED PHASE 1 PROPOSAL CONTAINER -->
+                <div class="border-t-2 border-dashed border-slate-300 pt-8 space-y-6">
+                    <div class="bg-blue-900 text-white p-6 rounded-xl flex justify-between items-center">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-blue-300 font-semibold">Commercial Proposal</span>
+                            <h3 class="text-xl font-bold">Phase 1: In-Depth Diagnosis & Capability Audit</h3>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-blue-200 block">Mid-Tier Service Model</span>
+                            <span class="text-lg font-bold" id="proposal-price-tag">IDR 35,000,000</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <h4 class="font-bold text-slate-900 text-base">1. Project Context & Objectives</h4>
+                        <p id="proposal-intro-text">Based on our pre-diagnosis findings at <strong id="prop-client-name"></strong>, deploying general training or broad process changes without verifying root causes carries high financial and operational risk. This proposal outlines Phase 1 of our advisory engagement to isolate operational friction points.</p>
+
+                        <h4 class="font-bold text-slate-900 text-base pt-2">2. Scope of Work & Methodology</h4>
+                        <p>Over a structured timeline, our senior advisory team will conduct an empirical verification of the operational red flags identified in the pre-diagnosis session:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Document & Architecture Audit:</strong> Reviewing existing L1-L4 process maps, KPI scorecards, and current job profiles.</li>
+                            <li><strong>Key Informant Interviews (KIIs):</strong> Conducting <span id="prop-kii-count">6</span> targeted stakeholder interviews across cross-functional silos.</li>
+                            <li><strong>Gemba Walk / Observation:</strong> Direct floor observation to verify actual process execution against formal documentation.</li>
+                        </ul>
+
+                        <h4 class="font-bold text-slate-900 text-base pt-2">3. Deliverable</h4>
+                        <p>At the conclusion of Phase 1, the client will receive the <strong>Comprehensive Diagnostic Report</strong> containing root-cause analysis, risk metrics, and the formal Phase 2 Architecture Blueprint Proposal.</p>
+
+                        <h4 class="font-bold text-slate-900 text-base pt-2">4. Project Timeline & Commercial Terms</h4>
+                        <div class="bg-slate-50 border border-slate-200 p-4 rounded-lg space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Estimated Duration:</span>
+                                <strong id="prop-timeline" class="text-slate-900">2 Weeks</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Consulting Team:</span>
+                                <strong class="text-slate-900">1 Lead Advisor + 1 Senior Analyst</strong>
+                            </div>
+                            <div class="flex justify-between border-t border-slate-200 pt-2">
+                                <span class="text-slate-800 font-bold">Phase 1 Professional Fee:</span>
+                                <strong id="prop-fee-amount" class="text-blue-600 font-bold text-base">IDR 35,000,000 – IDR 45,000,000</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sign-off block -->
+                    <div class="grid grid-cols-2 gap-8 pt-10 border-t border-slate-200 text-sm">
+                        <div>
+                            <p class="text-slate-500 mb-16">Submitted by Performa Advisory Group:</p>
+                            <p class="font-bold border-t border-slate-400 pt-1">Senior Managing Consultant</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 mb-16">Approved & Acknowledged by Client:</p>
+                            <p class="font-bold border-t border-slate-400 pt-1">Director / C-Level Executive</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // 13 Diagnostic Questions with Specific Behaviorally Anchored Rating Scales (BARS)
+        const diagnosticData = [
+            // OUTPUT SECTION
+            {
+                section: "Output",
+                area: "KPI Availability",
+                question: "Do clear, measurable Key Performance Indicators (KPIs) exist for all organizational levels (Corporate, Departmental, Individual)?",
+                anchors: [
+                    "1 = Completely absent; goals are entirely qualitative or reactive.",
+                    "2 = Exists only at top corporate level; departments have vague targets.",
+                    "3 = Defined across corporate and departmental levels consistently.",
+                    "4 = Fully cascaded, dynamically tracked, and tied directly to role profiles."
+                ]
+            },
+            {
+                section: "Output",
+                area: "KPI Alignment & Quality",
+                question: "Do operational KPIs align directly with strategic goals, balancing lag metrics (results) with lead metrics (process inputs)?",
+                anchors: [
+                    "1 = Metrics encourage siloed behaviors and measure vanity outputs only.",
+                    "2 = Mostly backward-looking lag metrics with little lead-indicator tracking.",
+                    "3 = Balanced mix of lead and lag metrics aligned with departmental goals.",
+                    "4 = Fully synchronized strategy map with predictive leading indicators."
+                ]
+            },
+            {
+                section: "Output",
+                area: "Monitoring & Governance",
+                question: "Is there a structured frequency for reviewing KPIs, and are performance deviations met with formal root-cause analysis?",
+                anchors: [
+                    "1 = Reviews happen ad-hoc only when crises occur; finger-pointing is common.",
+                    "2 = Monthly or quarterly reviews exist, but lack root-cause problem solving.",
+                    "3 = Regular weekly/monthly reviews with standard action tracking logs.",
+                    "4 = Rigorous governance rhythm with automated alerts and closed-loop corrective action."
+                ]
+            },
+            // PROCESS SECTION
+            {
+                section: "Process",
+                area: "Process Hierarchy",
+                question: "Does the organization maintain a 4-level business process documentation architecture (L1 Map down to L4 Work Instructions/SOPs)?",
+                anchors: [
+                    "1 = Zero formal documentation; tribal knowledge and personal habits rule.",
+                    "2 = High-level policies exist on paper, but L3/L4 procedures are missing.",
+                    "3 = Documented SOPs exist for core operational workflows.",
+                    "4 = Fully mapped L1-L4 architecture integrated into an accessible digital repository."
+                ]
+            },
+            {
+                section: "Process",
+                area: "SOP Compliance & Usability",
+                question: "Are L3/L4 SOPs clear, up-to-date, accessible, and actually followed by employees during daily operations?",
+                anchors: [
+                    "1 = SOPs are outdated documents gathering dust; informal workarounds dominate.",
+                    "2 = SOPs exist but are too complex or hard to find, leading to low adoption.",
+                    "3 = SOPs are followed most of the time with occasional supervisory checks.",
+                    "4 = Standardized work is verified actively through regular process compliance checks."
+                ]
+            },
+            {
+                section: "Process",
+                area: "Process Efficiency",
+                question: "Are handoffs between departments seamless, or do functional silos, redundant approvals, and bottlenecks delay execution?",
+                anchors: [
+                    "1 = Severe functional silos; cross-departmental handoffs regularly fail or stall.",
+                    "2 = Slow approval chains and noticeable friction between departments.",
+                    "3 = Clear handoff protocols with manageable bureaucratic delay.",
+                    "4 = Lean, optimized workflows with seamless cross-functional collaboration."
+                ]
+            },
+            {
+                section: "Process",
+                area: "Goal Setting (PMS)",
+                question: "Are individual and team performance goals established collaboratively and cascaded clearly at the beginning of each cycle?",
+                anchors: [
+                    "1 = Goals are top-down mandates handed out without context or discussion.",
+                    "2 = Annual goal-setting happens late in the cycle with little alignment.",
+                    "3 = Clear goal-setting process conducted collaboratively at cycle start.",
+                    "4 = Agile goal-setting linked dynamically to evolving departmental priorities."
+                ]
+            },
+            {
+                section: "Process",
+                area: "Monitoring & Coaching (PMS)",
+                question: "Do managers conduct regular, structured 1-on-1 performance feedback sessions rather than relying strictly on annual reviews?",
+                anchors: [
+                    "1 = No regular check-ins; performance is only discussed during annual reviews.",
+                    "2 = Informal check-ins happen sporadically when problems arise.",
+                    "3 = Structured monthly 1-on-1 feedback sessions are standard practice.",
+                    "4 = Continuous coaching culture with proactive feedback and development dialogues."
+                ]
+            },
+            {
+                section: "Process",
+                area: "Development & Corrective Action",
+                question: "Is underperformance formally addressed through coaching, training, or Performance Improvement Plans (PIPs) before formal rating?",
+                anchors: [
+                    "1 = Underperformance is ignored until sudden termination or annual surprise ratings.",
+                    "2 = Addressed reactively with warnings rather than developmental support.",
+                    "3 = Standard PIPs and coaching protocols are deployed for underperformers.",
+                    "4 = Early-warning triggers with structured remediation plans and success tracking."
+                ]
+            },
+            {
+                section: "Process",
+                area: "Quality Management System",
+                question: "Is there a formalized Quality Management System (QMS/QA/QC framework) with clear standards for error prevention?",
+                anchors: [
+                    "1 = No quality standards; errors are caught reactively by customers.",
+                    "2 = Basic QC inspection exists at the end of the line, but no preventive QMS.",
+                    "3 = Standardized quality checks and QA logs maintained regularly.",
+                    "4 = Robust QMS with continuous audit loops and error-proofing (poka-yoke)."
+                ]
+            },
+            // INPUT SECTION
+            {
+                section: "Input",
+                area: "Competency & Job Profiles",
+                question: "Are Job Descriptions backed by defined Competency Models (Core, Functional, Leadership) specifying required proficiency levels?",
+                anchors: [
+                    "1 = JDs are outdated lists of tasks with no competency framework.",
+                    "2 = Generic job descriptions exist without tied proficiency levels.",
+                    "3 = Defined competency models attached to core job roles.",
+                    "4 = Fully integrated competency dictionary driving talent decisions."
+                ]
+            },
+            {
+                section: "Input",
+                area: "Recruitment & Assessment",
+                question: "Does the recruitment process utilize structured competency-based screening tools (e.g., Behavioral Event Interviewing) rather than ad-hoc selection?",
+                anchors: [
+                    "1 = Purely gut-feel hiring with no structured interview criteria.",
+                    "2 = Basic CV screening with unstructured interviews by hiring managers.",
+                    "3 = Structured interview guides and baseline competency screening.",
+                    "4 = Rigorous competency-based assessment scorecards and validation."
+                ]
+            },
+            {
+                section: "Input",
+                area: "Operational Resources & Tools",
+                question: "Do frontline workers and staff have fully functional physical tools, software, workstations, and procurement support?",
+                anchors: [
+                    "1 = Chronic shortages of tools, broken equipment, and procurement bottlenecks.",
+                    "2 = Adequate tools, but frequent delays in software or material fulfillment.",
+                    "3 = Stable resource provisioning with reliable equipment maintenance.",
+                    "4 = Optimized resource ecosystem ensuring zero friction in daily execution."
+                ]
+            }
+        ];
+
+        // Render questions dynamically on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('questions-container');
+            let currentSection = '';
+
+            diagnosticData.forEach((item, index) => {
+                let html = '';
+                if (item.section !== currentSection) {
+                    currentSection = item.section;
+                    html += `<div class="bg-slate-100 px-4 py-2 rounded-lg font-bold text-slate-800 text-sm mt-6 mb-4">${currentSection.toUpperCase()} DOMAIN</div>`;
+                }
+
+                html += `
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm space-y-3 mb-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Q${index + 1}: ${item.area}</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-900">${item.question}</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2">
+                `;
+
+                for (let score = 1; score <= 4; score++) {
+                    const anchorText = item.anchors[score - 1];
+                    html += `
+                        <label class="border border-slate-200 rounded-lg p-3 text-xs hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition flex flex-col justify-between">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <input type="radio" name="q_${index}" value="${score}" ${score === 2 ? 'checked' : ''} class="text-blue-600 focus:ring-blue-500">
+                                <span class="font-bold text-slate-900">Score ${score}</span>
+                            </div>
+                            <p class="text-slate-600 text-[11px] leading-snug">${anchorText}</p>
+                        </label>
+                    `;
+                }
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        });
+
+        function generateReport() {
+            const clientName = document.getElementById('client-name').value || 'PT Klien Utama';
+            const clientIndustry = document.getElementById('client-industry').value || 'General Corporate';
+            const headcount = parseInt(document.getElementById('client-headcount').value) || 500;
+            const clientScope = document.getElementById('client-scope').value || 'Company-wide Operations';
+
+            // Gather scores and calculate
+            let totalScore = 0;
+            let redFlagsCount = 0;
+            let breakdownData = { Output: { sum: 0, count: 0 }, Process: { sum: 0, count: 0 }, Input: { sum: 0, count: 0 } };
+            let flaggedItems = [];
+
+            diagnosticData.forEach((item, index) => {
+                const selectedRadio = document.querySelector(`input[name="q_${index}"]:checked`);
+                const score = selectedRadio ? parseInt(selectedRadio.value) : 2;
+                
+                totalScore += score;
+                breakdownData[item.section].sum += score;
+                breakdownData[item.section].count += 1;
+
+                if (score <= 2) {
+                    redFlagsCount++;
+                    flaggedItems.push({
+                        qNum: index + 1,
+                        area: item.area,
+                        section: item.section,
+                        score: score,
+                        question: item.question
+                    });
+                }
+            });
+
+            const avgMaturity = (totalScore / diagnosticData.length).toFixed(1);
+
+            // Populate Report Header
+            document.getElementById('report-client-name').innerText = clientName;
+            document.getElementById('report-client-industry').innerText = clientIndustry;
+            document.getElementById('report-date').innerText = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            // Executive Summary text
+            let complexity = redFlagsCount > 3 ? "Systemic Transformation" : "Targeted Intervention";
+            document.getElementById('stat-redflags').innerText = redFlagsCount;
+            document.getElementById('stat-complexity').innerText = complexity;
+            document.getElementById('stat-maturity').innerText = `Level ${avgMaturity} / 4.0`;
+
+            const execSummaryHTML = `Based on our preliminary discovery session across ${clientScope} (${headcount} employees), ${clientName} presents an overall operational maturity of <strong>Level ${avgMaturity}</strong>. Our diagnostic identified <strong>${redFlagsCount} critical operational red flags</strong> (scoring 1 or 2). The structural friction is primarily concentrated in the <strong>${redFlagsCount > 3 ? 'Process and Input dimensions' : 'isolated operational workflows'}</strong>, indicating that ${redFlagsCount > 3 ? 'systemic functional silos require comprehensive architectural re-engineering.' : 'targeted calibration of specific management controls will resolve current bottlenecks.'}`;
+            document.getElementById('executive-summary-text').innerHTML = execSummaryHTML;
+
+            // Breakdown table
+            let tableHTML = '';
+            for (const [sec, data] of Object.entries(breakdownData)) {
+                let secAvg = (data.sum / data.count).toFixed(1);
+                let statusText = secAvg < 2.5 ? '<span class="text-red-600 font-semibold">High Risk / Friction</span>' : '<span class="text-emerald-600 font-semibold">Stable / Functional</span>';
+                tableHTML += `
+                    <tr>
+                        <td class="p-3 border border-slate-200 font-bold">${sec}</td>
+                        <td class="p-3 border border-slate-200">Aggregate Assessment (${data.count} metrics)</td>
+                        <td class="p-3 border border-slate-200 text-center font-bold">Level ${secAvg}</td>
+                        <td class="p-3 border border-slate-200">${statusText}</td>
+                    </tr>
+                `;
+            }
+            document.getElementById('breakdown-table-body').innerHTML = tableHTML;
+
+            // Flagged List
+            let flaggedHTML = '';
+            if (flaggedItems.length === 0) {
+                flaggedHTML = `<p class="text-sm text-slate-500 italic">No severe red flags detected. Operations scoring at acceptable levels.</p>`;
+            } else {
+                flaggedItems.forEach(flag => {
+                    flaggedHTML += `
+                        <div class="bg-red-50 border border-red-200 p-4 rounded-lg flex items-start space-x-3">
+                            <div class="bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded mt-0.5">Score ${flag.score}</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-red-900">[${flag.section}] ${flag.area}</h4>
+                                <p class="text-xs text-red-800 mt-0.5">${flag.question}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            document.getElementById('flagged-list-container').innerHTML = flaggedHTML;
+
+            // Populate Proposal based on Complexity / Red Flags
+            document.getElementById('prop-client-name').innerText = clientName;
+            
+            let proposalPrice, proposalTimeline, kiiCount;
+            if (redFlagsCount > 3) {
+                proposalPrice = "IDR 75,000,000 – IDR 95,000,000";
+                proposalTimeline = "4 Weeks";
+                kiiCount = "15+ (Multi-departmental cross-functional interviews)";
+            } else {
+                proposalPrice = "IDR 35,000,000 – IDR 45,000,000";
+                proposalTimeline = "2 Weeks";
+                kiiCount = "6 to 8 targeted stakeholder interviews";
+            }
+
+            document.getElementById('proposal-price-tag').innerText = proposalPrice.split('–')[0].trim();
+            document.getElementById('prop-fee-amount').innerText = proposalPrice;
+            document.getElementById('prop-timeline').innerText = proposalTimeline;
+            document.getElementById('prop-kii-count').innerText = kiiCount;
+
+            // Switch screens
+            document.getElementById('intake-screen').classList.add('hidden');
+            document.getElementById('report-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            document.getElementById('report-screen').classList.add('hidden');
+            document.getElementById('intake-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alat Diagnostik Kinerja Organisasi & Generator Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .print-break { page-break-before: always; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- Top Branding / Header Bar -->
+    <header class="bg-slate-900 text-white shadow-md no-print">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                <!-- Replace src with your actual consulting firm logo URL if needed -->
+                <img src="https://i.ibb.co.com/qMHcWzjh/Logo-Only-performa.png" alt="Logo Perusahaan Konsultan" class="h-16 md:h-20 object-contain bg-white p-1 rounded">
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Performa Consulting (PT. Performa International Indonesia)</h1>
+                    <p class="text-xs text-slate-400">Konsultan Strategi & Kinerja</p>
+                </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- INTRO & CLIENT INTAKE SCREEN -->
+        <section id="intake-screen" class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8">
+            <div class="max-w-3xl mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Sesi Intake Pra-Diagnosis</h2>
+                <p class="text-slate-600 text-sm">Isi detail klien di bawah ini sebelum melakukan asesmen discovery awal. Data ini akan secara otomatis mengonfigurasi matriks diagnostik dan proposal Fase 1 yang dihasilkan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Nama Perusahaan Klien</label>
+                    <input type="text" id="client-name" placeholder="misalnya, PT Maju Sejahtera" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Industri</label>
+                    <input type="text" id="client-industry" placeholder="misalnya, Manufaktur / Teknologi / Logistik" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Jumlah Karyawan (Perkiraan)</label>
+                    <input type="number" id="client-headcount" placeholder="misalnya, 500" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" value="500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Ruang Lingkup Asesmen</label>
+                    <input type="text" id="client-scope" placeholder="misalnya, Seluruh Perusahaan / Departemen Operasional" class="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none" value="Operasional Seluruh Perusahaan">
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4">Evaluasi Diagnostik (13 Pertanyaan Inti)</h3>
+                <p class="text-xs text-slate-500 mb-6">Nilai setiap dimensi operasional menggunakan skala penilaian berbasis perilaku (1 sampai 4) berdasarkan temuan discovery.</p>
+
+                <div id="questions-container" class="space-y-8">
+                    <!-- JavaScript will inject questions here -->
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-slate-200 flex justify-end">
+                <button onclick="generateReport()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg shadow transition text-sm flex items-center space-x-2">
+                    <span>Buat Analisis Ringkasan & Proposal</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- REPORT & PROPOSAL OUTPUT SCREEN (Hidden by default) -->
+        <div id="report-screen" class="hidden space-y-8">
+
+            <!-- Actions Toolbar -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex justify-between items-center no-print">
+                <button onclick="resetForm()" class="text-slate-600 hover:text-slate-900 text-sm font-medium flex items-center space-x-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    <span>Kembali ke Formulir Intake</span>
+                </button>
+                <div class="space-x-3">
+                    <button onclick="window.print()" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium px-5 py-2 rounded-lg shadow transition">
+                        Cetak / Simpan sebagai PDF
+                    </button>
+                </div>
+            </div>
+
+            <!-- DIAGNOSTIC REPORT CONTAINER -->
+            <div id="printable-report" class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 space-y-8">
+
+                <!-- Report Header -->
+                <div class="border-b border-slate-200 pb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Dokumen Rahasia untuk Klien</span>
+                        <h2 class="text-2xl font-bold text-slate-900 mt-1">Laporan Pra-Diagnosis Operasional</h2>
+                        <p class="text-sm text-slate-500 mt-1">Disiapkan untuk <strong id="report-client-name" class="text-slate-800"></strong> | Industri: <span id="report-client-industry"></span></p>
+                    </div>
+                    <div class="mt-4 md:mt-0 text-right">
+                        <img src="https://i.ibb.co.com/qMHcWzjh/Logo-Only-performa.png" alt="Logo" class="h-12 object-contain ml-auto">
+                        <p class="text-xs text-slate-400 mt-1">Tanggal: <span id="report-date"></span></p>
+                    </div>
+                </div>
+
+                <!-- Executive Synthesis Summary -->
+                <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 mb-2">Sintesis Eksekutif & Temuan Diagnostik</h3>
+                    <p id="executive-summary-text" class="text-sm text-slate-700 leading-relaxed mb-4"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-200">
+                        <div>
+                            <span class="text-xs text-slate-500 block">Total Red Flag (Skor 1 atau 2):</span>
+                            <strong id="stat-redflags" class="text-xl font-bold text-red-600">0</strong>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block">Kompleksitas Intervensi:</span>
+                            <strong id="stat-complexity" class="text-xl font-bold text-slate-900">Terarah</strong>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block">Tingkat Kematangan Keseluruhan:</span>
+                            <strong id="stat-maturity" class="text-xl font-bold text-blue-600">Level 2.4</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domain Breakdown Summary Table -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">Rincian Domain IPO</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-slate-200 text-sm">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700">
+                                    <th class="p-3 border border-slate-200">Domain</th>
+                                    <th class="p-3 border border-slate-200">Area Fokus</th>
+                                    <th class="p-3 border border-slate-200 text-center">Skor Rata-rata</th>
+                                    <th class="p-3 border border-slate-200">Status / Catatan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="breakdown-table-body">
+                                <!-- Injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Flagged Observations List -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-4">Temuan Kesenjangan Operasional Utama</h3>
+                    <div id="flagged-list-container" class="space-y-3">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- PRINT BREAK FOR PROPOSAL -->
+                <div class="print-break pt-6"></div>
+
+                <!-- AUTOMATED PHASE 1 PROPOSAL CONTAINER -->
+                <div class="border-t-2 border-dashed border-slate-300 pt-8 space-y-6">
+                    <div class="bg-blue-900 text-white p-6 rounded-xl flex justify-between items-center">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-blue-300 font-semibold">Proposal Komersial</span>
+                            <h3 class="text-xl font-bold">Fase 1: Diagnosis Mendalam & Audit Kapabilitas</h3>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs text-blue-200 block">Model Layanan Tingkat Menengah</span>
+                            <span class="text-lg font-bold" id="proposal-price-tag">IDR 35.000.000</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                        <h4 class="font-bold text-slate-900 text-base">1. Konteks & Tujuan Proyek</h4>
+                        <p id="proposal-intro-text">Berdasarkan temuan pra-diagnosis kami di <strong id="prop-client-name"></strong>, menerapkan pelatihan umum atau perubahan proses secara luas tanpa memverifikasi akar masalah membawa risiko finansial dan operasional yang tinggi. Proposal ini menguraikan Fase 1 dari keterlibatan advisory kami untuk mengisolasi titik-titik friksi operasional.</p>
+
+                        <h4 class="font-bold text-slate-900 text-base pt-2">2. Ruang Lingkup Pekerjaan & Metodologi</h4>
+                        <p>Selama jangka waktu yang terstruktur, tim advisory senior kami akan melakukan verifikasi empiris terhadap red flag operasional yang teridentifikasi dalam sesi pra-diagnosis:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Audit Dokumen & Arsitektur:</strong> Meninjau peta proses L1-L4 yang ada, KPI scorecard, dan profil jabatan saat ini.</li>
+                            <li><strong>Wawancara Key Informant (KII):</strong> Melakukan <span id="prop-kii-count">6</span> wawancara pemangku kepentingan yang ditargetkan di berbagai silo lintas fungsi.</li>
+                            <li><strong>Gemba Walk / Observasi:</strong> Observasi langsung di lapangan untuk memverifikasi eksekusi proses aktual terhadap dokumentasi formal.</li>
+                        </ul>
+
+                        <h4 class="font-bold text-slate-900 text-base pt-2">3. Deliverable</h4>
+                        <p>Pada akhir Fase 1, klien akan menerima <strong>Laporan Diagnostik Komprehensif</strong> yang berisi analisis akar masalah, metrik risiko, dan proposal formal Blueprint Arsitektur Fase 2.</p>
+
+                        <h4 class="font-bold text-slate-900 text-base pt-2">4. Linimasa Proyek & Ketentuan Komersial</h4>
+                        <div class="bg-slate-50 border border-slate-200 p-4 rounded-lg space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Estimasi Durasi:</span>
+                                <strong id="prop-timeline" class="text-slate-900">2 Minggu</strong>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-600">Tim Konsultan:</span>
+                                <strong class="text-slate-900">1 Lead Advisor + 1 Senior Analyst</strong>
+                            </div>
+                            <div class="flex justify-between border-t border-slate-200 pt-2">
+                                <span class="text-slate-800 font-bold">Biaya Profesional Fase 1:</span>
+                                <strong id="prop-fee-amount" class="text-blue-600 font-bold text-base">IDR 35.000.000 – IDR 45.000.000</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sign-off block -->
+                    <div class="grid grid-cols-2 gap-8 pt-10 border-t border-slate-200 text-sm">
+                        <div>
+                            <p class="text-slate-500 mb-16">Diserahkan oleh Performa Advisory Group:</p>
+                            <p class="font-bold border-t border-slate-400 pt-1">Senior Managing Consultant</p>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 mb-16">Disetujui & Diakui oleh Klien:</p>
+                            <p class="font-bold border-t border-slate-400 pt-1">Direktur / Eksekutif C-Level</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // 13 Pertanyaan Diagnostik dengan Skala Penilaian Berbasis Perilaku (BARS) yang Spesifik
+        const diagnosticData = [
+            // OUTPUT SECTION
+            {
+                section: "Output",
+                area: "Ketersediaan KPI",
+                question: "Apakah Indikator Kinerja Utama (KPI) yang jelas dan terukur tersedia di semua tingkat organisasi (Korporat, Departemen, Individu)?",
+                anchors: [
+                    "1 = Sama sekali tidak ada; tujuan sepenuhnya bersifat kualitatif atau reaktif.",
+                    "2 = Hanya ada di tingkat korporat teratas; departemen memiliki target yang samar.",
+                    "3 = Terdefinisi secara konsisten di tingkat korporat dan departemen.",
+                    "4 = Sepenuhnya diturunkan (cascaded), dilacak secara dinamis, dan terkait langsung dengan profil jabatan."
+                ]
+            },
+            {
+                section: "Output",
+                area: "Keselarasan & Kualitas KPI",
+                question: "Apakah KPI operasional selaras langsung dengan tujuan strategis, menyeimbangkan metrik lag (hasil) dengan metrik lead (input proses)?",
+                anchors: [
+                    "1 = Metrik mendorong perilaku silo dan hanya mengukur output vanitas.",
+                    "2 = Sebagian besar metrik lag yang bersifat historis dengan sedikit pelacakan indikator lead.",
+                    "3 = Kombinasi seimbang antara metrik lead dan lag yang selaras dengan tujuan departemen.",
+                    "4 = Peta strategi yang sepenuhnya sinkron dengan indikator lead yang bersifat prediktif."
+                ]
+            },
+            {
+                section: "Output",
+                area: "Pemantauan & Tata Kelola",
+                question: "Apakah terdapat frekuensi terstruktur untuk meninjau KPI, dan apakah deviasi kinerja ditangani dengan analisis akar masalah formal?",
+                anchors: [
+                    "1 = Tinjauan hanya terjadi secara ad-hoc saat krisis muncul; saling menyalahkan sering terjadi.",
+                    "2 = Tinjauan bulanan atau kuartalan ada, tetapi kurang pemecahan masalah akar penyebab.",
+                    "3 = Tinjauan mingguan/bulanan rutin dengan log pelacakan tindakan standar.",
+                    "4 = Ritme tata kelola yang ketat dengan peringatan otomatis dan tindakan korektif loop tertutup."
+                ]
+            },
+            // PROCESS SECTION
+            {
+                section: "Proses",
+                area: "Hierarki Proses",
+                question: "Apakah organisasi memelihara arsitektur dokumentasi proses bisnis 4 tingkat (dari Peta L1 hingga Instruksi Kerja/SOP L4)?",
+                anchors: [
+                    "1 = Tidak ada dokumentasi formal sama sekali; pengetahuan tribal dan kebiasaan pribadi berlaku.",
+                    "2 = Kebijakan tingkat tinggi ada di atas kertas, tetapi prosedur L3/L4 tidak ada.",
+                    "3 = SOP terdokumentasi tersedia untuk alur kerja operasional inti.",
+                    "4 = Arsitektur L1-L4 yang terpetakan sepenuhnya dan terintegrasi dalam repositori digital yang mudah diakses."
+                ]
+            },
+            {
+                section: "Proses",
+                area: "Kepatuhan & Kegunaan SOP",
+                question: "Apakah SOP L3/L4 jelas, terkini, mudah diakses, dan benar-benar diikuti oleh karyawan dalam operasional sehari-hari?",
+                anchors: [
+                    "1 = SOP adalah dokumen usang yang berdebu; solusi informal mendominasi.",
+                    "2 = SOP ada tetapi terlalu rumit atau sulit ditemukan, sehingga adopsinya rendah.",
+                    "3 = SOP diikuti sebagian besar waktu dengan pengecekan supervisi sesekali.",
+                    "4 = Kerja standar diverifikasi secara aktif melalui pengecekan kepatuhan proses secara rutin."
+                ]
+            },
+            {
+                section: "Proses",
+                area: "Efisiensi Proses",
+                question: "Apakah serah terima antar departemen berjalan mulus, atau silo fungsional, persetujuan berulang, dan bottleneck justru menghambat eksekusi?",
+                anchors: [
+                    "1 = Silo fungsional yang parah; serah terima lintas departemen sering gagal atau macet.",
+                    "2 = Rantai persetujuan yang lambat dan friksi yang nyata antar departemen.",
+                    "3 = Protokol serah terima yang jelas dengan penundaan birokrasi yang masih dapat dikelola.",
+                    "4 = Alur kerja yang lean dan optimal dengan kolaborasi lintas fungsi yang mulus."
+                ]
+            },
+            {
+                section: "Proses",
+                area: "Penetapan Tujuan (PMS)",
+                question: "Apakah tujuan kinerja individu dan tim ditetapkan secara kolaboratif dan diturunkan secara jelas di awal setiap siklus?",
+                anchors: [
+                    "1 = Tujuan berupa mandat top-down yang diberikan tanpa konteks atau diskusi.",
+                    "2 = Penetapan tujuan tahunan terjadi terlambat dalam siklus dengan sedikit penyelarasan.",
+                    "3 = Proses penetapan tujuan yang jelas dilakukan secara kolaboratif di awal siklus.",
+                    "4 = Penetapan tujuan yang agile dan terkait secara dinamis dengan prioritas departemen yang terus berkembang."
+                ]
+            },
+            {
+                section: "Proses",
+                area: "Pemantauan & Coaching (PMS)",
+                question: "Apakah manajer melakukan sesi umpan balik kinerja 1-on-1 yang terstruktur dan rutin, alih-alih hanya mengandalkan tinjauan tahunan?",
+                anchors: [
+                    "1 = Tidak ada check-in rutin; kinerja hanya dibahas saat tinjauan tahunan.",
+                    "2 = Check-in informal terjadi sesekali saat masalah muncul.",
+                    "3 = Sesi umpan balik 1-on-1 bulanan yang terstruktur menjadi praktik standar.",
+                    "4 = Budaya coaching berkelanjutan dengan umpan balik proaktif dan dialog pengembangan."
+                ]
+            },
+            {
+                section: "Proses",
+                area: "Pengembangan & Tindakan Korektif",
+                question: "Apakah underperformance ditangani secara formal melalui coaching, pelatihan, atau Performance Improvement Plan (PIP) sebelum penilaian formal diberikan?",
+                anchors: [
+                    "1 = Underperformance diabaikan hingga terjadi pemutusan mendadak atau penilaian tahunan yang mengejutkan.",
+                    "2 = Ditangani secara reaktif dengan peringatan, bukan dukungan pengembangan.",
+                    "3 = PIP standar dan protokol coaching diterapkan bagi karyawan yang berkinerja rendah.",
+                    "4 = Pemicu peringatan dini dengan rencana remediasi terstruktur dan pelacakan keberhasilan."
+                ]
+            },
+            {
+                section: "Proses",
+                area: "Sistem Manajemen Mutu",
+                question: "Apakah terdapat Sistem Manajemen Mutu (QMS/QA/QC) yang formal dengan standar yang jelas untuk pencegahan kesalahan?",
+                anchors: [
+                    "1 = Tidak ada standar mutu; kesalahan baru terungkap secara reaktif oleh pelanggan.",
+                    "2 = Inspeksi QC dasar ada di akhir lini produksi, tetapi tidak ada QMS yang bersifat preventif.",
+                    "3 = Pengecekan mutu standar dan log QA dipelihara secara rutin.",
+                    "4 = QMS yang solid dengan loop audit berkelanjutan dan error-proofing (poka-yoke)."
+                ]
+            },
+            // INPUT SECTION
+            {
+                section: "Input",
+                area: "Kompetensi & Profil Jabatan",
+                question: "Apakah Deskripsi Jabatan didukung oleh Model Kompetensi yang terdefinisi (Inti, Fungsional, Kepemimpinan) yang menetapkan tingkat kemahiran yang diperlukan?",
+                anchors: [
+                    "1 = Deskripsi jabatan berupa daftar tugas usang tanpa kerangka kompetensi.",
+                    "2 = Deskripsi jabatan generik ada, namun tidak terkait dengan tingkat kemahiran tertentu.",
+                    "3 = Model kompetensi yang terdefinisi melekat pada peran jabatan inti.",
+                    "4 = Kamus kompetensi yang terintegrasi penuh dan mendorong keputusan talenta."
+                ]
+            },
+            {
+                section: "Input",
+                area: "Rekrutmen & Asesmen",
+                question: "Apakah proses rekrutmen menggunakan alat penyaringan berbasis kompetensi yang terstruktur (misalnya, Behavioral Event Interviewing), bukan seleksi ad-hoc?",
+                anchors: [
+                    "1 = Perekrutan murni berdasarkan feeling tanpa kriteria wawancara yang terstruktur.",
+                    "2 = Penyaringan CV dasar dengan wawancara tidak terstruktur oleh hiring manager.",
+                    "3 = Panduan wawancara terstruktur dan penyaringan kompetensi dasar.",
+                    "4 = Scorecard asesmen berbasis kompetensi yang ketat beserta proses validasinya."
+                ]
+            },
+            {
+                section: "Input",
+                area: "Sumber Daya & Alat Operasional",
+                question: "Apakah pekerja lini depan dan staf memiliki alat fisik, perangkat lunak, workstation, dan dukungan pengadaan yang berfungsi penuh?",
+                anchors: [
+                    "1 = Kekurangan alat yang kronis, peralatan rusak, dan hambatan pengadaan.",
+                    "2 = Alat sudah memadai, tetapi sering terjadi keterlambatan pemenuhan perangkat lunak atau material.",
+                    "3 = Penyediaan sumber daya yang stabil dengan pemeliharaan peralatan yang andal.",
+                    "4 = Ekosistem sumber daya yang optimal sehingga eksekusi harian berjalan tanpa hambatan."
+                ]
+            }
+        ];
+
+        // Render questions dynamically on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('questions-container');
+            let currentSection = '';
+
+            diagnosticData.forEach((item, index) => {
+                let html = '';
+                if (item.section !== currentSection) {
+                    currentSection = item.section;
+                    html += `<div class="bg-slate-100 px-4 py-2 rounded-lg font-bold text-slate-800 text-sm mt-6 mb-4">DOMAIN ${currentSection.toUpperCase()}</div>`;
+                }
+
+                html += `
+                    <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm space-y-3 mb-4">
+                        <div class="flex justify-between items-start">
+                            <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded">P${index + 1}: ${item.area}</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-900">${item.question}</p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-2">
+                `;
+
+                for (let score = 1; score <= 4; score++) {
+                    const anchorText = item.anchors[score - 1];
+                    html += `
+                        <label class="border border-slate-200 rounded-lg p-3 text-xs hover:border-blue-500 hover:bg-blue-50/50 cursor-pointer transition flex flex-col justify-between">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <input type="radio" name="q_${index}" value="${score}" ${score === 2 ? 'checked' : ''} class="text-blue-600 focus:ring-blue-500">
+                                <span class="font-bold text-slate-900">Skor ${score}</span>
+                            </div>
+                            <p class="text-slate-600 text-[11px] leading-snug">${anchorText}</p>
+                        </label>
+                    `;
+                }
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        });
+
+        function generateReport() {
+            const clientName = document.getElementById('client-name').value || 'PT Klien Utama';
+            const clientIndustry = document.getElementById('client-industry').value || 'Korporat Umum';
+            const headcount = parseInt(document.getElementById('client-headcount').value) || 500;
+            const clientScope = document.getElementById('client-scope').value || 'Operasional Seluruh Perusahaan';
+
+            // Gather scores and calculate
+            let totalScore = 0;
+            let redFlagsCount = 0;
+            let breakdownData = { Output: { sum: 0, count: 0 }, Proses: { sum: 0, count: 0 }, Input: { sum: 0, count: 0 } };
+            let flaggedItems = [];
+
+            diagnosticData.forEach((item, index) => {
+                const selectedRadio = document.querySelector(`input[name="q_${index}"]:checked`);
+                const score = selectedRadio ? parseInt(selectedRadio.value) : 2;
+
+                totalScore += score;
+                breakdownData[item.section].sum += score;
+                breakdownData[item.section].count += 1;
+
+                if (score <= 2) {
+                    redFlagsCount++;
+                    flaggedItems.push({
+                        qNum: index + 1,
+                        area: item.area,
+                        section: item.section,
+                        score: score,
+                        question: item.question
+                    });
+                }
+            });
+
+            const avgMaturity = (totalScore / diagnosticData.length).toFixed(1);
+
+            // Populate Report Header
+            document.getElementById('report-client-name').innerText = clientName;
+            document.getElementById('report-client-industry').innerText = clientIndustry;
+            document.getElementById('report-date').innerText = new Date().toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            // Executive Summary text
+            let complexity = redFlagsCount > 3 ? "Transformasi Sistemik" : "Intervensi Terarah";
+            document.getElementById('stat-redflags').innerText = redFlagsCount;
+            document.getElementById('stat-complexity').innerText = complexity;
+            document.getElementById('stat-maturity').innerText = `Level ${avgMaturity} / 4.0`;
+
+            const execSummaryHTML = `Berdasarkan sesi discovery awal kami pada ${clientScope} (${headcount} karyawan), ${clientName} menunjukkan tingkat kematangan operasional keseluruhan sebesar <strong>Level ${avgMaturity}</strong>. Diagnostik kami mengidentifikasi <strong>${redFlagsCount} red flag operasional kritis</strong> (dengan skor 1 atau 2). Friksi struktural terutama terkonsentrasi pada <strong>${redFlagsCount > 3 ? 'dimensi Proses dan Input' : 'alur kerja operasional tertentu'}</strong>, yang menunjukkan bahwa ${redFlagsCount > 3 ? 'silo fungsional yang bersifat sistemik memerlukan rekayasa ulang arsitektur secara komprehensif.' : 'kalibrasi terarah pada kontrol manajemen tertentu akan dapat menyelesaikan hambatan yang ada saat ini.'}`;
+            document.getElementById('executive-summary-text').innerHTML = execSummaryHTML;
+
+            // Breakdown table
+            let tableHTML = '';
+            for (const [sec, data] of Object.entries(breakdownData)) {
+                let secAvg = (data.sum / data.count).toFixed(1);
+                let statusText = secAvg < 2.5 ? '<span class="text-red-600 font-semibold">Risiko Tinggi / Friksi</span>' : '<span class="text-emerald-600 font-semibold">Stabil / Berfungsi</span>';
+                tableHTML += `
+                    <tr>
+                        <td class="p-3 border border-slate-200 font-bold">${sec}</td>
+                        <td class="p-3 border border-slate-200">Penilaian Agregat (${data.count} metrik)</td>
+                        <td class="p-3 border border-slate-200 text-center font-bold">Level ${secAvg}</td>
+                        <td class="p-3 border border-slate-200">${statusText}</td>
+                    </tr>
+                `;
+            }
+            document.getElementById('breakdown-table-body').innerHTML = tableHTML;
+
+            // Flagged List
+            let flaggedHTML = '';
+            if (flaggedItems.length === 0) {
+                flaggedHTML = `<p class="text-sm text-slate-500 italic">Tidak ada red flag berat yang terdeteksi. Operasional mencatat skor pada tingkat yang dapat diterima.</p>`;
+            } else {
+                flaggedItems.forEach(flag => {
+                    flaggedHTML += `
+                        <div class="bg-red-50 border border-red-200 p-4 rounded-lg flex items-start space-x-3">
+                            <div class="bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded mt-0.5">Skor ${flag.score}</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-red-900">[${flag.section}] ${flag.area}</h4>
+                                <p class="text-xs text-red-800 mt-0.5">${flag.question}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            document.getElementById('flagged-list-container').innerHTML = flaggedHTML;
+
+            // Populate Proposal based on Complexity / Red Flags
+            document.getElementById('prop-client-name').innerText = clientName;
+
+            let proposalPrice, proposalTimeline, kiiCount;
+            if (redFlagsCount > 3) {
+                proposalPrice = "IDR 75.000.000 – IDR 95.000.000";
+                proposalTimeline = "4 Minggu";
+                kiiCount = "15+ (wawancara lintas-departemen dan lintas-fungsi)";
+            } else {
+                proposalPrice = "IDR 35.000.000 – IDR 45.000.000";
+                proposalTimeline = "2 Minggu";
+                kiiCount = "6 hingga 8 wawancara pemangku kepentingan yang ditargetkan";
+            }
+
+            document.getElementById('proposal-price-tag').innerText = proposalPrice.split('–')[0].trim();
+            document.getElementById('prop-fee-amount').innerText = proposalPrice;
+            document.getElementById('prop-timeline').innerText = proposalTimeline;
+            document.getElementById('prop-kii-count').innerText = kiiCount;
+
+            // Switch screens
+            document.getElementById('intake-screen').classList.add('hidden');
+            document.getElementById('report-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            document.getElementById('report-screen').classList.add('hidden');
+            document.getElementById('intake-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
