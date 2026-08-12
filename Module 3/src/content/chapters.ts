@@ -4,6 +4,7 @@ import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
+import { chapter7Cards } from './chapter7'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -62,5 +63,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Cara menutup sesi RCA dengan satu keputusan konkret — bukan obrolan bagus yang dilupakan: pertanyaan penutup wajib, Log Keputusan, dan dua kesalahan fasilitasi yang berlawanan.',
     cards: chapter6Cards,
+  },
+  {
+    id: 'chapter-7',
+    number: 7,
+    title: 'Mengelola Eskalasi dan Akuntabilitas Lintas Level',
+    description:
+      'Tiga kriteria kapan masalah harus naik level, cara eskalasi yang membawa temuan RCA (bukan cuma "ada masalah"), konvensi status untuk mengawal Log Keputusan, dan framing untuk bisnis kecil.',
+    cards: chapter7Cards,
   },
 ]
