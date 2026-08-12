@@ -2,6 +2,7 @@ import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
+import { chapter5Cards } from './chapter5'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -44,5 +45,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Empat prinsip dan satu teknik konversi untuk mengubah SOP naratif yang tidak pernah dibuka jadi checklist ringkas yang bisa diikuti langsung di titik kerja.',
     cards: chapter4Cards,
+  },
+  {
+    id: 'chapter-5',
+    number: 5,
+    title: 'Membangun Akses SOP di Titik Kerja — Bukan Terkubur di Folder',
+    description:
+      'Prinsip lokasi, pilihan media fisik vs digital, struktur folder yang bisa ditemukan dalam satu menit, dan cara menetapkan pemilik SOP agar tidak diam-diam jadi dokumen berdebu lagi.',
+    cards: chapter5Cards,
   },
 ]
