@@ -4,6 +4,7 @@ import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
+import { chapter7Cards } from './chapter7'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -62,5 +63,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga teknik verifikasi kepatuhan (spot check terjadwal, self-audit checklist, sinyal tidak langsung), cara menyambungkannya ke ritme yang sudah ada, dan cara merespons ketidakpatuhan yang ditemukan.',
     cards: chapter6Cards,
+  },
+  {
+    id: 'chapter-7',
+    number: 7,
+    title: 'Lokakarya Kegunaan SOP: Merombak Satu SOP Bermasalah Jadi SOP yang Benar-benar Dipakai',
+    description:
+      'Lokakarya menyatukan diagnosis (Bab 3), format baru (Bab 4), akses di titik kerja (Bab 5), dan mekanisme kepatuhan (Bab 6) jadi satu rancangan ulang yang utuh — termasuk cara memperkenalkan SOP baru ke tim tanpa resistensi.',
+    cards: chapter7Cards,
   },
 ]
