@@ -1,4 +1,5 @@
 import { chapter1Cards } from './chapter1'
+import { chapter2Cards } from './chapter2'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -17,5 +18,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Kenapa SOP yang sudah ditulis, dicetak, bahkan ditempel di dinding tetap tidak dipakai — dan perbedaan penting antara SOP yang eksis di dokumen vs SOP yang benar-benar membentuk cara kerja sehari-hari.',
     cards: chapter1Cards,
+  },
+  {
+    id: 'chapter-2',
+    number: 2,
+    title: 'Skala Kematangan Kepatuhan SOP: Dari Berdebu Sampai Terverifikasi Aktif',
+    description:
+      'Skala 4 level untuk mengukur di mana posisi bisnis Anda sekarang — dari SOP yang nyaris tidak ada sampai kepatuhan yang diverifikasi aktif — dan ke mana harus menuju.',
+    cards: chapter2Cards,
   },
 ]
