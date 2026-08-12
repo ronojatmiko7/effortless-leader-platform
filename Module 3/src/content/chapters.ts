@@ -3,6 +3,7 @@ import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
+import { chapter6Cards } from './chapter6'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -53,5 +54,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Dua alat untuk menemukan akar masalah yang sesungguhnya: 5 Whys untuk masalah satu rantai, dan Fishbone untuk masalah yang faktornya datang dari banyak arah — plus cara memilih yang mana.',
     cards: chapter5Cards,
+  },
+  {
+    id: 'chapter-6',
+    number: 6,
+    title: 'Dari Temuan ke Keputusan — Memimpin Diskusi yang Berujung Aksi',
+    description:
+      'Cara menutup sesi RCA dengan satu keputusan konkret — bukan obrolan bagus yang dilupakan: pertanyaan penutup wajib, Log Keputusan, dan dua kesalahan fasilitasi yang berlawanan.',
+    cards: chapter6Cards,
   },
 ]
