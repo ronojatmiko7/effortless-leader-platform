@@ -1,6 +1,7 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
+import { chapter4Cards } from './chapter4'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -35,5 +36,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Cara mendiagnosis akar masalah spesifik di balik SOP yang tidak dipakai — tiga lensa (format, akses, relevansi) dan tiga pertanyaan diagnostik untuk menemukan apa yang perlu dibenahi, bukan asal ganti semua.',
     cards: chapter3Cards,
+  },
+  {
+    id: 'chapter-4',
+    number: 4,
+    title: 'Merancang Ulang Format SOP: Dari Dokumen Panjang ke Checklist yang Dipakai di Lapangan',
+    description:
+      'Empat prinsip dan satu teknik konversi untuk mengubah SOP naratif yang tidak pernah dibuka jadi checklist ringkas yang bisa diikuti langsung di titik kerja.',
+    cards: chapter4Cards,
   },
 ]
