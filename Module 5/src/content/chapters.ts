@@ -5,6 +5,7 @@ import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
+import { chapter8Cards } from './chapter8'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -71,5 +72,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Lokakarya menyatukan diagnosis (Bab 3), format baru (Bab 4), akses di titik kerja (Bab 5), dan mekanisme kepatuhan (Bab 6) jadi satu rancangan ulang yang utuh — termasuk cara memperkenalkan SOP baru ke tim tanpa resistensi.',
     cards: chapter7Cards,
+  },
+  {
+    id: 'chapter-8',
+    number: 8,
+    title: 'Menginstal Kebiasaan Kepatuhan SOP — Kepemilikan, Ritme Verifikasi, dan Laporan Lengkap',
+    description:
+      'Cara menginstal rancangan ulang dari Bab 7 supaya beneran berjalan: pemilik kepatuhan yang eksplisit, mulai dari satu SOP dulu, menyambungkan ke ritme review yang ada, dan laporan lengkap yang merangkum perjalanan Bab 1–8.',
+    cards: chapter8Cards,
   },
 ]
