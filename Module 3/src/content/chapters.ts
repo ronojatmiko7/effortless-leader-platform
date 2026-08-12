@@ -2,6 +2,7 @@ import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
+import { chapter5Cards } from './chapter5'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -44,5 +45,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Format dan agenda dua tier strategis — bedanya bukan cuma soal frekuensi, tapi soal pertanyaan yang diajukan: "apakah kita eksekusi dengan baik" vs "apakah kita eksekusi hal yang benar."',
     cards: chapter4Cards,
+  },
+  {
+    id: 'chapter-5',
+    number: 5,
+    title: 'Root Cause Analysis: Membedah Masalah Tanpa Tebak-tebakan',
+    description:
+      'Dua alat untuk menemukan akar masalah yang sesungguhnya: 5 Whys untuk masalah satu rantai, dan Fishbone untuk masalah yang faktornya datang dari banyak arah — plus cara memilih yang mana.',
+    cards: chapter5Cards,
   },
 ]
