@@ -1,6 +1,7 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
+import { chapter4Cards } from './chapter4'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -35,5 +36,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Format, agenda, dan siapa yang hadir di dua tier operasional paling bawah — termasuk mekanisme "parkir masalah" yang bikin huddle tetap singkat tanpa mengabaikan isu yang muncul.',
     cards: chapter3Cards,
+  },
+  {
+    id: 'chapter-4',
+    number: 4,
+    title: 'Merancang Tinjauan Bulanan & Triwulanan yang Benar-benar Strategis',
+    description:
+      'Format dan agenda dua tier strategis — bedanya bukan cuma soal frekuensi, tapi soal pertanyaan yang diajukan: "apakah kita eksekusi dengan baik" vs "apakah kita eksekusi hal yang benar."',
+    cards: chapter4Cards,
   },
 ]
