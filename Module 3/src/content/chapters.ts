@@ -5,6 +5,7 @@ import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
+import { chapter8Cards } from './chapter8'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -71,5 +72,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga kriteria kapan masalah harus naik level, cara eskalasi yang membawa temuan RCA (bukan cuma "ada masalah"), konvensi status untuk mengawal Log Keputusan, dan framing untuk bisnis kecil.',
     cards: chapter7Cards,
+  },
+  {
+    id: 'chapter-8',
+    number: 8,
+    title: 'Menginstal Ritme EBR yang Bertahan Lama — Playbook & Laporan Lengkap',
+    description:
+      'Playbook ringkas per tier (siapa pimpin, siapa hadir, agenda inti), izin eksplisit untuk mulai bertahap dari huddle harian, cadence review sistem itu sendiri setiap kuartal, dan laporan lengkap seluruh perjalanan EBR Anda dari Bab 1 sampai Bab 8.',
+    cards: chapter8Cards,
   },
 ]
