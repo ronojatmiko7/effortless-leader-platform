@@ -67,7 +67,7 @@ export const chapter1Cards: Card[] = [
     id: 'c1-card-5',
     type: 'sort-list',
     question:
-      'Urutkan bagaimana biasanya angka basa-basi bikin bos kaget di akhir, dari awal sampai akhir.',
+      'Urutkan bagaimana biasanya cerita angka basa-basi ini terjadi, dari yang duluan sampai yang belakangan disadari.',
     items: [
       'Kaget kas ternyata tipis atau minus',
       'Omzet kelihatan naik terus dipamerkan',
@@ -77,13 +77,13 @@ export const chapter1Cards: Card[] = [
     correctAnswer: [
       'Omzet kelihatan naik terus dipamerkan',
       'Bos makin pede menambah belanja atau stok',
-      'Ternyata uangnya nyangkut di stok atau tagihan yang belum cair',
       'Kaget kas ternyata tipis atau minus',
+      'Ternyata uangnya nyangkut di stok atau tagihan yang belum cair',
     ],
     successFeedback:
       'Persis begini caranya angka basa-basi bikin bos kaget belakangan. Kalau dari awal ikut cek kas, bukan cuma omzet, kejutan ini bisa dicegah.',
     errorFeedback:
-      'Belum pas. Urutan yang biasa terjadi: omzet naik dulu, bos makin pede belanja, baru ketahuan uangnya nyangkut, dan terakhir kaget pas kas tipis.',
+      'Belum pas. Urutan yang biasa terjadi: omzet naik dulu, bos makin pede belanja, baru kaget pas kas tipis-tipisnya kelihatan, dan baru belakangan sadar uangnya nyangkut di stok atau tagihan.',
   },
   {
     id: 'c1-card-6',
@@ -92,7 +92,8 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Kenapa Ini Berbahaya',
     title: 'Ini Insting Versi Baru, Cuma Pakai Baju Data',
     body: [
-      'Ingat soal bahaya mengelola bisnis pakai insting? Metrik basa-basi ini justru versi yang lebih berbahaya — karena kelihatannya Anda sudah pakai data, padahal angkanya nggak menjawab pertanyaan yang benar-benar penting.',
+      'Kalau Anda sudah ikut Modul 1: inget soal bahaya mengelola bisnis pakai insting? Nah, metrik basa-basi ini versi yang lebih berbahaya dari itu.',
+      'Kenapa lebih berbahaya? Karena kelihatannya Anda sudah pakai data, padahal angkanya nggak menjawab pertanyaan yang benar-benar penting.',
       "Anda mikir Anda sudah data-driven karena tiap pagi cek jumlah followers atau jumlah pengunjung. Tapi kalau angka itu nggak pernah bikin Anda mengubah keputusan, Anda cuma pindah dari nebak pakai perasaan, ke nebak pakai angka yang salah.",
     ],
   },
@@ -210,8 +211,7 @@ export const chapter1Cards: Card[] = [
     body: [
       'Anda sekarang tahu: ramai, sibuk, dan angka yang naik itu belum tentu tanda bisnis sehat — kalau angka itu nggak pernah menuntun keputusan apa pun.',
       'Pertanyaannya sekarang: kalau bukan angka yang bikin bangga, KPI seperti apa yang benar-benar layak dipantau, dan gimana caranya menyambungkan dari target besar perusahaan sampai ke kerjaan harian staf paling bawah?',
-      'Sekarang Anda tahu jebakannya. Bab berikutnya kasih Anda peta lengkap untuk bangun KPI yang benar, dari target besar perusahaan sampai ke aksi harian di lantai kerja.',
+      'Bab berikutnya kasih Anda peta lengkapnya — dari mana KPI yang benar itu harus mulai dirancang.',
     ],
-    cta: { label: 'Lanjut ke Bab 2', href: '#chapter-2' },
   },
 ]
