@@ -3,6 +3,7 @@ import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
+import { chapter6Cards } from './chapter6'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -53,5 +54,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Prinsip lokasi, pilihan media fisik vs digital, struktur folder yang bisa ditemukan dalam satu menit, dan cara menetapkan pemilik SOP agar tidak diam-diam jadi dokumen berdebu lagi.',
     cards: chapter5Cards,
+  },
+  {
+    id: 'chapter-6',
+    number: 6,
+    title: 'Merancang Pengecekan Kepatuhan Rutin — Dari \'Diikuti Sebagian\' ke \'Diverifikasi Aktif\'',
+    description:
+      'Tiga teknik verifikasi kepatuhan (spot check terjadwal, self-audit checklist, sinyal tidak langsung), cara menyambungkannya ke ritme yang sudah ada, dan cara merespons ketidakpatuhan yang ditemukan.',
+    cards: chapter6Cards,
   },
 ]
