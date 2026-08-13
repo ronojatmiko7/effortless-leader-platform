@@ -1,5 +1,6 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
+import { chapter3Cards } from './chapter3'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -26,5 +27,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga tahap siklus PMS yang harus berputar terus — penetapan tujuan, coaching rutin, tindakan korektif — kenapa bisnis SME hampir selalu hanya menjalankan satu, dan di mana tahap yang paling bolong di bisnis Anda.',
     cards: chapter2Cards,
+  },
+  {
+    id: 'chapter-3',
+    number: 3,
+    title: 'Menetapkan Tujuan Kinerja yang Kolaboratif dan Diturunkan dengan Jelas',
+    description:
+      'Empat prinsip yang membedakan tujuan yang beneran dimiliki karyawan dari tujuan yang cuma ada di dokumen — plus teknik percakapan cascading tiga langkah untuk menurunkan tujuan tim jadi tujuan individu yang spesifik, terukur, dan disepakati bersama.',
+    cards: chapter3Cards,
   },
 ]
