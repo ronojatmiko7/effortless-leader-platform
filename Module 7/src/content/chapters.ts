@@ -5,6 +5,7 @@ import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
+import { chapter8Cards } from './chapter8'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -71,5 +72,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Lokakarya menyatukan model kompetensi, tingkat kemahiran, dan alat seleksi BEI + rubrik jadi satu profil arsitektur jabatan yang utuh untuk satu peran nyata — lengkap dengan cara memperkenalkannya tanpa terasa birokrasi berlebihan.',
     cards: chapter7Cards,
+  },
+  {
+    id: 'chapter-8',
+    number: 8,
+    title: 'Menginstal Arsitektur Jabatan — Kepemilikan, Ritme Update, dan Laporan Lengkap',
+    description:
+      'Cara menginstal profil arsitektur jabatan jadi standar yang beneran dipakai tiap rekrutmen — bukan dokumen bagus yang dilupakan — dengan pemilik kepatuhan yang eksplisit, playbook instalasi ringkas, dan laporan lengkap dari seluruh perjalanan Bab 1–8.',
+    cards: chapter8Cards,
   },
 ]
