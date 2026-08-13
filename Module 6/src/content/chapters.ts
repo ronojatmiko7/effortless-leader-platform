@@ -4,6 +4,7 @@ import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
+import { chapter7Cards } from './chapter7'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -62,5 +63,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga ruas tangga tindakan korektif yang formal dan berjenjang — coaching tertarget, pelatihan, dan PIP — cara memetakan lensa diagnosis Bab 5 ke ruas yang paling relevan, kapan eskalasi tepat vs kapan perlu lebih banyak waktu di satu ruas, dan bagaimana merancang jalur lengkap untuk satu kasus nyata.',
     cards: chapter6Cards,
+  },
+  {
+    id: 'chapter-7',
+    number: 7,
+    title: 'Lokakarya PMS: Merancang Siklus Kinerja Utuh untuk Satu Tim atau Peran',
+    description:
+      'Lokakarya menyatukan penetapan tujuan (Bab 3), ritme coaching (Bab 4), dan jalur tindakan korektif (Bab 5–6) menjadi satu siklus manajemen kinerja yang utuh untuk satu tim atau peran nyata — termasuk cara memperkenalkannya ke tim tanpa memicu defensivitas.',
+    cards: chapter7Cards,
   },
 ]
