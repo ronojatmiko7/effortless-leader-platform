@@ -2,6 +2,7 @@ import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
+import { chapter5Cards } from './chapter5'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -44,5 +45,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Cara mengubah kompetensi yang masih abstrak jadi skala kemahiran dengan anchor perilaku yang bisa diamati — sehingga dua penilai yang berbeda bisa menggunakan standar yang sama.',
     cards: chapter4Cards,
+  },
+  {
+    id: 'chapter-5',
+    number: 5,
+    title: 'Mendiagnosis Rekrutmen Ad-Hoc — Kenapa "Kelihatannya Cocok" Bukan Metode Seleksi',
+    description:
+      'Tiga lensa untuk mendiagnosis di mana proses rekrutmen yang ada sekarang rusak — kriteria tidak ada, interview tidak menguji kriteria, atau penilaian tidak konsisten — sebelum merancang alat screening di Bab 6.',
+    cards: chapter5Cards,
   },
 ]
