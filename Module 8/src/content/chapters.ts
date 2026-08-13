@@ -1,6 +1,7 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
+import { chapter4Cards } from './chapter4'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -36,5 +37,14 @@ export const chapters: ChapterMeta[] = [
     description:
       'Empat lensa buat mendiagnosis akar penyebab resistensi tim secara spesifik — takut nggak kompeten, nggak jelas untungnya, trauma proyek sesaat, atau belum pernah dilatih — plus teknik diagnosis dan latihan klasifikasi kasus.',
     cards: chapter3Cards,
+  },
+  {
+    id: 'chapter-4',
+    number: 4,
+    title:
+      'Membangun Kasus Perubahan & Peta Stakeholder — Siapa yang Perlu Diyakinkan, dan Dengan Cara Apa',
+    description:
+      'Mengubah diagnosis resistensi dari Bab 3 jadi dua artefak konkret: kasus perubahan yang menjawab langsung lensa resistensi yang terdiagnosis, dan peta stakeholder untuk memprioritaskan siapa perlu diyakinkan duluan.',
+    cards: chapter4Cards,
   },
 ]
