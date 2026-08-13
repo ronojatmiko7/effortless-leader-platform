@@ -5,6 +5,7 @@ import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
+import { chapter8Cards } from './chapter8'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -71,5 +72,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Lokakarya menyatukan penetapan tujuan (Bab 3), ritme coaching (Bab 4), dan jalur tindakan korektif (Bab 5–6) menjadi satu siklus manajemen kinerja yang utuh untuk satu tim atau peran nyata — termasuk cara memperkenalkannya ke tim tanpa memicu defensivitas.',
     cards: chapter7Cards,
+  },
+  {
+    id: 'chapter-8',
+    number: 8,
+    title: 'Menginstal Siklus PMS — Kepemilikan, Ritme, dan Laporan Lengkap',
+    description:
+      'Cara menginstal siklus PMS yang sudah dirancang biar beneran jalan — menetapkan pemilik kepatuhan yang eksplisit, izin untuk mulai dari satu tim dulu, menghubungkan ke sistem yang sudah ada, playbook instalasi singkat, dan laporan lengkap perjalanan dari Bab 1 sampai Bab 8.',
+    cards: chapter8Cards,
   },
 ]
