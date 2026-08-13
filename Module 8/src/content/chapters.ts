@@ -5,6 +5,7 @@ import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
+import { chapter8Cards } from './chapter8'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -74,5 +75,14 @@ export const chapters: ChapterMeta[] = [
     description:
       'Menyatukan diagnosis resistensi (Bab 3), kasus perubahan & peta stakeholder (Bab 4), rencana rollout (Bab 5), dan catatan eksekusi lapangan (Bab 6) jadi satu paket change management yang utuh untuk satu perubahan nyata — plus cara memperkenalkannya ke orang lain tanpa berasa proses birokrasi.',
     cards: chapter7Cards,
+  },
+  {
+    id: 'chapter-8',
+    number: 8,
+    title:
+      'Menginstal Kebiasaan Change Management — Ritme Penguatan, Kepemilikan, dan Laporan Lengkap',
+    description:
+      'Mengubah paket change management dari Bab 7 jadi kebiasaan permanen: izin eksplisit untuk mulai dari satu perubahan dulu, ritme penguatan dengan pemilik yang jelas, koneksi ke modul lain yang sudah dikerjakan, dan laporan lengkap perjalanan Anda dari Bab 1 sampai 8.',
+    cards: chapter8Cards,
   },
 ]
