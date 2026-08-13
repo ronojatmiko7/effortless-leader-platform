@@ -1,5 +1,6 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
+import { chapter3Cards } from './chapter3'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -26,5 +27,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Dua tahap arsitektur jabatan yang harus ada sebelum rekrutmen bisa berjalan dengan benar — model kompetensi dan rekrutmen berbasis bukti — dan kenapa kebanyakan bisnis SME melewatkan yang pertama.',
     cards: chapter2Cards,
+  },
+  {
+    id: 'chapter-3',
+    number: 3,
+    title: 'Membangun Model Kompetensi: Kompetensi Inti, Fungsional, dan Kepemimpinan',
+    description:
+      'Tiga lapis model kompetensi — Inti, Fungsional, dan Kepemimpinan — dan teknik menurunkannya dari hasil kerja nyata yang diharapkan peran itu, bukan dari template generik.',
+    cards: chapter3Cards,
   },
 ]
