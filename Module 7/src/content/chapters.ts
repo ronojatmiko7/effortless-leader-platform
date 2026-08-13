@@ -1,6 +1,7 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
+import { chapter4Cards } from './chapter4'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -35,5 +36,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga lapis model kompetensi — Inti, Fungsional, dan Kepemimpinan — dan teknik menurunkannya dari hasil kerja nyata yang diharapkan peran itu, bukan dari template generik.',
     cards: chapter3Cards,
+  },
+  {
+    id: 'chapter-4',
+    number: 4,
+    title: 'Menetapkan Tingkat Kemahiran — Dari Deskripsi Jabatan ke Standar yang Bisa Diukur',
+    description:
+      'Cara mengubah kompetensi yang masih abstrak jadi skala kemahiran dengan anchor perilaku yang bisa diamati — sehingga dua penilai yang berbeda bisa menggunakan standar yang sama.',
+    cards: chapter4Cards,
   },
 ]
