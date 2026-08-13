@@ -3,6 +3,7 @@ import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
+import { chapter6Cards } from './chapter6'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -53,5 +54,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga lensa untuk mendiagnosis akar underperformance sebelum mengambil tindakan — skill gap (kemampuan belum ada), will gap (motivasi bermasalah), atau ekspektasi yang tidak pernah jelas — plus teknik tiga pertanyaan untuk membedakannya secara sistematis.',
     cards: chapter5Cards,
+  },
+  {
+    id: 'chapter-6',
+    number: 6,
+    title: 'Merancang Jalur Tindakan Korektif: Coaching, Pelatihan, dan PIP Sebelum Penilaian Formal',
+    description:
+      'Tiga ruas tangga tindakan korektif yang formal dan berjenjang — coaching tertarget, pelatihan, dan PIP — cara memetakan lensa diagnosis Bab 5 ke ruas yang paling relevan, kapan eskalasi tepat vs kapan perlu lebih banyak waktu di satu ruas, dan bagaimana merancang jalur lengkap untuk satu kasus nyata.',
+    cards: chapter6Cards,
   },
 ]
