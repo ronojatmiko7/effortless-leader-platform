@@ -3,6 +3,7 @@ import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
+import { chapter6Cards } from './chapter6'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -53,5 +54,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Tiga lensa untuk mendiagnosis di mana proses rekrutmen yang ada sekarang rusak — kriteria tidak ada, interview tidak menguji kriteria, atau penilaian tidak konsisten — sebelum merancang alat screening di Bab 6.',
     cards: chapter5Cards,
+  },
+  {
+    id: 'chapter-6',
+    number: 6,
+    title: 'Merancang Alat Penyaringan Berbasis Kompetensi: Behavioral Event Interviewing dan Rubrik Seleksi',
+    description:
+      'Cara merancang pertanyaan BEI yang diturunkan langsung dari model kompetensi, rubrik seleksi skor 1–4 yang dipetakan ke tingkat kemahiran, dan praktik panel scoring yang membuat penilaian konsisten antar pewawancara.',
+    cards: chapter6Cards,
   },
 ]
