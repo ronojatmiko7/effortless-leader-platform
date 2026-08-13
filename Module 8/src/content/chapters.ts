@@ -4,6 +4,7 @@ import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
+import { chapter7Cards } from './chapter7'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -64,5 +65,14 @@ export const chapters: ChapterMeta[] = [
     description:
       'Menjalankan rencana rollout dari Bab 5 di lapangan sungguhan: merayakan quick win secara terbuka, mengenali sinyal bahaya rollout mulai balik ke cara lama, menangani resistensi lapangan dengan lensa dari Bab 3, dan tahu kapan harus fleksibel vs kapan harus tetap tegas.',
     cards: chapter6Cards,
+  },
+  {
+    id: 'chapter-7',
+    number: 7,
+    title:
+      'Lokakarya Change Rollout: Merancang Paket Change Management Lengkap untuk Satu Perubahan Nyata',
+    description:
+      'Menyatukan diagnosis resistensi (Bab 3), kasus perubahan & peta stakeholder (Bab 4), rencana rollout (Bab 5), dan catatan eksekusi lapangan (Bab 6) jadi satu paket change management yang utuh untuk satu perubahan nyata — plus cara memperkenalkannya ke orang lain tanpa berasa proses birokrasi.',
+    cards: chapter7Cards,
   },
 ]
