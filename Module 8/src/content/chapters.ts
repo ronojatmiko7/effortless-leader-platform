@@ -2,6 +2,7 @@ import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
+import { chapter5Cards } from './chapter5'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -46,5 +47,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Mengubah diagnosis resistensi dari Bab 3 jadi dua artefak konkret: kasus perubahan yang menjawab langsung lensa resistensi yang terdiagnosis, dan peta stakeholder untuk memprioritaskan siapa perlu diyakinkan duluan.',
     cards: chapter4Cards,
+  },
+  {
+    id: 'chapter-5',
+    number: 5,
+    title: 'Merancang Rencana Rollout: Komunikasi, Pelatihan, dan Quick Win',
+    description:
+      'Mengunci satu perubahan nyata dan merancang rencana rollout konkretnya dalam tiga bagian: rencana komunikasi, rencana pelatihan, dan quick win di awal — semuanya menjawab langsung diagnosis resistensi dan kasus perubahan dari Bab 3-4.',
+    cards: chapter5Cards,
   },
 ]
