@@ -2,6 +2,7 @@ import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
+import { chapter5Cards } from './chapter5'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -44,5 +45,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Kenapa review tahunan gagal sebagai feedback loop, prinsip frekuensi coaching yang efektif, format agenda 1-on-1 yang bisa diulang tiap sesi, cara membedakan feedback yang berguna dari feedback kosong, dan tiga hal yang bikin ritme coaching beneran konsisten dijalankan.',
     cards: chapter4Cards,
+  },
+  {
+    id: 'chapter-5',
+    number: 5,
+    title: 'Mendiagnosis Underperformance — Skill Gap, Will Gap, atau Ekspektasi yang Nggak Jelas?',
+    description:
+      'Tiga lensa untuk mendiagnosis akar underperformance sebelum mengambil tindakan — skill gap (kemampuan belum ada), will gap (motivasi bermasalah), atau ekspektasi yang tidak pernah jelas — plus teknik tiga pertanyaan untuk membedakannya secara sistematis.',
+    cards: chapter5Cards,
   },
 ]
