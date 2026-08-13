@@ -3,6 +3,7 @@ import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
+import { chapter6Cards } from './chapter6'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -55,5 +56,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Mengunci satu perubahan nyata dan merancang rencana rollout konkretnya dalam tiga bagian: rencana komunikasi, rencana pelatihan, dan quick win di awal — semuanya menjawab langsung diagnosis resistensi dan kasus perubahan dari Bab 3-4.',
     cards: chapter5Cards,
+  },
+  {
+    id: 'chapter-6',
+    number: 6,
+    title: 'Menjalankan Rollout dan Mengatasi Resistensi di Lapangan',
+    description:
+      'Menjalankan rencana rollout dari Bab 5 di lapangan sungguhan: merayakan quick win secara terbuka, mengenali sinyal bahaya rollout mulai balik ke cara lama, menangani resistensi lapangan dengan lensa dari Bab 3, dan tahu kapan harus fleksibel vs kapan harus tetap tegas.',
+    cards: chapter6Cards,
   },
 ]
