@@ -4,6 +4,7 @@ import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
+import { chapter7Cards } from './chapter7'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -62,5 +63,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Cara merancang pertanyaan BEI yang diturunkan langsung dari model kompetensi, rubrik seleksi skor 1–4 yang dipetakan ke tingkat kemahiran, dan praktik panel scoring yang membuat penilaian konsisten antar pewawancara.',
     cards: chapter6Cards,
+  },
+  {
+    id: 'chapter-7',
+    number: 7,
+    title: 'Lokakarya Arsitektur Jabatan: Merancang Profil Kompetensi dan Alat Seleksi untuk Satu Peran',
+    description:
+      'Lokakarya menyatukan model kompetensi, tingkat kemahiran, dan alat seleksi BEI + rubrik jadi satu profil arsitektur jabatan yang utuh untuk satu peran nyata — lengkap dengan cara memperkenalkannya tanpa terasa birokrasi berlebihan.',
+    cards: chapter7Cards,
   },
 ]
