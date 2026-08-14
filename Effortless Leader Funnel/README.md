@@ -37,10 +37,11 @@ state — nothing is persisted, no real money moves, no real booking happens.
 - **Module purchase** — `purchaseModules()` in `src/components/ReportScreen.tsx`
   is a placeholder; the "Beli Modul …" button shows a "checkout belum aktif"
   message instead of processing payment. No Midtrans/Xendit wiring yet.
-- **Discovery call booking** — `bookDiscoveryCall()` in the same file is a
-  placeholder; the button shows a "booking belum aktif" message instead of
-  opening Calendly. Swap for a real Calendly embed once the discovery-call
-  event type exists.
+- **Diagnostic call booking** — `bookDiagnosticCall()` in
+  `src/components/ReportScreen.tsx` is real, not a stub: it opens the
+  "Effortless Leader — Diagnostic Call" Calendly event type (free, 60 min) in
+  a new tab, prefilled with the lead's name/email. URL lives in
+  `src/config/schedulingConfig.ts` (`CALENDLY_DIAGNOSTIC_CALL_URL`).
 - **Modules 2–8 content** — only referenced by module number/name in the
   recommendation output. The modules themselves aren't wired here.
 

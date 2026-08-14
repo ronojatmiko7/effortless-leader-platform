@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AlertTriangle, Calendar, RotateCcw, ShoppingCart } from 'lucide-react'
 import { allModules } from '../data/moduleMapping'
+import { CALENDLY_DIAGNOSTIC_CALL_URL } from '../config/schedulingConfig'
 import type { DiagnosticResult, DiagnosticSection } from '../types/diagnostic'
 import type { Lead } from '../types/lead'
 
@@ -27,9 +28,15 @@ function purchaseModules(moduleNumbers: number[]) {
   console.log('[purchaseModules] stub — no real checkout wired yet:', moduleNumbers)
 }
 
-// TODO(scheduling): swap for a real Calendly embed once the discovery-call event type exists.
-function bookDiscoveryCall(flaggedServiceNames: string[]) {
-  console.log('[bookDiscoveryCall] stub — no real booking wired yet:', flaggedServiceNames)
+// Opens the real "Effortless Leader — Diagnostic Call" Calendly event type
+// (free, 60 min) in a new tab, prefilled with the lead's name/email so they
+// don't retype it. Calendly's public API doesn't support prefilling custom
+// question answers via a create/update call, so the specific flagged
+// services aren't passed through to Calendly itself yet (a future
+// enhancement, not required for this to work today).
+function bookDiagnosticCall(lead: Lead) {
+  const params = new URLSearchParams({ name: lead.name, email: lead.email })
+  window.open(`${CALENDLY_DIAGNOSTIC_CALL_URL}?${params.toString()}`, '_blank', 'noopener,noreferrer')
 }
 
 export default function ReportScreen({ lead, result, onRestart }: ReportScreenProps) {
@@ -203,18 +210,18 @@ export default function ReportScreen({ lead, result, onRestart }: ReportScreenPr
             <button
               type="button"
               onClick={() => {
-                bookDiscoveryCall(flaggedModuleNames)
+                bookDiagnosticCall(lead)
                 setBookingClicked(true)
               }}
               className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-slate-900 bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:bg-slate-50"
             >
               <Calendar className="h-5 w-5" />
-              Booking Discovery Call
+              Booking Diagnostic Call Gratis
             </button>
             {bookingClicked && (
               <p className="text-center text-xs text-slate-500">
-                Booking belum aktif — ini masih placeholder. Saat aktif, sesi ini akan langsung
-                fokus ke {flaggedModuleNames.length > 0 ? flaggedModuleNames.join(', ') : 'titik bocor Anda'},
+                Jadwal booking terbuka di tab baru. Sesi ini fokus ke{' '}
+                {flaggedModuleNames.length > 0 ? flaggedModuleNames.join(', ') : 'titik bocor Anda'},
                 bukan basa-basi jualan umum.
               </p>
             )}

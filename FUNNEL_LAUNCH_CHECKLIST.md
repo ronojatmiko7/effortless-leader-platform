@@ -6,7 +6,7 @@ Status as of Aug 14, 2026.
 - [x] 13-question / 3-domain (Output/Process/Input) diagnostic content, verbatim source
 - [x] 1–4 BARS scoring, red-flag logic at score ≤2
 - [x] Question → Service → Module mapping table (Services 1–8 = Modules 1–8; Services 9–10 are not modules)
-- [ ] Port the diagnostic + scoring logic into the EL-branded self-serve app (currently only lives in Performa's consultant-facing tool)
+- [x] Ported into the EL-branded self-serve app — done via `run-funnel-app.ps1` (see section 3)
 
 ## 2. Microlearning content (Modules 1–8)
 - [x] Module 1 — Enterprise Operational Audit
@@ -19,20 +19,21 @@ Status as of Aug 14, 2026.
 - [x] Module 8 — Enterprise Change Management Rollout
 - [x] Module 1 post-completion review-request card (Google review + testimonial capture)
 - [ ] Confirm whether the review-request pattern should roll out to Modules 2–8 too, or stay Module-1-only
-- [ ] Delete or repurpose the empty `Micro Learning App/` folder (looks like an abandoned early scaffold)
-- [ ] Push local repo to remote (currently 43 commits ahead of origin, nothing pushed)
+- [x] Deleted the empty `Micro Learning App/` folder (moved to `_to_delete/` — empty that folder yourself whenever)
+- [ ] Push local repo to remote (nothing pushed yet — needs to happen from this machine)
 
-## 3. EL self-serve funnel app — Quiz → Report → Offer (CRITICAL PATH, not started)
-- [ ] Scaffold `Effortless Leader Funnel/` app (spec already written in `EFFORTLESS_LEADER_FUNNEL_PROMPT.md`, never executed)
-- [ ] Lead capture screen: Name, WhatsApp, Email, business name, team size
-- [ ] Quiz screen: 13 questions in EL's casual voice, same BARS scoring UI
-- [ ] Instant report screen: domain averages, flagged questions, mapped Service/Module list, EL-voice summary (not Performa's corporate tone)
-- [ ] Offer screen: "Beli Modul [X,Y,Z]" CTA + "Booking Discovery Call" CTA, both personalized to flagged modules
-- [ ] Mobile-first pass (this is where ad traffic lands)
-- [ ] EL brand palette/logo dropped into the `theme.ts` placeholder
+## 3. EL self-serve funnel app — Quiz → Report → Offer — BUILT
+`Effortless Leader Funnel/` now exists at repo root. `npm install` + `npm run build` clean, dev server verified serving. Orange brand palette, single swap point in `src/index.css` `@theme` + `src/theme.ts`.
+- [x] Lead capture screen: Name, WhatsApp, Email, business name, team size
+- [x] Quiz screen: 13 questions ported verbatim; 3 questions lightly reworded for SME readability, each flagged with a `// TODO: review wording — Bro Rono` comment
+- [x] Instant report screen: domain averages, flagged questions, mapped Service/Module list, EL-voice summary
+- [x] Offer screen: "Beli Modul [X,Y,Z]" + "Booking Discovery Call" CTAs — still placeholder/stubbed (no real checkout, no real Calendly link yet)
+- [x] EL brand palette dropped into the theme swap point (orange)
+- [ ] **You still need to: `npm run dev` and eyeball it, and specifically review/approve the 3 TODO-tagged reworded questions before this goes live**
+- [ ] Explicit mobile-device QA pass (built mobile-first per brief, not yet eyeballed on an actual phone)
 
 ## 4. Backend & data
-- [ ] Decide on Supabase schema for leads, quiz responses, purchases (currently everything is console.log/React state stubs)
+- [ ] Decide on Supabase schema for leads, quiz responses, purchases (currently console.log/React state stubs)
 - [ ] Wire `submitLead()` stub to real database
 - [ ] Wire `submitTestimonial()` / `submitPrivateFeedback()` stubs to real database
 - [ ] Basic admin view or export so you can actually see incoming leads
