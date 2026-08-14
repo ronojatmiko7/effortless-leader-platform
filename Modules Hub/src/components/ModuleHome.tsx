@@ -1,12 +1,15 @@
-import { CheckCircle2, ChevronRight, Lock } from 'lucide-react'
-import { chapters } from '../content/chapters'
+import { ArrowLeft, CheckCircle2, ChevronRight, Lock } from 'lucide-react'
+import type { ChapterMeta } from '../content/module-1/chapters'
 import { useProgressStore } from '../progress/ProgressContext'
 
 interface ModuleHomeProps {
+  moduleTitle: string
+  chapters: ChapterMeta[]
   onSelectChapter: (chapterId: string) => void
+  onBackToHub: () => void
 }
 
-export default function ModuleHome({ onSelectChapter }: ModuleHomeProps) {
+export default function ModuleHome({ moduleTitle, chapters, onSelectChapter, onBackToHub }: ModuleHomeProps) {
   const { isChapterComplete, isChapterUnlocked } = useProgressStore()
 
   const completedCount = chapters.filter((chapter) => isChapterComplete(chapter.id)).length
@@ -14,10 +17,17 @@ export default function ModuleHome({ onSelectChapter }: ModuleHomeProps) {
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-8 sm:py-12">
       <div className="mx-auto flex w-full max-w-lg flex-col gap-6">
+        <button
+          type="button"
+          onClick={onBackToHub}
+          className="flex items-center gap-1.5 self-start text-xs font-semibold text-slate-500 transition hover:text-indigo-600"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" />
+          Kembali ke semua modul
+        </button>
+
         <header className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
-            Modul 8 · Enterprise Change Management Rollout
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">{moduleTitle}</p>
           <h1 className="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">Ringkasan Modul</h1>
           <p className="mt-2 text-sm text-slate-500">
             {completedCount} dari {chapters.length} bab selesai

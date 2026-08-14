@@ -1,7 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
-const STORAGE_KEY = 'prediagnosis-workbook-module-8'
-
 export type WorkbookAnswers = Record<string, Record<string, string>>
 
 interface WorkbookContextValue {
@@ -12,21 +10,22 @@ interface WorkbookContextValue {
 
 const WorkbookContext = createContext<WorkbookContextValue | null>(null)
 
-function loadInitialAnswers(): WorkbookAnswers {
+function loadInitialAnswers(storageKey: string): WorkbookAnswers {
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY)
+    const raw = window.localStorage.getItem(storageKey)
     return raw ? (JSON.parse(raw) as WorkbookAnswers) : {}
   } catch {
     return {}
   }
 }
 
-export function WorkbookProvider({ children }: { children: ReactNode }) {
-  const [answers, setAnswers] = useState<WorkbookAnswers>(loadInitialAnswers)
+export function WorkbookProvider({ moduleId, children }: { moduleId: string; children: ReactNode }) {
+  const storageKey = `prediagnosis-workbook-${moduleId}`
+  const [answers, setAnswers] = useState<WorkbookAnswers>(() => loadInitialAnswers(storageKey))
 
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(answers))
-  }, [answers])
+    window.localStorage.setItem(storageKey, JSON.stringify(answers))
+  }, [storageKey, answers])
 
   const setFieldValue = (cardId: string, fieldId: string, value: string) => {
     setAnswers((prev) => ({

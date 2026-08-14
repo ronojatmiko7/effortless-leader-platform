@@ -10,6 +10,7 @@ export type CardType =
   | 'reflection'
   | 'finding-review'
   | 'report'
+  | 'review-request'
 
 interface BaseCard {
   id: string
@@ -121,6 +122,21 @@ export interface ReportCardData extends BaseCard {
   downloadButtonText: string
 }
 
+export interface ReviewRequestCardData extends BaseCard {
+  type: 'review-request'
+  eyebrow?: string
+  title: string
+  sentimentPrompt: string
+  positiveLabel: string
+  negativeLabel: string
+  testimonialPromptLabel: string
+  testimonialPlaceholder?: string
+  privateFeedbackPrompt: string
+  privateFeedbackPlaceholder?: string
+  thanksMessagePositive: string
+  thanksMessageNegative: string
+}
+
 export type Card =
   | InfoCardData
   | YesNoCardData
@@ -131,3 +147,4 @@ export type Card =
   | ReflectionCardData
   | FindingReviewCardData
   | ReportCardData
+  | ReviewRequestCardData

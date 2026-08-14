@@ -1,61 +1,128 @@
 import { useState } from 'react'
 import DeckViewer from './components/DeckViewer'
 import ModuleHome from './components/ModuleHome'
+import HubHome from './components/HubHome'
 import { WorkbookProvider } from './workbook/WorkbookContext'
 import { ProgressProvider, useProgressStore } from './progress/ProgressContext'
-import { chapters } from './content/chapters'
+import { modules } from './data/modules'
+import { hasModuleAccess } from './access/moduleAccess'
+
+type View =
+  | { level: 'hub' }
+  | { level: 'module-home'; moduleId: string }
+  | { level: 'chapter'; moduleId: string; chapterId: string }
 
 const chapterHref = (chapterId: string) => `#${chapterId}`
 
-function AppShell() {
-  const [activeView, setActiveView] = useState('#home')
+function ModuleShell({
+  moduleId,
+  view,
+  onBackToHub,
+  onSelectChapter,
+  onDeckComplete,
+}: {
+  moduleId: string
+  view: View
+  onBackToHub: () => void
+  onSelectChapter: (chapterId: string) => void
+  onDeckComplete: (chapterId: string) => void
+}) {
+  const module = modules.find((candidate) => candidate.id === moduleId)
   const { isChapterUnlocked, markChapterComplete } = useProgressStore()
 
-  const currentChapter = chapters.find((chapter) => chapterHref(chapter.id) === activeView)
-  const currentCards = currentChapter?.cards
+  if (!module) return null
 
-  const handleCtaNavigate = (href: string) => {
-    if (href === '#home') {
-      setActiveView('#home')
-      return
+  if (view.level === 'chapter') {
+    const currentChapter = module.chapters.find((chapter) => chapter.id === view.chapterId)
+    if (!currentChapter || !isChapterUnlocked(currentChapter.id)) {
+      return (
+        <ModuleHome
+          moduleTitle={module.title}
+          chapters={module.chapters}
+          onSelectChapter={onSelectChapter}
+          onBackToHub={onBackToHub}
+        />
+      )
     }
-    const isKnownChapter = chapters.some((chapter) => chapterHref(chapter.id) === href)
-    if (isKnownChapter) {
-      setActiveView(href)
+
+    const handleCtaNavigate = (href: string) => {
+      if (href === '#home') {
+        onDeckComplete(currentChapter.id)
+        return
+      }
+      const isKnownChapter = module.chapters.some((chapter) => chapterHref(chapter.id) === href)
+      if (isKnownChapter) {
+        onSelectChapter(href.slice(1))
+      }
     }
-  }
 
-  const handleSelectChapter = (chapterId: string) => {
-    if (!isChapterUnlocked(chapterId)) return
-    setActiveView(chapterHref(chapterId))
-  }
-
-  const handleDeckComplete = () => {
-    if (currentChapter) {
+    const handleDeckComplete = () => {
       markChapterComplete(currentChapter.id)
+      onDeckComplete(currentChapter.id)
     }
-    setActiveView('#home')
-  }
 
-  if (activeView === '#home' || !currentCards) {
-    return <ModuleHome onSelectChapter={handleSelectChapter} />
+    return (
+      <DeckViewer
+        key={currentChapter.id}
+        cards={currentChapter.cards}
+        onCtaNavigate={handleCtaNavigate}
+        onDeckComplete={handleDeckComplete}
+      />
+    )
   }
 
   return (
-    <DeckViewer
-      key={activeView}
-      cards={currentCards}
-      onCtaNavigate={handleCtaNavigate}
-      onDeckComplete={handleDeckComplete}
+    <ModuleHome
+      moduleTitle={module.title}
+      chapters={module.chapters}
+      onSelectChapter={onSelectChapter}
+      onBackToHub={onBackToHub}
     />
   )
 }
 
 function App() {
+  const [view, setView] = useState<View>({ level: 'hub' })
+
+  const handleSelectModule = (moduleId: string) => {
+    const module = modules.find((candidate) => candidate.id === moduleId)
+    if (!module || !hasModuleAccess(module.number)) return
+    setView({ level: 'module-home', moduleId })
+  }
+
+  const handleBackToHub = () => setView({ level: 'hub' })
+
+  if (view.level === 'hub') {
+    return <HubHome onSelectModule={handleSelectModule} />
+  }
+
+  const module = modules.find((candidate) => candidate.id === view.moduleId)
+  if (!module || !hasModuleAccess(module.number)) {
+    return <HubHome onSelectModule={handleSelectModule} />
+  }
+
+  const handleSelectChapter = (chapterId: string) => {
+    setView({ level: 'chapter', moduleId: module.id, chapterId })
+  }
+
+  const handleDeckComplete = () => {
+    setView({ level: 'module-home', moduleId: module.id })
+  }
+
   return (
-    <WorkbookProvider>
-      <ProgressProvider>
-        <AppShell />
+    <WorkbookProvider key={module.id} moduleId={module.id}>
+      <ProgressProvider
+        key={module.id}
+        moduleId={module.id}
+        chapterIds={module.chapters.map((chapter) => chapter.id)}
+      >
+        <ModuleShell
+          moduleId={module.id}
+          view={view}
+          onBackToHub={handleBackToHub}
+          onSelectChapter={handleSelectChapter}
+          onDeckComplete={handleDeckComplete}
+        />
       </ProgressProvider>
     </WorkbookProvider>
   )

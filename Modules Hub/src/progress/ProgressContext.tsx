@@ -1,18 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
-const STORAGE_KEY = 'prediagnosis-progress-module-8'
-
-const CHAPTER_ORDER = [
-  'chapter-1',
-  'chapter-2',
-  'chapter-3',
-  'chapter-4',
-  'chapter-5',
-  'chapter-6',
-  'chapter-7',
-  'chapter-8',
-]
-
 export type CompletedChapters = Record<string, true>
 
 interface ProgressContextValue {
@@ -23,21 +10,30 @@ interface ProgressContextValue {
 
 const ProgressContext = createContext<ProgressContextValue | null>(null)
 
-function loadInitialProgress(): CompletedChapters {
+function loadInitialProgress(storageKey: string): CompletedChapters {
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY)
+    const raw = window.localStorage.getItem(storageKey)
     return raw ? (JSON.parse(raw) as CompletedChapters) : {}
   } catch {
     return {}
   }
 }
 
-export function ProgressProvider({ children }: { children: ReactNode }) {
-  const [completed, setCompleted] = useState<CompletedChapters>(loadInitialProgress)
+export function ProgressProvider({
+  moduleId,
+  chapterIds,
+  children,
+}: {
+  moduleId: string
+  chapterIds: string[]
+  children: ReactNode
+}) {
+  const storageKey = `prediagnosis-progress-${moduleId}`
+  const [completed, setCompleted] = useState<CompletedChapters>(() => loadInitialProgress(storageKey))
 
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(completed))
-  }, [completed])
+    window.localStorage.setItem(storageKey, JSON.stringify(completed))
+  }, [storageKey, completed])
 
   const isChapterComplete = (chapterId: string) => !!completed[chapterId]
 
@@ -46,9 +42,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   }
 
   const isChapterUnlocked = (chapterId: string) => {
-    const index = CHAPTER_ORDER.indexOf(chapterId)
+    const index = chapterIds.indexOf(chapterId)
     if (index <= 0) return true
-    const previousId = CHAPTER_ORDER[index - 1]
+    const previousId = chapterIds[index - 1]
     return !!completed[previousId]
   }
 

@@ -12,6 +12,7 @@ import WorksheetCard from './cards/WorksheetCard'
 import ReflectionCard from './cards/ReflectionCard'
 import FindingReviewCard from './cards/FindingReviewCard'
 import ReportCard from './cards/ReportCard'
+import ReviewRequestCard from './cards/ReviewRequestCard'
 
 const SWIPE_THRESHOLD = 80
 
@@ -48,6 +49,8 @@ function renderCard(
       return <FindingReviewCard card={card} />
     case 'report':
       return <ReportCard card={card} />
+    case 'review-request':
+      return <ReviewRequestCard card={card} />
   }
 }
 
@@ -70,7 +73,10 @@ export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: Dec
   const yesNoSelection = yesNoSelections[card.id]
 
   const isComplete =
-    card.type === 'info' || card.type === 'worksheet' || card.type === 'report'
+    card.type === 'info' ||
+    card.type === 'worksheet' ||
+    card.type === 'report' ||
+    card.type === 'review-request'
       ? true
       : card.type === 'yes-no'
         ? yesNoSelection !== undefined
