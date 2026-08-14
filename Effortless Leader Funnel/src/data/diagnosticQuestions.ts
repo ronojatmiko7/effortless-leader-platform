@@ -7,6 +7,13 @@ import type { DiagnosticQuestion } from '../types/diagnostic'
 // `// TODO: review wording — Bro Rono` comment, lightly simplified for SME
 // readability (corporate/HR jargon an SME owner likely won't know). What
 // each question measures is unchanged in every case.
+//
+// One deliberate exception: Q2's "metrik lag"/"metrik lead" language was
+// swapped for "KPI Hasil"/"KPI Usaha" (Bro Rono's preferred terminology,
+// also applied inside Module 2 — see MODULE_2_TERMINOLOGY_UPDATE_PROMPT.md).
+// This is a terminology rename, not a readability reword, so it isn't
+// TODO-tagged — what the question measures and its 1–4 scoring are
+// unchanged, only the labels.
 export const diagnosticQuestions: DiagnosticQuestion[] = [
   // OUTPUT
   {
@@ -28,12 +35,12 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
     section: 'Output',
     area: 'Keselarasan & Kualitas KPI',
     question:
-      'Apakah KPI operasional selaras langsung dengan tujuan strategis, menyeimbangkan metrik lag (hasil) dengan metrik lead (input proses)?',
+      'Apakah KPI operasional selaras langsung dengan tujuan strategis, menyeimbangkan KPI Hasil (metrik lag) dengan KPI Usaha (metrik lead / input proses)?',
     anchors: [
-      '1 = Metrik mendorong perilaku silo dan hanya mengukur output vanitas.',
-      '2 = Sebagian besar metrik lag yang bersifat historis dengan sedikit pelacakan indikator lead.',
-      '3 = Kombinasi seimbang antara metrik lead dan lag yang selaras dengan tujuan departemen.',
-      '4 = Peta strategi yang sepenuhnya sinkron dengan indikator lead yang bersifat prediktif.',
+      '1 = KPI justru mendorong perilaku silo/ego sektoral dan hanya mengukur hasil akhir dan bukan proses.',
+      '2 = Sebagian besar hanya KPI Usaha, dan hanya sedikit yang merupakan KPIS Hasil.',
+      '3 = Kombinasi seimbang antara KPI Usaha dan KPI Hasil yang selaras dengan tujuan bisnis/departemen/unit.',
+      '4 = Sudah ada Peta strategi yang sepenuhnya sinkron antara KPI Usaha dengan KPI Hasil.',
     ],
   },
   {
