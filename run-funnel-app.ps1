@@ -17,18 +17,18 @@ Claude Code run isn't worth hoisting out the way per-chapter porting was.
 CAVEMAN MODE: same token-efficiency reasoning as Module 8's runner (see
 prediagnosis-funnel-workflow.md in project memory) - Cowork and this
 terminal's `claude -p` calls share the same usage quota, so keeping Claude
-Code's own narration compressed during this run matters. Two belts, one
-suspender:
-  1. A literal `/caveman full` line at the very top of the instruction, in
-     case you ever run this brief interactively instead (paste into a normal
-     `claude` session) - the plugin's slash command works directly there.
-  2. A plain-English fallback directive right after it, for headless `-p`
-     mode where the plugin's session-start hook may not reliably fire.
-Neither line touches the quality of the code or the Bahasa Indonesia
+Code's own narration compressed during this run matters. This is a
+plain-English directive only, NOT a literal `/caveman full` slash-command
+line - a first version of this script tried that and headless `claude -p`
+treated the leading "/" as an attempted CLI slash command and errored with
+"Unknown command: /caveman" before ever reading the rest of the instruction
+(confirmed by an actual failed run on this machine). Slash commands only
+work that way in an interactive `claude` session, not through `-p`. This
+directive doesn't touch the quality of the code or the Bahasa Indonesia
 learner-facing copy Claude Code writes - only how much it narrates while
 writing it. If the caveman plugin (https://github.com/JuliusBrussee/caveman)
-isn't installed on this machine, both lines are inert - Claude Code just
-reads them as style preferences and proceeds normally.
+isn't installed on this machine, it's inert - Claude Code just reads it as a
+style preference and proceeds normally.
 
 ONE-TIME SETUP NEEDED ON THIS MACHINE (not done by this script - a
 third-party install script, review it before running):
@@ -94,7 +94,7 @@ if ($preExistingChanges) {
     Write-Host "Baseline committed. Continuing with a clean tree.`n" -ForegroundColor Green
 }
 
-$cavemanDirective = "/caveman full`n`nIf the 'caveman' Claude Code plugin (https://github.com/JuliusBrussee/caveman) is installed on this machine, stay in caveman-compressed output mode for this entire run - terse, fragment-style commentary between tool calls, no filler explanations or restating what you're about to do. This only affects your own narration; write all code, comments, and the Bahasa Indonesia learner-facing copy in full, normal quality - nothing about the deliverable itself should be compressed or abbreviated. If the plugin isn't installed, ignore the /caveman line and this paragraph and proceed normally."
+$cavemanDirective = "If the 'caveman' Claude Code plugin (https://github.com/JuliusBrussee/caveman) is installed on this machine, stay in caveman-compressed output mode for this entire run - terse, fragment-style commentary between tool calls, no filler explanations or restating what you're about to do. This only affects your own narration; write all code, comments, and the Bahasa Indonesia learner-facing copy in full, normal quality - nothing about the deliverable itself should be compressed or abbreviated. If the plugin isn't installed, ignore this paragraph and proceed normally."
 
 $instruction = "$cavemanDirective`n`nRead the build brief at $promptFile in full using your Read tool, then execute it exactly as written from top to bottom, creating the new 'Effortless Leader Funnel/' folder as instructed. Do not summarize, skip, or abbreviate any section of it. Do not run 'git add' or 'git commit' yourself - leave the changes uncommitted, this script handles committing after verifying the build."
 
