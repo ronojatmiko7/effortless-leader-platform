@@ -3,6 +3,7 @@ import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
+import { chapter6Cards } from './chapter6'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -55,5 +56,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Mengunci satu kasus pakai dari Bab 3, memilih mode pemakaian Claude for Business yang cocok — chat biasa, ruang kerja bersama, atau automasi lintas file — lalu merancang siapa yang pakai, langkah cek manusia yang wajib, dan target keberhasilan yang terukur.',
     cards: chapter5Cards,
+  },
+  {
+    id: 'chapter-6',
+    number: 6,
+    title: 'Menjalankan & Melatih Tim Memakai AI di Lapangan',
+    description:
+      'Menjalankan rancangan alur kerja dari Bab 5 secara nyata: instruksi jelas vs. ambigu, verifikasi yang sehat, cara menangani momen "AI-nya salah" secara konstruktif, sinyal bahaya balik ke cara manual, dan merayakan kemenangan kecil supaya momentum bertahan.',
+    cards: chapter6Cards,
   },
 ]
