@@ -17,7 +17,7 @@ export const chapter5Cards: Card[] = [
     id: 'c5-card-1',
     type: 'info',
     icon: Boxes,
-    eyebrow: 'Bab 5 · Mengaudit Lapisan Input',
+    eyebrow: 'Bab 5 · Mengaudit Level Input',
     title: 'Proses Sudah Dipetakan, Sekarang Lacak Bahan Bakunya',
     body: [
       'Di Bab 4, Anda memetakan satu alur kerja nyata dan menduga satu langkah yang paling sering jadi titik bocor.',
@@ -29,10 +29,10 @@ export const chapter5Cards: Card[] = [
     type: 'info',
     icon: Layers3,
     eyebrow: 'Tiga Sub-area Input',
-    title: 'Input Bukan Cuma Soal Rekrutmen',
+    title: 'Input Bukan Cuma Bahan Baku',
     body: [
-      'Waktu dengar kata "Input", kebanyakan orang langsung mikir soal karyawan. Padahal Input itu ada 3 sub-area: manusia (kompetensi tim), alat (mesin, software, perkakas kerja), dan material/modal (bahan baku serta kecukupan modal kerja).',
-      'Ketiganya sama-sama bisa jadi akar masalah. Tapi karena manusia paling gampang disalahkan, dua sub-area lainnya sering luput dari audit.',
+      'Waktu dengar kata "Input", kebanyakan orang langsung mikir soal bahan baku produksi. Padahal Input itu ada 3 sub-area: manusia (kompetensi tim), alat (mesin, software, perkakas kerja), dan material/modal (bahan baku serta kecukupan modal kerja).',
+      'Ketiganya sama-sama bisa jadi akar masalah.',
     ],
   },
   {
@@ -57,8 +57,8 @@ export const chapter5Cards: Card[] = [
     eyebrow: 'Prinsip Penting',
     title: 'Sampah Masuk, Sampah Keluar',
     body: [
-      'Prinsipnya sederhana: sebagus apa pun Proses Anda dirancang, kalau yang masuk ke dalamnya sudah bermasalah, hasil akhirnya tetap akan ikut bermasalah.',
-      'Itu sebabnya audit Input ini penting — bukan buat mencari siapa yang salah, tapi buat memastikan Proses yang sudah Anda benahi di Bab 4 tidak dipaksa bekerja dengan bahan yang memang sudah rusak sejak awal.',
+      'Prinsipnya sederhana: sebagus apa pun Proses yang Anda rancang, kalau yang masuk ke dalamnya sudah bermasalah, hasil akhirnya tetap akan ikut bermasalah.',
+      'Itu sebabnya audit Input ini penting — bukan buat mencari siapa yang salah, tapi buat memastikan Proses yang sudah Anda benahi di Bab 4 bekerja dengan bahan baku yang baik.',
     ],
   },
   {
@@ -78,10 +78,10 @@ export const chapter5Cards: Card[] = [
     type: 'info',
     icon: UserCheck,
     eyebrow: 'Audit Manusia',
-    title: 'Jangan Nilai Sikap, Nilai Kesenjangan Skill',
+    title: 'Jangan Hanya Nilai Sikapnya, Tapi Juga Nilai Kesenjangan Skillnya',
     body: [
-      'Teknik paling sederhana: tulis dulu skill apa saja yang SEBENARNYA dibutuhkan untuk satu peran. Baru bandingkan dengan skill yang benar-benar dimiliki orang yang sekarang memegang peran itu.',
-      'Selisihnya itu yang disebut competency gap — dan itu jauh lebih berguna dibahas daripada menuduh orangnya "kurang niat" atau "kurang serius".',
+      'Teknik paling sederhana: tulis dulu standar skill yang dibutuhkan untuk suatu pekerjaan. Baru kemudian bandingkan skill orangnya dengan standar yang ada.',
+      'Selisihnya itulah yang disebut competency gap — dan itu harus diperiksa sebelum menuduh orangnya "kurang niat" atau "kurang serius".',
     ],
   },
   {
@@ -92,7 +92,7 @@ export const chapter5Cards: Card[] = [
     title: 'Kelihatannya Malas, Ternyata Belum Pernah Diajari',
     body: [
       'Contoh: seorang admin dianggap "lambat dan ceroboh" karena sering salah input data pesanan. Setelah dicek, ternyata dia memang belum pernah dilatih memakai sistem barunya sama sekali — selama ini cuma belajar sendiri sambil jalan.',
-      'Dari luar kelihatan seperti masalah sikap. Padahal akarnya kompetensi: dia memang belum punya skill yang dibutuhkan, dan itu bukan salahnya kalau tidak pernah diajari.',
+      'Dari luar kelihatan seperti masalah sikap. Padahal akarnya kompetensi: dia memang belum punya skill yang dibutuhkan, dan itu bukan salahnya kalau dia tidak pernah diajari.',
     ],
   },
   {
@@ -118,8 +118,8 @@ export const chapter5Cards: Card[] = [
     eyebrow: 'Audit Alat',
     title: 'Beli Alatnya Gampang, Makainya yang Susah',
     body: [
-      'Ingat software mahal yang stafnya tidak tahu cara pakai, jadi kerjaan malah lebih lambat? Itu soal adoption — apakah tim BENERAN memakainya sehari-hari, atau cuma dibuka kalau ada yang nanya.',
-      'Ada juga soal fit — apakah alat itu memang menyelesaikan titik bocor yang Anda temukan di Bab 4, atau cuma jadi satu sistem baru lagi yang harus dikelola tanpa benar-benar membantu.',
+      'Apakah Anda pernah membeli software mahal tapi staf Anda tidak tahu cara pakai, jadi kerjaan malah lebih lambat? Itu soal adoption — apakah tim BENERAN memakainya sehari-hari, atau cuma dibuka kalau ada yang nanya.',
+      'Ada juga soal fit — apakah alat itu memang menyelesaikan titik bocor yang Anda temukan di Bab 4, atau cuma jadi satu sistem baru yang nggak menyelesaikan masalah?',
     ],
   },
   {
@@ -146,7 +146,7 @@ export const chapter5Cards: Card[] = [
     title: 'Bukan Cuma Soal Ada atau Tidak Ada',
     body: [
       'Material itu soal konsistensi: apakah bahan baku dari supplier Anda kualitasnya sama setiap kali datang, atau naik-turun tanpa Anda sadari?',
-      'Modal kerja itu soal ketepatan, bukan cuma jumlah: bukan sekadar "apa kita punya uang", tapi "apa kita punya cukup bahan atau uang di waktu yang tepat, saat proses benar-benar membutuhkannya".',
+      'Modal kerja itu soal ketepatan, bukan cuma jumlah: bukan sekadar "apa kita punya uang", tapi "apa kita punya modal (bahan atau uang) yang cukup saat dibutuhkan?".',
       'Contoh: toko kehabisan stok barang paling laris justru pas ramai pembeli, karena pembelian ulang tidak direncanakan mengikuti pola penjualan. Uangnya ada, tapi tidak dialokasikan di waktu yang tepat.',
     ],
   },
@@ -154,10 +154,10 @@ export const chapter5Cards: Card[] = [
     id: 'c5-card-12',
     type: 'info',
     icon: ShieldCheck,
-    eyebrow: 'Mencegah, Bukan Cuma Membenahi',
-    title: 'Cara Termurah Membenahi Input: Jangan Biarkan yang Salah Masuk',
+    eyebrow: 'Mencegah, Bukan Cuma Memperbaiki',
+    title: 'Cara Termurah Memperbaiki Input: Jangan Biarkan yang Salah Masuk',
     body: [
-      'Semua soal kompetensi tadi bisa dicegah sejak awal, bukan cuma dibenahi belakangan. Caranya: punya daftar syarat keahlian yang jelas dan tidak bisa ditawar, sebelum merekrut siapa pun.',
+      'Semua soal kompetensi tadi bisa dicegah sejak awal, bukan cuma dibenahi belakangan. Caranya: punya daftar syarat keahlian (job requirement) yang jelas dan tidak bisa ditawar, serta melakukan rekrutmen dengan proses yang benar.',
       'Ini jauh lebih murah daripada mengaudit dan melatih ulang orang yang sudah telanjur salah tempat.',
     ],
   },
@@ -165,7 +165,7 @@ export const chapter5Cards: Card[] = [
     id: 'c5-card-13',
     type: 'yes-no',
     question:
-      "Saat merekrut untuk posisi penting, apakah Anda punya daftar syarat keahlian yang jelas dan tertulis, atau lebih sering mengandalkan feeling 'orangnya kelihatan oke'?",
+      "Saat merekrut untuk posisi penting, apakah Anda punya daftar syarat keahlian (job requirement) yang jelas dan tertulis, atau lebih sering mengandalkan feeling 'orangnya kelihatan oke'?",
     yesLabel: 'Punya daftar yang jelas dan tertulis',
     noLabel: 'Lebih sering pakai feeling',
     feedbackYes: 'Bagus. Itu artinya Anda sudah mencegah banyak masalah Input sebelum sempat terjadi.',
@@ -207,10 +207,10 @@ export const chapter5Cards: Card[] = [
     id: 'c5-card-16',
     type: 'info',
     icon: Compass,
-    eyebrow: 'Selesai Bab 5 · Tiga Lapisan Terpetakan',
-    title: 'Ketiga Lapisan Sudah Terpetakan',
+    eyebrow: 'Selesai Bab 5 · Tiga Level Terpetakan',
+    title: 'Ketiga Level Sudah Terpetakan',
     body: [
-      'Anda sudah memetakan ketiga lapisan — Output di Bab 3, Proses di Bab 4, dan Input barusan. Dari gejala, ke titik bocor, sampai ke sumber daya yang dicurigai jadi akarnya.',
+      'Anda sudah memetakan ketiga Level — Output di Bab 3, Proses di Bab 4, dan Input barusan. Dari gejala, ke titik bocor, sampai ke sumber daya yang dicurigai jadi akarnya.',
       'Tapi peta ini cuma berguna kalau datanya benar — bukan sekadar dugaan dan feeling seperti yang kita kritik sejak Bab 1.',
       'Bab depan: cara mengumpulkan data audit yang objektif, supaya dugaan Anda tadi bisa benar-benar dibuktikan, bukan cuma insting yang dibungkus istilah audit.',
     ],

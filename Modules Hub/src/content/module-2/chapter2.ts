@@ -33,7 +33,7 @@ export const chapter2Cards: Card[] = [
     title: 'Tiga Level, Bukan Satu Lompatan',
     body: [
       'Target bisnis Anda itu nggak turun dalam satu lompatan dari "target tahunan" ke "kerjaan harian karyawan". Ada 3 level di antaranya, dan di tiap level, angkanya harus GANTI BENTUK, bukan cuma mengecil.',
-      'Level 1: Target Tahunan Perusahaan — misalnya omzet Rp 10 miliar tahun ini. Angka besar, punya Anda sebagai bos.',
+      'Level 1: Target Tahunan Perusahaan — misalnya omzet Rp 10 miliar tahun ini. Angka besar, punya Anda sebagai CEO.',
       'Level 2: Target Divisi/Tim — target besar itu dipecah jadi potongan yang relevan buat kerjaan tim masing-masing. Divisi sales dapat potongan dalam bentuk closing bulanan, bukan dalam bentuk "omzet perusahaan".',
       'Level 3: Aksi Harian Individu — potongan tim itu diterjemahkan lagi jadi satu tindakan konkret yang bisa dikerjakan satu staf, hari ini, dan benar-benar dia kendalikan.',
     ],
@@ -61,7 +61,7 @@ export const chapter2Cards: Card[] = [
     eyebrow: 'Skenario',
     title: 'Coba Bayangkan Ini Terjadi di Bisnis Anda',
     body: [
-      'Seorang bos punya target tahunan omzet Rp 10 miliar. Alih-alih diterjemahkan, dia langsung kumpulkan semua staf dan bilang: "Target kita tahun ini Rp 10 miliar. Ayo kerja yang bener." Selesai, tanpa penerjemahan apa pun.',
+      'Seorang CEO punya target tahunan omzet Rp 10 miliar. Alih-alih diterjemahkan, dia langsung kumpulkan semua staf dan bilang: "Target kita tahun ini Rp 10 miliar. Ayo kerja yang bener." Selesai, tanpa penerjemahan apa pun.',
       'Minggu berikutnya, staf gudang, staf admin, dan staf sales semuanya "punya" angka Rp 10 miliar yang sama di kepala mereka. Tapi coba tanya salah satu dari mereka: apa yang harus saya kerjakan HARI INI supaya angka itu tercapai?',
     ],
   },
@@ -86,7 +86,7 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: AlertTriangle,
     eyebrow: 'Poin Paling Penting di Bab Ini',
-    title: 'Melompati Satu Level Itu Sama Bahayanya dengan Metrik Basa-basi',
+    title: 'Melompati Satu Level Itu Sama Bahayanya dengan KPI Basa-basi',
     body: [
       "Ingat staf yang cuma disuruh 'kerja keras' tanpa angka spesifik di Bab 1? Itulah yang terjadi kalau target perusahaan langsung ditempel ke staf tanpa lewat proses penerjemahan cascading.",
       'Angka yang nggak bisa dikendalikan oleh orang yang disuruh mengejarnya itu sama percumanya dengan follower yang nggak nyambung ke closing. Bedanya cuma kelihatan lebih "serius", karena angkanya gede dan berbau target resmi perusahaan.',
@@ -137,7 +137,7 @@ export const chapter2Cards: Card[] = [
     title: 'Level 1 ke Level 2: Dari Omzet Perusahaan ke Target Divisi',
     body: [
       'Biar nggak abstrak, mari ikuti satu angka nyata turun tiga level, di divisi Sales.',
-      'Level 1 — Target Tahunan Perusahaan: omzet Rp 10 miliar tahun ini. Angka ini punya Anda sebagai bos, dan masih terlalu besar untuk dikerjakan siapa pun secara langsung.',
+      'Level 1 — Target Tahunan Perusahaan: omzet Rp 10 miliar tahun ini. Angka ini punya Anda sebagai CEO, dan masih terlalu besar untuk dikerjakan siapa pun secara langsung.',
       'Level 2 — Target Divisi Sales: Rp 10 miliar itu dipecah antar divisi. Sales, misalnya, dapat potongan closing Rp 800 juta per bulan. Bentuknya sudah beda — bukan lagi "omzet perusahaan setahun", tapi "closing bulanan divisi ini".',
     ],
   },
@@ -217,7 +217,7 @@ export const chapter2Cards: Card[] = [
       {
         id: 'target-number',
         label: 'Berapa angkanya, dan satuannya apa?',
-        placeholder: 'Contoh: Omzet Rp 5 miliar tahun ini, atau 200 klien baru tahun ini',
+        placeholder: 'Contoh: Omzet Rp 5 miliar tahun ini, atau 200 pelanggan baru tahun ini',
       },
       {
         id: 'target-why',
@@ -234,7 +234,7 @@ export const chapter2Cards: Card[] = [
     title: 'Sekarang Anda Punya Peta Cascading-nya',
     body: [
       'Target yang baru Anda tulis itu akan jadi contoh kasus yang kita pakai terus sampai Bab 5 — simpan baik-baik.',
-      'Anda sekarang tahu: target itu harus ganti bentuk di tiap level, bukan cuma mengecil, dan melompati satu level sama bahayanya dengan metrik basa-basi.',
+      'Anda sekarang tahu: target itu harus ganti bentuk di tiap level, bukan cuma mengecil, dan melompati satu level sama bahayanya dengan KPI basa-basi.',
       'Sekarang Anda punya peta cascading-nya. Bab berikutnya kita bedah elemen pertama dari peta ini: Lag Metric — angka hasil yang jadi kaca spion bisnis Anda.',
     ],
   },

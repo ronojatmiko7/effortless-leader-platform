@@ -19,8 +19,8 @@ export const chapter7Cards: Card[] = [
     eyebrow: 'Bab 7 · Menilai & Memprioritaskan Temuan',
     title: 'Tumpukan Temuan Bukan Rencana',
     body: [
-      'Sejak Bab 2, Anda sudah menulis banyak hal: gejala, titik bocor, sumber daya yang dicurigai, sampai rencana verifikasi. Itu semua berharga, tapi masih berupa tumpukan.',
-      'Daftar "hal-hal yang salah" tidak dengan sendirinya memberi tahu Anda harus mulai dari mana. Tanpa sistem penilaian, Anda cuma akan membenahi yang paling baru diomongin orang, atau yang paling bikin Anda kesal hari itu.',
+      'Sejak Bab 2, Anda sudah menulis banyak hal: gejala, titik bocor, sumber daya yang dicurigai, sampai rencana verifikasi. Itu semua bagus, tapi belum jadi apa-apa.',
+      'Daftar temuan tersebut belum bisa memberikan jawaban dengan jelas apa yang harus Anda perbaiki. Tanpa sistem penilaian, Anda cuma akan membenahi yang paling baru diomongin orang, atau yang paling bikin Anda kesal hari itu.',
       'Bab ini kasih Anda sistemnya: cara menilai temuan secara konsisten, melacak sampai akar sesungguhnya, dan mengurutkan mana yang harus dibenahi duluan.',
     ],
   },
@@ -32,8 +32,8 @@ export const chapter7Cards: Card[] = [
     title: 'Satu Skala yang Sama untuk Semua Temuan',
     body: [
       'Mulai sekarang, nilai setiap temuan pakai skala yang sama: 1 sampai 4, berdasarkan kondisi nyata di lapangan — bukan feeling seberapa kesal Anda soal itu.',
-      'Skor 1 artinya parah atau tidak ada sama sekali. Skor 4 artinya sudah optimal, berjalan rapi tanpa hambatan. Skor 2 dan 3 ada di antara keduanya.',
-      'Satu aturan penting: skor 2 ke bawah otomatis jadi red flag — tandanya ini bukan sekadar "kurang sempurna", tapi benar-benar layak diprioritaskan.',
+      'Skor 1 artinya parah atau tidak ada sama sekali. Skor 2 artinya ada tapi belum dilaksanakan dengan baik. Skor 3 artinya sudah baik tapi masih ada kesalahan. Skor 4 artinya sudah optimal, berjalan rapi tanpa hambatan.',
+      'Satu aturan penting: skor 2 ke bawah otomatis jadi red flag — inilah yang harus Anda prioritaskan',
     ],
   },
   {
@@ -118,7 +118,7 @@ export const chapter7Cards: Card[] = [
       'Why 2 — kenapa closing rate menurun? Karena follow-up ke calon klien sering telat atau malah lupa.',
       'Why 3 — kenapa follow-up sering telat? Karena semua leads masih dicatat manual di buku, tidak ada pengingat otomatis.',
       'Why 4 — kenapa masih dicatat manual? Karena tim sales tidak pernah diajari memakai CRM yang sebenarnya sudah ada.',
-      'Akar masalahnya: sales rep tidak pernah dilatih memakai CRM untuk follow-up — bukan soal "kurang niat" seperti tuduhan yang biasa dilontarkan.',
+      'Akar masalahnya: karena sales tidak pernah dilatih memakai CRM untuk follow-up — bukan soal "kurang niat" seperti tuduhan yang biasa dilontarkan.',
     ],
   },
   {

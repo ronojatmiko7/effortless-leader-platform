@@ -20,8 +20,8 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-1',
     number: 1,
-    title: 'Enterprise Operational Audit',
-    description: 'Audit rutin 3 lapisan bisnis Anda biar keputusan nggak lagi cuma tebak-tebakan.',
+    title: 'Bagaimana Mengaudit Bisnis Anda Sendiri',
+    description: 'Audit rutin 3 Level bisnis Anda biar keputusan nggak lagi cuma tebak-tebakan.',
     chapters: module1Chapters,
   },
   {

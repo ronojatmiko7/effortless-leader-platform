@@ -20,9 +20,9 @@ export const chapters: ChapterMeta[] = [
   {
     id: 'chapter-1',
     number: 1,
-    title: 'Kenapa KPI Anda Selama Ini Menipu — Jebakan Metrik Basa-basi (Vanity Metrics)',
+    title: 'Kenapa KPI Anda Selama Ini Menipu — Jebakan KPI Basa-basi (Vanity Metrics)',
     description:
-      "Kenapa 'sibuk' dan 'omzet naik' bisa menipu Anda, dan kenapa Anda butuh KPI yang benar-benar mengukur kesehatan bisnis, bukan cuma bikin ngerasa aman.",
+      "Kenapa terlihat 'sibuk' dan 'omzet naik' bisa menipu Anda, dan kenapa Anda butuh KPI yang benar-benar mengukur kesehatan bisnis, bukan cuma bikin ngerasa keren.",
     cards: chapter1Cards,
   },
   {
@@ -30,7 +30,7 @@ export const chapters: ChapterMeta[] = [
     number: 2,
     title: 'Peta KPI: Dari Visi Bisnis ke Aksi Harian (Cascading Framework)',
     description:
-      'Peta besar cara memecah target tahunan perusahaan jadi target harian yang jelas untuk tiap divisi dan staf — dan kenapa melompati satu level di rantai ini sama bahayanya dengan metrik basa-basi.',
+      'Peta besar cara memecah target tahunan perusahaan jadi target harian yang jelas untuk tiap divisi dan staf — dan kenapa melompati satu level di rantai ini sama bahayanya dengan KPI basa-basi.',
     cards: chapter2Cards,
   },
   {

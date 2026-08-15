@@ -19,8 +19,8 @@ export const chapter1Cards: Card[] = [
     title: 'Angka yang Bikin Anda Bangga, Padahal Kosong',
     body: [
       'Coba jujur: bulan lalu omzet Anda naik. Anda posting di grup WA keluarga, senyum-senyum baca laporannya. Tapi coba cek satu hal lagi: kas di rekening, naik juga atau malah makin tipis?',
-      'Banyak bos kaget waktu sadar dua hal itu nggak selalu jalan bareng. Omzet naik, tapi uangnya nyangkut di stok yang belum terjual atau di tagihan klien yang belum dibayar.',
-      "Itu baru contoh pertama dari yang namanya metrik basa-basi — angka yang kelihatan bagus di laporan, tapi nggak ngomong apa-apa soal apakah bisnis Anda benar-benar sehat.",
+      'Banyak CEO kaget waktu sadar dua hal itu nggak selalu jalan bareng. Omzet naik, tapi uangnya nyangkut di stok yang belum terjual atau di tagihan pelanggan yang belum dibayar.',
+      "Itu baru contoh pertama dari yang namanya KPI basa-basi — angka yang kelihatan bagus di laporan, tapi nggak ngomong apa-apa soal apakah bisnis Anda benar-benar sehat.",
     ],
   },
   {
@@ -51,7 +51,7 @@ export const chapter1Cards: Card[] = [
     id: 'c1-card-4',
     type: 'multiple-choice',
     question:
-      'Toko Anda pengunjungnya naik 3x lipat bulan ini, tapi jumlah transaksi yang benar-benar closing cuma naik sedikit. Angka mana yang lebih layak dicurigai sebagai metrik basa-basi di sini?',
+      'Toko Anda pengunjungnya naik 3x lipat bulan ini, tapi jumlah transaksi yang benar-benar closing cuma naik sedikit. Angka mana yang lebih layak dicurigai sebagai KPI basa-basi di sini?',
     options: [
       'Jumlah pengunjung toko',
       'Jumlah transaksi yang closing',
@@ -59,31 +59,31 @@ export const chapter1Cards: Card[] = [
     ],
     correctAnswer: 0,
     successFeedback:
-      'Tepat. Pengunjung ramai itu enak dilihat, tapi kalau nggak nyambung ke closing, angka itu cuma bikin Anda ngerasa aman — bukan menunjukkan bisnis sehat.',
+      'Tepat. Pengunjung ramai itu enak dilihat, tapi kalau nggak nyambung ke closing, angka itu cuma bikin Anda ngerasa keren — tapi tidak menunjukkan apakah bisnis sehat atau tidak.',
     errorFeedback:
-      'Coba lagi. Pengunjung yang ramai tapi nggak nyambung ke closing itu justru contoh klasik metrik yang menipu.',
+      'Coba lagi. Pengunjung yang ramai tapi nggak nyambung ke closing itu justru contoh klasik KPI yang menipu.',
   },
   {
     id: 'c1-card-5',
     type: 'sort-list',
     question:
-      'Urutkan bagaimana biasanya cerita angka basa-basi ini terjadi, dari yang duluan sampai yang belakangan disadari.',
+      'Urutkan bagaimana biasanya cerita angka basa-basi ini terjadi, dari yang duluan sampai yang baru belakangan disadari.',
     items: [
       'Kaget kas ternyata tipis atau minus',
       'Omzet kelihatan naik terus dipamerkan',
-      'Bos makin pede menambah belanja atau stok',
+      'CEO makin pede menambah belanja atau stok',
       'Ternyata uangnya nyangkut di stok atau tagihan yang belum cair',
     ],
     correctAnswer: [
       'Omzet kelihatan naik terus dipamerkan',
-      'Bos makin pede menambah belanja atau stok',
+      'CEO makin pede menambah belanja atau stok',
       'Kaget kas ternyata tipis atau minus',
       'Ternyata uangnya nyangkut di stok atau tagihan yang belum cair',
     ],
     successFeedback:
-      'Persis begini caranya angka basa-basi bikin bos kaget belakangan. Kalau dari awal ikut cek kas, bukan cuma omzet, kejutan ini bisa dicegah.',
+      'Persis begini caranya angka basa-basi bikin CEO kaget belakangan. Padahal kalau dari awal kas rutin di cek, bukan cuma omzet, kejutan ini bisa dicegah.',
     errorFeedback:
-      'Belum pas. Urutan yang biasa terjadi: omzet naik dulu, bos makin pede belanja, baru kaget pas kas tipis-tipisnya kelihatan, dan baru belakangan sadar uangnya nyangkut di stok atau tagihan.',
+      'Belum pas. Urutan yang biasa terjadi: omzet naik dulu, CEO makin pede belanja, baru kaget pas kas tipis-tipisnya kelihatan, dan baru belakangan sadar uangnya nyangkut di stok atau tagihan.',
   },
   {
     id: 'c1-card-6',
@@ -92,7 +92,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Kenapa Ini Berbahaya',
     title: 'Ini Insting Versi Baru, Cuma Pakai Baju Data',
     body: [
-      'Kalau Anda sudah ikut Modul 1: inget soal bahaya mengelola bisnis pakai insting? Nah, metrik basa-basi ini versi yang lebih berbahaya dari itu.',
+      'Kalau Anda sudah ikut Modul 1: inget soal bahaya mengelola bisnis pakai insting? Nah, KPI basa-basi ini versi yang lebih berbahaya dari itu.',
       'Kenapa lebih berbahaya? Karena kelihatannya Anda sudah pakai data, padahal angkanya nggak menjawab pertanyaan yang benar-benar penting.',
       "Anda mikir Anda sudah data-driven karena tiap pagi cek jumlah followers atau jumlah pengunjung. Tapi kalau angka itu nggak pernah bikin Anda mengubah keputusan, Anda cuma pindah dari nebak pakai perasaan, ke nebak pakai angka yang salah.",
     ],
@@ -101,13 +101,13 @@ export const chapter1Cards: Card[] = [
     id: 'c1-card-7',
     type: 'fill-in-the-blank',
     sentence:
-      'Metrik basa-basi itu bahaya justru karena kelihatannya Anda sudah ________, padahal angkanya nggak pernah benar-benar menuntun keputusan Anda.',
+      'KPI basa-basi itu bahaya justru karena seolah kelihatannya Anda sudah ________, padahal angkanya nggak pernah benar-benar menunjukkan tingkat kesehatan bisnis Anda.',
     options: ['data-driven', 'santai', 'jujur', 'hemat'],
     correctAnswer: 'data-driven',
     successFeedback:
-      'Tepat. Itu yang bikin metrik basa-basi lebih berbahaya dari sekadar nggak punya data sama sekali — Anda ngerasa aman padahal belum tentu benar.',
+      'Tepat. Itu yang bikin KPI basa-basi lebih berbahaya dari sekadar nggak punya data sama sekali — Anda ngerasa aman padahal belum tentu benar.',
     errorFeedback:
-      'Bukan itu. Metrik basa-basi berbahaya karena kelihatan bikin Anda data-driven, padahal angkanya nggak menuntun keputusan apa pun.',
+      'Bukan itu. KPI basa-basi berbahaya karena kelihatan bikin Anda data-driven, padahal angkanya tidak menunjukkan apakah bisnis Anda sehat atau tidak.',
   },
   {
     id: 'c1-card-8',
@@ -141,7 +141,7 @@ export const chapter1Cards: Card[] = [
     title: 'Dashboard Penuh Angka, Tapi Nggak Ada yang Dipakai',
     body: [
       'Ada bisnis yang cuma pantau segelintir angka — mungkin cuma 3 atau 4 — tapi tiap angka itu benar-benar dipakai buat mutuskan sesuatu tiap minggu.',
-      'Ada juga bisnis yang punya dashboard canggih, penuh grafik, puluhan angka berkedip-kedip. Kelihatan keren. Tapi coba tanya: dari puluhan angka itu, berapa yang benar-benar pernah mengubah keputusan bulan ini?',
+      'Ada juga bisnis yang punya dashboard canggih, penuh grafik, puluhan angka berkedip-kedip. Kelihatan keren. Tapi coba tanya: dari puluhan angka itu, berapa yang benar-benar digunakan untuk pengambilan keputusan bulan ini?',
       'Sibuk mengukur itu bukan sama dengan terukur dengan baik. Yang satu bikin Anda ngerasa canggih, yang satu bikin Anda benar-benar tahu ke mana harus melangkah.',
     ],
   },
@@ -167,7 +167,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Waktunya Jujur ke Diri Sendiri',
     title: 'Giliran Anda: Bongkar Satu Angka Kebanggaan',
     body: [
-      'Sebelum lanjut, coba jujur sebentar — bukan buat kami, buat Anda sendiri.',
+      'Sebelum lanjut, coba jujur sebentar — bukan buat kami, tapi buat Anda sendiri.',
       "Pikirkan satu angka yang selama ini Anda banggakan di bisnis Anda. Yang sering Anda sebut waktu ditanya 'gimana bisnisnya?'",
     ],
   },
@@ -176,7 +176,7 @@ export const chapter1Cards: Card[] = [
     type: 'reflection',
     eyebrow: 'Entri Pertama · Buku Kerja KPI Anda',
     prompt:
-      'Tulis 1 angka yang selama ini Anda banggakan di bisnis Anda — padahal Anda belum yakin itu benar-benar ukuran sehat atau tidaknya bisnis.',
+      'Tulis 1 angka yang selama ini Anda banggakan di bisnis Anda — padahal Anda belum yakin itu benar-benar menunjukkan sehat atau tidaknya bisnis.',
     fields: [
       {
         id: 'metric',
@@ -195,10 +195,10 @@ export const chapter1Cards: Card[] = [
     type: 'info',
     icon: BookMarked,
     eyebrow: 'Catatan Tersimpan',
-    title: 'Semua Bos Pernah Kejebak — Termasuk yang Sukses',
+    title: 'Banyak CEO Pernah Kejebak — Termasuk yang Sudah Sukses',
     body: [
-      'Tenang, ini bukan sesi menyalahkan diri sendiri. Hampir semua bos pernah bangga sama angka yang ternyata nggak berarti apa-apa — termasuk yang bisnisnya sekarang besar.',
-      'Bedanya, bos yang bisnisnya terus berkembang berhenti pura-pura angka itu penting, terus mulai cari angka yang benar-benar menuntun keputusan.',
+      'Tenang, ini bukan sesi menyalahkan diri sendiri. Hampir semua CEO pernah bangga sama angka yang ternyata nggak berarti apa-apa — termasuk yang bisnisnya sekarang besar.',
+      'Bedanya, CEO yang bisnisnya terus berkembang berhenti pura-pura angka itu penting, terus mulai cari angka yang benar-benar menuntun keputusan.',
       'Jawaban Anda tadi baru saja jadi entri pertama di buku kerja KPI Anda sendiri. Nanti kita isi terus sampai jadi peta KPI yang lengkap.',
     ],
   },

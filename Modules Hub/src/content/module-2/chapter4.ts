@@ -47,7 +47,7 @@ export const chapter4Cards: Card[] = [
     options: [
       'Jumlah rapat internal yang diadakan tim minggu ini',
       'Cuaca di kota tempat toko Anda berada',
-      'Jumlah telepon closing yang benar-benar terhubung ke calon klien',
+      'Jumlah telepon closing yang benar-benar terhubung ke calon pelanggan',
     ],
     correctAnswer: 0,
     successFeedback:
@@ -202,12 +202,12 @@ export const chapter4Cards: Card[] = [
     items: [
       'Kondisi ekonomi nasional bulan ini',
       'Jumlah jam lembur tim sales',
-      'Jumlah telepon closing ke calon klien hari ini',
+      'Jumlah telepon closing ke calon pelanggan hari ini',
       'Jumlah presentasi yang berhasil dijadwalkan hari ini',
     ],
     correctAnswer: [
       'Jumlah presentasi yang berhasil dijadwalkan hari ini',
-      'Jumlah telepon closing ke calon klien hari ini',
+      'Jumlah telepon closing ke calon pelanggan hari ini',
       'Jumlah jam lembur tim sales',
       'Kondisi ekonomi nasional bulan ini',
     ],
@@ -236,7 +236,7 @@ export const chapter4Cards: Card[] = [
       {
         id: 'lead-metric',
         label: 'Lead Metric apa yang akan Anda pakai?',
-        placeholder: 'Contoh: Jumlah telepon closing ke calon klien per hari',
+        placeholder: 'Contoh: Jumlah telepon closing ke calon pelanggan per hari',
       },
       {
         id: 'lead-target',

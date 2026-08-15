@@ -82,7 +82,7 @@ export const chapter3Cards: Card[] = [
     eyebrow: 'Jebakan Satu Angka',
     title: 'Cuma Pantau Omzet? Anda Buta di Dimensi Lain',
     body: [
-      'Banyak bos cuma pantau satu Lag Metric — biasanya omzet. Masalahnya, omzet nggak bisa cerita apa-apa soal margin, retensi, atau kualitas.',
+      'Banyak CEO cuma pantau satu Lag Metric — biasanya omzet. Masalahnya, omzet nggak bisa cerita apa-apa soal margin, retensi, atau kualitas.',
       'Bisnis bisa omzetnya naik terus, sementara marginnya menipis, pelanggan lama diam-diam pergi, dan komplain kualitas naik — dan Anda nggak akan lihat satu pun dari itu kalau cuma nempel di angka omzet.',
       'Solusinya bukan pantau semua angka yang ada — inget Bab 1, dashboard penuh angka yang nggak dipakai itu sama percumanya. Solusinya: pilih segelintir Lag Metric yang disengaja — bukan 1, bukan 20 — yang bareng-bareng mewakili dimensi yang benar-benar penting buat target itu.',
     ],

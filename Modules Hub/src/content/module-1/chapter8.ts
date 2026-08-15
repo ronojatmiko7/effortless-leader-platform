@@ -26,10 +26,10 @@ export const chapter8Cards: Card[] = [
     type: 'info',
     icon: ClipboardSignature,
     eyebrow: 'Struktur Rencana Aksi',
-    title: 'Apa, Siapa, Kapan — Bukan Kalimat yang Kedengaran Niat Baik',
+    title: 'Apa, Siapa, Kapan',
     body: [
       'Rencana aksi yang beneran jalan cuma butuh 3 hal: Apa (tindakan konkret dan spesifik), Siapa (siapa yang bertanggung jawab), dan Kapan (tenggat waktu yang jelas).',
-      "'Perbaiki proses onboarding' itu kedengaran niat baik, tapi tidak bisa dieksekusi — tidak ada yang tahu harus mulai dari mana, siapa yang pegang, atau kapan harus selesai.",
+      "'Perbaiki proses onboarding' itu sepertinya baik, tapi tidak bisa dieksekusi — tidak ada yang tahu harus mulai dari mana, siapa yang pegang, atau kapan harus selesai.",
       "Bandingkan: 'Buat SOP onboarding 1 halaman, ditulis HR, selesai akhir bulan ini.' Ini bisa langsung dikerjakan, dan bisa dicek apakah sudah selesai atau belum.",
     ],
   },
@@ -116,7 +116,7 @@ export const chapter8Cards: Card[] = [
     title: 'Bulanan untuk yang Cepat Berubah, Kuartalan untuk yang Menyeluruh',
     body: [
       'Tidak semua bagian bisnis perlu dicek dengan frekuensi yang sama. Area yang cepat berubah — angka penjualan, komplain, stok — cocok dicek bulanan.',
-      'Audit menyeluruh ke semua lapisan — Output, Proses, Input sekaligus, seperti yang baru Anda lakukan di Bab 3-5 — cukup kuartalan. Yang penting bukan seberapa sering, tapi seberapa rutin.',
+      'Audit menyeluruh ke semua Level — Output, Proses, Input sekaligus, seperti yang baru Anda lakukan di Bab 3-5 — cukup kuartalan. Yang penting bukan seberapa sering, tapi seberapa rutin.',
     ],
   },
   {

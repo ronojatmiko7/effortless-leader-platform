@@ -16,29 +16,29 @@ export const chapter4Cards: Card[] = [
     id: 'c4-card-1',
     type: 'info',
     icon: Workflow,
-    eyebrow: 'Bab 4 · Mengaudit Lapisan Proses',
-    title: 'Output Sudah Dipetakan, Sekarang Bongkar Mesinnya',
+    eyebrow: 'Bab 4 · Mengaudit Level Proses',
+    title: 'Output Sudah Dipetakan, Sekarang Kita Bongkar Mesinnya',
     body: [
-      'Di Bab 3, Anda belajar membedakan angka yang benar-benar berguna dari yang cuma basa-basi, lalu menulis 3 metrik yang paling sering Anda pantau.',
-      'Angka itu cuma hasil akhir. Sekarang kita masuk ke bagian yang menghasilkan angka itu: Proses — alur kerja dan SOP yang benar-benar berjalan sehari-hari, bukan yang tertulis rapi di dokumen yang tidak pernah dibuka lagi.',
+      'Di Bab 3, Anda belajar membedakan angka yang benar-benar berguna dari yang cuma basa-basi, lalu menulis 3 KPI yang paling sering Anda pantau.',
+      'Angka itu cuma hasil akhir. Sekarang kita masuk ke bagian yang menghasilkan angka itu: Proses — alur kerja dan SOP yang benar-benar diterapkan sehari-hari, bukan yang hanya tertulis rapi di dokumen yang tidak pernah dibuka lagi.',
     ],
   },
   {
     id: 'c4-card-2',
     type: 'info',
     icon: Brain,
-    eyebrow: 'Risiko yang Sering Diabaikan',
-    title: 'Kalau Cuma Ada di Kepala Satu Orang, Itu Bukan Proses',
+    eyebrow: 'Risiko yang Berbahaya, Namun Sering Diabaikan',
+    title: 'Kalau Semua Hal Cuma Ada di Kepala Satu Orang, Itu Bukan Proses',
     body: [
-      'Banyak bisnis kelihatan jalan lancar bertahun-tahun, padahal sebenarnya cuma mengandalkan satu-dua orang senior yang hafal semuanya di luar kepala.',
-      'Itu bukan proses. Itu single point of failure — satu titik rapuh yang, kalau goyah, bisa merobohkan seluruh operasional.',
+      'Banyak bisnis kelihatan jalan lancar bertahun-tahun, padahal sebenarnya cuma mengandalkan satu-dua orang senior yang hafal semuanya di luar kepala. ',
+      'Itu bukan proses. Itu single point of failure — satu titik rapuh yang, kalau goyah, bisa merobohkan seluruh operasional. Kalau orang itu sakit, resign hingga meninggal dunia, habis sudah bisnis Anda.',
     ],
   },
   {
     id: 'c4-card-3',
     type: 'yes-no',
     question:
-      'Coba pikirkan: apakah ada satu proses penting di bisnis Anda yang cuma benar-benar dikuasai oleh satu orang tertentu?',
+      'Coba pikirkan: apakah ada satu atau lebih proses penting di bisnis Anda yang cuma benar-benar dikuasai oleh satu orang tertentu?',
     yesLabel: 'Ada, dan itu bikin saya was-was',
     noLabel: 'Rasanya tidak ada',
     feedbackYes:
@@ -54,7 +54,7 @@ export const chapter4Cards: Card[] = [
     title: 'Pak Budi Cuti Dua Minggu',
     body: [
       'Bayangkan Pak Budi, satu-satunya yang tahu cara mengatur ulang mesin produksi kalau ada masalah, tiba-tiba harus cuti dua minggu karena keluarganya sakit.',
-      'Dalam skenario yang sehat, siapa pun bisa buka SOP dan tetap jalan. Dalam skenario yang rapuh, seluruh lini produksi berhenti sampai Pak Budi kembali — atau lebih parah lagi, sampai Pak Budi resign untuk selamanya.',
+      'Dalam skenario yang sehat, siapa pun bisa buka SOP dan tetap jalan. Dalam skenario yang rapuh, seluruh lini produksi berhenti, atau setidaknya terganggu, sampai Pak Budi kembali.',
     ],
   },
   {
@@ -64,8 +64,8 @@ export const chapter4Cards: Card[] = [
     eyebrow: 'Checklist Audit Proses',
     title: 'Empat Level yang Harus Anda Cek Satu-satu',
     body: [
-      'Untuk proses mana pun di bisnis Anda, ada 4 level dokumentasi yang idealnya ada: kebijakan umum perusahaan, peta alur antar tim, langkah kerja tim, dan instruksi kerja detail.',
-      'Audit yang sesungguhnya bukan cuma bertanya "SOP-nya ada, tidak?". Tapi: dari 4 level ini, mana yang benar-benar tertulis, dan mana yang cuma hidup di kepala satu-dua orang seperti Pak Budi tadi?',
+      'Untuk proses mana pun di bisnis Anda, ada 4 level dokumentasi yang idealnya ada: (1) kebijakan umum perusahaan, (2) peta alur antar tim, (3) langkah kerja tim, dan (4) instruksi kerja detail / SOP.',
+      'Audit yang sesungguhnya bukan cuma bertanya "SOP-nya ada atau tidak?". Tapi: dari 4 level ini, mana yang benar-benar tertulis, dan mana yang cuma hidup di kepala satu-dua orang seperti Pak Budi tadi?',
     ],
   },
   {
@@ -74,7 +74,7 @@ export const chapter4Cards: Card[] = [
     question: 'Urutkan 4 level dokumentasi proses ini dari yang paling umum sampai yang paling detail.',
     items: [
       'Langkah Kerja Tim',
-      'Instruksi Kerja Detail',
+      'Instruksi Kerja Detail (SOP)',
       'Kebijakan Umum Perusahaan',
       'Peta Alur Antar Tim',
     ],
@@ -82,7 +82,7 @@ export const chapter4Cards: Card[] = [
       'Kebijakan Umum Perusahaan',
       'Peta Alur Antar Tim',
       'Langkah Kerja Tim',
-      'Instruksi Kerja Detail',
+      'Instruksi Kerja Detail (SOP)',
     ],
     successFeedback:
       'Pas. Ini urutan yang harus Anda cek satu-satu waktu audit — dari aturan besar perusahaan, sampai instruksi paling detail yang benar-benar dipegang orang di lapangan.',
@@ -93,8 +93,8 @@ export const chapter4Cards: Card[] = [
     id: 'c4-card-7',
     type: 'info',
     icon: Map,
-    eyebrow: 'Skill Baru · Pemetaan "As-Is"',
-    title: 'Petakan yang Benar-benar Terjadi, Bukan yang Seharusnya Terjadi',
+    eyebrow: 'Skill Baru · Pemetaan proses saat ini atau "As-Is"',
+    title: 'Petakan Proses yang “Biasa” Dilakukan, Bukan yang “Seharusnya” Dilakukan',
     body: [
       'Caranya sederhana, tidak butuh software mahal: ambil satu proses, lalu tulis SETIAP langkahnya dari pemicu awal sampai selesai, sesuai urutan yang BENERAN terjadi di lapangan — bukan urutan yang tertulis rapi di SOP.',
       'Ini yang disebut pemetaan "as-is" (apa adanya), lawan dari "to-be" (idealnya). Kalau kenyataan di lapangan beda dari dokumennya, yang Anda audit adalah kenyataannya.',
@@ -105,7 +105,7 @@ export const chapter4Cards: Card[] = [
     id: 'c4-card-8',
     type: 'sort-list',
     question:
-      'Coba petakan proses "terima pesanan sampai kirim" ini sesuai urutan yang BENERAN terjadi di lapangan.',
+      'Coba petakan proses "terima pesanan sampai pengiriman" ini sesuai urutan yang BENERAN terjadi di lapangan.',
     items: [
       'Kurir menjemput barang untuk dikirim',
       'Pesanan masuk dari marketplace atau WhatsApp',
@@ -173,7 +173,7 @@ export const chapter4Cards: Card[] = [
     ],
     correctAnswer: 1,
     successFeedback:
-      'Benar. Kesalahan yang berulang tiga kali itu jarang soal orangnya — itu tanda ada langkah pengecekan yang hilang atau terlewat di alurnya. Cek prosesnya dulu, baru orangnya.',
+      'Benar. Kalau sampai sebuah kesalahan sampai berulang tiga kali, itu jarang salah orangnya — itu tanda ada proses pengecekan yang tidak dijalankan di alurnya. Cek prosesnya dulu, baru orangnya.',
     errorFeedback:
       'Coba lagi. Kesalahan yang terus berulang biasanya bukan soal ketelitian satu orang — itu tanda ada langkah di prosesnya yang bolong. Cek petanya dulu sebelum menegur siapa pun.',
   },
@@ -214,7 +214,7 @@ export const chapter4Cards: Card[] = [
     eyebrow: 'Selesai Bab 4',
     title: 'Proses Anda Sudah Dipetakan',
     body: [
-      'Simpan baik-baik peta dan dugaan titik bocor yang baru Anda tulis. Sama seperti gejala Output di Bab 2 dan metrik di Bab 3, ini akan kita pakai lagi nanti di Bab 7.',
+      'Simpan baik-baik peta dan dugaan titik bocor yang baru Anda tulis. Sama seperti gejala Output di Bab 2 dan KPI di Bab 3, ini akan kita pakai lagi nanti di Bab 7.',
       'Sekarang Anda tahu cara mengecek dokumentasi proses, memetakan alur kerja apa adanya, dan mengenali 4 tanda titik bocor — bukan cuma menebak dari "kelihatannya lambat di sini".',
       'Tapi proses yang bagus pun bisa bocor kalau bahan bakunya bermasalah. Sekarang kita cek bahan bakunya: Input.',
     ],

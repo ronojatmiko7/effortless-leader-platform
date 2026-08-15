@@ -17,7 +17,7 @@ export const chapter3Cards: Card[] = [
     id: 'c3-card-1',
     type: 'info',
     icon: BarChart3,
-    eyebrow: 'Bab 3 · Mengaudit Lapisan Output',
+    eyebrow: 'Bab 3 · Mengaudit Level Output',
     title: 'Balik Lagi ke Gejala yang Anda Tulis',
     body: [
       'Di akhir Bab 2, Anda menulis satu gejala yang kelihatan di Output bisnis Anda — entah itu soal penjualan, kualitas, keterlambatan, atau yang lain.',
@@ -30,10 +30,10 @@ export const chapter3Cards: Card[] = [
     type: 'info',
     icon: SearchCheck,
     eyebrow: 'Poin Paling Penting di Bab Ini',
-    title: 'Metrik Basa-basi vs Metrik Nyata',
+    title: 'KPI Basa-basi vs KPI Nyata',
     body: [
-      'Metrik basa-basi (vanity metric) itu angka yang enak dilaporkan tapi tidak menyuruh Anda melakukan apa-apa. Dia naik, Anda senang. Dia turun, Anda bingung harus mulai dari mana.',
-      'Metrik nyata itu kebalikannya: angka yang bergerak beneran kalau bisnis Anda membaik atau memburuk, dan langsung menunjuk ke satu tindakan spesifik.',
+      'KPI basa-basi (vanity metric) itu angka yang enak dilaporkan tapi tidak menyuruh Anda melakukan apa-apa. Ciri-cirnya adalah kalau dia naik, Anda senang. Kalau dia turun, Anda bingung apa penyebabnya.',
+      'KPI nyata itu kebalikannya: angka yang bergerak beneran kalau bisnis Anda membaik atau memburuk, dan langsung menunjuk ke satu tindakan spesifik.',
       'Masalahnya, dua-duanya sering kelihatan sama pentingnya di laporan. Bedanya baru ketahuan kalau Anda tahu cara mengetesnya.',
     ],
   },
@@ -41,35 +41,35 @@ export const chapter3Cards: Card[] = [
     id: 'c3-card-3',
     type: 'info',
     icon: Rss,
-    eyebrow: 'Contoh Metrik Basa-basi',
-    title: 'Kedengarannya Bagus, Tapi Nggak Ngasih Tahu Apa-apa',
+    eyebrow: 'Contoh KPI Basa-basi',
+    title: 'Kedengarannya Bagus, Tapi Bisa Menipu',
     body: [
-      'Total omzet bulanan, tanpa lihat margin. Bisa saja omzet naik tapi Anda rugi lebih besar, karena diskon gede-gedean atau biaya produksi ikut membengkak.',
-      'Jumlah followers media sosial atau jumlah leads yang masuk, tanpa tahu berapa yang benar-benar closing. Angkanya bisa ramai, tapi kalau tidak ada yang beli, itu cuma keramaian.',
+      'Contoh KPI: Total omzet bulanan, tanpa lihat margin. Bisa saja omzet naik tapi Anda rugi lebih besar, karena diskon gede-gedean atau biaya produksi ikut membengkak.',
+      'Contoh lain: Jumlah followers media sosial atau jumlah leads yang masuk, tanpa tahu berapa yang benar-benar closing. Angkanya bisa ramai, tapi kalau tidak ada yang beli, ya percuma.',
     ],
   },
   {
     id: 'c3-card-4',
     type: 'info',
     icon: Percent,
-    eyebrow: 'Contoh Metrik Nyata',
-    title: 'Angka yang Langsung Nunjuk ke Tindakan',
+    eyebrow: 'Contoh KPI Nyata',
+    title: 'Angka yang Langsung Bisa Dicek Penyebabnya',
     body: [
-      'Margin kotor per lini produk. Kalau ini turun, Anda tahu persis lini produk mana yang harus dicek — harga jualnya, biaya bahannya, atau efisiensi produksinya.',
-      'Retensi pelanggan dan tingkat pengiriman tepat waktu (on-time delivery rate). Kalau ini turun, Anda tahu harus mulai dari mana: kenapa pelanggan lama pergi, atau di titik mana pengiriman sering telat.',
+      'Contoh KPI: Margin kotor per lini produk. Kalau ini turun, Anda tahu persis lini produk mana yang harus dicek — harga jualnya, biaya bahannya, atau efisiensi produksinya.',
+      'Contoh lain: Tingkat Retensi pelanggan dan tingkat pengiriman tepat waktu (on-time delivery rate). Kalau ini turun, Anda tahu harus mulai dari mana: kenapa pelanggan lama pergi, atau di titik mana pengiriman sering telat.',
     ],
   },
   {
     id: 'c3-card-5',
     type: 'fill-in-the-blank',
     sentence:
-      'Tesnya sederhana: kalau angka ini naik, apakah Anda tahu persis apa yang harus dilakukan besok? Kalau jawabannya tidak tahu, angka itu cuma metrik _________.',
+      'Tesnya sederhana: kalau angka ini turun, apakah Anda tahu persis apa yang harus diperbaiki? Kalau jawabannya tidak tahu, angka itu cuma KPI _________.',
     options: ['basa-basi', 'prediktif', 'operasional', 'bulanan'],
     correctAnswer: 'basa-basi',
     successFeedback:
-      'Tepat. Metrik basa-basi itu enak dilaporkan, tapi tidak pernah benar-benar menyuruh Anda melakukan apa-apa besok paginya.',
+      'Tepat. KPI basa-basi itu kelihatannya keren, tapi bisa sangat menipu.',
     errorFeedback:
-      'Bukan itu. Kalau angka naik tapi Anda tidak tahu harus ngapain besok, itu tandanya angka itu cuma metrik basa-basi — enak didengar, tidak berguna buat aksi.',
+      'Bukan itu. Kalau angka turun tapi Anda tidak tahu penyebabnya apa, itu tandanya angka itu cuma KPI basa-basi — enak didengar, tapi tidak berguna buat aksi.',
   },
   {
     id: 'c3-card-6',
@@ -89,9 +89,9 @@ export const chapter3Cards: Card[] = [
       'Margin kotor per lini produk',
     ],
     successFeedback:
-      'Pas. Makin ke kanan, makin jelas apa yang harus Anda lakukan besok kalau angkanya jelek. Followers turun? Anda tidak tahu harus ngapain. Margin lini produk turun? Anda tahu persis produk mana yang harus dibenahi.',
+      'Pas. Makin ke bawah, makin jelas apa yang harus Anda lakukan besok kalau angkanya jelek. Followers turun? Anda tidak tahu harus ngapain. Margin lini produk turun? Anda tahu persis produk mana yang harus dibenahi.',
     errorFeedback:
-      "Belum pas. Coba tanya ke tiap angka: 'kalau ini naik atau turun, saya tahu persis harus ngapain besok, tidak?' Urutkan dari yang jawabannya paling 'tidak tahu' sampai yang paling jelas.",
+      "Belum pas. Coba tanya ke tiap angka: 'kalau ini naik atau turun, saya tahu persis penyebabnya atau tidak?' Urutkan dari yang jawabannya paling 'tidak tahu' sampai yang paling jelas.",
   },
   {
     id: 'c3-card-7',
@@ -100,8 +100,7 @@ export const chapter3Cards: Card[] = [
     eyebrow: 'Kenapa Ini Penting',
     title: 'Bukan Berarti Berhenti Lihat Omzet',
     body: [
-      'Bukan berarti omzet atau followers itu haram dilihat. Angka-angka itu tetap berguna sebagai gambaran umum.',
-      'Tapi kalau Anda mau tahu APA yang harus dibenahi di bisnis Anda, angka itu bukan tempat mulai yang tepat. Mulailah dari metrik nyata — yang langsung menunjuk ke satu tindakan.',
+      'Bukan berarti omzet atau followers itu haram dilihat. Angka-angka itu tetap berguna sebagai gambaran umum. Tapi kalau Anda ingin bisa menemukan akar permasalahan Output, Anda tetap harus punya beberapa KPI lain yang bisa dengan mudah ditelusuri akar penyebab masalahnya.',
     ],
   },
   {
@@ -111,7 +110,7 @@ export const chapter3Cards: Card[] = [
     eyebrow: 'Dari Target Besar ke Angka Harian',
     title: 'Target Perusahaan Tidak Berarti Apa-apa Sampai Dipecah',
     body: [
-      'Punya target "omzet naik 25% tahun ini" itu bagus buat rapat direksi, tapi tidak berarti apa-apa buat staf yang kerja hari ini. Mereka butuh tahu apa yang harus dikejar HARI INI, bukan tahun ini.',
+      'Punya target "omzet naik 25% tahun ini" itu bagus buat rapat direksi, tapi tidak berarti apa-apa buat staf yang kerja hari ini. Mereka butuh tahu apa yang harus dikerjakan HARI INI, bukan tahun ini.',
       'Ini yang disebut cascading: target besar dipecah jadi angka spesifik yang dimiliki tiap tim, bahkan tiap orang. Kalau tidak dipecah, target itu cuma jadi poster motivasi yang ditempel di dinding kantor.',
     ],
   },
@@ -150,7 +149,7 @@ export const chapter3Cards: Card[] = [
     title: 'Bandingkan ke Luar, Tapi Jangan Asal Niru',
     body: [
       'Benchmarking eksternal artinya bandingkan angka Anda ke rata-rata industri atau kompetitor. Ini berguna untuk tahu apakah Anda memang tertinggal, atau justru sudah di atas rata-rata.',
-      'Hati-hati satu hal: jangan asal niru angka orang tanpa tahu konteksnya. Margin 40% mungkin bagus untuk industri Anda, tapi biasa saja untuk industri lain. Bandingkan dulu apel dengan apel.',
+      'Hati-hati satu hal: jangan asal niru angka orang tanpa tahu konteksnya. Margin 40% mungkin bagus untuk industri Anda, tapi biasa saja untuk industri lain. Bandingkan dulu dengan bisnis yang paling mirip dengan bisnis Anda.',
     ],
   },
   {
@@ -161,9 +160,9 @@ export const chapter3Cards: Card[] = [
     yesLabel: 'Sudah, saya biasa membandingkan',
     noLabel: 'Belum, saya cuma lihat angkanya sendiri',
     feedbackYes:
-      'Bagus. Angka yang dibandingkan itu baru punya arti — Anda jadi tahu itu kabar baik atau kabar buruk.',
+      'Bagus. Angka yang dibandingkan itu baru punya arti — Anda jadi tahu itu artinya kabar baik atau kabar buruk.',
     feedbackNo:
-      'Wajar, kebanyakan bos begitu. Tapi angka yang tidak pernah dibandingkan itu seperti nilai ujian tanpa tahu nilai rata-rata kelas — Anda tidak akan tahu itu bagus atau jelek.',
+      'Wajar, kebanyakan CEO begitu. Tapi angka yang tidak pernah dibandingkan itu seperti nilai ujian tanpa tahu nilai rata-rata kelas — Anda tidak akan tahu itu artinya bagus atau jelek.',
   },
   {
     id: 'c3-card-13',
@@ -173,7 +172,7 @@ export const chapter3Cards: Card[] = [
     title: 'Sekarang Coba di Angka Anda Sendiri',
     body: [
       'Cukup teori. Coba pikirkan 3 angka yang paling sering Anda cek — yang paling sering muncul di laporan, di grup WhatsApp tim, atau di kepala Anda sendiri.',
-      'Untuk tiap angka, tanya ke diri sendiri: ini metrik basa-basi, atau metrik nyata? Belum perlu jawaban sempurna — cukup jujur.',
+      'Untuk tiap angka, tanya ke diri sendiri: ini KPI basa-basi, atau KPI nyata? Belum perlu jawaban sempurna — cukup jujur.',
     ],
   },
   {
@@ -207,7 +206,8 @@ export const chapter3Cards: Card[] = [
     title: 'Output Anda Sudah Dipetakan',
     body: [
       'Simpan baik-baik 3 angka yang baru Anda tulis. Nanti di Bab 7, kita akan menilai dan memprioritaskan mana yang paling mendesak dibenahi duluan.',
-      'Sekarang Anda tahu cara membedakan metrik basa-basi dari metrik nyata, cara memecah target jadi angka harian, dan cara membandingkan angka supaya punya arti.',
+      'Sekarang Anda tahu cara membedakan KPI basa-basi dari KPI nyata, cara memecah target jadi angka harian, dan cara membandingkan angka supaya punya arti.',
+      'Untuk Bab KPI akan kita bahas dengan lebih detail di Module 2.',
       'Tapi angka yang bagus saja tidak cukup kalau sistem kerja di baliknya bocor. Sekarang kita masuk ke mesinnya: Proses.',
     ],
     cta: { label: 'Lanjut ke Bab 4', href: '#chapter-4' },

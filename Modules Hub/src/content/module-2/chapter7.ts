@@ -72,7 +72,7 @@ export const chapter7Cards: Card[] = [
     title: 'Tujuannya Cari yang Rusak di Sistem, Bukan Siapa yang Salah',
     body: [
       'Begitu ketahuan ada yang merah, godaan pertama biasanya: cari siapa yang harus tanggung jawab. Godaan itu wajar, tapi salah arah.',
-      'Tujuan rapat evaluasi KPI yang sehat itu bukan mencari siapa yang pantas disalahkan — tapi melihat metrik dan mencari letak kerusakan di sistemnya.',
+      'Tujuan rapat evaluasi KPI yang sehat itu bukan mencari siapa yang pantas disalahkan — tapi melihat KPI dan mencari letak kerusakan di sistemnya.',
       'Kalau Anda menyerang orangnya, masalah berikutnya bakal disembunyikan, bukan diperbaiki lebih cepat. Tim yang takut disalahkan akan belajar menutupi angka, bukan melaporkannya jujur.',
     ],
   },

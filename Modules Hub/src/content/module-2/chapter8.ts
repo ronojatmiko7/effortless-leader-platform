@@ -30,7 +30,7 @@ export const chapter8Cards: Card[] = [
     eyebrow: 'Rencana Tanpa Jadwal Itu Cuma Harapan',
     title: 'Ingat Bab 6? Sama Persis, Cuma Naik Level',
     body: [
-      'Ingat Bab 6: KPI yang nggak pernah dipantau itu sama percumanya dengan metrik basa-basi dari Bab 1. Rencana aksi yang nggak punya jadwal itu jebakan yang sama, cuma naik satu level.',
+      'Ingat Bab 6: KPI yang nggak pernah dipantau itu sama percumanya dengan KPI basa-basi dari Bab 1. Rencana aksi yang nggak punya jadwal itu jebakan yang sama, cuma naik satu level.',
       "'Nanti saya benahi' itu bukan rencana. Itu harapan yang dibungkus kalimat rapi.",
     ],
   },
@@ -287,7 +287,7 @@ export const chapter8Cards: Card[] = [
     title: 'Anda Baru Saja Membangun Sesuatu yang Nyata',
     body: [
       'Ini bukan cuma 8 bab yang Anda baca. Anda baru saja membangun sistem KPI lengkap untuk bisnis Anda sendiri — dari angka yang dulu Anda banggakan tanpa alasan jelas, sampai rencana aksi yang bisa langsung dikerjakan besok.',
-      "Kebanyakan bos berhenti di 'saya tahu KPI itu penting'. Anda sudah selangkah lebih jauh: Anda tahu KPI mana yang benar, siapa yang pegang, kapan dicek, dan apa yang harus dilakukan kalau merah.",
+      "Kebanyakan CEO berhenti di 'saya tahu KPI itu penting'. Anda sudah selangkah lebih jauh: Anda tahu KPI mana yang benar, siapa yang pegang, kapan dicek, dan apa yang harus dilakukan kalau merah.",
       'Sekarang tinggal satu hal: benar-benar jalankan ritmenya, dan temui lagi di tanggal review yang baru Anda tandai.',
     ],
   },

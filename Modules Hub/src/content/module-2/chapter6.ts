@@ -22,7 +22,7 @@ export const chapter6Cards: Card[] = [
     title: '6 KPI, 6 Pemilik, Tapi Belum Ada yang Nengok',
     body: [
       'Di akhir Bab 5, Anda udah punya 6 KPI — Lag dan Lead di tiga area — masing-masing dengan nama pemilik yang jelas.',
-      'Tapi selama itu cuma duduk di entri buku kerja, KPI itu sama percumanya dengan metrik basa-basi di Bab 1. Angka yang nggak pernah dilihat itu nggak beda jauh dari angka yang nggak berarti.',
+      'Tapi selama itu cuma duduk di entri buku kerja, KPI itu sama percumanya dengan KPI basa-basi di Bab 1. Angka yang nggak pernah dilihat itu nggak beda jauh dari angka yang nggak berarti.',
       'Bab ini yang mengubah rancangan itu jadi kebiasaan: kapan dilihat, di mana dilihat, dan siapa yang mengisi angkanya.',
     ],
   },
@@ -34,7 +34,7 @@ export const chapter6Cards: Card[] = [
     title: 'Jangan Jadi Pemadam Kebakaran',
     body: [
       'Anda udah punya angkanya. Pertanyaannya sekarang: kapan Anda benar-benar melihatnya?',
-      'Kalau Anda cuma mengecek data saat ada masalah besar atau klien udah marah-marah, Anda bukan sedang mengelola bisnis — Anda sedang jadi pemadam kebakaran, sama seperti gaya yang bikin Anda capek sebelum kenal KPI yang benar.',
+      'Kalau Anda cuma mengecek data saat ada masalah besar atau pelanggan udah marah-marah, Anda bukan sedang mengelola bisnis — Anda sedang jadi pemadam kebakaran, sama seperti gaya yang bikin Anda capek sebelum kenal KPI yang benar.',
     ],
   },
   {

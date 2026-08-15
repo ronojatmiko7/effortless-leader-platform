@@ -30,8 +30,8 @@ export const chapter6Cards: Card[] = [
     eyebrow: 'Cara #1 · Review Dokumen',
     title: 'Mulai dari yang Sudah Tertulis',
     body: [
-      'Sebelum bertanya ke siapa pun, cek dulu apa yang sudah ada tertulis: SOP, laporan penjualan, catatan komplain pelanggan, laporan keuangan.',
-      "Kelebihannya: murah, cepat, dan bebas dari bias — dokumen tidak bisa 'menjaga perasaan' atau membela diri. Kekurangannya: bisa saja sudah usang atau tidak lengkap, apalagi kalau selama ini pencatatannya asal-asalan.",
+      'Sebelum bertanya ke siapa pun, cek dulu dokumen tertulis yang tersedia: SOP, laporan penjualan, catatan komplain pelanggan, laporan keuangan.',
+      "Kelebihannya: murah, cepat, dan bebas dari bias — dokumen tidak bisa 'menjaga perasaan' atau membela diri. Kekurangannya: bisa saja sudah usang atau tidak lengkap, apalagi kalau selama ini pencatatannya asal-asalan. Nah kalau benar begini, ini sudah termasuk catatan temuan.",
     ],
   },
   {
@@ -54,9 +54,9 @@ export const chapter6Cards: Card[] = [
     title: 'Pertanyaan yang Menggiring vs yang Netral',
     body: [
       'Cara Anda bertanya menentukan jawaban yang Anda dapat. Pertanyaan menggiring (leading) sudah menyisipkan jawaban yang Anda inginkan; pertanyaan netral membiarkan orang cerita apa adanya.',
-      "Soal proses lambat: 'Kayaknya sistemnya jelek ya, makanya lambat?' (menggiring) vs. 'Ceritakan proses ini dari awal sampai selesai — bagian mana yang biasanya bikin lambat?' (netral).",
-      "Soal komplain pelanggan: 'Ini pasti gara-gara QC kurang teliti, kan?' (menggiring) vs. 'Menurut kamu, di titik mana produk ini paling sering ada masalah kualitasnya?' (netral).",
-      "Soal target meleset: 'Timnya kurang niat ya bulan ini?' (menggiring) vs. 'Apa yang beda antara bulan ini dengan bulan-bulan waktu target tercapai?' (netral).",
+      "Contoh soal proses lambat: 'Kayaknya sistemnya jelek ya, makanya lambat?' (menggiring) vs. 'Ceritakan proses ini dari awal sampai selesai — bagian mana yang biasanya bikin lambat?' (netral).",
+      "Contoh soal komplain pelanggan: 'Ini pasti gara-gara QC kurang teliti, kan?' (menggiring) vs. 'Menurut kamu, di titik mana produk ini paling sering ada masalah kualitasnya?' (netral).",
+      "Contoh soal target meleset: 'Timnya kurang niat ya bulan ini?' (menggiring) vs. 'Apa yang beda antara bulan ini dengan bulan-bulan waktu target tercapai?' (netral).",
     ],
   },
   {
@@ -121,7 +121,7 @@ export const chapter6Cards: Card[] = [
     title: 'Dengar Suara yang Diam, Bukan Cuma yang Paling Ribut',
     body: [
       'Di setiap rapat atau obrolan tim, biasanya cuma 2-3 orang yang paling sering bicara. Suara mayoritas yang diam itu sering luput — padahal belum tentu mereka setuju, cuma tidak biasa angkat bicara.',
-      'Survei singkat, idealnya anonim, adalah cara termurah untuk dengar dari orang-orang yang diam itu. Tidak perlu panjang — cukup beberapa pertanyaan yang langsung ke inti masalah.',
+      'Oleh karena itu terkadang kita perlu sebar kuesioner survey singkat untuk mendapatkan gambaran yang sering tidak terdengar. Agar setiap orang berani mengemukakan jawabannya dengan jujur, maka survey ini perlu dilakukan secara anonim atau tanpa nama.',
     ],
   },
   {

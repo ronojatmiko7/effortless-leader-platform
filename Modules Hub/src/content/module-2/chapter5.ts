@@ -232,7 +232,7 @@ export const chapter5Cards: Card[] = [
     title: 'Satu Orang Boleh Pegang Lebih dari Satu Area',
     body: [
       "Kebanyakan pembaca Effortless Leader nggak punya struktur organisasi formal dengan divisi-divisi terpisah. Itu nggak masalah — aturannya bukan 'harus punya struktur rapi', tapi 'setiap KPI ada satu nama yang jelas'.",
-      'Bisnis kecil (bos + 2-3 staf): bos sendiri pegang KPI Output (dia yang paling paham angka penjualan dan profit), satu staf senior pegang KPI Proses DAN Input sekaligus (karena dia yang paling sering ada di lapangan). Satu orang, dua area — itu sah, selama jelas.',
+      'Bisnis kecil (CEO + 2-3 staf): CEO sendiri pegang KPI Output (dia yang paling paham angka penjualan dan profit), satu staf senior pegang KPI Proses DAN Input sekaligus (karena dia yang paling sering ada di lapangan). Satu orang, dua area — itu sah, selama jelas.',
       'Bisnis yang lebih besar dengan divisi nyata: KPI Output dipegang manajer sales, KPI Proses dipegang supervisor operasional, KPI Input dipegang manajer gudang atau HR. Beda nama per area, tapi prinsipnya sama: satu KPI, satu nama.',
     ],
   },
