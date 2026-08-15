@@ -6,7 +6,7 @@
 // MANUALLY_UNLOCKED_MODULES to preview locked modules during dev/QA.
 // Real implementation later: replace this file's body with a Supabase query
 // against a purchases/entitlements table, keyed by the logged-in customer.
-const UNLOCKED_FOR_TESTING = false
+const UNLOCKED_FOR_TESTING = true
 const MANUALLY_UNLOCKED_MODULES: number[] = []
 
 export function hasModuleAccess(moduleNumber: number): boolean {
