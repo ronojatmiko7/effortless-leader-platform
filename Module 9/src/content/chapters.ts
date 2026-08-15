@@ -5,6 +5,7 @@ import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
+import { chapter8Cards } from './chapter8'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -73,5 +74,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Merakit kasus pakai (Bab 3), batasan data (Bab 4), rancangan alur kerja (Bab 5), dan progres nyata di lapangan (Bab 6) jadi satu paket adopsi AI yang utuh — dinilai lewat skor kematangan dan gap-check jujur, lalu disatukan jadi satu ringkasan yang siap terus dijalankan atau diserahkan ke orang lain.',
     cards: chapter7Cards,
+  },
+  {
+    id: 'chapter-8',
+    number: 8,
+    title: 'Menginstal Kebiasaan AI di Organisasi — Ritme Evaluasi, Kepemilikan, dan Laporan Lengkap',
+    description:
+      'Kenapa alur kerja AI yang paling sukses sekalipun bisa diam-diam luntur tanpa pemilik evaluasi yang eksplisit, izin untuk mulai dari satu alur kerja dulu sebelum memperluas, ritme cek berkala yang menjaga kebiasaannya bertahan, dan laporan lengkap perjalanan Anda dari Bab 1 sampai Bab 8.',
+    cards: chapter8Cards,
   },
 ]
