@@ -1,6 +1,7 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
+import { chapter4Cards } from './chapter4'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -37,5 +38,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Dua jebakan yang bikin kasus pakai AI pertama gagal sebelum mulai — "AI untuk semua hal" dan mulai dari yang paling high-stakes — lalu filter tiga pertanyaan untuk menilai kasus pakai nyata dari bisnis Anda sendiri.',
     cards: chapter3Cards,
+  },
+  {
+    id: 'chapter-4',
+    number: 4,
+    title: 'Data, Keamanan, dan Kepercayaan Tim',
+    description:
+      'Batasan data sederhana untuk menentukan apa yang aman dimasukkan ke AI, kenapa akun tingkat bisnis penting dibanding akun pribadi tersebar, dan menamai langsung ketakutan tim soal AI sebelum itu diam-diam menyabotase rollout di Bab 6-7.',
+    cards: chapter4Cards,
   },
 ]
