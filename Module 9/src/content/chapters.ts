@@ -2,6 +2,7 @@ import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
 import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
+import { chapter5Cards } from './chapter5'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -46,5 +47,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Batasan data sederhana untuk menentukan apa yang aman dimasukkan ke AI, kenapa akun tingkat bisnis penting dibanding akun pribadi tersebar, dan menamai langsung ketakutan tim soal AI sebelum itu diam-diam menyabotase rollout di Bab 6-7.',
     cards: chapter4Cards,
+  },
+  {
+    id: 'chapter-5',
+    number: 5,
+    title: 'Merancang Alur Kerja AI Pertama Anda dengan Claude for Business',
+    description:
+      'Mengunci satu kasus pakai dari Bab 3, memilih mode pemakaian Claude for Business yang cocok — chat biasa, ruang kerja bersama, atau automasi lintas file — lalu merancang siapa yang pakai, langkah cek manusia yang wajib, dan target keberhasilan yang terukur.',
+    cards: chapter5Cards,
   },
 ]
