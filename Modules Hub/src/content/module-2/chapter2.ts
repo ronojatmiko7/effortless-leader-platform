@@ -231,11 +231,11 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: Map,
     eyebrow: 'Selesai Bab 2',
-    title: 'Sekarang Anda Punya Peta Cascading-nya',
+    title: 'Sekarang Anda Sudah Punya Peta Cascading-nya',
     body: [
       'Target yang baru Anda tulis itu akan jadi contoh kasus yang kita pakai terus sampai Bab 5 — simpan baik-baik.',
       'Anda sekarang tahu: target itu harus ganti bentuk di tiap level, bukan cuma mengecil, dan melompati satu level sama bahayanya dengan KPI basa-basi.',
-      'Sekarang Anda punya peta cascading-nya. Bab berikutnya kita bedah elemen pertama dari peta ini: Lag Metric — angka hasil yang jadi kaca spion bisnis Anda.',
+      'Sekarang Anda sudah punya peta cascading-nya. Bab berikutnya kita bedah elemen pertama dari peta ini: Lag Metric — angka hasil yang jadi kaca spion bisnis Anda.',
     ],
   },
 ]

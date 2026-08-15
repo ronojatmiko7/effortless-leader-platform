@@ -213,9 +213,9 @@ export const chapter6Cards: Card[] = [
     type: 'info',
     icon: CalendarCheck,
     eyebrow: 'Selesai Bab 6',
-    title: 'Sekarang Anda Punya Ritme Pemantauannya',
+    title: 'Sekarang Anda Sudah Punya Ritme Pemantauannya',
     body: [
-      'Anda sekarang punya ritme pemantauan — kapan cek Lead, kapan cek Lag, di alat apa, dan siapa yang mencatat.',
+      'Anda sekarang sudah punya ritme pemantauan — kapan cek Lead, kapan cek Lag, di alat apa, dan siapa yang mencatat.',
       'Tapi cepat atau lambat, salah satu angka Anda bakal merah.',
       'Bab depan: cara mendiagnosis KPI yang merah tanpa jadi ajang cari kambing hitam.',
     ],

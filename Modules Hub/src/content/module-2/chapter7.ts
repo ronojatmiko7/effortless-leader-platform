@@ -224,7 +224,7 @@ export const chapter7Cards: Card[] = [
     type: 'info',
     icon: FileCheck2,
     eyebrow: 'Selesai Bab 7',
-    title: 'Sekarang Anda Punya Cara Mendiagnosis Tanpa Kambing Hitam',
+    title: 'Sekarang Anda Sudah Punya Cara Mendiagnosis Tanpa Kambing Hitam',
     body: [
       'Anda sekarang tahu cara mendiagnosis KPI merah tanpa jadi ajang cari kambing hitam.',
       'Bab terakhir: ubah semua ini jadi rencana aksi konkret, dan unduh laporan KPI lengkap Anda.',

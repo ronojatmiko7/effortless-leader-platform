@@ -220,7 +220,7 @@ export const chapter5Cards: Card[] = [
     eyebrow: 'Sekarang Pasang Nama',
     title: 'Enam KPI, Tapi Siapa yang Pegang?',
     body: [
-      'Sekarang Anda punya 6 KPI — Lag dan Lead di tiga area: Output, Proses, Input. Tapi angka doang, tanpa nama yang jelas pegang tanggung jawabnya, bakal berakhir sama seperti Bab 2: target yang nggak pernah benar-benar diterjemahkan jadi aksi siapa pun.',
+      'Sekarang Anda sudah punya 6 KPI — Lag dan Lead di tiga area: Output, Proses, Input. Tapi angka doang, tanpa nama yang jelas pegang tanggung jawabnya, bakal berakhir sama seperti Bab 2: target yang nggak pernah benar-benar diterjemahkan jadi aksi siapa pun.',
       "Ini bagian 'per Divisi, Tim, dan Individu' yang sebenarnya — bukan soal punya struktur organisasi yang rapi, tapi soal: setiap KPI, ada SATU nama yang jelas tanggung jawabnya.",
     ],
   },
@@ -265,9 +265,9 @@ export const chapter5Cards: Card[] = [
     type: 'info',
     icon: Flag,
     eyebrow: 'Selesai Bab 5',
-    title: 'Sekarang Anda Punya Cascading KPI Lengkap',
+    title: 'Sekarang Anda Sudah Punya Cascading KPI Lengkap',
     body: [
-      'Anda sekarang punya cascading KPI lengkap — 3 area, dengan pemilik jelas di tiap level.',
+      'Anda sekarang sudah punya cascading KPI lengkap — 3 area, dengan pemilik jelas di tiap level.',
       'Tapi KPI yang cuma nangkring di buku kerja nggak ada gunanya kalau nggak pernah dipantau.',
       'Bab depan: cara bikin ritme pemantauan yang beneran jalan.',
     ],

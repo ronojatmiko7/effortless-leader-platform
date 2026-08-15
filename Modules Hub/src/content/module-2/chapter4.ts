@@ -250,10 +250,10 @@ export const chapter4Cards: Card[] = [
     type: 'info',
     icon: Rocket,
     eyebrow: 'Selesai Bab 4',
-    title: 'Sekarang Anda Punya Keduanya — Lag dan Lead',
+    title: 'Sekarang Anda Sudah Punya Keduanya — Lag dan Lead',
     body: [
       'Anda sekarang bisa membedakan Lead Metric asli dari yang cuma kelihatan seperti Lead Metric, dan Anda punya cara menghitung mundur dari target Lag ke angka harian yang konkret.',
-      'Sekarang Anda punya keduanya — Lag dan Lead untuk target Anda.',
+      'Sekarang Anda sudah punya keduanya — Lag dan Lead untuk target Anda.',
       'Bab depan kita pasang semuanya jadi cascading KPI resmi per divisi, tim, dan individu.',
     ],
   },

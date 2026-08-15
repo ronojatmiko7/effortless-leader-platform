@@ -129,7 +129,7 @@ export const chapter8Cards: Card[] = [
     eyebrow: 'Baru · Boleh Bertahap',
     title: 'Nggak Perlu Jalankan Ketiga Area Sekaligus Mulai Senin',
     body: [
-      'Setelah 8 bab membangun sistem KPI 3 area, gampang ngerasa harus langsung instrumentasi Output, Proses, dan Input sekaligus mulai Senin depan. Jangan.',
+      'Setelah 8 bab membangun sistem KPI 3 area, Anda gampang ngerasa harus langsung instrumentasi Output, Proses, dan Input sekaligus mulai Senin depan. Jangan.',
       'Mulai dari area yang paling udah Anda kuasai — biasanya Output, karena itu yang paling dalam dibahas di Bab 2-4. Bikin ritmenya jalan dulu di situ, baru tambah Proses dan Input di siklus review berikutnya kalau belum jalan.',
       'Ini bukan usaha yang lebih kecil. Ini justru cara supaya kebiasaannya beneran selamat waktu ketemu minggu yang sibuk.',
     ],
