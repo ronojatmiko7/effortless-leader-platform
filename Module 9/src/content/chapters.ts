@@ -1,5 +1,6 @@
 import { chapter1Cards } from './chapter1'
 import { chapter2Cards } from './chapter2'
+import { chapter3Cards } from './chapter3'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -27,5 +28,14 @@ export const chapters: ChapterMeta[] = [
     description:
       'Peta tiga level pemakaian AI di bisnis — Chat Individu, Alur Kerja Tim, Organisasi — dan cara menilai jujur bisnis Anda sekarang ada di level mana, bukan level yang diharapkan.',
     cards: chapter2Cards,
+  },
+  {
+    id: 'chapter-3',
+    number: 3,
+    title:
+      'Memilih Kasus Pakai yang Tepat — Kenapa "AI untuk Semua Hal" Gagal Duluan',
+    description:
+      'Dua jebakan yang bikin kasus pakai AI pertama gagal sebelum mulai — "AI untuk semua hal" dan mulai dari yang paling high-stakes — lalu filter tiga pertanyaan untuk menilai kasus pakai nyata dari bisnis Anda sendiri.',
+    cards: chapter3Cards,
   },
 ]
