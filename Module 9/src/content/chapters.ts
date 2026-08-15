@@ -4,6 +4,7 @@ import { chapter3Cards } from './chapter3'
 import { chapter4Cards } from './chapter4'
 import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
+import { chapter7Cards } from './chapter7'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -64,5 +65,13 @@ export const chapters: ChapterMeta[] = [
     description:
       'Menjalankan rancangan alur kerja dari Bab 5 secara nyata: instruksi jelas vs. ambigu, verifikasi yang sehat, cara menangani momen "AI-nya salah" secara konstruktif, sinyal bahaya balik ke cara manual, dan merayakan kemenangan kecil supaya momentum bertahan.',
     cards: chapter6Cards,
+  },
+  {
+    id: 'chapter-7',
+    number: 7,
+    title: 'Lokakarya AI: Merancang Paket Adopsi AI Lengkap untuk Satu Alur Kerja Nyata',
+    description:
+      'Merakit kasus pakai (Bab 3), batasan data (Bab 4), rancangan alur kerja (Bab 5), dan progres nyata di lapangan (Bab 6) jadi satu paket adopsi AI yang utuh — dinilai lewat skor kematangan dan gap-check jujur, lalu disatukan jadi satu ringkasan yang siap terus dijalankan atau diserahkan ke orang lain.',
+    cards: chapter7Cards,
   },
 ]
