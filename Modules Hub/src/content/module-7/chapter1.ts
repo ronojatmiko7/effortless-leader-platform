@@ -32,7 +32,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Pola Kedua',
     title: 'Deskripsi Jabatan yang Isinya Cuma "Input Data, Balas Email, Handle Komplain"',
     body: [
-      'Ambil deskripsi jabatan yang Anda pakai sekarang. Kemungkinan besar isinya daftar tugas: "bertanggung jawab atas laporan penjualan," "menangani komunikasi dengan klien," "koordinasi dengan tim produksi."',
+      'Ambil deskripsi jabatan yang Anda pakai sekarang. Kemungkinan besar isinya daftar tugas: "bertanggung jawab atas laporan penjualan," "menangani komunikasi dengan pelanggan," "koordinasi dengan tim produksi."',
       'Yang tidak ada: seberapa bagus standar yang diharapkan di tiap tugas itu. Apakah "handle komplain" berarti cukup jawab dengan sopan, atau harus bisa resolve 90% kasus tanpa eskalasi? Apakah "laporan penjualan" berarti isi template yang sudah jadi, atau harus bisa analisis tren dan kasih rekomendasi?',
       'Deskripsi jabatan sebagai daftar tugas hanya menjawab "kerjanya apa" — tidak pernah menjawab "seberapa bagus harus bisa kerjanya." Itu celah yang mengundang salah rekrut masuk tanpa pernah ketahuan di awal.',
     ],
@@ -216,10 +216,10 @@ export const chapter1Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Ke Bab 2',
-    title: 'Sekarang Anda Punya Satu Peran Konkret di Kepala',
+    title: 'Sekarang Anda Sudah Punya Satu Peran Konkret di Kepala',
     body: [
       'Anda baru saja mengidentifikasi satu peran yang akan jadi titik uji sepanjang modul ini. Itu lebih bermakna dari sekadar setuju bahwa rekrutmen berbasis kompetensi itu penting.',
-      'Sekarang Anda punya satu peran konkret di kepala. Bab berikutnya kasih Anda peta lengkap dua tahap arsitektur jabatan, biar Anda tahu persis bagian mana yang bolong.',
+      'Sekarang Anda sudah punya satu peran konkret di kepala. Bab berikutnya kasih Anda peta lengkap dua tahap arsitektur jabatan, biar Anda tahu persis bagian mana yang bolong.',
     ],
   },
 ]

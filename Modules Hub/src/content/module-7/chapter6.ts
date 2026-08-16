@@ -165,7 +165,7 @@ export const chapter6Cards: Card[] = [
     id: 'c6-card-13',
     type: 'multiple-choice',
     question:
-      'Seorang kandidat Sales Manager menjawab pertanyaan "Ceritakan situasi di mana ada anggota tim sales Anda yang angka penjualannya terus di bawah target" dengan jawaban ini: "Ada satu sales rep yang selalu di bawah target enam bulan berturut-turut. Saya temui dia satu-satu dan tanya apa yang bikin dia sulit. Ternyata masalahnya ada di tahap negosiasi — dia selalu memberikan diskon terlalu awal sebelum klien benar-benar keberatan soal harga. Kami drilling ulang teknik negosiasi khusus dua kali seminggu selama sebulan. Bulan berikutnya dia mulai konsisten di atas 80% target." Di rubrik skor 1–4 untuk kompetensi "coaching teknik penjualan," jawaban ini ada di skor berapa?',
+      'Seorang kandidat Sales Manager menjawab pertanyaan "Ceritakan situasi di mana ada anggota tim sales Anda yang angka penjualannya terus di bawah target" dengan jawaban ini: "Ada satu sales rep yang selalu di bawah target enam bulan berturut-turut. Saya temui dia satu-satu dan tanya apa yang bikin dia sulit. Ternyata masalahnya ada di tahap negosiasi — dia selalu memberikan diskon terlalu awal sebelum pelanggan benar-benar keberatan soal harga. Kami drilling ulang teknik negosiasi khusus dua kali seminggu selama sebulan. Bulan berikutnya dia mulai konsisten di atas 80% target." Di rubrik skor 1–4 untuk kompetensi "coaching teknik penjualan," jawaban ini ada di skor berapa?',
     options: [
       'Skor 2 — tindakannya masih terbatas pada pengawasan dan pelaporan tambahan',
       'Skor 3 — mengidentifikasi skill gap spesifik, intervensi konkret, ada perubahan kinerja yang terukur',
@@ -173,16 +173,16 @@ export const chapter6Cards: Card[] = [
     ],
     correctAnswer: 1,
     successFeedback:
-      'Tepat. Ini skor 3. Kandidat mengidentifikasi skill gap yang spesifik (memberikan diskon terlalu awal sebelum klien keberatan), merancang intervensi konkret (drilling teknik negosiasi dua kali seminggu selama sebulan), dan bisa melaporkan perubahan kinerja yang terukur (di atas 80% target bulan berikutnya). Belum skor 4 karena tidak ada bukti bahwa pembelajaran ini dijadikan sistem atau diterapkan ke seluruh tim — ini masih diselesaikan per individu.',
+      'Tepat. Ini skor 3. Kandidat mengidentifikasi skill gap yang spesifik (memberikan diskon terlalu awal sebelum pelanggan keberatan), merancang intervensi konkret (drilling teknik negosiasi dua kali seminggu selama sebulan), dan bisa melaporkan perubahan kinerja yang terukur (di atas 80% target bulan berikutnya). Belum skor 4 karena tidak ada bukti bahwa pembelajaran ini dijadikan sistem atau diterapkan ke seluruh tim — ini masih diselesaikan per individu.',
     errorFeedback:
-      'Belum tepat. Perhatikan tiga elemen kunci yang ada di jawaban ini: (1) identifikasi skill gap yang spesifik — bukan "dia kurang semangat" tapi "memberikan diskon terlalu awal sebelum klien keberatan soal harga," (2) intervensi coaching yang konkret — bukan "saya motivasi dia" tapi "drilling teknik negosiasi dua kali seminggu selama sebulan," dan (3) ada perubahan kinerja yang bisa dilaporkan. Tiga elemen itu adalah anchor skor 3. Skor 4 baru berlaku kalau ada bukti bahwa ini dijadikan sistem untuk seluruh tim, bukan diselesaikan per individu.',
+      'Belum tepat. Perhatikan tiga elemen kunci yang ada di jawaban ini: (1) identifikasi skill gap yang spesifik — bukan "dia kurang semangat" tapi "memberikan diskon terlalu awal sebelum pelanggan keberatan soal harga," (2) intervensi coaching yang konkret — bukan "saya motivasi dia" tapi "drilling teknik negosiasi dua kali seminggu selama sebulan," dan (3) ada perubahan kinerja yang bisa dilaporkan. Tiga elemen itu adalah anchor skor 3. Skor 4 baru berlaku kalau ada bukti bahwa ini dijadikan sistem untuk seluruh tim, bukan diselesaikan per individu.',
   },
   {
     id: 'c6-card-14',
     type: 'reflection',
     eyebrow: 'Entri Keenam · Buku Kerja Job Architecture',
     prompt:
-      'Sekarang Anda punya kerangka BEI dan rubrik seleksi. Bawa ke peran yang Anda rekrut sekarang — dan buat draf pertama alat seleksinya.',
+      'Sekarang Anda sudah punya kerangka BEI dan rubrik seleksi. Bawa ke peran yang Anda rekrut sekarang — dan buat draf pertama alat seleksinya.',
     fields: [
       {
         id: 'bei-question',

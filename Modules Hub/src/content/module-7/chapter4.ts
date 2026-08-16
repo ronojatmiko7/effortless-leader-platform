@@ -194,7 +194,7 @@ export const chapter4Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Ke Bab 5',
-    title: 'Sekarang Anda Punya Standar yang Bisa Diukur — Bab Berikutnya Mulai Hari 2',
+    title: 'Sekarang Anda Sudah Punya Standar yang Bisa Diukur — Bab Berikutnya Mulai Hari 2',
     body: [
       'Model kompetensi Anda sekarang punya dua lapisan: nama kompetensi dan level minimum yang dibutuhkan, dengan anchor perilaku yang bisa diobservasi. Itu mengubah "komunikasi yang baik" dari sifat abstrak jadi standar yang bisa diuji oleh siapa pun yang terlibat di seleksi.',
       'Bab 1 sampai 4 adalah Tahap 1 — model kompetensi. Anda selesaikan hari ini. Bab berikutnya mulai Hari 2: membongkar kenapa proses rekrutmen Anda sekarang kemungkinan besar belum benar-benar menguji standar ini — meskipun sudah berjalan dengan serius dan terasa terstruktur.',

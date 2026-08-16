@@ -163,7 +163,7 @@ export const chapter5Cards: Card[] = [
     id: 'c5-card-13',
     type: 'multiple-choice',
     question:
-      'Sebuah agensi kreatif merekrut project manager. Ada pertanyaan behavioral yang sudah disiapkan dan ditanyakan ke semua kandidat: "Ceritakan situasi spesifik di mana Anda harus mengelola proyek dengan deadline mepet dan klien yang demanding — apa yang Anda lakukan dan apa hasilnya?" Tapi setelah semua kandidat diwawancarai, satu pewawancara menilai kandidat A "sangat baik" karena cara berpikirnya terstruktur, sementara pewawancara lain menilai kandidat yang sama "biasa saja" karena tidak menyebut tool project management yang spesifik. Tidak ada rubrik atau skor yang disepakati sebelumnya untuk menyelesaikan perbedaan itu. Ini masalah Lensa berapa?',
+      'Sebuah agensi kreatif merekrut project manager. Ada pertanyaan behavioral yang sudah disiapkan dan ditanyakan ke semua kandidat: "Ceritakan situasi spesifik di mana Anda harus mengelola proyek dengan deadline mepet dan pelanggan yang demanding — apa yang Anda lakukan dan apa hasilnya?" Tapi setelah semua kandidat diwawancarai, satu pewawancara menilai kandidat A "sangat baik" karena cara berpikirnya terstruktur, sementara pewawancara lain menilai kandidat yang sama "biasa saja" karena tidak menyebut tool project management yang spesifik. Tidak ada rubrik atau skor yang disepakati sebelumnya untuk menyelesaikan perbedaan itu. Ini masalah Lensa berapa?',
     options: [
       'Lensa 1 — tidak ada kriteria yang jelas, pertanyaannya dirancang tanpa standar kompetensi',
       'Lensa 2 — pertanyaannya generik, tidak cukup menggali bukti kompetensi yang dibutuhkan',

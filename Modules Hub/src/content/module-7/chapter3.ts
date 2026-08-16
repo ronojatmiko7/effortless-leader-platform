@@ -156,7 +156,7 @@ export const chapter3Cards: Card[] = [
     title: 'Model Kompetensi Supervisor Penjualan: Inti, Fungsional, Kepemimpinan',
     body: [
       'Lapis 1 — Kompetensi Inti (berlaku untuk semua orang di bisnis ini): integritas dalam pelaporan angka penjualan dan pipeline, komunikasi yang jelas dan langsung ke atasan dan ke tim, dan kemampuan mengelola prioritas kerja sendiri tanpa harus dipantau terus.',
-      'Lapis 2 — Kompetensi Fungsional (spesifik untuk Supervisor Penjualan): analisis pipeline — membaca data penjualan dan mengidentifikasi area berisiko sebelum akhir periode. Negosiasi akun strategis — handle langsung klien besar yang butuh eskalasi. Coaching teknik penjualan — demonstrasikan dan ajarkan teknik prospecting dan closing ke tim, bukan hanya lakukan sendiri.',
+      'Lapis 2 — Kompetensi Fungsional (spesifik untuk Supervisor Penjualan): analisis pipeline — membaca data penjualan dan mengidentifikasi area berisiko sebelum akhir periode. Negosiasi akun strategis — handle langsung pelanggan besar yang butuh eskalasi. Coaching teknik penjualan — demonstrasikan dan ajarkan teknik prospecting dan closing ke tim, bukan hanya lakukan sendiri.',
       'Lapis 3 — Kompetensi Kepemimpinan (karena peran ini mengelola tim): memberi feedback berbasis data kinerja, bukan perasaan — bukan "kamu kurang semangat" tapi "pipeline kamu kosong di segment B, kita lihat kenapa." Mendelegasikan dengan jelas dan memonitor tanpa micromanage. Mengambil keputusan realokasi target atau akun di situasi tekanan, tanpa harus eskalasi semua hal kecil ke Kepala Komersial.',
     ],
   },
