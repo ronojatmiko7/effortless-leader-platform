@@ -180,9 +180,9 @@ export const chapter5Cards: Card[] = [
     type: 'info',
     icon: ShieldCheck,
     eyebrow: 'Selesai Bab 5',
-    title: 'Sekarang Anda Punya Instruksi Kerja yang Jelas',
+    title: 'Sekarang Anda Sudah Punya Instruksi Kerja yang Jelas',
     body: [
-      'Titik yang tadinya rusak dan bergantung ke ingatan orang, sekarang punya prosedur dan instruksi kerja yang konkret dan bisa dijalankan orang lain.',
+      'Titik yang tadinya rusak dan bergantung ke ingatan orang, sekarang sudah punya prosedur dan instruksi kerja yang konkret dan bisa dijalankan orang lain.',
       'Tapi instruksi yang jelas aja nggak cukup kalau nggak ada yang mencegah kesalahan sebelum kejadian. Bab depan: merancang sistem yang mencegah, bukan cuma menangkap kesalahan setelah terjadi.',
     ],
   },

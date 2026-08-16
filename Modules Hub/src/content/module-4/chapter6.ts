@@ -177,9 +177,9 @@ export const chapter6Cards: Card[] = [
     type: 'info',
     icon: Workflow,
     eyebrow: 'Selesai Bab 6',
-    title: 'Sekarang Anda Punya Semua Bahannya',
+    title: 'Sekarang Anda Sudah Punya Semua Bahannya',
     body: [
-      'Anda sekarang punya peta proses, diagnosis titik silo, instruksi kerja yang jelas, dan titik pencegahan kualitas. Empat potongan ini adalah bahan mentah untuk satu hal terakhir: benar-benar merombak prosesnya.',
+      'Anda sekarang sudah punya peta proses, diagnosis titik silo, instruksi kerja yang jelas, dan titik pencegahan kualitas. Empat potongan ini adalah bahan mentah untuk satu hal terakhir: benar-benar merombak prosesnya.',
       'Bab depan: lokakarya penuh — merombak satu proses Anda dari awal sampai akhir, pakai semua yang sudah dipelajari.',
     ],
   },

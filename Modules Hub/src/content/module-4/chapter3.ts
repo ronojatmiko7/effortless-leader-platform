@@ -175,9 +175,9 @@ export const chapter3Cards: Card[] = [
     type: 'info',
     icon: PenLine,
     eyebrow: 'Selesai Bab 3',
-    title: 'Sekarang Anda Punya Peta Rantai Nilai Anda Sendiri',
+    title: 'Sekarang Anda Sudah Punya Peta Rantai Nilai Anda Sendiri',
     body: [
-      'Anda sekarang punya peta L1 (dan contoh pemecahan ke L2) proses utama bisnis Anda, lengkap dengan titik-titik serah terimanya yang sudah ditandai.',
+      'Anda sekarang sudah punya peta L1 (dan contoh pemecahan ke L2) proses utama bisnis Anda, lengkap dengan titik-titik serah terimanya yang sudah ditandai.',
       'Bab depan: cara membedah titik-titik itu satu per satu, buat menemukan mana yang beneran silo fungsional, mana yang cuma approval berlebih, dan mana yang cuma bottleneck biasa.',
     ],
   },

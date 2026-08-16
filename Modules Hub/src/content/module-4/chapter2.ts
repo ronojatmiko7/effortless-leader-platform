@@ -199,7 +199,7 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: Layers,
     eyebrow: 'Selesai Bab 2',
-    title: 'Sekarang Anda Punya Peta Besarnya',
+    title: 'Sekarang Anda Sudah Punya Peta Besarnya',
     body: [
       'Anda sekarang tahu keempat level arsitektur proses — dari peta bisnis paling besar (L1) sampai instruksi teknis paling kecil (L4) — dan kenapa silo biasanya bersembunyi di celah antar level, bukan di dalam satu level.',
       'Bab 3 dan 4 masuk ke L1-L2 secara praktik: menggambar rantai nilai bisnis Anda sendiri dan menemukan persis di mana titik silonya.',

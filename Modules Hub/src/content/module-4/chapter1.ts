@@ -119,7 +119,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Beda yang Sering Kelewat',
     title: 'Proses yang Terdokumentasi ≠ Proses yang Cuma Ada di Kepala Orang',
     body: [
-      'Banyak bos ngerasa bisnisnya "udah punya SOP" — padahal yang sebenarnya terjadi, caranya cuma diwariskan dari mulut ke mulut: "tanya aja ke Mbak Dinda, dia yang paling ngerti alurnya."',
+      'Banyak CEO ngerasa bisnisnya "udah punya SOP" — padahal yang sebenarnya terjadi, caranya cuma diwariskan dari mulut ke mulut: "tanya aja ke Mbak Dinda, dia yang paling ngerti alurnya."',
       'Selama caranya cuma hidup di kepala satu-dua orang, proses itu rapuh. Orang itu cuti, resign, atau lupa detail — dan alurnya langsung goyah, karena nggak ada yang lain benar-benar tahu persis urutannya.',
       'Proses yang sehat itu proses yang digambar dan disepakati lintas fungsi — bisa dilihat, bisa didiskusikan, dan nggak bergantung ke ingatan satu orang.',
     ],
@@ -185,12 +185,12 @@ export const chapter1Cards: Card[] = [
       {
         id: 'handoff-incident',
         label: 'Apa yang terjadi, dan tim/orang mana saja yang terlibat?',
-        placeholder: 'Contoh: Promo yang dijanjikan sales ke klien besar, tapi produksi nggak pernah tahu',
+        placeholder: 'Contoh: Promo yang dijanjikan sales ke pelanggan besar, tapi produksi nggak pernah tahu',
       },
       {
         id: 'handoff-impact',
         label: 'Apa akibatnya — dan siapa yang akhirnya menanggung?',
-        placeholder: 'Contoh: Klien komplain, sales yang kena marah padahal bukan salahnya sendirian',
+        placeholder: 'Contoh: Pelanggan komplain, sales yang kena marah padahal bukan salahnya sendirian',
       },
     ],
   },
