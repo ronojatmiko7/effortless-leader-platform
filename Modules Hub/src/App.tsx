@@ -45,20 +45,21 @@ function ModuleShell({
       )
     }
 
+    const handleDeckComplete = () => {
+      markChapterComplete(currentChapter.id)
+      onDeckComplete(currentChapter.id)
+    }
+
     const handleCtaNavigate = (href: string) => {
       if (href === '#home') {
-        onDeckComplete(currentChapter.id)
+        handleDeckComplete()
         return
       }
       const isKnownChapter = module.chapters.some((chapter) => chapterHref(chapter.id) === href)
       if (isKnownChapter) {
+        markChapterComplete(currentChapter.id)
         onSelectChapter(href.slice(1))
       }
-    }
-
-    const handleDeckComplete = () => {
-      markChapterComplete(currentChapter.id)
-      onDeckComplete(currentChapter.id)
     }
 
     return (
