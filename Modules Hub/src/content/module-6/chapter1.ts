@@ -235,7 +235,7 @@ export const chapter1Cards: Card[] = [
     type: 'info',
     icon: Eye,
     eyebrow: 'Selesai Bab 1',
-    title: 'Sekarang Anda Punya Satu Nama Konkret di Kepala',
+    title: 'Sekarang Anda Sudah Punya Satu Nama Konkret di Kepala',
     body: [
       'Anda baru saja mengidentifikasi satu orang di tim Anda yang jebakan kosong di tengah sedang berjalan. Itu lebih bermakna dari sekadar setuju bahwa sistemnya bermasalah.',
       'Bab berikutnya kasih Anda peta lengkap siklus manajemen kinerja — biar Anda tahu persis bagian mana yang bolong di bisnis Anda, dan mulai dari mana.',
@@ -248,7 +248,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Ke Bab 2',
     title: 'Peta Siklus PMS: Dari Tujuan ke Coaching ke Tindakan Korektif',
     body: [
-      'Sekarang Anda punya satu nama konkret di kepala. Bab berikutnya kasih Anda peta lengkap siklus manajemen kinerja, biar Anda tahu persis bagian mana yang bolong.',
+      'Sekarang Anda sudah punya satu nama konkret di kepala. Bab berikutnya kasih Anda peta lengkap siklus manajemen kinerja, biar Anda tahu persis bagian mana yang bolong.',
       'Kita akan lihat di mana titik lemah paling umum di bisnis SME — dan mana yang jadi prioritas pertama untuk dibenahi berdasarkan kondisi spesifik bisnis Anda.',
     ],
   },

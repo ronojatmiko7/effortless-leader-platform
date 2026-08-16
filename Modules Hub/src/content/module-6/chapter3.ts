@@ -31,7 +31,7 @@ export const chapter3Cards: Card[] = [
     title: 'Kolaboratif — Bukan Didikte dari Atas Lalu Ditandatangani',
     body: [
       'Tujuan yang cuma diketok manajer lalu disodorkan ke karyawan punya satu masalah besar: karyawannya ngangguk di ruangan, tapi begitu keluar pintu, tujuan itu bukan milik dia.',
-      'Kalau karyawan tidak merasa ikut membangun tujuannya, mereka tidak punya alasan untuk berjuang mencapainya. Mereka akan mencoba — tapi bukan dengan rasa kepemilikan. Dan pas ada hambatan, yang pertama meragukan tujuannya adalah mereka sendiri: "Ini kan target yang bos mau, bukan yang saya sepakati."',
+      'Kalau karyawan tidak merasa ikut membangun tujuannya, mereka tidak punya alasan untuk berjuang mencapainya. Mereka akan mencoba — tapi bukan dengan rasa kepemilikan. Dan pas ada hambatan, yang pertama meragukan tujuannya adalah mereka sendiri: "Ini kan target yang CEO mau, bukan yang saya sepakati."',
       'Kolaboratif bukan berarti tujuannya terserah karyawan. Artinya: manajer bawa konteks dan arah, karyawan ikut terlibat menentukan bagaimana kontribusi spesifiknya — dan hasilnya disepakati bersama, bukan ditetapkan sepihak.',
     ],
   },

@@ -187,7 +187,7 @@ export const chapter4Cards: Card[] = [
     body: [
       'Ritme coaching yang baik di teori tapi tidak pernah konsisten dijalankan di praktik — itu lebih umum dari yang Anda kira. Biasanya bukan karena niatnya buruk, tapi karena tidak ada struktur yang memaksa sesi itu tetap jalan.',
       'Satu: jadwalkan sebagai kalender berulang, bukan "nanti kalau sempat." Sesi yang tidak punya slot tetap di kalender akan selalu kalah dengan hal-hal yang "lebih mendesak." Jadwalkan sekarang, bukan setelah kondisi lebih tenang — kondisi tidak akan pernah lebih tenang.',
-      'Dua: perlakukan seserius rapat dengan klien penting. Kalau rapat dengan klien tidak gampang dicancel, kenapa sesi coaching dengan anggota tim bisa? Komitmen ke tim adalah komitmen ke output bisnis — bukan hal yang bisa ditunda semau hati.',
+      'Dua: perlakukan seserius rapat dengan pelanggan penting. Kalau rapat dengan pelanggan tidak gampang dicancel, kenapa sesi coaching dengan anggota tim bisa? Komitmen ke tim adalah komitmen ke output bisnis — bukan hal yang bisa ditunda semau hati.',
       'Tiga: jangan gampang di-reschedule karena ada yang "lebih penting." Sekali sesi rutin dicancel tanpa diganti, siklus itu mulai rapuh. Kalau harus digeser, ganti di hari yang sama atau paling lambat hari berikutnya — bukan "minggu depan aja."',
     ],
   },
