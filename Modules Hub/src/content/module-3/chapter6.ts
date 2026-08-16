@@ -233,7 +233,7 @@ export const chapter6Cards: Card[] = [
     eyebrow: 'Selesai Bab 6',
     title: 'Sekarang Anda Tahu Cara Menutup Diskusi Jadi Keputusan',
     body: [
-      'Anda sekarang punya tiga hal yang mengubah tinjauan dari sekadar ritual jadi forum yang menghasilkan perubahan: pertanyaan penutup wajib yang memaksa satu keputusan keluar sebelum rapat bubar, Log Keputusan yang dibawa ke setiap tinjauan berikutnya, dan pola fasilitasi yang gali dulu lalu tutup tegas.',
+      'Anda sekarang sudah punya tiga hal yang mengubah tinjauan dari sekadar ritual jadi forum yang menghasilkan perubahan: pertanyaan penutup wajib yang memaksa satu keputusan keluar sebelum rapat bubar, Log Keputusan yang dibawa ke setiap tinjauan berikutnya, dan pola fasilitasi yang gali dulu lalu tutup tegas.',
       'Tapi ada satu skenario yang belum kita bahas: keputusan yang sudah diambil dengan baik — ada penanggung jawab, ada tenggat — tapi ternyata nyangkut di tengah jalan. Atau ternyata masalahnya lebih besar dari yang kelihatan, dan butuh naik ke level yang punya wewenang lebih tinggi.',
       'Bab depan: cara mengelola eskalasi dan akuntabilitas lintas level — supaya keputusan bagus di satu tinjauan benar-benar sampai ke eksekusi, bukan berhenti di kertas.',
     ],

@@ -66,7 +66,7 @@ export const chapter4Cards: Card[] = [
     id: 'c4-card-5',
     type: 'multiple-choice',
     question:
-      'Kepala tim penjualan baru saja cerita panjang soal kenapa satu klien komplain Rabu lalu — lengkap dengan kronologi jam per jam. Anda sedang di tinjauan bulanan. Apa yang paling tepat dilakukan?',
+      'Kepala tim penjualan baru saja cerita panjang soal kenapa satu pelanggan komplain Rabu lalu — lengkap dengan kronologi jam per jam. Anda sedang di tinjauan bulanan. Apa yang paling tepat dilakukan?',
     options: [
       'Biarkan saja, bisa jadi relevan untuk analisis tren',
       'Tanyakan: apakah komplain ini bagian dari pola yang kelihatan di angka sebulan — kalau iya, lanjut bahas trennya; kalau tidak, ini bukan materi tinjauan bulanan',
@@ -136,7 +136,7 @@ export const chapter4Cards: Card[] = [
     title: 'Beda Level, Beda Siapa yang Duduk',
     body: [
       'Tinjauan bulanan: pemilik dan kepala tim atau departemen. Orang yang punya data tren timnya dan punya wewenang untuk ambil keputusan sumber daya di levelnya.',
-      'Tinjauan triwulanan: lebih selektif dari sisi tim inti, tapi bisa lebih lebar ke luar. Pemilik dan orang kepercayaan utama — ditambah suara dari luar jika perlu: mentor bisnis, penasihat eksternal, atau bahkan klien besar tertentu kalau keputusannya menyangkut arah yang relevan buat mereka.',
+      'Tinjauan triwulanan: lebih selektif dari sisi tim inti, tapi bisa lebih lebar ke luar. Pemilik dan orang kepercayaan utama — ditambah suara dari luar jika perlu: mentor bisnis, penasihat eksternal, atau bahkan pelanggan besar tertentu kalau keputusannya menyangkut arah yang relevan buat mereka.',
       'Kenapa ada orang luar di triwulanan? Karena keputusannya lebih besar dari operasional harian — dan kadang perspektif yang tidak terlalu dekat dengan rutinitas bisnis sehari-hari justru yang paling dibutuhkan untuk melihat sesuatu yang sudah jadi buta titik bagi semua orang di dalam.',
     ],
   },
@@ -147,7 +147,7 @@ export const chapter4Cards: Card[] = [
     eyebrow: 'Kesalahan Paling Umum #1',
     title: 'Bawa Detail Operasional ke Rapat Triwulanan',
     body: [
-      'Skenario yang sering terjadi: rapat triwulanan sudah dijadwalkan, semua orang hadir. Tapi 45 menit pertama habis untuk membahas kenapa staf gudang terlambat submit laporan harian, siapa yang salah input di sistem bulan lalu, dan kronologi komplain klien yang sudah diselesaikan dua minggu lalu.',
+      'Skenario yang sering terjadi: rapat triwulanan sudah dijadwalkan, semua orang hadir. Tapi 45 menit pertama habis untuk membahas kenapa staf gudang terlambat submit laporan harian, siapa yang salah input di sistem bulan lalu, dan kronologi komplain pelanggan yang sudah diselesaikan dua minggu lalu.',
       'Itu topik-topik yang levelnya huddle atau tinjauan mingguan. Bukan triwulanan.',
       'Hasilnya: waktu yang seharusnya untuk keputusan strategis besar habis untuk detail yang seharusnya sudah selesai jauh di level bawah. Dan karena waktunya habis, pertanyaan soal arah bisnis tidak pernah benar-benar dibahas — triwulanan selesai tanpa satu pun keputusan strategis yang diambil.',
     ],
@@ -241,7 +241,7 @@ export const chapter4Cards: Card[] = [
     eyebrow: 'Selesai Bab 4',
     title: 'Empat Level Ritme Sudah Lengkap. Tapi Ini Baru Setengah Perjalanan.',
     body: [
-      'Sekarang Anda punya 4 level ritme tinjauan yang lengkap — huddle harian, tinjauan mingguan, tinjauan bulanan, dan tinjauan triwulanan. Masing-masing dengan pertanyaan, orang, dan altitude yang berbeda.',
+      'Sekarang Anda sudah punya 4 level ritme tinjauan yang lengkap — huddle harian, tinjauan mingguan, tinjauan bulanan, dan tinjauan triwulanan. Masing-masing dengan pertanyaan, orang, dan altitude yang berbeda.',
       'Tapi ritme yang rapi saja tidak cukup. Setiap tinjauan — di level mana pun — akan ketemu kondisi yang sama: ada angka yang meleset, ada masalah yang muncul. Dan kalau jawabannya cuma tebak-tebakan, ritme yang paling rapi pun tidak akan menghasilkan keputusan yang benar.',
       'Bab berikutnya: cara membedah masalah sampai ke akarnya — bukan asumsi, bukan tebak-tebakan. Itu yang akan membuat semua forum tinjauan ini bukan sekadar jadwal, tapi benar-benar menghasilkan sesuatu.',
     ],

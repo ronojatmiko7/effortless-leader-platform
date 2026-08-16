@@ -57,7 +57,7 @@ export const chapter7Cards: Card[] = [
     title: 'Nggak Semua Masalah Perlu Dieskalasi — dan Ini Serius',
     body: [
       'Sebelum lanjut: nggak semua masalah perlu naik ke level atas. Kalau semua dieskalasi, pemilik jadi micromanage semua level, capek sendiri, dan tim bawah kehilangan kemampuan memutuskan sendiri hal-hal yang seharusnya bisa mereka selesaikan.',
-      'Yang selesai di levelnya: satu staf packing salah pasang label hari ini — langsung diperbaiki, kejadian pertama kali. Satu komplain klien yang penyebabnya jelas dan bisa diatasi hari itu juga oleh tim yang menerimanya.',
+      'Yang selesai di levelnya: satu staf packing salah pasang label hari ini — langsung diperbaiki, kejadian pertama kali. Satu komplain pelanggan yang penyebabnya jelas dan bisa diatasi hari itu juga oleh tim yang menerimanya.',
       'Yang harus naik: komplain kualitas yang muncul empat minggu berturut-turut dari tim yang berbeda-beda — itu pola, bukan insiden tunggal. Keputusan untuk rekrut posisi baru karena tim kewalahan — butuh sumber daya yang nggak ada di wewenang penanggung jawab tim. Masalah yang melibatkan proses penjualan, produksi, dan logistik sekaligus — lintas tim, butuh keputusan di level yang punya otoritas lintas departemen.',
       'Tiga kriteria tadi adalah filter, bukan alarm yang berbunyi setiap ada masalah.',
     ],

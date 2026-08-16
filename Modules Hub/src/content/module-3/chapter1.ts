@@ -43,7 +43,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Pola yang Sering Kejadian',
     title: 'Tiga Wajah Bisnis yang Kebakaran Terus',
     body: [
-      'Bukan cuma soal komplain klien. Coba cek, ada nggak yang kerasa familiar: Anda ngumpulin seluruh tim mendadak begitu omzet bulan ini anjlok tajam — padahal minggu-minggu sebelumnya nggak ada yang mantau tren itu.',
+      'Bukan cuma soal komplain pelanggan. Coba cek, ada nggak yang kerasa familiar: Anda ngumpulin seluruh tim mendadak begitu omzet bulan ini anjlok tajam — padahal minggu-minggu sebelumnya nggak ada yang mantau tren itu.',
       'Atau: karyawan kunci resign mendadak, dan baru saat itu Anda sadar nggak ada yang tahu detail kerjaannya karena nggak pernah ada forum buat serah terima rutin.',
       'Atau yang paling sering: Anda baru benar-benar buka laporan keuangan pas tutup tahun — dan kaget lihat angka yang sebenarnya sudah memburuk sejak bulan ketiga.',
     ],
@@ -52,7 +52,7 @@ export const chapter1Cards: Card[] = [
     id: 'c1-card-4',
     type: 'multiple-choice',
     question:
-      'Ketiga contoh tadi — komplain klien mendadak, karyawan kunci resign, kaget pas tutup buku — apa benang merahnya?',
+      'Ketiga contoh tadi — komplain pelanggan mendadak, karyawan kunci resign, kaget pas tutup buku — apa benang merahnya?',
     options: [
       'Timnya kurang kompeten',
       'Masalahnya baru ketahuan setelah membesar, bukan waktu masih kecil',
@@ -117,7 +117,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Kalau Anda Sudah Ikut Modul 2',
     title: 'Dashboard Bagus, Tapi Nggak Ada yang Buka',
     body: [
-      'Kalau Anda sudah ikut Modul 2: inget soal cara merancang KPI yang benar-benar berarti, bukan sekadar metrik basa-basi? Itu langkah penting. Tapi ada satu jebakan lagi setelahnya.',
+      'Kalau Anda sudah ikut Modul 2: inget soal cara merancang KPI yang benar-benar berarti, bukan sekadar KPI basa-basi? Itu langkah penting. Tapi ada satu jebakan lagi setelahnya.',
       'Anda bisa saja punya KPI yang paling tepat sedunia, sudah di-cascade sampai ke staf paling bawah — tapi kalau nggak ada yang benar-benar membuka dan membahasnya secara terjadwal, KPI itu cuma jadi pajangan digital.',
       'Dashboard yang nggak pernah dibuka itu sama sekali nggak lebih berguna dari laporan yang nggak pernah ditulis.',
     ],
@@ -141,7 +141,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Beda yang Sering Kelewat',
     title: 'Sering Rapat ≠ Punya Ritme Tinjauan',
     body: [
-      "Ini yang sering keliru: bos mikir 'saya udah sering rapat kok, tiap Senin ada meeting mingguan.' Tapi coba dengar lagi isi rapatnya — kalau semua orang cuma bilang 'aman-aman aja, Pak/Bu' tanpa ada yang benar-benar dibedah, itu bukan tinjauan. Itu teater status.",
+      "Ini yang sering keliru: CEO mikir 'saya udah sering rapat kok, tiap Senin ada meeting mingguan.' Tapi coba dengar lagi isi rapatnya — kalau semua orang cuma bilang 'aman-aman aja, Pak/Bu' tanpa ada yang benar-benar dibedah, itu bukan tinjauan. Itu teater status.",
       'Rapat rutin yang isinya cuma laporan basa-basi, tanpa ada yang menggali kenapa suatu angka merah, sama saja nggak ada rapat.',
       'Yang bisnis Anda butuh itu Executive Business Review (EBR) — forum terstruktur yang benar-benar membedah data, mencari akar masalah, dan menghasilkan aksi. Bukan sekadar kumpul dan lapor.',
     ],
@@ -169,7 +169,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Tes Sederhana',
     title: 'Siapa yang Kasih Tahu Anda Duluan?',
     body: [
-      'Ada satu pertanyaan simpel buat mengecek separah apa gap di bisnis Anda: kalau ada masalah, siapa yang kasih tahu Anda duluan — sistem tinjauan internal Anda, atau komplain klien, karyawan yang resign, dan saldo rekening yang tiba-tiba tipis?',
+      'Ada satu pertanyaan simpel buat mengecek separah apa gap di bisnis Anda: kalau ada masalah, siapa yang kasih tahu Anda duluan — sistem tinjauan internal Anda, atau komplain pelanggan, karyawan yang resign, dan saldo rekening yang tiba-tiba tipis?',
       'Kalau jawabannya selalu yang kedua, itu artinya bisnis Anda selalu telat tahu. Anda bukan yang memegang kendali — Anda cuma menunggu dikabari oleh kejadian buruk.',
     ],
   },
@@ -177,7 +177,7 @@ export const chapter1Cards: Card[] = [
     id: 'c1-card-13',
     type: 'yes-no',
     question:
-      'Jujur ke diri sendiri: selama ini, bisnis Anda biasanya tahu duluan ada masalah, atau selalu telat — dikabari oleh klien, karyawan, atau saldo rekening?',
+      'Jujur ke diri sendiri: selama ini, bisnis Anda biasanya tahu duluan ada masalah, atau selalu telat — dikabari oleh pelanggan, karyawan, atau saldo rekening?',
     yesLabel: 'Biasanya kami tahu duluan',
     noLabel: 'Jujur, kami selalu telat tahu',
     feedbackYes:
@@ -193,7 +193,7 @@ export const chapter1Cards: Card[] = [
     title: 'Giliran Anda: Bongkar Satu Kejadian yang Bikin Kaget',
     body: [
       'Sebelum lanjut, coba mundur sebentar dan inget-inget.',
-      'Pikirkan satu masalah besar yang belakangan ini bikin Anda beneran kaget — komplain klien, karyawan resign mendadak, atau angka keuangan yang tiba-tiba nggak masuk akal.',
+      'Pikirkan satu masalah besar yang belakangan ini bikin Anda beneran kaget — komplain pelanggan, karyawan resign mendadak, atau angka keuangan yang tiba-tiba nggak masuk akal.',
       'Sekarang coba jujur: kalau dipikir-pikir lagi, apakah tanda-tandanya sebenarnya sudah ada, cuma nggak ada yang mantau?',
     ],
   },
@@ -223,7 +223,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Catatan Tersimpan',
     title: 'Anda Nggak Sendirian — dan Ini Bisa Diperbaiki',
     body: [
-      'Ini bukan sesi menyalahkan diri sendiri. Hampir semua bos pernah kaget kena masalah yang sebenarnya sudah kasih tanda-tanda dari awal — termasuk yang bisnisnya sekarang sudah rapi dan tenang.',
+      'Ini bukan sesi menyalahkan diri sendiri. Hampir semua CEO pernah kaget kena masalah yang sebenarnya sudah kasih tanda-tanda dari awal — termasuk yang bisnisnya sekarang sudah rapi dan tenang.',
       'Bedanya, mereka berhenti mengandalkan rapat dadakan sebagai satu-satunya cara tahu ada masalah, dan mulai memasang ritme tinjauan yang jalan sendiri, terjadwal, tanpa nunggu kebakaran.',
       'Jawaban Anda tadi baru saja jadi entri pertama di buku kerja EBR Anda sendiri. Nanti kita isi terus sampai jadi ritme tinjauan yang lengkap.',
     ],

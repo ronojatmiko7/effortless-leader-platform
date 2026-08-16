@@ -83,7 +83,7 @@ export const chapter3Cards: Card[] = [
     type: 'fill-in-the-blank',
     sentence:
       'Kalau satu topik di huddle butuh diskusi lebih dari 2 menit, itu seharusnya bukan diselesaikan di tempat — melainkan ________ dan ditangani setelah huddle oleh orang yang relevan.',
-    options: ['diparkir', 'diabaikan', 'ditunda ke bulan depan', 'diputuskan sendiri oleh bos'],
+    options: ['diparkir', 'diabaikan', 'ditunda ke bulan depan', 'diputuskan sendiri oleh CEO'],
     correctAnswer: 'diparkir',
     successFeedback:
       '"Diparkir" berarti dicatat dan ditangani — bukan dilupakan. Bedanya besar: masalah tetap diselesaikan, tapi nggak menyita waktu semua orang yang berdiri.',

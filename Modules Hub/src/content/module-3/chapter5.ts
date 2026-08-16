@@ -124,7 +124,7 @@ export const chapter5Cards: Card[] = [
     body: [
       'Masalah: kualitas produk turun dalam dua bulan terakhir — komplain naik, return rate meningkat. Tiap orang di tim nunjuk ke penyebab yang beda. Inilah yang tampak di tiap kategori:\n\nManusia — Dua staf produksi senior resign bulan lalu dan belum tergantikan. Staf baru yang menggantikan mereka belum melewati training penuh tapi sudah dilepas kerja mandiri.\n\nProses — SOP quality control sebetulnya ada, tapi sering dilewati kalau sedang kejar target produksi. Tidak ada yang ditugaskan meng-enforce-nya.',
       'Alat/Sistem — Mesin utama sudah enam bulan tidak diservis rutin karena anggaran maintenance dipotong awal tahun. Toleransi produksinya mulai bergeser — hasilnya produk yang lolos QC visual tapi gagal di penggunaan nyata.',
-      'Eksternal — Supplier bahan baku utama mengganti formula tanpa pemberitahuan resmi. Tim baru tahu dari komplain klien, bukan dari supplier. Perubahan ini berkontribusi ke variasi kualitas yang nggak konsisten tiap batch.',
+      'Eksternal — Supplier bahan baku utama mengganti formula tanpa pemberitahuan resmi. Tim baru tahu dari komplain pelanggan, bukan dari supplier. Perubahan ini berkontribusi ke variasi kualitas yang nggak konsisten tiap batch.',
     ],
   },
   {
@@ -244,7 +244,7 @@ export const chapter5Cards: Card[] = [
     eyebrow: 'Selesai Bab 5',
     title: 'Alat Sudah di Tangan. Tapi Nemu Akar Aja Belum Cukup.',
     body: [
-      'Sekarang Anda punya dua alat untuk membedah masalah sampai ke akarnya: 5 Whys untuk masalah dengan satu rantai sebab-akibat yang lurus, dan Fishbone untuk masalah yang faktornya datang dari banyak arah sekaligus.',
+      'Sekarang Anda sudah punya dua alat untuk membedah masalah sampai ke akarnya: 5 Whys untuk masalah dengan satu rantai sebab-akibat yang lurus, dan Fishbone untuk masalah yang faktornya datang dari banyak arah sekaligus.',
       'Tapi ada satu langkah yang sering gagal setelah analisis selesai — dan ini yang memisahkan tinjauan yang menghasilkan perubahan dari tinjauan yang cuma jadi obrolan panjang.',
       'Bab berikutnya: cara memimpin diskusi biar temuan RCA beneran jadi aksi — bukan didengarkan, angguk-angguk, lalu dilupakan begitu rapat selesai.',
     ],

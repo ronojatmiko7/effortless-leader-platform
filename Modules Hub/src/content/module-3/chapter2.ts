@@ -246,10 +246,10 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: Map,
     eyebrow: 'Selesai Bab 2',
-    title: 'Sekarang Anda Punya Peta Lengkapnya',
+    title: 'Sekarang Anda Sudah Punya Peta Lengkapnya',
     body: [
       'Anda sekarang tahu: ritme EBR yang sehat itu 4 level, tiap level punya altitude dan orang yang beda, dan melompati satu level itu bahaya — hasilnya rapat yang nggak nyambung ke kerjaan nyata.',
-      'Sekarang Anda punya peta lengkapnya. Bab berikutnya kita bedah dua level paling bawah — huddle harian dan tinjauan mingguan — supaya keduanya nggak buang waktu tim Anda.',
+      'Sekarang Anda sudah punya peta lengkapnya. Bab berikutnya kita bedah dua level paling bawah — huddle harian dan tinjauan mingguan — supaya keduanya nggak buang waktu tim Anda.',
     ],
   },
 ]
