@@ -109,9 +109,9 @@ export const chapter6Cards: Card[] = [
       'Kapan terakhir kali Anda benar-benar duduk mengamati satu proses dari awal sampai selesai, bukan cuma dengar laporannya?',
     yesLabel: 'Belum lama ini',
     noLabel: 'Sudah lama sekali, atau tidak pernah',
-    feedbackYes: 'Bagus, itu kebiasaan yang jarang dimiliki bos kebanyakan.',
+    feedbackYes: 'Bagus, itu kebiasaan yang jarang dimiliki CEO kebanyakan.',
     feedbackNo:
-      'Wajar — kebanyakan bos sudah terlalu sibuk untuk duduk diam mengamati. Tapi itu artinya, selama ini Anda cuma tahu versi ceritanya, bukan kenyataannya.',
+      'Wajar — kebanyakan CEO sudah terlalu sibuk untuk duduk diam mengamati. Tapi itu artinya, selama ini Anda cuma tahu versi ceritanya, bukan kenyataannya.',
   },
   {
     id: 'c6-card-9',

@@ -99,7 +99,7 @@ export const chapter2Cards: Card[] = [
     question:
       'Untuk gejala "penjualan turun" ini, kemungkinan besar akar masalahnya ada di mana?',
     options: [
-      'Proses — SOP follow-up ke calon klien putus di tengah jalan',
+      'Proses — SOP follow-up ke calon pelanggan putus di tengah jalan',
       'Input — Karyawan sales baru belum pernah ditraining, dan tidak ada CRM untuk melacak leads',
       'Bisa dua-duanya — Proses maupun Input sama-sama mungkin jadi akarnya',
     ],

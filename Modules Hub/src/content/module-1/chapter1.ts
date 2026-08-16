@@ -66,7 +66,7 @@ export const chapter1Cards: Card[] = [
     eyebrow: 'Dua Gaya Mengelola Bisnis',
     title: 'Gaya Damkar',
     body: [
-      'Senin: klien komplain, Anda turun tangan sendiri. Rabu: karyawan kunci resign mendadak, Anda ambil alih kerjaannya. Jumat: supplier telat kirim, Anda yang telepon cari solusi.',
+      'Senin: pelanggan komplain, Anda turun tangan sendiri. Rabu: karyawan kunci resign mendadak, Anda ambil alih kerjaannya. Jumat: supplier telat kirim, Anda yang telepon cari solusi.',
       'Di akhir minggu Anda kelelahan. Tapi coba cek penggunaan waktu Anda: berapa jam yang benar-benar terpakai untuk memikirkan strategi bisnis — yang bukan cuma memadamkan kebakaran?',
     ],
   },
@@ -88,8 +88,8 @@ export const chapter1Cards: Card[] = [
     question:
       'Manakah dari berikut ini yang jadi tanda paling jelas bahwa bisnis Anda dikelola secara REAKTIF, dan bukan preventif?',
     options: [
-      'Anda sudah tahu ada masalah sebelum klien sempat komplain',
-      'Anda baru tahu ada masalah setelah klien marah-marah duluan',
+      'Anda sudah tahu ada masalah sebelum pelanggan sempat komplain',
+      'Anda baru tahu ada masalah setelah pelanggan marah-marah duluan',
       'Anda punya jadwal rutin buat cek KPI operasional',
     ],
     correctAnswer: 1,

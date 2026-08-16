@@ -115,7 +115,7 @@ export const chapter7Cards: Card[] = [
     title: 'Dari "Penjualan Turun" Sampai Akar Sebenarnya',
     body: [
       'Gejala: penjualan turun bulan ini. Why 1 — kenapa? Karena closing rate tim sales menurun.',
-      'Why 2 — kenapa closing rate menurun? Karena follow-up ke calon klien sering telat atau malah lupa.',
+      'Why 2 — kenapa closing rate menurun? Karena follow-up ke calon pelanggan sering telat atau malah lupa.',
       'Why 3 — kenapa follow-up sering telat? Karena semua leads masih dicatat manual di buku, tidak ada pengingat otomatis.',
       'Why 4 — kenapa masih dicatat manual? Karena tim sales tidak pernah diajari memakai CRM yang sebenarnya sudah ada.',
       'Akar masalahnya: karena sales tidak pernah dilatih memakai CRM untuk follow-up — bukan soal "kurang niat" seperti tuduhan yang biasa dilontarkan.',
@@ -211,7 +211,7 @@ export const chapter7Cards: Card[] = [
     type: 'info',
     icon: Compass,
     eyebrow: 'Selesai Bab 7',
-    title: 'Anda Sekarang Punya Daftar Prioritas yang Masuk Akal',
+    title: 'Anda Sekarang Sudah Punya Daftar Prioritas yang Masuk Akal',
     body: [
       'Anda sudah tahu cara menilai temuan pakai skala yang konsisten, melacak akarnya lewat 5 Whys, dan mengurutkan perbaikan lewat matriks dampak vs usaha.',
       'Prioritas yang baru Anda tandai itu akan jadi titik awal di bab terakhir.',
