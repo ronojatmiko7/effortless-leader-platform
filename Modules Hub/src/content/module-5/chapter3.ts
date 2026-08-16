@@ -211,10 +211,10 @@ export const chapter3Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Selesai Bab 3',
-    title: 'Sekarang Anda Tahu Persis Kenapa SOP Itu Diabaikan',
+    title: 'Sekarang Anda Sudah Tahu Persis Kenapa SOP Itu Diabaikan',
     body: [
       'Anda baru saja mendiagnosis akar masalah di balik SOP yang tidak berjalan — bukan sekadar "SOP-nya perlu diperbaiki," tapi secara spesifik: masalahnya ada di format, akses, atau relevansinya.',
-      'Sekarang Anda tahu persis kenapa SOP itu diabaikan. Bab 4 masuk ke cara benerin masalah formatnya — dari dokumen panjang jadi checklist yang beneran dipakai di lapangan.',
+      'Sekarang Anda sudah tahu persis kenapa SOP itu diabaikan. Bab 4 masuk ke cara benerin masalah formatnya — dari dokumen panjang jadi checklist yang beneran dipakai di lapangan.',
     ],
   },
 ]

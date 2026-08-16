@@ -216,10 +216,10 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Selesai Bab 2',
-    title: 'Sekarang Anda Tahu Ada di Level Berapa',
+    title: 'Sekarang Anda Sudah Tahu Ada di Level Berapa',
     body: [
       'Anda baru saja menempatkan bisnis Anda di skala kematangan kepatuhan SOP — dan mengidentifikasi SOP mana yang paling mendesak untuk dibenahi. Itu sudah jauh lebih konkret dari sekadar "SOP kami masih perlu diperbaiki."',
-      'Sekarang Anda tahu ada di level berapa. Bab 3 kasih Anda cara mendiagnosis kenapa persisnya SOP Anda nyangkut di situ — apakah akar masalahnya ada di format, akses, atau relevansi isinya — biar bab-bab berikutnya benerin akar masalahnya, bukan asal ganti format.',
+      'Sekarang Anda sudah tahu ada di level berapa. Bab 3 kasih Anda cara mendiagnosis kenapa persisnya SOP Anda nyangkut di situ — apakah akar masalahnya ada di format, akses, atau relevansi isinya — biar bab-bab berikutnya benerin akar masalahnya, bukan asal ganti format.',
     ],
   },
 ]

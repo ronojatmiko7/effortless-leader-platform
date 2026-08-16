@@ -227,7 +227,7 @@ export const chapter1Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Selesai Bab 1',
-    title: 'Sekarang Anda Tahu SOP Mana yang Paling Sering Didiamkan',
+    title: 'Sekarang Anda Sudah Tahu SOP Mana yang Paling Sering Didiamkan',
     body: [
       'Anda baru saja mengidentifikasi satu SOP yang tidak berjalan dengan benar di bisnis Anda sendiri. Itu lebih bermakna dari sekadar tahu teorinya.',
       'Bab berikutnya kasih Anda skala lengkap buat mengukur separah apa masalahnya — dari "diabaikan total" sampai "terverifikasi aktif" — dan ke mana harus menuju dari posisi Anda sekarang.',

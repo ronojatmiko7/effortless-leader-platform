@@ -94,9 +94,9 @@ export const chapter6Cards: Card[] = [
     type: 'info',
     icon: Search,
     eyebrow: 'Teknik #3 dari 3',
-    title: 'Sinyal Tidak Langsung — Metrik Hasil yang Jadi Indikator SOP Tidak Diikuti',
+    title: 'Sinyal Tidak Langsung — KPI Hasil yang Jadi Indikator SOP Tidak Diikuti',
     body: [
-      'Ada situasi di mana tidak ada yang mengaku melanggar SOP — tapi ada sesuatu yang tidak beres. Di sinilah sinyal tidak langsung jadi penting: metrik hasil yang menjadi indikator halus bahwa ada prosedur yang diam-diam tidak diikuti.',
+      'Ada situasi di mana tidak ada yang mengaku melanggar SOP — tapi ada sesuatu yang tidak beres. Di sinilah sinyal tidak langsung jadi penting: KPI hasil yang menjadi indikator halus bahwa ada prosedur yang diam-diam tidak diikuti.',
       'Contohnya: defect rate yang naik tanpa alasan yang jelas. Komplain pelanggan yang datang berulang soal hal yang sama — padahal SOP untuk menangani itu sudah ada. Rework yang meningkat di area tertentu. Return rate yang melebihi baseline normal. Satu orang atau satu shift yang hasilnya konsisten berbeda dari yang lain.',
       'Sinyal-sinyal ini tidak langsung menunjuk pada pelanggaran SOP spesifik — tapi mereka jadi alasan untuk menginvestigasi lebih dalam. Kalau defect rate di shift malam lebih tinggi dari shift pagi, itu pertanyaan: apakah prosedur di shift malam diikuti dengan cara yang sama? Sinyal tidak langsung adalah sistem peringatan dini sebelum masalah jadi lebih besar.',
     ],
@@ -125,8 +125,8 @@ export const chapter6Cards: Card[] = [
     title: 'Ketiga Teknik Ini Bekerja Bersama — Bukan Pilih Satu, Abaikan Dua',
     body: [
       'Spot check, self-audit, dan sinyal tidak langsung bukan tiga opsi yang harus dipilih salah satunya. Ketiganya menutupi celah yang berbeda.',
-      'Spot check supervisor menangkap deviasi yang terjadi di lapangan secara real-time. Self-audit staf membangun budaya akuntabilitas pribadi dan kasih Anda data baseline untuk dibandingkan dengan temuan spot check. Sinyal tidak langsung dari metrik hasil kasih Anda peringatan dini ketika ada yang tidak beres di level sistem, bukan hanya di level individu.',
-      'Bisnis yang punya ketiga lapisan ini tidak bergantung pada satu titik pengamatan saja. Deviasi lebih sulit sembunyi karena ada lebih dari satu cara untuk terdeteksi. Dan kalau ada ketidaksesuaian antara self-audit, hasil spot check, dan metrik hasil — itu sinyal yang sangat berharga untuk ditelusuri.',
+      'Spot check supervisor menangkap deviasi yang terjadi di lapangan secara real-time. Self-audit staf membangun budaya akuntabilitas pribadi dan kasih Anda data baseline untuk dibandingkan dengan temuan spot check. Sinyal tidak langsung dari KPI hasil kasih Anda peringatan dini ketika ada yang tidak beres di level sistem, bukan hanya di level individu.',
+      'Bisnis yang punya ketiga lapisan ini tidak bergantung pada satu titik pengamatan saja. Deviasi lebih sulit sembunyi karena ada lebih dari satu cara untuk terdeteksi. Dan kalau ada ketidaksesuaian antara self-audit, hasil spot check, dan KPI hasil — itu sinyal yang sangat berharga untuk ditelusuri.',
     ],
   },
   {
@@ -137,7 +137,7 @@ export const chapter6Cards: Card[] = [
     title: 'Jangan Buat Forum Baru Kalau Bisa Ditumpangkan ke yang Sudah Ada',
     body: [
       'Pengecekan kepatuhan tidak harus punya forum sendiri yang berdiri terpisah. Cara yang paling mudah diterapkan dan paling tahan lama: tumpangkan ke ritme yang sudah berjalan di bisnis Anda.',
-      'Kalau sudah ada daily huddle atau briefing pagi — itu tempat yang tepat untuk review self-audit kemarin: ada yang tidak dicentang? Kenapa? Kalau sudah ada tinjauan mingguan — itu tempat untuk melihat tren spot check minggu ini dan metrik hasil yang relevan. Kalau sudah ada rapat bulanan — itu forum untuk melihat pola jangka panjang dan memutuskan apakah ada SOP yang perlu direvisi.',
+      'Kalau sudah ada daily huddle atau briefing pagi — itu tempat yang tepat untuk review self-audit kemarin: ada yang tidak dicentang? Kenapa? Kalau sudah ada tinjauan mingguan — itu tempat untuk melihat tren spot check minggu ini dan KPI hasil yang relevan. Kalau sudah ada rapat bulanan — itu forum untuk melihat pola jangka panjang dan memutuskan apakah ada SOP yang perlu direvisi.',
       'Kalau belum ada forum apapun — tidak masalah. Buat satu sesi singkat yang secara eksplisit membahas kepatuhan SOP: bisa 15 menit mingguan, bisa di akhir setiap shift. Yang penting ada jadwal, ada yang memimpin, dan hasilnya tidak hanya dibahas tapi juga dicatat. Pengecekan yang tidak punya ritme yang jelas akan perlahan ditinggalkan.',
     ],
   },
