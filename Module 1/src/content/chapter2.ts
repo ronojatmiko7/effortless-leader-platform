@@ -126,7 +126,7 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: MessageSquareWarning,
     eyebrow: 'Contoh 2 · Gejala di Output',
-    title: 'Komplain Kualitas Produk Naik',
+    title: 'Komplain Meningkat Soal Kualitas Produk',
     body: [
       'Sekarang bayangkan komplain soal kualitas produk naik dua kali lipat bulan ini. Reaksi paling umum: "tim produksinya ceroboh".',
       'Ini juga gejala di Output. Sebelum menyalahkan orangnya, coba telusuri dulu ke dalam.',
