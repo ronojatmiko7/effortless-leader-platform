@@ -215,10 +215,10 @@ export const chapter1Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Ke Bab 2',
-    title: 'Sekarang Anda Punya Satu Perubahan Konkret di Kepala',
+    title: 'Sekarang Anda Sudah Punya Satu Perubahan Konkret di Kepala',
     body: [
       'Anda baru saja mengidentifikasi satu perubahan yang akan jadi titik uji sepanjang modul ini. Itu lebih bermakna dari sekadar setuju bahwa change management itu penting.',
-      'Sekarang Anda punya satu perubahan konkret di kepala. Bab berikutnya kasih Anda peta lengkap dua tahap change management, biar Anda tahu persis bagian mana yang bolong.',
+      'Sekarang Anda sudah punya satu perubahan konkret di kepala. Bab berikutnya kasih Anda peta lengkap dua tahap change management, biar Anda tahu persis bagian mana yang bolong.',
     ],
   },
 ]

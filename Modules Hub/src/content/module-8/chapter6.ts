@@ -234,7 +234,7 @@ export const chapter6Cards: Card[] = [
     type: 'info',
     icon: ArrowRight,
     eyebrow: 'Ke Bab 7',
-    title: 'Anda Sekarang Tahu Cara Menjaga Rollout Tetap Hidup di Lapangan',
+    title: 'Anda Sekarang Sudah Tahu Cara Menjaga Rollout Tetap Hidup di Lapangan',
     body: [
       'Anda nggak lagi cuma punya rencana di atas kertas. Anda sekarang tahu cara merayakan hasil nyata secara terbuka, mengenali sinyal bahaya sebelum terlambat, dan menangani resistensi langsung di lapangan dengan respons yang sesuai akar masalahnya — bukan menghindar, bukan juga memaksa.',
       'Anda sekarang sudah tahu cara menjalankan dan menjaga rollout di lapangan. Bab 7 waktunya menyatukan semuanya — diagnosis, kasus perubahan, peta stakeholder, rencana rollout, dan teknik lapangan ini — jadi satu paket change management yang lengkap untuk perubahan Anda.',

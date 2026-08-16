@@ -251,9 +251,9 @@ export const chapter2Cards: Card[] = [
     type: 'info',
     icon: Repeat,
     eyebrow: 'Sebelum Lanjut',
-    title: 'Anda Sekarang Punya Peta — Bukan Cuma Satu Kasus',
+    title: 'Anda Sekarang Sudah Punya Peta — Bukan Cuma Satu Kasus',
     body: [
-      'Di Bab 1 Anda punya satu perubahan konkret. Sekarang Anda punya peta dua tahap yang menjelaskan kenapa perubahan itu — atau perubahan manapun — bisa rontok, dan di titik mana biasanya itu terjadi.',
+      'Di Bab 1 Anda punya satu perubahan konkret. Sekarang Anda sudah punya peta dua tahap yang menjelaskan kenapa perubahan itu — atau perubahan manapun — bisa rontok, dan di titik mana biasanya itu terjadi.',
       'Anda juga sudah menandai tahap mana yang paling bolong di bisnis Anda sendiri. Itu bukan cuma latihan reflektif — itu jadi arah baca Anda buat bab-bab berikutnya.',
     ],
   },
