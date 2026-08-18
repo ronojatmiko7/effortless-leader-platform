@@ -28,7 +28,7 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-2',
     number: 2,
-    title: 'KPI Architecture & Strategic Cascading',
+    title: 'Bagaimana Menurunkan Target Besar Jadi KPI Harian yang Jelas',
     description:
       'Menurunkan target besar perusahaan jadi KPI harian yang jelas pemiliknya, dari Lag sampai Lead Metric.',
     chapters: module2Chapters,
@@ -36,7 +36,7 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-3',
     number: 3,
-    title: 'Executive Business Review (EBR) Governance',
+    title: 'Bagaimana Memasang Ritme Tinjauan Biar Bisnis Anda Nggak Kebakaran Terus',
     description:
       'Memasang ritme tinjauan berjenjang biar bisnis Anda tenang, bukan kebakaran tiap ada masalah.',
     chapters: module3Chapters,
@@ -44,7 +44,7 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-4',
     number: 4,
-    title: 'Business Process Re-engineering (Silo-Breaking)',
+    title: 'Bagaimana Membongkar Silo yang Bikin Serah Terima Antar Tim Macet',
     description:
       'Memetakan proses end-to-end dan membongkar titik silo yang bikin serah terima antar tim macet.',
     chapters: module4Chapters,
@@ -52,14 +52,14 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-5',
     number: 5,
-    title: 'SOP Optimization & Usability Redesign',
+    title: 'Bagaimana Merombak SOP Berdebu Jadi Checklist yang Beneran Dipakai',
     description: 'Merombak SOP berdebu jadi checklist yang beneran dipakai di titik kerja.',
     chapters: module5Chapters,
   },
   {
     id: 'module-6',
     number: 6,
-    title: 'Performance Management System Overhaul',
+    title: 'Bagaimana Membangun Siklus Kinerja Biar Review Tahunan Nggak Kerja Sendirian',
     description:
       'Membangun siklus kinerja utuh — tujuan, coaching, tindakan korektif — biar review tahunan nggak lagi kerja sendirian.',
     chapters: module6Chapters,
@@ -67,7 +67,7 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-7',
     number: 7,
-    title: 'Job Architecture & Competency Modeling',
+    title: "Bagaimana Merekrut Tanpa Modal 'Kelihatannya Cocok'",
     description:
       "Merancang model kompetensi dan alat seleksi berbasis bukti biar rekrutmen nggak lagi cuma modal 'kelihatannya cocok'.",
     chapters: module7Chapters,
@@ -75,7 +75,7 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-8',
     number: 8,
-    title: 'Enterprise Change Management Rollout',
+    title: 'Bagaimana Menjalankan Perubahan Biar Nggak Mati Pelan-Pelan di Lapangan',
     description:
       'Merancang rollout perubahan yang diagnosis resistensinya dulu, biar nggak mati pelan-pelan di lapangan.',
     chapters: module8Chapters,
@@ -83,7 +83,7 @@ export const modules: ModuleMeta[] = [
   {
     id: 'module-9',
     number: 9,
-    title: 'AI Adoption & Claude for Business',
+    title: 'Bagaimana Mengadopsi AI Biar Nggak Berakhir Ditinggalkan Kayak Tool Lain',
     description:
       'Memilih satu kasus pakai AI yang nyata dan menjalankannya sampai jadi kebiasaan tim — bukan eksperimen acak yang berakhir ditinggalkan seperti tool-tool lain.',
     chapters: module9Chapters,
