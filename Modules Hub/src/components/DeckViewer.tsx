@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion'
 import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
-import type { Card } from '../types/card'
+import type { AssessmentQuestionCardData, Card } from '../types/card'
 import { useWorkbookStore } from '../workbook/WorkbookContext'
 import InfoCard from './cards/InfoCard'
 import YesNoCard from './cards/YesNoCard'
@@ -13,6 +13,8 @@ import ReflectionCard from './cards/ReflectionCard'
 import FindingReviewCard from './cards/FindingReviewCard'
 import ReportCard from './cards/ReportCard'
 import ReviewRequestCard from './cards/ReviewRequestCard'
+import AssessmentQuestionCard from './cards/AssessmentQuestionCard'
+import AssessmentResultCard from './cards/AssessmentResultCard'
 
 const SWIPE_THRESHOLD = 80
 
@@ -22,25 +24,32 @@ const variants = {
   exit: (direction: number) => ({ x: direction > 0 ? -80 : 80, opacity: 0 }),
 }
 
-function renderCard(
-  card: Card,
-  isCorrectlyAnswered: boolean,
-  onCorrect: () => void,
-  yesNoSelection: 'yes' | 'no' | undefined,
-  onYesNoSelect: (value: 'yes' | 'no') => void,
-  onCtaClick: ((href: string) => void) | undefined,
-) {
+interface RenderCtx {
+  isCorrectlyAnswered: boolean
+  onCorrect: () => void
+  yesNoSelection: 'yes' | 'no' | undefined
+  onYesNoSelect: (value: 'yes' | 'no') => void
+  onCtaClick: ((href: string) => void) | undefined
+  assessmentSelection: number | undefined
+  onAssessmentSelect: (index: number) => void
+  assessmentResult?: {
+    score: { correct: number; total: number }
+    details: { question: string; options: string[]; correctAnswer: number; selected: number | undefined }[]
+  }
+}
+
+function renderCard(card: Card, ctx: RenderCtx) {
   switch (card.type) {
     case 'info':
-      return <InfoCard card={card} onCtaClick={onCtaClick} />
+      return <InfoCard card={card} onCtaClick={ctx.onCtaClick} />
     case 'yes-no':
-      return <YesNoCard card={card} selected={yesNoSelection} onSelect={onYesNoSelect} />
+      return <YesNoCard card={card} selected={ctx.yesNoSelection} onSelect={ctx.onYesNoSelect} />
     case 'multiple-choice':
-      return <MultipleChoiceCard card={card} isAnswered={isCorrectlyAnswered} onCorrect={onCorrect} />
+      return <MultipleChoiceCard card={card} isAnswered={ctx.isCorrectlyAnswered} onCorrect={ctx.onCorrect} />
     case 'fill-in-the-blank':
-      return <FillInBlankCard card={card} isAnswered={isCorrectlyAnswered} onCorrect={onCorrect} />
+      return <FillInBlankCard card={card} isAnswered={ctx.isCorrectlyAnswered} onCorrect={ctx.onCorrect} />
     case 'sort-list':
-      return <SortCard card={card} isAnswered={isCorrectlyAnswered} onCorrect={onCorrect} />
+      return <SortCard card={card} isAnswered={ctx.isCorrectlyAnswered} onCorrect={ctx.onCorrect} />
     case 'worksheet':
       return <WorksheetCard card={card} />
     case 'reflection':
@@ -51,6 +60,18 @@ function renderCard(
       return <ReportCard card={card} />
     case 'review-request':
       return <ReviewRequestCard card={card} />
+    case 'assessment-question':
+      return (
+        <AssessmentQuestionCard card={card} selected={ctx.assessmentSelection} onSelect={ctx.onAssessmentSelect} />
+      )
+    case 'assessment-result':
+      return (
+        <AssessmentResultCard
+          card={card}
+          score={ctx.assessmentResult!.score}
+          details={ctx.assessmentResult!.details}
+        />
+      )
   }
 }
 
@@ -65,18 +86,21 @@ export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: Dec
   const [direction, setDirection] = useState(1)
   const [correctlyAnsweredIds, setCorrectlyAnsweredIds] = useState<Set<string>>(new Set())
   const [yesNoSelections, setYesNoSelections] = useState<Record<string, 'yes' | 'no'>>({})
+  const [assessmentSelections, setAssessmentSelections] = useState<Record<string, number>>({})
   const { getFieldValue } = useWorkbookStore()
 
   const card = cards[currentIndex]
   const isFirst = currentIndex === 0
   const isLast = currentIndex === cards.length - 1
   const yesNoSelection = yesNoSelections[card.id]
+  const assessmentSelection = assessmentSelections[card.id]
 
   const isComplete =
     card.type === 'info' ||
     card.type === 'worksheet' ||
     card.type === 'report' ||
-    card.type === 'review-request'
+    card.type === 'review-request' ||
+    card.type === 'assessment-result'
       ? true
       : card.type === 'yes-no'
         ? yesNoSelection !== undefined
@@ -84,12 +108,38 @@ export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: Dec
           ? card.fields.some((field) => getFieldValue(card.id, field.id).trim().length > 0)
           : card.type === 'finding-review'
             ? getFieldValue(card.storageKey, 'score').trim().length > 0
-            : correctlyAnsweredIds.has(card.id)
+            : card.type === 'assessment-question'
+              ? assessmentSelection !== undefined
+              : correctlyAnsweredIds.has(card.id)
 
   const totalQuizCards = cards.filter(
     (c) => c.type === 'multiple-choice' || c.type === 'fill-in-the-blank' || c.type === 'sort-list',
   ).length
   const score = correctlyAnsweredIds.size
+
+  // Only computed for the card actually being rendered when it's an
+  // assessment-result card — pulls every assessment-question sharing this
+  // result card's assessmentId, pairs each with the learner's in-deck
+  // selection, and tallies the score. This is what makes pretest/posttest
+  // feedback deferred: nothing about correctness exists anywhere until this
+  // runs, on the last card of the block.
+  const assessmentResult =
+    card.type === 'assessment-result'
+      ? (() => {
+          const questions = cards.filter(
+            (c): c is AssessmentQuestionCardData =>
+              c.type === 'assessment-question' && c.assessmentId === card.assessmentId,
+          )
+          const details = questions.map((q) => ({
+            question: q.question,
+            options: q.options,
+            correctAnswer: q.correctAnswer,
+            selected: assessmentSelections[q.id],
+          }))
+          const correct = details.filter((d) => d.selected === d.correctAnswer).length
+          return { score: { correct, total: details.length }, details }
+        })()
+      : undefined
 
   const goNext = () => {
     if (!isComplete || isLast) return
@@ -109,6 +159,10 @@ export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: Dec
 
   const handleYesNoSelect = (value: 'yes' | 'no') => {
     setYesNoSelections((prev) => ({ ...prev, [card.id]: value }))
+  }
+
+  const handleAssessmentSelect = (index: number) => {
+    setAssessmentSelections((prev) => ({ ...prev, [card.id]: index }))
   }
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
@@ -162,14 +216,16 @@ export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: Dec
             onDragEnd={handleDragEnd}
             className="w-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 print:rounded-none print:border-0 print:p-0 print:shadow-none"
           >
-            {renderCard(
-              card,
-              correctlyAnsweredIds.has(card.id),
-              handleCorrect,
+            {renderCard(card, {
+              isCorrectlyAnswered: correctlyAnsweredIds.has(card.id),
+              onCorrect: handleCorrect,
               yesNoSelection,
-              handleYesNoSelect,
-              onCtaNavigate,
-            )}
+              onYesNoSelect: handleYesNoSelect,
+              onCtaClick: onCtaNavigate,
+              assessmentSelection,
+              onAssessmentSelect: handleAssessmentSelect,
+              assessmentResult,
+            })}
           </motion.div>
         </AnimatePresence>
       </main>

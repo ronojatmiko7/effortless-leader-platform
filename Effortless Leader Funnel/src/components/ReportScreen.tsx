@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AlertTriangle, Calendar, RotateCcw, ShoppingCart } from 'lucide-react'
 import { allModules } from '../data/moduleMapping'
 import { CALENDLY_DIAGNOSTIC_CALL_URL } from '../config/schedulingConfig'
+import Logo from './Logo'
 import type { DiagnosticResult, DiagnosticSection } from '../types/diagnostic'
 import type { Lead } from '../types/lead'
 
@@ -71,6 +72,9 @@ export default function ReportScreen({ lead, result, onRestart }: ReportScreenPr
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="mx-auto w-full max-w-2xl px-5 py-8 sm:py-12">
+        <div className="mb-6 flex justify-center">
+          <Logo size="sm" />
+        </div>
         <div className="mb-6 flex items-center justify-between">
           <span className="text-xs font-semibold uppercase tracking-widest text-brand-600">
             Hasil Diagnosis Anda

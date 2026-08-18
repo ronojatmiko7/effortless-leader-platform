@@ -11,6 +11,8 @@ export type CardType =
   | 'finding-review'
   | 'report'
   | 'review-request'
+  | 'assessment-question'
+  | 'assessment-result'
 
 interface BaseCard {
   id: string
@@ -137,6 +139,38 @@ export interface ReviewRequestCardData extends BaseCard {
   thanksMessageNegative: string
 }
 
+/**
+ * One question inside a pretest/posttest block. Deliberately NO
+ * successFeedback/errorFeedback fields (product decision Aug 18, v2):
+ * pretest/posttest answers are not revealed per-question — they're all
+ * shown together on the trailing AssessmentResultCard once every question
+ * in the block has been answered. See buildAssessmentCards.ts.
+ */
+export interface AssessmentQuestionCardData extends BaseCard {
+  type: 'assessment-question'
+  /** Groups this question with its siblings and the block's result card — 'pretest' or 'posttest' in practice. */
+  assessmentId: string
+  questionNumber: number
+  totalQuestions: number
+  question: string
+  options: string[]
+  correctAnswer: number
+}
+
+/**
+ * Trailing card of a pretest/posttest block. DeckViewer computes the score
+ * and per-question breakdown at render time from the assessment-question
+ * cards sharing this card's assessmentId plus the learner's in-deck
+ * selections — this card itself only carries the copy around that reveal.
+ */
+export interface AssessmentResultCardData extends BaseCard {
+  type: 'assessment-result'
+  assessmentId: string
+  title: string
+  /** Shown above the score breakdown — this is where the bridging sentence into what comes next in the deck belongs. */
+  resultIntro: string
+}
+
 export type Card =
   | InfoCardData
   | YesNoCardData
@@ -148,3 +182,5 @@ export type Card =
   | FindingReviewCardData
   | ReportCardData
   | ReviewRequestCardData
+  | AssessmentQuestionCardData
+  | AssessmentResultCardData

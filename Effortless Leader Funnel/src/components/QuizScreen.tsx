@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import LeadCaptureForm from './LeadCaptureForm'
 import QuestionCard from './QuestionCard'
+import Logo from './Logo'
 import type { Lead } from '../types/lead'
 
 interface QuizScreenProps {
@@ -61,6 +62,9 @@ export default function QuizScreen({ onLeadCaptured, onComplete }: QuizScreenPro
   return (
     <div className="flex min-h-screen flex-col bg-slate-50">
       <header className="mx-auto w-full max-w-lg px-5 pt-6">
+        <div className="mb-4 flex justify-center">
+          <Logo size="sm" />
+        </div>
         {phase === 'questions' && (
           <>
             <div className="flex items-center justify-between text-sm text-slate-500">

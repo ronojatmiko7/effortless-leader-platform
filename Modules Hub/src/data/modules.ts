@@ -7,6 +7,7 @@ import { chapters as module5Chapters } from '../content/module-5/chapters'
 import { chapters as module6Chapters } from '../content/module-6/chapters'
 import { chapters as module7Chapters } from '../content/module-7/chapters'
 import { chapters as module8Chapters } from '../content/module-8/chapters'
+import { chapters as module9Chapters } from '../content/module-9/chapters'
 
 export interface ModuleMeta {
   id: string
@@ -78,5 +79,13 @@ export const modules: ModuleMeta[] = [
     description:
       'Merancang rollout perubahan yang diagnosis resistensinya dulu, biar nggak mati pelan-pelan di lapangan.',
     chapters: module8Chapters,
+  },
+  {
+    id: 'module-9',
+    number: 9,
+    title: 'AI Adoption & Claude for Business',
+    description:
+      'Memilih satu kasus pakai AI yang nyata dan menjalankannya sampai jadi kebiasaan tim — bukan eksperimen acak yang berakhir ditinggalkan seperti tool-tool lain.',
+    chapters: module9Chapters,
   },
 ]

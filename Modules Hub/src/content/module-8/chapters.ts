@@ -6,6 +6,8 @@ import { chapter5Cards } from './chapter5'
 import { chapter6Cards } from './chapter6'
 import { chapter7Cards } from './chapter7'
 import { chapter8Cards } from './chapter8'
+import { introCards } from './intro'
+import { outroCards } from './outro'
 import type { Card } from '../types/card'
 
 export interface ChapterMeta {
@@ -13,76 +15,81 @@ export interface ChapterMeta {
   number: number
   title: string
   description: string
+  kind?: 'intro' | 'chapter' | 'outro'
   cards: Card[]
 }
 
 export const chapters: ChapterMeta[] = [
   {
+    id: 'chapter-intro',
+    number: 0,
+    kind: 'intro',
+    title: 'Pendahuluan — Kenalan dengan Change Management & Pretest',
+    description: 'Kenali dulu kenapa perubahan yang bagus di atas kertas sering mati pelan-pelan di lapangan, apa yang akan Anda pelajari di modul ini, dan jawab pretest singkat sebagai titik awal Anda.',
+    cards: introCards,
+  },
+  {
     id: 'chapter-1',
     number: 1,
-    title:
-      'Kenapa Perubahan yang Bagus di Kertas Mati di Lapangan — Jebakan "Sudah Dibeli/Dibuat = Sudah Selesai"',
-    description:
-      'Kenapa tool, sistem, atau SOP yang sudah dibeli atau dibuat dengan baik tetap bisa mati pelan-pelan di lapangan — dan perbedaan penting antara perubahan yang beneran terpakai vs perubahan yang cuma didiamkan.',
+    title: 'Kenapa Perubahan yang Bagus di Kertas Mati di Lapangan — Jebakan "Sudah Dibeli/Dibuat = Sudah Selesai"',
+    description: 'Kenapa tool, sistem, atau SOP yang sudah dibeli atau dibuat dengan baik tetap bisa mati pelan-pelan di lapangan — dan perbedaan penting antara perubahan yang beneran terpakai vs perubahan yang cuma didiamkan.',
     cards: chapter1Cards,
   },
   {
     id: 'chapter-2',
     number: 2,
     title: 'Peta Change Management: Dari Kesiapan Perubahan ke Perubahan yang Bertahan',
-    description:
-      'Peta lengkap dua tahap change management — Kesiapan & Buy-In, dan Eksekusi & Penguatan — kenapa kebanyakan bisnis SME melompat langsung ke tahap kedua, dan di mana persisnya bisnis Anda paling bolong.',
+    description: 'Peta lengkap dua tahap change management — Kesiapan & Buy-In, dan Eksekusi & Penguatan — kenapa kebanyakan bisnis SME melompat langsung ke tahap kedua, dan di mana persisnya bisnis Anda paling bolong.',
     cards: chapter2Cards,
   },
   {
     id: 'chapter-3',
     number: 3,
     title: 'Mendiagnosis Resistensi — Kenapa Tim Anda Diam-Diam Menolak Perubahan',
-    description:
-      'Empat lensa buat mendiagnosis akar penyebab resistensi tim secara spesifik — takut nggak kompeten, nggak jelas untungnya, trauma proyek sesaat, atau belum pernah dilatih — plus teknik diagnosis dan latihan klasifikasi kasus.',
+    description: 'Empat lensa buat mendiagnosis akar penyebab resistensi tim secara spesifik — takut nggak kompeten, nggak jelas untungnya, trauma proyek sesaat, atau belum pernah dilatih — plus teknik diagnosis dan latihan klasifikasi kasus.',
     cards: chapter3Cards,
   },
   {
     id: 'chapter-4',
     number: 4,
-    title:
-      'Membangun Kasus Perubahan & Peta Stakeholder — Siapa yang Perlu Diyakinkan, dan Dengan Cara Apa',
-    description:
-      'Mengubah diagnosis resistensi dari Bab 3 jadi dua artefak konkret: kasus perubahan yang menjawab langsung lensa resistensi yang terdiagnosis, dan peta stakeholder untuk memprioritaskan siapa perlu diyakinkan duluan.',
+    title: 'Membangun Kasus Perubahan & Peta Stakeholder — Siapa yang Perlu Diyakinkan, dan Dengan Cara Apa',
+    description: 'Mengubah diagnosis resistensi dari Bab 3 jadi dua artefak konkret: kasus perubahan yang menjawab langsung lensa resistensi yang terdiagnosis, dan peta stakeholder untuk memprioritaskan siapa perlu diyakinkan duluan.',
     cards: chapter4Cards,
   },
   {
     id: 'chapter-5',
     number: 5,
     title: 'Merancang Rencana Rollout: Komunikasi, Pelatihan, dan Quick Win',
-    description:
-      'Mengunci satu perubahan nyata dan merancang rencana rollout konkretnya dalam tiga bagian: rencana komunikasi, rencana pelatihan, dan quick win di awal — semuanya menjawab langsung diagnosis resistensi dan kasus perubahan dari Bab 3-4.',
+    description: 'Mengunci satu perubahan nyata dan merancang rencana rollout konkretnya dalam tiga bagian: rencana komunikasi, rencana pelatihan, dan quick win di awal — semuanya menjawab langsung diagnosis resistensi dan kasus perubahan dari Bab 3-4.',
     cards: chapter5Cards,
   },
   {
     id: 'chapter-6',
     number: 6,
     title: 'Menjalankan Rollout dan Mengatasi Resistensi di Lapangan',
-    description:
-      'Menjalankan rencana rollout dari Bab 5 di lapangan sungguhan: merayakan quick win secara terbuka, mengenali sinyal bahaya rollout mulai balik ke cara lama, menangani resistensi lapangan dengan lensa dari Bab 3, dan tahu kapan harus fleksibel vs kapan harus tetap tegas.',
+    description: 'Menjalankan rencana rollout dari Bab 5 di lapangan sungguhan: merayakan quick win secara terbuka, mengenali sinyal bahaya rollout mulai balik ke cara lama, menangani resistensi lapangan dengan lensa dari Bab 3, dan tahu kapan harus fleksibel vs kapan harus tetap tegas.',
     cards: chapter6Cards,
   },
   {
     id: 'chapter-7',
     number: 7,
-    title:
-      'Lokakarya Change Rollout: Merancang Paket Change Management Lengkap untuk Satu Perubahan Nyata',
-    description:
-      'Menyatukan diagnosis resistensi (Bab 3), kasus perubahan & peta stakeholder (Bab 4), rencana rollout (Bab 5), dan catatan eksekusi lapangan (Bab 6) jadi satu paket change management yang utuh untuk satu perubahan nyata — plus cara memperkenalkannya ke orang lain tanpa berasa proses birokrasi.',
+    title: 'Lokakarya Change Rollout: Merancang Paket Change Management Lengkap untuk Satu Perubahan Nyata',
+    description: 'Menyatukan diagnosis resistensi (Bab 3), kasus perubahan & peta stakeholder (Bab 4), rencana rollout (Bab 5), dan catatan eksekusi lapangan (Bab 6) jadi satu paket change management yang utuh untuk satu perubahan nyata — plus cara memperkenalkannya ke orang lain tanpa berasa proses birokrasi.',
     cards: chapter7Cards,
   },
   {
     id: 'chapter-8',
     number: 8,
-    title:
-      'Menginstal Kebiasaan Change Management — Ritme Penguatan, Kepemilikan, dan Laporan Lengkap',
-    description:
-      'Mengubah paket change management dari Bab 7 jadi kebiasaan permanen: izin eksplisit untuk mulai dari satu perubahan dulu, ritme penguatan dengan pemilik yang jelas, koneksi ke modul lain yang sudah dikerjakan, dan laporan lengkap perjalanan Anda dari Bab 1 sampai 8.',
+    title: 'Menginstal Kebiasaan Change Management — Ritme Penguatan, Kepemilikan, dan Laporan Lengkap',
+    description: 'Mengubah paket change management dari Bab 7 jadi kebiasaan permanen: izin eksplisit untuk mulai dari satu perubahan dulu, ritme penguatan dengan pemilik yang jelas, koneksi ke modul lain yang sudah dikerjakan, dan laporan lengkap perjalanan Anda dari Bab 1 sampai 8.',
     cards: chapter8Cards,
+  },
+  {
+    id: 'chapter-outro',
+    number: 9,
+    kind: 'outro',
+    title: 'Penutup — Rangkuman Paket Change Management & Posttest',
+    description: 'Rangkuman paket change management dan playbook instalasi yang sudah Anda bangun di modul ini, plus posttest untuk melihat seberapa jauh Anda sudah bergerak.',
+    cards: outroCards,
   },
 ]
