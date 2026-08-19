@@ -38,7 +38,7 @@ export const modules: ModuleMeta[] = [
     number: 3,
     title: 'Bagaimana memonitor kesehatan bisnis Anda',
     description:
-      'Pelajari bagaimana cara memantau kesehatan bisnis Anda secara efektif.',
+      'Pelajari bagaimana caranya mencegah masalah kecil sebelum mereka berkembang menjadi masalah besar.',
     chapters: module3Chapters,
   },
   {
