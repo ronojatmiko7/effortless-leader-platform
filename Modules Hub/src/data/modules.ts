@@ -22,70 +22,70 @@ export const modules: ModuleMeta[] = [
     id: 'module-1',
     number: 1,
     title: 'Bagaimana Mengaudit Bisnis Anda Sendiri',
-    description: 'Audit rutin 3 Level bisnis Anda biar keputusan nggak lagi cuma tebak-tebakan.',
+    description: 'Pelajari bagaimana caranya menemukan titik-titik kebocoran tersembunyi dalam bisnis Anda.',
     chapters: module1Chapters,
   },
   {
     id: 'module-2',
     number: 2,
-    title: 'Bagaimana Menurunkan Target Besar Jadi KPI Harian yang Jelas',
+    title: 'Bagaimana menyusun KPI untuk bisnis Anda',
     description:
-      'Menurunkan target besar perusahaan jadi KPI harian yang jelas pemiliknya, dari Lag sampai Lead Metric.',
+      'Pelajarai bagaimana cara menyusun KPI yang benar-benar mengukur kesehatan bisnis Anda.',
     chapters: module2Chapters,
   },
   {
     id: 'module-3',
     number: 3,
-    title: 'Bagaimana Memasang Ritme Tinjauan Biar Bisnis Anda Nggak Kebakaran Terus',
+    title: 'Bagaimana memonitor kesehatan bisnis Anda',
     description:
-      'Memasang ritme tinjauan berjenjang biar bisnis Anda tenang, bukan kebakaran tiap ada masalah.',
+      'Pelajari bagaimana cara memantau kesehatan bisnis Anda secara efektif.',
     chapters: module3Chapters,
   },
   {
     id: 'module-4',
     number: 4,
-    title: 'Bagaimana Membongkar Silo yang Bikin Serah Terima Antar Tim Macet',
+    title: 'Bagaimana merancang proses bisnis Anda',
     description:
-      'Memetakan proses end-to-end dan membongkar titik silo yang bikin serah terima antar tim macet.',
+      'Pelajari bagaimana cara membongkar silo dan memperbaiki kebocoran dalam bisnis Anda.',
     chapters: module4Chapters,
   },
   {
     id: 'module-5',
     number: 5,
-    title: 'Bagaimana Merombak SOP Berdebu Jadi Checklist yang Beneran Dipakai',
-    description: 'Merombak SOP berdebu jadi checklist yang beneran dipakai di titik kerja.',
+    title: 'Bagaimana membuat SOP yang ditaati tim Anda',
+    description: 'Pelajari bagaimana cara membuat SOP yang benar-benar dipakai dan ditaati oleh tim Anda.',
     chapters: module5Chapters,
   },
   {
     id: 'module-6',
     number: 6,
-    title: 'Bagaimana Membangun Siklus Kinerja Biar Review Tahunan Nggak Kerja Sendirian',
+    title: 'Bagaimana membangun manajemen kinerja tim Anda',
     description:
-      'Membangun siklus kinerja utuh — tujuan, coaching, tindakan korektif — biar review tahunan nggak lagi kerja sendirian.',
+      'Pelajari bagaimana cara membangun sistem manajemen kinerja yang efektif untuk tim Anda.',
     chapters: module6Chapters,
   },
   {
     id: 'module-7',
     number: 7,
-    title: "Bagaimana Merekrut Tanpa Modal 'Kelihatannya Cocok'",
+    title: "Bagaimana menyusun standar kompetensi karyawan Anda",
     description:
-      "Merancang model kompetensi dan alat seleksi berbasis bukti biar rekrutmen nggak lagi cuma modal 'kelihatannya cocok'.",
+      "Pelajari bagaimana cara menyusun standar kompetensi yang relevan dan merekrut karyawan yang tepat.",
     chapters: module7Chapters,
   },
   {
     id: 'module-8',
     number: 8,
-    title: 'Bagaimana Menjalankan Perubahan Biar Nggak Mati Pelan-Pelan di Lapangan',
+    title: 'Bagaimana mengelola perubahan di bisnis Anda',
     description:
-      'Merancang rollout perubahan yang diagnosis resistensinya dulu, biar nggak mati pelan-pelan di lapangan.',
+      'Pelajari bagaimana cara mengelola perubahan di bisnis Anda secara efektif.',
     chapters: module8Chapters,
   },
   {
     id: 'module-9',
     number: 9,
-    title: 'Bagaimana Mengadopsi AI Biar Nggak Berakhir Ditinggalkan Kayak Tool Lain',
+    title: 'Bagaimana menggunakan AI untuk efisiensi bisnis Anda',
     description:
-      'Memilih satu kasus pakai AI yang nyata dan menjalankannya sampai jadi kebiasaan tim — bukan eksperimen acak yang berakhir ditinggalkan seperti tool-tool lain.',
+      'Pelajari bagaimana AI dapat digunakan untuk meningkatkan efisiensi bisnis Anda.',
     chapters: module9Chapters,
   },
 ]

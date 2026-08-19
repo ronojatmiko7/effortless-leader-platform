@@ -30,7 +30,7 @@ export const chapters: ChapterMeta[] = [
     id: 'chapter-intro',
     number: 0,
     kind: 'intro',
-    title: 'Pendahuluan — Kenalan & Pretest',
+    title: 'Pendahuluan — Apa yang Akan Anda Pelajari',
     description:
       'Kenali dulu masalah yang mau kita bereskan di modul ini, apa yang akan Anda pelajari, dan jawab pretest singkat sebagai titik awal Anda.',
     cards: introCards,
