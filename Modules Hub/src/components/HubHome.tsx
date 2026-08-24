@@ -93,7 +93,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
   const [profileDraft, setProfileDraft] = useState<MemberProfile>(member)
   const items = buildProgress()
   const unlockedCount = items.filter((item) => item.unlocked).length
-  const displayName = member.name.trim().length > 0 ? member.name : 'Member Effortless System'
+  const displayName = member.name.trim().length > 0 ? member.name : 'Member Area'
 
   const openProfileEdit = () => {
     setProfileDraft(member)
