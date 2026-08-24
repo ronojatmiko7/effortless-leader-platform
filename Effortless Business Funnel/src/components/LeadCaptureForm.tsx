@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { REVENUE_OPTIONS } from '../lib/icpMatch'
 import type { Lead } from '../types/lead'
 
 interface LeadCaptureFormProps {
@@ -12,6 +13,7 @@ export default function LeadCaptureForm({ onSubmit }: LeadCaptureFormProps) {
   const [email, setEmail] = useState('')
   const [businessName, setBusinessName] = useState('')
   const [employeeCount, setEmployeeCount] = useState('')
+  const [annualRevenue, setAnnualRevenue] = useState('')
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -21,6 +23,7 @@ export default function LeadCaptureForm({ onSubmit }: LeadCaptureFormProps) {
       email: email.trim(),
       businessName: businessName.trim(),
       employeeCount,
+      annualRevenue,
     })
   }
 
@@ -114,6 +117,28 @@ export default function LeadCaptureForm({ onSubmit }: LeadCaptureFormProps) {
             placeholder="misalnya, 35"
             className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
           />
+        </div>
+
+        <div>
+          <label htmlFor="lead-annual-revenue" className="mb-1 block text-sm font-semibold text-slate-700">
+            Omzet Tahunan
+          </label>
+          <select
+            id="lead-annual-revenue"
+            required
+            value={annualRevenue}
+            onChange={(event) => setAnnualRevenue(event.target.value)}
+            className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+          >
+            <option value="" disabled>
+              Pilih kisaran omzet
+            </option>
+            {REVENUE_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <button

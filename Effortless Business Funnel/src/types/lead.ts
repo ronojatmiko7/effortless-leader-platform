@@ -4,4 +4,5 @@ export interface Lead {
   email: string
   businessName: string
   employeeCount: string
+  annualRevenue: string
 }

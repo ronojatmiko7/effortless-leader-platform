@@ -3,6 +3,7 @@ import { ArrowRight, BookOpen, Calendar, RotateCcw } from 'lucide-react'
 import { CALENDLY_DIAGNOSTIC_CALL_URL } from '../config/schedulingConfig'
 import { MODULES_HUB_URL } from '../config/modulesHubConfig'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
+import { matchesIcp } from '../lib/icpMatch'
 import Logo from './Logo'
 import type { DiagnosticResult, DiagnosticSection } from '../types/diagnostic'
 import type { Lead } from '../types/lead'
@@ -57,6 +58,10 @@ export default function ReportScreen({ lead, result, onRestart }: ReportScreenPr
   const { redFlagCount, averageMaturity, domainAverages, flaggedQuestions, answers } = result
   const isSystemic = redFlagCount > 3
   const questionsAnswered = Object.keys(answers).length
+  // Soft self-selection for the consultant-call CTA only — see icpMatch.ts.
+  // The report and the self-serve Modules Hub CTA stay open to everyone
+  // regardless of fit; only this card's message changes.
+  const isIcpFit = matchesIcp(lead)
 
   const verdictHeadline = isSystemic
     ? 'Pola Kebocoran yang Saling Terkait'
@@ -217,10 +222,11 @@ export default function ReportScreen({ lead, result, onRestart }: ReportScreenPr
               <Calendar className="mb-3 h-6 w-6 text-brand-600" />
               <p className="mb-1 text-base font-bold text-slate-900">Bicara Gratis dengan Konsultan Kami</p>
               <p className="mb-4 flex-1 text-sm text-slate-600">
-                Sesi diagnostic call gratis 60 menit, fokus ke temuan spesifik Anda di atas — bukan
-                basa-basi jualan umum.
+                {isIcpFit
+                  ? 'Sesi diagnostic call gratis 60 menit, fokus ke temuan spesifik Anda di atas — bukan basa-basi jualan umum.'
+                  : 'Sesi ini kami desain khusus untuk bisnis dengan tim 19-99 karyawan dan omzet di atas Rp5 miliar setahun. Kalau bisnis Anda belum di situ, modul di kiri kemungkinan lebih pas dipakai sekarang — dan tetap gratis.'}
               </p>
-              {isSystemic && (
+              {isIcpFit && isSystemic && (
                 <p className="mb-3 text-xs font-semibold text-slate-500">
                   Karena polanya saling terkait, banyak yang di posisi Anda merasa lebih terbantu
                   ngobrol dulu sebelum mulai sendiri.
