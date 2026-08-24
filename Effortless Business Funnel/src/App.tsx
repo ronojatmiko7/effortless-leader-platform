@@ -2,12 +2,13 @@ import { useState } from 'react'
 import LandingScreen from './components/LandingScreen'
 import QuizScreen from './components/QuizScreen'
 import ReportScreen from './components/ReportScreen'
+import ProgramScreen from './components/ProgramScreen'
 import { computeDiagnosticResult } from './lib/scoring'
 import { submitDiagnosticResponses, submitLead } from './lib/submitLead'
 import type { DiagnosticResult } from './types/diagnostic'
 import type { Lead } from './types/lead'
 
-type Screen = 'landing' | 'quiz' | 'report'
+type Screen = 'landing' | 'quiz' | 'report' | 'program'
 
 function App() {
   const [screen, setScreen] = useState<Screen>('landing')
@@ -38,8 +39,24 @@ function App() {
     window.scrollTo({ top: 0 })
   }
 
+  const handleViewProgram = () => {
+    setScreen('program')
+    window.scrollTo({ top: 0 })
+  }
+
+  const handleBackToReport = () => {
+    setScreen('report')
+    window.scrollTo({ top: 0 })
+  }
+
+  if (screen === 'program' && lead && result) {
+    return <ProgramScreen lead={lead} result={result} onBack={handleBackToReport} />
+  }
+
   if (screen === 'report' && lead && result) {
-    return <ReportScreen lead={lead} result={result} onRestart={handleRestart} />
+    return (
+      <ReportScreen lead={lead} result={result} onRestart={handleRestart} onViewProgram={handleViewProgram} />
+    )
   }
 
   if (screen === 'quiz') {

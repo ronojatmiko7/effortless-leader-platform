@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ArrowRight, BookOpen, Calendar, RotateCcw } from 'lucide-react'
 import { CALENDLY_DIAGNOSTIC_CALL_URL } from '../config/schedulingConfig'
-import { MODULES_HUB_URL } from '../config/modulesHubConfig'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import { matchesIcp } from '../lib/icpMatch'
 import Logo from './Logo'
@@ -12,6 +11,7 @@ interface ReportScreenProps {
   lead: Lead
   result: DiagnosticResult
   onRestart: () => void
+  onViewProgram: () => void
 }
 
 const SECTION_LABEL: Record<DiagnosticSection, string> = {
@@ -43,16 +43,7 @@ function bookDiagnosticCall(lead: Lead) {
   window.open(`${CALENDLY_DIAGNOSTIC_CALL_URL}?${params.toString()}`, '_blank', 'noopener,noreferrer')
 }
 
-// Routes into the (currently free, unlocked-for-beta) Modules Hub. No
-// module names/numbers are surfaced on this report — this button is the
-// only place the Hub gets mentioned at all, per the "no product catalog on
-// a diagnostic report" decision.
-function goToModulesHub() {
-  window.open(MODULES_HUB_URL, '_blank', 'noopener,noreferrer')
-}
-
-export default function ReportScreen({ lead, result, onRestart }: ReportScreenProps) {
-  const [learnClicked, setLearnClicked] = useState(false)
+export default function ReportScreen({ lead, result, onRestart, onViewProgram }: ReportScreenProps) {
   const [bookingClicked, setBookingClicked] = useState(false)
 
   const { redFlagCount, averageMaturity, domainAverages, flaggedQuestions, answers } = result
@@ -201,21 +192,15 @@ export default function ReportScreen({ lead, result, onRestart }: ReportScreenPr
                 Akses modul pembelajaran yang relevan dengan temuan di atas. Anda yang pegang
                 kendali, jalan dengan kecepatan Anda sendiri.
               </p>
-              <p className="mb-3 text-xs font-semibold text-emerald-600">Gratis untuk sekarang.</p>
+              <p className="mb-3 text-xs font-semibold text-emerald-600">Modul pertama gratis.</p>
               <button
                 type="button"
-                onClick={() => {
-                  goToModulesHub()
-                  setLearnClicked(true)
-                }}
+                onClick={onViewProgram}
                 className="flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
               >
-                Mulai Belajar
+                Lihat Modul Saya
                 <ArrowRight className="h-4 w-4" />
               </button>
-              {learnClicked && (
-                <p className="mt-2 text-center text-xs text-slate-400">Modules Hub terbuka di tab baru.</p>
-              )}
             </div>
 
             <div className="flex flex-col rounded-xl border border-slate-200 p-5">
