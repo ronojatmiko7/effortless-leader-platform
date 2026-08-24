@@ -3,5 +3,5 @@ export interface Lead {
   whatsapp: string
   email: string
   businessName: string
-  teamSize?: string
+  employeeCount: string
 }

@@ -1,18 +1,19 @@
 @import "tailwindcss";
 
-/* EL brand palette — single spot to swap once the real logo/palette lands.
-   Mirror any change here in src/theme.ts so non-Tailwind code stays in sync. */
+/* Effortless Business brand palette — mirrors theme.ts (Funnel app) and the
+   sibling index.css in the other app. Single spot to swap if the palette
+   ever changes; keep both in sync. */
 @theme {
-  --color-brand-50: #fff7ed;
-  --color-brand-100: #ffedd5;
-  --color-brand-200: #fed7aa;
-  --color-brand-300: #fdba74;
-  --color-brand-400: #fb923c;
-  --color-brand-500: #f97316;
-  --color-brand-600: #ea580c;
-  --color-brand-700: #c2410c;
-  --color-brand-800: #9a3412;
-  --color-brand-900: #7c2d12;
+  --color-brand-50: #fef4f1;
+  --color-brand-100: #fde6de;
+  --color-brand-200: #fdc9b4;
+  --color-brand-300: #fca17d;
+  --color-brand-400: #fb7641;
+  --color-brand-500: #fa5a1b;
+  --color-brand-600: #dc4105;
+  --color-brand-700: #b43604;
+  --color-brand-800: #8d2d07;
+  --color-brand-900: #702305;
 }
 
 html {

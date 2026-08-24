@@ -1,68 +1,61 @@
 # Effortless Leader — Prediagnosis Funnel Launch Checklist
 
-Status as of Aug 14, 2026.
+Status as of Aug 19, 2026.
 
 ## 1. Diagnostic engine
-- [x] 13-question / 3-domain (Output/Process/Input) diagnostic content, verbatim source
+- [x] 13-question / 3-domain (Output/Proses/Input) diagnostic content, verbatim source
 - [x] 1–4 BARS scoring, red-flag logic at score ≤2
 - [x] Question → Service → Module mapping table (Services 1–8 = Modules 1–8; Services 9–10 are not modules)
-- [x] Ported into the EL-branded self-serve app — done via `run-funnel-app.ps1` (see section 3)
+- [x] Ported into the EL-branded self-serve app (`Effortless Leader Funnel/`)
+- [x] Q2 terminology updated to KPI Hasil/KPI Usaha
+- [x] **Named** — product name is now **"Asesmen 13 Titik Kebocoran Bisnis"**, shorthand **"Cek Kebocoran"** used in CTAs/casual reference
 
-## 2. Microlearning content (Modules 1–8)
-- [x] Module 1 — Enterprise Operational Audit
-- [x] Module 2 — KPI Architecture & Strategic Cascading
-- [x] Module 3 — Executive Business Review Governance
-- [x] Module 4 — Business Process Re-engineering
-- [x] Module 5 — SOP Optimization & Usability Redesign
-- [x] Module 6 — Performance Management System Overhaul
-- [x] Module 7 — Job Architecture & Competency Modeling
-- [x] Module 8 — Enterprise Change Management Rollout
-- [x] Module 1 post-completion review-request card (Google review + testimonial capture)
-- [ ] Confirm whether the review-request pattern should roll out to Modules 2–8 too, or stay Module-1-only
-- [x] Deleted the empty `Micro Learning App/` folder (moved to `_to_delete/` — empty that folder yourself whenever)
-- [ ] Push local repo to remote (nothing pushed yet — needs to happen from this machine)
+## 2. Microlearning content (Modules 1–9)
+- [x] Modules 1–8 built and consolidated into `Modules Hub/` (one app, purchase-gated by design, currently all unlocked for the beta round)
+- [x] **Module 9 — AI Adoption & Claude for Business — built and wired into the Hub.** Confirmed directly (not from stale notes): full 8-chapter content plus intro/outro pretest-posttest wrapper, registered in `Modules Hub/src/data/modules.ts` as module 9.
+- [x] Modules Hub click-tested Aug 14 (Chrome extension against `npm run dev`) — lock states, chapter unlock, cross-module progress isolation all confirmed working
+- [ ] Module 2 terminology update ("Lead/Lag Metric" → "KPI Usaha/KPI Hasil") — brief + runner ready (`run-module2-terminology-update.ps1`), not yet run
+- [ ] Review-request (Google review/testimonial) card — only exists on Module 1, and even there the external Google-review button was never wired. User decision: leave as-is for now, not extending to Modules 2–9
+- [x] `Micro Learning App/` (old, empty) moved to `_to_delete/`
 
-## 3. EL self-serve funnel app — Quiz → Report → Offer — BUILT
-`Effortless Leader Funnel/` now exists at repo root. `npm install` + `npm run build` clean, dev server verified serving. Orange brand palette, single swap point in `src/index.css` `@theme` + `src/theme.ts`.
+## 3. EL self-serve funnel app — Quiz → Report → Offer
+`Effortless Leader Funnel/` exists at repo root, orange brand palette, EL logo live.
 - [x] Lead capture screen: Name, WhatsApp, Email, business name, team size
-- [x] Quiz screen: 13 questions ported verbatim; 3 questions lightly reworded for SME readability, each flagged with a `// TODO: review wording — Bro Rono` comment
+- [x] Quiz screen: 13 questions ported, EL brand styling
 - [x] Instant report screen: domain averages, flagged questions, mapped Service/Module list, EL-voice summary
-- [x] Offer screen: "Beli Modul [X,Y,Z]" + "Booking Discovery Call" CTAs — still placeholder/stubbed (no real checkout, no real Calendly link yet)
-- [x] EL brand palette dropped into the theme swap point (orange)
-- [ ] **You still need to: `npm run dev` and eyeball it, and specifically review/approve the 3 TODO-tagged reworded questions before this goes live**
-- [ ] Explicit mobile-device QA pass (built mobile-first per brief, not yet eyeballed on an actual phone)
+- [ ] Offer screen still stubbed — `purchaseModules()` just console.logs, no real checkout. Deprioritized (not needed for the free beta round, see section 4)
+- [ ] Review the 3 TODO-tagged reworded questions
+- [ ] **Landing/hero page — copy drafted (v2), not yet built into code.** Right now cold visitors land directly on the contact form with zero context; drafted a screen to go before it. Headline is the product name, hook line underneath, 3-step how-it-works, no fabricated social proof (placeholder left for after the beta round's real testimonials). Next step: turn into a real `LandingScreen.tsx`, wired into `QuizScreen.tsx`'s phase state before `LeadCaptureForm`.
+- [ ] No social proof/testimonials anywhere yet — same placeholder-until-real-feedback approach as the landing page
+- [ ] Calendly booking form only has Calendly's generic default question — real questions need adding by hand in the dashboard
+- [ ] Mobile-device QA pass
 
-## 4. Backend & data
-- [ ] Decide on Supabase schema for leads, quiz responses, purchases (currently console.log/React state stubs)
-- [ ] Wire `submitLead()` stub to real database
-- [ ] Wire `submitTestimonial()` / `submitPrivateFeedback()` stubs to real database
-- [ ] Basic admin view or export so you can actually see incoming leads
+## 4. Backend & data — paused for the beta round
+- [ ] Supabase schema for leads, quiz responses, purchases — still stubs, **deliberately on hold**. Near-term plan is a free, no-login beta review round sharing all 9 modules with a handful of people for WhatsApp feedback — no accounts, no payment, so no backend is actually needed yet. `hasModuleAccess()` is already `UNLOCKED_FOR_TESTING = true` (everything open), which is the correct state for this round, not a bug.
+- [ ] Checked Supabase account — no project exists for this app (only two unrelated inactive ones under org "Trizi"). Design for the real per-customer entitlement system is written but deferred until the actual paid launch.
 
-## 5. Payments
-- [ ] Decide payment processor (Midtrans/Xendit are the common Indonesia-market picks — worth a quick comparison before building)
-- [ ] Wire real checkout for module purchase (currently placeholder button, no processing)
-- [ ] Decide how "coaching package = free access to all microlearnings" gets provisioned (manual unlock vs automated)
+## 5. Payments — deprioritized for the beta round
+- [x] Pricing model set: Rp199,000/module or Rp999,000 bundle (all 8)
+- [ ] Gateway decision (Xendit recommended over Scalev) — still pending, not needed until after the beta round
+- [ ] Real checkout wiring — not needed until after the beta round
 
-## 6. Scheduling
-- [ ] Replace placeholder "Booking Discovery Call" button with real Calendly embed (Calendly connector is already live in this workspace — this one's low-effort to unblock)
-- [ ] Set up a discovery-call event type in Calendly scoped to prediagnosis leads
+## 6. Scheduling — DONE
+- [x] Live Calendly event "Effortless Leader — Diagnostic Call" (free, 60 min), wired into the funnel app
 
 ## 7. Deployment & hosting
-- [ ] Confirm hosting plan (Vercel connector is live in this workspace) for both the funnel app and Modules 1–8
-- [ ] Buy the domain — either through Vercel directly (one dashboard for domain+DNS+hosting) or via Cloudflare (at-cost pricing, more registrar flexibility); both work fine with Vercel hosting
-- [ ] Domain/subdomain decision (e.g. funnel on main domain, modules on subdomain or path)
-- [ ] Set up custom email on the same domain — no conflict with hosting, since email uses separate MX/TXT records from the site's A/CNAME records. Leaning Google Workspace Business Starter (~$6/user/month) for the Gmail-familiar interface and because it plugs into the Gmail/Calendar/Calendly connectors already in use, over Zoho Mail's cheaper-but-less-integrated option
-- [ ] Add MX/TXT (SPF/DKIM/DMARC) records for the chosen email provider once domain is live — Vercel has one-click DNS presets for Google Workspace if using Vercel DNS
-- [ ] Basic analytics wired (conversion from ad click → quiz start → quiz complete → purchase/booking)
+- [x] **Modules Hub is live and correctly configured.** The existing Vercel project ("effortless-leader-platform") was previously misconfigured to build the old standalone Module 1 — confirmed via a fresh build log check that this is now fixed: latest deployment builds `modules-hub@0.0.0` correctly. Live at `effortless-leader-platform.vercel.app`, includes Module 9.
+- [ ] **The funnel app (13-question quiz) has no Vercel deployment at all yet.** No project exists for `Effortless Leader Funnel/`. Tried creating one via the Vercel connector — blocked by the same `403 "You don't have permission to create the project"` error hit before; the connector can manage existing projects but not create new ones. **Needs a manual import**: vercel.com/new → import `ronojatmiko7/effortless-leader-platform` → set Root Directory to `Effortless Leader Funnel` → deploy. This is the critical remaining blocker before the funnel can go live anywhere.
+- [ ] Domain purchase, custom email, MX/TXT, analytics — all still open
 
-## 8. Ads campaign
-- [ ] Confirm targeting: entrepreneurs, 20–99 employees — reasonable ICP band, but note Meta Ads has no direct employee-count targeting (that's a LinkedIn Campaign Manager feature); Meta will need proxy targeting (job-title interests: business owner/direktur/founder) or lookalike audiences
-- [ ] Build a seed list (past clients, email list, CRM export) for lookalike audience — will outperform interest-stacking
-- [ ] Decide whether to split into two test tiers (20–49 vs 50–99 employees) given likely differences in budget/pain points
-- [ ] Ad creative pointing straight at the free self-assessment (not at the coaching package directly)
-- [ ] Pixel/conversion event set up on the funnel app before spend starts
+## 8. Beta review round (near-term plan, separate from the full paid launch)
+- [x] Decision made: share all 9 modules free with a handful of people, no login, feedback collected manually via WhatsApp (not an in-app system)
+- [x] Module 9 registered in the Hub — no longer a blocker
+- [x] Modules Hub deployment fixed — reviewers can already be sent `effortless-leader-platform.vercel.app` today
+- [ ] Confirm the Aug 18–19 Modules Hub changes (Module 9 wiring) are actually committed/pushed to GitHub — last check was inconclusive since the device bridge shell was down; re-run `git status` from the repo root to confirm
 
-## 9. Final QA
-- [ ] Full click-through: ad → quiz → report → offer → purchase or booking, on both mobile and desktop
-- [ ] Confirm no dead ends now that backend/payment/Calendly are wired (currently intentionally stubbed)
-- [ ] Soft-launch to a small warm audience before opening ad spend
+## 9. Ads campaign
+- [ ] Targeting: entrepreneurs 20–99 employees, seed list, test tiers, creative, pixel — all open, not needed until after the beta round
+
+## 10. Final QA
+- [ ] Full click-through, mobile + desktop — Modules Hub done via Chrome extension Aug 14, funnel app still open
+- [ ] Soft-launch to a warm audience before opening ad spend — the beta review round is effectively this, informally
