@@ -1,23 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import {
-  Activity,
   CheckCircle2,
   ChevronRight,
-  ClipboardList,
   Lock,
   Pencil,
   PlayCircle,
-  RefreshCw,
   Search,
   ShoppingBag,
-  Sparkles,
-  Target,
   User,
-  UserCheck,
-  Users,
-  Workflow,
   X,
-  type LucideIcon,
 } from 'lucide-react'
 import { modules, type ModuleMeta } from '../data/modules'
 import { hasModuleAccess } from '../access/moduleAccess'
@@ -39,29 +30,13 @@ interface HubHomeProps {
 const MODULE_PRICE_ORIGINAL = 'Rp499rb'
 const MODULE_PRICE_DISCOUNTED = 'Rp199rb'
 
-// One icon per module, chosen to hint at its content at a glance — shown on
-// the cover art. Purely cosmetic, no bearing on access/progress logic.
-const MODULE_ICONS: Record<number, LucideIcon> = {
-  1: Search,
-  2: Target,
-  3: Activity,
-  4: Workflow,
-  5: ClipboardList,
-  6: Users,
-  7: UserCheck,
-  8: RefreshCw,
-  9: Sparkles,
-}
-
-// Groups modules into a learning-path narrative for the hub page only, and
-// gives each section its own cover-art gradient so cards read as distinct
-// "products" the way a course-platform member area would. Doesn't touch
-// chapter unlock order, access rules, or module content.
-const PATH_SECTIONS: { name: string; moduleNumbers: number[]; gradient: string }[] = [
-  { name: 'Fondasi', moduleNumbers: [1, 2, 3], gradient: 'from-brand-400 to-brand-600' },
-  { name: 'Sistem & Proses', moduleNumbers: [4, 5], gradient: 'from-brand-500 to-brand-700' },
-  { name: 'Tim & Kepemimpinan', moduleNumbers: [6, 7, 8], gradient: 'from-brand-600 to-brand-800' },
-  { name: 'AI & Masa Depan', moduleNumbers: [9], gradient: 'from-brand-700 to-brand-900' },
+// Groups modules into a learning-path narrative for the hub page only.
+// Doesn't touch chapter unlock order, access rules, or module content.
+const PATH_SECTIONS: { name: string; moduleNumbers: number[] }[] = [
+  { name: 'Fondasi', moduleNumbers: [1, 2, 3] },
+  { name: 'Sistem & Proses', moduleNumbers: [4, 5] },
+  { name: 'Tim & Kepemimpinan', moduleNumbers: [6, 7, 8] },
+  { name: 'AI & Masa Depan', moduleNumbers: [9] },
 ]
 
 // Excludes intro/outro chapters from both the numerator and denominator —
@@ -314,7 +289,6 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
                       key={item.module.id}
                       item={item}
                       sectionName={section.name}
-                      gradient={section.gradient}
                       onSelectModule={onSelectModule}
                     />
                   ))}
@@ -331,16 +305,13 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
 function ModuleCard({
   item,
   sectionName,
-  gradient,
   onSelectModule,
 }: {
   item: ModuleProgress
   sectionName: string
-  gradient: string
   onSelectModule: (moduleId: string) => void
 }) {
   const { module, unlocked, completed, total, pct } = item
-  const Icon = MODULE_ICONS[module.number] ?? Sparkles
   const isComplete = unlocked && total > 0 && completed === total
 
   return (
@@ -354,19 +325,12 @@ function ModuleCard({
           : 'cursor-not-allowed border-slate-200 bg-white shadow-sm'
       }`}
     >
-      {/* Cover art */}
-      <div
-        className={`relative flex h-32 items-center overflow-hidden bg-gradient-to-br px-4 sm:h-36 ${gradient} ${
-          unlocked ? '' : 'grayscale'
-        }`}
-      >
-        <span className="pointer-events-none absolute -bottom-5 -right-3 select-none text-[84px] font-black leading-none text-white/10">
-          {module.number}
-        </span>
-        <span className="pointer-events-none absolute -left-8 -top-8 h-24 w-24 rounded-full bg-white/10" />
-        <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white/20">
-          <Icon className="h-5 w-5 text-white" />
-        </div>
+      {/* Cover art — sized to the image's own 4:3 ratio (1448x1086) so the
+          full branded title-card (logo, MODUL N pill, title, illustration)
+          shows uncropped at any card width, instead of being forced into a
+          fixed h-32/h-36 slot. */}
+      <div className={`relative aspect-[4/3] w-full overflow-hidden ${unlocked ? '' : 'grayscale'}`}>
+        <img src={module.coverImage} alt={module.title} className="h-full w-full object-cover" />
 
         {!unlocked && (
           <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40">
