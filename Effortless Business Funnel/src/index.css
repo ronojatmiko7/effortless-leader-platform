@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-/* Effortless Business brand palette — mirrors theme.ts (Funnel app) and the
-   sibling index.css in the other app. Single spot to swap if the palette
-   ever changes; keep both in sync. */
+/* Effortless Business brand palette + typeface — mirrors theme.ts (Funnel app)
+   and the sibling index.css in the other app. Single spot to swap if the
+   palette or font ever changes; keep both in sync. */
 @theme {
   --color-brand-50: #fef4f1;
   --color-brand-100: #fde6de;
@@ -14,6 +14,8 @@
   --color-brand-700: #b43604;
   --color-brand-800: #8d2d07;
   --color-brand-900: #702305;
+
+  --font-sans: 'Sora', ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
