@@ -67,7 +67,7 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
             Bisnis Anda Jalan Terus, Tapi Cuma Kalau Anda Ada?
           </p>
           <p className="mb-6 text-sm leading-relaxed text-slate-600 sm:text-base">
-            asesmen cek kebocoran bisnis ini gratis untuk pemilik bisnis 19–99 karyawan. 13 pertanyaan, 5 menit, dan
+            Asesmen cek kebocoran bisnis ini gratis untuk pemilik bisnis 19–99 karyawan. 13 pertanyaan, 5 menit, dan
             Anda dapat peta persis di mana titik kebocoran sistem kerja bisnis Anda — sebelum itu
             makan waktu keluarga Anda juga.
           </p>
