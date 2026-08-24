@@ -10,7 +10,7 @@ Module 2 covers Service 2: KPI Architecture & Strategic Cascading — teaching S
 
 There is no `Module 2/` app yet. `Module 1/src/content/module2.ts` is an old flat 13-card deck (still reachable via a legacy `#module-2` href in `Module 1/src/App.tsx`) — useful only as raw topic material to mine ideas from. Do not reuse its card-by-card structure, and do not modify that file or anything else inside `Module 1/`.
 
-**Module 2 is its own sibling app**, `Module 2/`, mirroring `Module 1/`'s stack, conventions, and voice — not a set of chapters bolted onto Module 1's app (this repo's precedent for standalone products is `Effortless Leader Funnel/`, built the same way as a sibling to `Module 1/`). Read `Module 1/package.json`, `Module 1/vite.config.ts`, `Module 1/tsconfig.json`, `Module 1/tsconfig.app.json`, `Module 1/tsconfig.node.json`, `Module 1/src/index.css`, and `Module 1/.oxlintrc.json` before scaffolding — match them as closely as possible (same dependency versions, same Tailwind v4 setup).
+**Module 2 is its own sibling app**, `Module 2/`, mirroring `Module 1/`'s stack, conventions, and voice — not a set of chapters bolted onto Module 1's app (this repo's precedent for standalone products is `Effortless Business Funnel/`, built the same way as a sibling to `Module 1/`). Read `Module 1/package.json`, `Module 1/vite.config.ts`, `Module 1/tsconfig.json`, `Module 1/tsconfig.app.json`, `Module 1/tsconfig.node.json`, `Module 1/src/index.css`, and `Module 1/.oxlintrc.json` before scaffolding — match them as closely as possible (same dependency versions, same Tailwind v4 setup).
 
 Full 8-chapter syllabus reference: `MODULE_2_SYLLABUS.md` at the repo root.
 

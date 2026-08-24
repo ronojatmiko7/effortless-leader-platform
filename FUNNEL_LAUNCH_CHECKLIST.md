@@ -6,7 +6,7 @@ Status as of Aug 19, 2026.
 - [x] 13-question / 3-domain (Output/Proses/Input) diagnostic content, verbatim source
 - [x] 1–4 BARS scoring, red-flag logic at score ≤2
 - [x] Question → Service → Module mapping table (Services 1–8 = Modules 1–8; Services 9–10 are not modules)
-- [x] Ported into the EL-branded self-serve app (`Effortless Leader Funnel/`)
+- [x] Ported into the EL-branded self-serve app (`Effortless Business Funnel/`)
 - [x] Q2 terminology updated to KPI Hasil/KPI Usaha
 - [x] **Named** — product name is now **"Asesmen 13 Titik Kebocoran Bisnis"**, shorthand **"Cek Kebocoran"** used in CTAs/casual reference
 
@@ -19,7 +19,7 @@ Status as of Aug 19, 2026.
 - [x] `Micro Learning App/` (old, empty) moved to `_to_delete/`
 
 ## 3. EL self-serve funnel app — Quiz → Report → Offer
-`Effortless Leader Funnel/` exists at repo root, orange brand palette, EL logo live.
+`Effortless Business Funnel/` exists at repo root, orange brand palette, EL logo live.
 - [x] Lead capture screen: Name, WhatsApp, Email, business name, team size
 - [x] Quiz screen: 13 questions ported, EL brand styling
 - [x] Instant report screen: domain averages, flagged questions, mapped Service/Module list, EL-voice summary
@@ -44,7 +44,7 @@ Status as of Aug 19, 2026.
 
 ## 7. Deployment & hosting
 - [x] **Modules Hub is live and correctly configured.** The existing Vercel project ("effortless-leader-platform") was previously misconfigured to build the old standalone Module 1 — confirmed via a fresh build log check that this is now fixed: latest deployment builds `modules-hub@0.0.0` correctly. Live at `effortless-leader-platform.vercel.app`, includes Module 9.
-- [ ] **The funnel app (13-question quiz) has no Vercel deployment at all yet.** No project exists for `Effortless Leader Funnel/`. Tried creating one via the Vercel connector — blocked by the same `403 "You don't have permission to create the project"` error hit before; the connector can manage existing projects but not create new ones. **Needs a manual import**: vercel.com/new → import `ronojatmiko7/effortless-leader-platform` → set Root Directory to `Effortless Leader Funnel` → deploy. This is the critical remaining blocker before the funnel can go live anywhere.
+- [ ] **The funnel app (13-question quiz) has no Vercel deployment at all yet.** No project exists for `Effortless Business Funnel/`. Tried creating one via the Vercel connector — blocked by the same `403 "You don't have permission to create the project"` error hit before; the connector can manage existing projects but not create new ones. **Needs a manual import**: vercel.com/new → import `ronojatmiko7/effortless-leader-platform` → set Root Directory to `Effortless Business Funnel` → deploy. This is the critical remaining blocker before the funnel can go live anywhere.
 - [ ] Domain purchase, custom email, MX/TXT, analytics — all still open
 
 ## 8. Beta review round (near-term plan, separate from the full paid launch)

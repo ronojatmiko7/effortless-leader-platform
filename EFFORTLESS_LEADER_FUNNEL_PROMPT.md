@@ -67,7 +67,7 @@ Two CTAs, both personalized to the specific flagged modules/services from step 3
 ## 4. Tech & architecture
 
 - New Vite + React + TypeScript + Tailwind app, mirroring `Module 1/`'s stack and conventions (component structure, card-based patterns) so this can share a design system with the modules later.
-- New top-level folder: `Effortless Leader Funnel/` — sibling to `Module 1/`, do not modify `Module 1/` or either Performa HTML file, only read them for reference.
+- New top-level folder: `Effortless Business Funnel/` — sibling to `Module 1/`, do not modify `Module 1/` or either Performa HTML file, only read them for reference.
 - Simple React state (`useState`/`useReducer`) for quiz answers and flow state — no routing library needed for 3 screens, keep it simple.
 - Bahasa Indonesia throughout, mobile-first (assume most traffic is from mobile ad campaigns).
 - No existing EL brand colors/logo in this repo — pick a distinct, friendly palette that doesn't reuse Performa's navy/blue corporate look, and leave an obvious single spot (e.g. a `theme.ts` or CSS variables) where a real logo/palette can be dropped in later.

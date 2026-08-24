@@ -52,7 +52,7 @@ introduction: *"Lead measure, atau lebih mudahnya kita sebut sebagai KPI
 Usaha. Dan Lag Measure, yang lebih mudahnya kita sebut sebagai KPI Hasil."*
 
 This same swap was already applied to the funnel app's own Q2
-(`Effortless Leader Funnel/src/data/diagnosticQuestions.ts`) — this brief
+(`Effortless Business Funnel/src/data/diagnosticQuestions.ts`) — this brief
 brings Module 2's actual teaching content in line with that.
 
 ## 3. Task

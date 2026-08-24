@@ -27,6 +27,6 @@ Voice and mechanics carry over unchanged from Module 1: casual, blunt, direct Ba
 ## 3. Notes for chapter build prompts
 
 - Each chapter above becomes its own `MODULE_2_CHAPTER_N_REBUILD_PROMPT.md`, following the exact section structure of Module 1's `CHAPTER_N_REBUILD_PROMPT.md` files (Context → syllabus list with target chapter bolded → chapter objective → workbook capture → voice & format → out of scope → definition of done).
-- Chapter content lives in a new `Module 1/src/content/module2chapter1.ts` … `module2chapter8.ts` (or a parallel `Module 2/` app, if Module 2 gets split into its own project the way `Effortless Leader Funnel/` was) — decide the folder structure in the Chapter 1 prompt, since it wasn't needed for Module 1.
+- Chapter content lives in a new `Module 1/src/content/module2chapter1.ts` … `module2chapter8.ts` (or a parallel `Module 2/` app, if Module 2 gets split into its own project the way `Effortless Business Funnel/` was) — decide the folder structure in the Chapter 1 prompt, since it wasn't needed for Module 1.
 - No new card types should be required — `reflection`, `finding-review`-style scoring, and `report` already exist from Module 1 and should be reused rather than rebuilt.
 - Chapter 8 here closes the loop back to the funnel: its `cta` should point at whichever navigation pattern the module-home screen ends up using (see `MODULE_HOME_NAVIGATION_PROMPT.md`), the same way Module 1's Chapter 8 does.

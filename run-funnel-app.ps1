@@ -1,11 +1,11 @@
 <#
-Effortless Leader Funnel - one-shot build runner (v1)
+Effortless Business Funnel - one-shot build runner (v1)
 
 Runs EFFORTLESS_LEADER_FUNNEL_PROMPT.md through the Claude Code CLI to build
 the self-serve "Quiz -> Instant Report -> Offer" funnel app. This is the one
 piece every other checklist item (backend, payments, Calendly, ads) is
 blocked on - the brief was written back on Aug 11 but never executed, so
-'Effortless Leader Funnel/' doesn't exist in this repo yet.
+'Effortless Business Funnel/' doesn't exist in this repo yet.
 
 Unlike the Module 2-8 chapter runners, this is a SINGLE build (one brief, one
 run, not eight chained chapters), so there's no scaffold-module.ps1 step -
@@ -50,7 +50,7 @@ REQUIREMENTS:
     once (see the setup note above).
 
 WHAT THIS SCRIPT DOES, mirroring the module runners' safety pattern:
-  1. Skip guard - if 'Effortless Leader Funnel/package.json' already exists,
+  1. Skip guard - if 'Effortless Business Funnel/package.json' already exists,
      this is a safe no-op (already built).
   2. Baseline commit - if the working tree is already dirty when this starts,
      commits that once as a labeled checkpoint so the "did Claude Code
@@ -65,14 +65,14 @@ param(
 
 $repoRoot = $PSScriptRoot
 Set-Location $repoRoot
-$appDir = Join-Path $repoRoot "Effortless Leader Funnel"
+$appDir = Join-Path $repoRoot "Effortless Business Funnel"
 $promptFile = Join-Path $repoRoot "EFFORTLESS_LEADER_FUNNEL_PROMPT.md"
 
-Write-Host "Effortless Leader Funnel: one-shot build runner" -ForegroundColor Yellow
+Write-Host "Effortless Business Funnel: one-shot build runner" -ForegroundColor Yellow
 Write-Host "Repo root: $repoRoot`n"
 
 if (Test-Path (Join-Path $appDir "package.json")) {
-    Write-Host "'Effortless Leader Funnel/package.json' already exists - already built, skipping (no API call, no git touch)." -ForegroundColor DarkGray
+    Write-Host "'Effortless Business Funnel/package.json' already exists - already built, skipping (no API call, no git touch)." -ForegroundColor DarkGray
     exit 0
 }
 
@@ -86,7 +86,7 @@ $preExistingChanges = git status --porcelain
 if ($preExistingChanges) {
     Write-Host "=== Working tree has uncommitted changes before this run starts - committing as a baseline checkpoint ===" -ForegroundColor Cyan
     git add -A
-    git commit -m "Effortless Leader Funnel: baseline snapshot before build runner" | Out-Null
+    git commit -m "Effortless Business Funnel: baseline snapshot before build runner" | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-Host "Baseline commit failed (exit $LASTEXITCODE) - stopping so you can check git status by hand." -ForegroundColor Red
         exit 1
@@ -96,7 +96,7 @@ if ($preExistingChanges) {
 
 $cavemanDirective = "If the 'caveman' Claude Code plugin (https://github.com/JuliusBrussee/caveman) is installed on this machine, stay in caveman-compressed output mode for this entire run - terse, fragment-style commentary between tool calls, no filler explanations or restating what you're about to do. This only affects your own narration; write all code, comments, and the Bahasa Indonesia learner-facing copy in full, normal quality - nothing about the deliverable itself should be compressed or abbreviated. If the plugin isn't installed, ignore this paragraph and proceed normally."
 
-$instruction = "$cavemanDirective`n`nRead the build brief at $promptFile in full using your Read tool, then execute it exactly as written from top to bottom, creating the new 'Effortless Leader Funnel/' folder as instructed. Do not summarize, skip, or abbreviate any section of it. Do not run 'git add' or 'git commit' yourself - leave the changes uncommitted, this script handles committing after verifying the build."
+$instruction = "$cavemanDirective`n`nRead the build brief at $promptFile in full using your Read tool, then execute it exactly as written from top to bottom, creating the new 'Effortless Business Funnel/' folder as instructed. Do not summarize, skip, or abbreviate any section of it. Do not run 'git add' or 'git commit' yourself - leave the changes uncommitted, this script handles committing after verifying the build."
 
 Write-Host "=== Running Claude Code ===" -ForegroundColor Cyan
 $logFile = Join-Path $repoRoot "funnel-app-run.log"
@@ -130,7 +130,7 @@ if ($selfCommitted) {
 }
 
 if (-not (Test-Path (Join-Path $appDir "package.json"))) {
-    Write-Host "'Effortless Leader Funnel/package.json' still doesn't exist after the run - Claude Code likely built something else or in the wrong place. Check $logFile." -ForegroundColor Red
+    Write-Host "'Effortless Business Funnel/package.json' still doesn't exist after the run - Claude Code likely built something else or in the wrong place. Check $logFile." -ForegroundColor Red
     exit 1
 }
 
@@ -153,7 +153,7 @@ if ($buildExit -ne 0) {
     if ($selfCommitted) {
         Write-Host "Note: already self-committed by Claude Code BEFORE this build failure was caught - the broken state is in git history at $($headAfter.Substring(0,7)). Fix it forward rather than assuming nothing was saved." -ForegroundColor Red
     } else {
-        Write-Host "Fix 'Effortless Leader Funnel/' manually, or re-run: .\run-funnel-app.ps1" -ForegroundColor Red
+        Write-Host "Fix 'Effortless Business Funnel/' manually, or re-run: .\run-funnel-app.ps1" -ForegroundColor Red
     }
     exit 1
 }
@@ -164,12 +164,12 @@ if ($selfCommitted) {
 } else {
     Write-Host "=== Committing checkpoint ===" -ForegroundColor Cyan
     git add -A
-    git commit -m "Effortless Leader Funnel: initial build (auto-built via run-funnel-app.ps1)" | Out-Null
+    git commit -m "Effortless Business Funnel: initial build (auto-built via run-funnel-app.ps1)" | Out-Null
     if ($LASTEXITCODE -ne 0) {
         Write-Host "git commit failed (exit $LASTEXITCODE) - stopping so you can check git status by hand." -ForegroundColor Red
         exit 1
     }
 }
 
-Write-Host "`n=== Done - 'Effortless Leader Funnel/' built and building clean ===" -ForegroundColor Green
-Write-Host "Next: cd 'Effortless Leader Funnel'; npm run dev  -  to eyeball it before wiring backend/payments/Calendly." -ForegroundColor Yellow
+Write-Host "`n=== Done - 'Effortless Business Funnel/' built and building clean ===" -ForegroundColor Green
+Write-Host "Next: cd 'Effortless Business Funnel'; npm run dev  -  to eyeball it before wiring backend/payments/Calendly." -ForegroundColor Yellow

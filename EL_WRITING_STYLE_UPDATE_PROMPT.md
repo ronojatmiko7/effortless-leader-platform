@@ -120,7 +120,7 @@ Do NOT touch:
 - The old standalone `Module N/` folders at the repo root — they are no
   longer live (Modules Hub is the shipped app); editing them wastes effort
   with no user-facing benefit
-- `Effortless Leader Funnel/` (the separate ad-facing funnel app) — out of
+- `Effortless Business Funnel/` (the separate ad-facing funnel app) — out of
   scope for this brief
 - `Module 9/` and any Module 9 content — it's a different, newer module not
   yet wired into Modules Hub, and out of scope for this brief
