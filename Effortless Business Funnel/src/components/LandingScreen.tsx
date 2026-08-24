@@ -21,15 +21,17 @@ const WHAT_YOU_GET = [
 ]
 
 const FOR_YOU = [
-  'Sudah punya tim, bukan masih jalan solo',
+  'Timnya sudah 19-99 karyawan — bukan solo lagi, tapi sistemnya masih di kepala Anda sendiri',
+  'Omzet tahunan sudah di atas Rp5 miliar — cukup besar untuk mulai bocor tanpa Anda sadar di mana',
   'Capek jadi satu-satunya orang yang bisa jalanin bisnis dari A sampai Z',
-  'Mau bisnisnya tetap jalan tanpa terus-terusan korbanin waktu keluarga',
+  'Masih mau jadi orang tua yang antar-jemput anak sendiri, bukan CEO yang cuma transfer uang jajan dari mobil ke kantor',
 ]
 
 const NOT_FOR_YOU = [
-  'Masih nyaman kerja 80 jam seminggu dan anggap itu bukti kerja keras',
+  'Timnya belum sampai 19 orang — fokus dulu jualan dan cari pasar, sistem sebesar ini belum waktunya',
+  'Omzetnya belum tembus Rp5 miliar setahun — masalah Anda sekarang beda level, bukan yang Cek Kebocoran ini incar',
+  'Bangga cerita cuma tidur 4 jam minggu ini dan anggap itu bukti Anda serius kerja',
   'Cari jalan pintas instan tanpa mau lihat akar masalahnya',
-  'Belum punya tim — baru mulai solo, belum ada yang perlu didelegasikan',
 ]
 
 const HOW_IT_WORKS = [
