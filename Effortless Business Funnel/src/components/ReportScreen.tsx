@@ -49,6 +49,17 @@ export default function ReportScreen({ lead, result, onRestart, onViewProgram }:
   const { redFlagCount, averageMaturity, domainAverages, flaggedQuestions, answers } = result
   const isSystemic = redFlagCount > 3
   const questionsAnswered = Object.keys(answers).length
+
+  // Three-tier read on "Skala Perbaikan" — mirrors the same 0 / 1-3 / 4+
+  // red-flag boundaries the verdict headline below already uses, just
+  // surfaced as its own labeled stat instead of folding the 0-flag case
+  // into "Terarah".
+  const repairScale =
+    redFlagCount === 0
+      ? { label: 'Aman', description: 'Tidak ada indikasi kebocoran', color: 'text-emerald-600' }
+      : redFlagCount <= 3
+        ? { label: 'Hati-hati', description: 'Ada indikasi kebocoran', color: 'text-amber-600' }
+        : { label: 'Bahaya', description: 'Kebocoran sistemik', color: 'text-red-600' }
   // Soft self-selection for the consultant-call CTA only — see icpMatch.ts.
   // The report and the self-serve Modules Hub CTA stay open to everyone
   // regardless of fit; only this card's message changes.
@@ -110,9 +121,8 @@ export default function ReportScreen({ lead, result, onRestart, onViewProgram }:
             </div>
             <div>
               <span className="block text-xs text-slate-500">Skala Perbaikan</span>
-              <strong className="text-xl font-bold text-brand-600">
-                {isSystemic ? 'Sistemik' : 'Terarah'}
-              </strong>
+              <strong className={`text-xl font-bold ${repairScale.color}`}>{repairScale.label}</strong>
+              <p className="mt-0.5 text-xs text-slate-500">{repairScale.description}</p>
             </div>
           </div>
         </section>
