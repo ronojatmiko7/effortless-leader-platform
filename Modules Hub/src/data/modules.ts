@@ -14,6 +14,14 @@ export interface ModuleMeta {
   number: number
   title: string
   description: string
+  // Branded title-card image (logo + "MODUL N" pill + title + illustration,
+  // baked in) delivered by Bro Rono Aug 24, 2026 — lives in public/covers/
+  // and is served from the site root as /covers/module-N.webp. Full 4:3
+  // slide-style art, not a small icon, so it's used as a hero banner
+  // (ModuleHome) rather than cropped into the compact HubHome grid card,
+  // where the baked-in title text would just duplicate the card's own
+  // title and get cut off at that height.
+  coverImage: string
   chapters: ChapterMeta[]
 }
 
@@ -23,6 +31,7 @@ export const modules: ModuleMeta[] = [
     number: 1,
     title: 'Bagaimana Mengaudit Bisnis Anda Sendiri',
     description: 'Pelajari bagaimana caranya menemukan titik-titik kebocoran tersembunyi dalam bisnis Anda.',
+    coverImage: '/covers/module-1.webp',
     chapters: module1Chapters,
   },
   {
@@ -31,6 +40,7 @@ export const modules: ModuleMeta[] = [
     title: 'Bagaimana menyusun KPI untuk bisnis Anda',
     description:
       'Pelajarai bagaimana cara menyusun KPI yang benar-benar mengukur kesehatan bisnis Anda.',
+    coverImage: '/covers/module-2.webp',
     chapters: module2Chapters,
   },
   {
@@ -39,6 +49,7 @@ export const modules: ModuleMeta[] = [
     title: 'Bagaimana memonitor kesehatan bisnis Anda',
     description:
       'Pelajari bagaimana caranya mencegah masalah kecil sebelum mereka berkembang menjadi masalah besar.',
+    coverImage: '/covers/module-3.webp',
     chapters: module3Chapters,
   },
   {
@@ -47,6 +58,7 @@ export const modules: ModuleMeta[] = [
     title: 'Bagaimana merancang proses bisnis Anda',
     description:
       'Pelajari bagaimana cara membongkar silo dan memperbaiki kebocoran dalam bisnis Anda.',
+    coverImage: '/covers/module-4.webp',
     chapters: module4Chapters,
   },
   {
@@ -54,6 +66,7 @@ export const modules: ModuleMeta[] = [
     number: 5,
     title: 'Bagaimana membuat SOP yang ditaati tim Anda',
     description: 'Pelajari bagaimana cara membuat SOP yang benar-benar dipakai dan ditaati oleh tim Anda.',
+    coverImage: '/covers/module-5.webp',
     chapters: module5Chapters,
   },
   {
@@ -62,6 +75,7 @@ export const modules: ModuleMeta[] = [
     title: 'Bagaimana membangun manajemen kinerja tim Anda',
     description:
       'Pelajari bagaimana cara membangun sistem manajemen kinerja yang efektif untuk tim Anda.',
+    coverImage: '/covers/module-6.webp',
     chapters: module6Chapters,
   },
   {
@@ -70,6 +84,7 @@ export const modules: ModuleMeta[] = [
     title: "Bagaimana menyusun standar kompetensi karyawan Anda",
     description:
       "Pelajari bagaimana cara menyusun standar kompetensi yang relevan dan merekrut karyawan yang tepat.",
+    coverImage: '/covers/module-7.webp',
     chapters: module7Chapters,
   },
   {
@@ -78,6 +93,7 @@ export const modules: ModuleMeta[] = [
     title: 'Bagaimana mengelola perubahan di bisnis Anda',
     description:
       'Pelajari bagaimana cara mengelola perubahan di bisnis Anda secara efektif.',
+    coverImage: '/covers/module-8.webp',
     chapters: module8Chapters,
   },
   {
@@ -86,6 +102,7 @@ export const modules: ModuleMeta[] = [
     title: 'Bagaimana menggunakan AI untuk efisiensi bisnis Anda',
     description:
       'Pelajari bagaimana AI dapat digunakan untuk meningkatkan efisiensi bisnis Anda.',
+    coverImage: '/covers/module-9.webp',
     chapters: module9Chapters,
   },
 ]

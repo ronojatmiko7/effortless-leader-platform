@@ -4,6 +4,7 @@ import { useProgressStore } from '../progress/ProgressContext'
 
 interface ModuleHomeProps {
   moduleTitle: string
+  coverImage: string
   chapters: ChapterMeta[]
   onSelectChapter: (chapterId: string) => void
   onBackToHub: () => void
@@ -17,7 +18,13 @@ function chapterLabel(chapter: ChapterMeta) {
   return `Bab ${chapter.number}`
 }
 
-export default function ModuleHome({ moduleTitle, chapters, onSelectChapter, onBackToHub }: ModuleHomeProps) {
+export default function ModuleHome({
+  moduleTitle,
+  coverImage,
+  chapters,
+  onSelectChapter,
+  onBackToHub,
+}: ModuleHomeProps) {
   const { isChapterComplete, isChapterUnlocked } = useProgressStore()
 
   // The intro/outro entries are real chapters in the list (10 total: intro,
@@ -38,6 +45,12 @@ export default function ModuleHome({ moduleTitle, chapters, onSelectChapter, onB
           <ArrowLeft className="h-3.5 w-3.5" />
           Kembali ke semua modul
         </button>
+
+        <img
+          src={coverImage}
+          alt={moduleTitle}
+          className="aspect-[4/3] w-full rounded-2xl object-cover shadow-sm"
+        />
 
         <header className="text-center">
           <p className="text-xs font-semibold uppercase tracking-wider text-brand-600">{moduleTitle}</p>

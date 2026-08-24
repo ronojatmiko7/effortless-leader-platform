@@ -38,6 +38,7 @@ function ModuleShell({
       return (
         <ModuleHome
           moduleTitle={module.title}
+          coverImage={module.coverImage}
           chapters={module.chapters}
           onSelectChapter={onSelectChapter}
           onBackToHub={onBackToHub}
@@ -75,6 +76,7 @@ function ModuleShell({
   return (
     <ModuleHome
       moduleTitle={module.title}
+      coverImage={module.coverImage}
       chapters={module.chapters}
       onSelectChapter={onSelectChapter}
       onBackToHub={onBackToHub}
