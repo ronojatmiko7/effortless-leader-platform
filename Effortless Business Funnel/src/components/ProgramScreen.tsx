@@ -46,41 +46,42 @@ const BUNDLE_MODULE_COUNT = 8
 const BUNDLE_SAVINGS = PAID_MODULE_ORIGINAL_NUM * BUNDLE_MODULE_COUNT - BUNDLE_PRICE_NUM
 const BUNDLE_SAVINGS_LABEL = `Rp${BUNDLE_SAVINGS.toLocaleString('id-ID')}rb`
 
-// Common false beliefs that keep business owners sitting on the exact
-// symptoms the 13-question diagnostic flags. Each one points at the module
-// that actually addresses it (module numbers match moduleMapping.ts), so
-// this section doubles as a preview of what's inside instead of a generic
-// motivational list.
-const BELIEF_SHIFTS: { myth: string; fact: string; module: number }[] = [
+// Straight from Strategy Docs/ICP-Value-Proposition-Canvas.docx, section 2
+// "Keyakinan yang Membatasi (False Beliefs)" — the self-talk that stops an
+// owner from even considering a fix, researched separately from product
+// doubts/objections (that's a different section of the same doc, used on
+// the report/consultant side instead). Kept close to the source wording:
+// the myth is deliberately first-person self-talk ("saya..."), the fact is
+// the doc's own reframe. Not every belief maps to one module (some are
+// brand-level), so `module` is optional and the tag only renders when set.
+const BELIEF_SHIFTS: { myth: string; fact: string; module?: number }[] = [
   {
-    myth: 'Bisnis 19-99 karyawan belum butuh KPI yang rapi, feeling pemilik masih cukup buat jalanin semuanya.',
-    fact: 'Feeling pemilik itu justru yang bikin tim nggak tahu ukuran suksesnya apa. KPI yang jelas bukan menambah beban administrasi, tapi membuat semua orang bergerak ke arah yang sama tanpa Anda harus menjelaskan ulang tiap minggu.',
-    module: 2,
+    myth: 'Sukses itu emang harus bayar mahal. Waktu sama keluarga adalah harga yang emang harus saya bayar.',
+    fact: 'Ini keyakinan yang paling ingin dipatahkan lewat semua yang dibangun di sini, bukan lewat slogan. Lewat sistem yang beneran bikin bisnis jalan tanpa harus Anda pegang kendali tiap jam.',
   },
   {
-    myth: 'SOP cukup dibuat sekali, sisanya tinggal dijalankan tim selamanya.',
-    fact: 'SOP yang tidak pernah direview lama-lama ditinggalkan, walau dokumennya rapi di folder. SOP yang benar-benar jalan itu yang hidup: dicek ulang, diperbarui, dan gampang diakses saat tim kerja beneran.',
-    module: 5,
-  },
-  {
-    myth: 'Serah terima kerja antar departemen itu urusan operasional, bukan urusan pemilik bisnis.',
-    fact: 'Proses yang macet antar tim biasanya tetap balik ke meja Anda juga, cuma lebih telat dan lebih mahal. Proses yang dirancang jelas dari awal justru yang bikin Anda tidak perlu turun tangan tiap ada gesekan.',
+    myth: 'Kalau saya kasih tanggung jawab ke orang lain, kualitasnya pasti turun.',
+    fact: 'Sistem yang didesain benar, proses jelas plus SOP yang benar-benar dipakai, justru bikin kualitas lebih konsisten daripada semua tergantung Anda sendirian. Ini bukan kompromi, ini upgrade.',
     module: 4,
   },
   {
-    myth: 'Review kinerja tim setahun sekali itu standar di mana-mana, jadi tidak perlu diubah.',
-    fact: 'Setahun sekali terlalu jarang untuk menangkap masalah saat masih kecil. Feedback rutin tiap bulan yang membuat masalah kinerja ketahuan sebelum berubah jadi krisis, atau resign yang datang tiba-tiba.',
+    myth: 'Karyawan di sini nggak bisa dipercaya pegang keputusan penting.',
+    fact: 'Kepercayaan itu dibangun bertahap lewat standar kompetensi yang jelas, bukan diserahkan sekaligus dalam satu lompatan. Begitu standarnya ada, Anda tahu persis siapa yang siap pegang keputusan apa.',
+    module: 7,
+  },
+  {
+    myth: 'Anak buah saya kerja karena butuh duit doang, ngapain saya investasi sistem yang mereka pakai.',
+    fact: 'Sistem kompetensi dan penilaian kinerja yang jelas justru yang bikin karyawan biasa punya rasa memiliki terhadap pekerjaannya, bukan sebaliknya.',
     module: 6,
   },
   {
-    myth: 'Kalau mau ubah cara kerja tim, tinggal umumkan sekali di grup, selesai.',
-    fact: 'Perubahan yang cuma diumumkan tanpa dikawal biasanya kembali ke kebiasaan lama dalam hitungan minggu. Perubahan yang benar-benar melekat itu yang dikelola pelan-pelan, bukan yang diumumkan sekali lalu ditinggal.',
+    myth: 'Saya udah coba banyak cara, kayaknya emang bisnis saya yang susah disistemin, bukan caranya yang salah.',
+    fact: 'Coba cek lagi: biasanya bukan bisnisnya yang tidak bisa disistemin, tapi SOP yang dulu dibuat lalu ditinggal begitu saja tanpa ada yang mengawal adopsinya di tim. Itu persis yang coba dijawab di sini.',
     module: 8,
   },
   {
-    myth: 'AI itu urusan perusahaan besar, bisnis seukuran ini belum waktunya.',
-    fact: 'Bisnis seukuran ini yang justru paling terasa untungnya. Satu proses yang biasanya menyita waktu tim seharian bisa dipangkas jauh lebih cepat, asal tahu cara memakainya dengan benar.',
-    module: 9,
+    myth: 'Kalau saya nggak pegang kendali penuh, ini bukan bisnis saya lagi.',
+    fact: '"Effortless" di sini bukan berarti bisnis lepas kendali. Ini soal lepas dari kerja otot dan heroik pribadi sehari-hari. Kendali strategis tetap di tangan Anda.',
   },
 ]
 
@@ -115,18 +116,8 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
 
         {/* 1-4. Hero: headline, subheadline, cover, app description */}
         <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          {/* Master cover — the app's official hero image (src/assets/covers/master-cover.png).
-              Reuse this same asset for other screens' hero art instead of
-              generating a new cover; it's meant to be the one canonical
-              "Effortless System Learning App" cover across the funnel. */}
-          <img
-            src={masterCover}
-            alt="Effortless Business — Effortless System Learning App"
-            className="w-full h-auto"
-          />
-
-          <div className="p-6 sm:p-8">
-            <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand-600">
+          <div className="p-6 pb-0 text-center sm:p-8 sm:pb-0">
+            <p className="mb-2 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand-600">
               <Sparkles className="h-3.5 w-3.5" />
               Effortless System
             </p>
@@ -134,11 +125,24 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
               Perbaiki Titik Kebocoran Bisnis Anda, Tanpa Nonton Video Berjam-Jam atau Baca Buku Setebal
               Bata
             </h1>
-            <p className="mb-4 flex items-start gap-1.5 text-sm font-semibold text-brand-700 sm:text-base">
+            <p className="mb-0 flex items-start justify-center gap-1.5 text-sm font-semibold text-brand-700 sm:text-base">
               <Clock className="mt-0.5 h-4 w-4 shrink-0" />
               Tiap modul didesain kelar sekitar 15 menit, cukup untuk menangkap inti masalah dan tahu
               persis langkah pertama yang harus diambil.
             </p>
+          </div>
+
+          {/* Master cover — the app's official hero image (src/assets/covers/master-cover.png).
+              Reuse this same asset for other screens' hero art instead of
+              generating a new cover; it's meant to be the one canonical
+              "Effortless System Learning App" cover across the funnel. */}
+          <img
+            src={masterCover}
+            alt="Effortless Business — Effortless System Learning App"
+            className="mt-6 w-full h-auto"
+          />
+
+          <div className="p-6 pt-6 sm:p-8 sm:pt-6">
             <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
               Effortless System Learning App bukan kursus video atau tumpukan e-book yang harus
               ditamatkan dulu sebelum bisa action. Ini aplikasi microlearning interaktif yang didesain
@@ -238,8 +242,17 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-bold text-slate-900">{mod.moduleName}</p>
                       </div>
-                      <div className="shrink-0 text-xs font-bold text-brand-600">
-                        {mod.module === module1.module ? 'Gratis' : PAID_MODULE_PRICE}
+                      <div className="shrink-0 text-right">
+                        {mod.module === module1.module ? (
+                          <span className="text-xs font-bold text-brand-600">Gratis</span>
+                        ) : (
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="text-xs text-slate-400 line-through">
+                              {PAID_MODULE_ORIGINAL_PRICE}
+                            </span>
+                            <span className="text-xs font-bold text-brand-600">{PAID_MODULE_PRICE}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                     {findings.length > 0 && (
@@ -265,7 +278,7 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
             Modul 1 Gratis Selamanya
           </p>
           <h2 className="mb-4 text-lg font-bold text-white sm:text-xl">
-            8 Modul Lainnya, Satu Harga Bundel
+            Mau Lebih Hemat? Beli Bundling 8 Modul Sekaligus
           </h2>
           <div className="mb-2 flex items-baseline justify-center gap-2">
             <span className="text-sm text-brand-200 line-through">{BUNDLE_ORIGINAL_PRICE}</span>
@@ -275,8 +288,9 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
             Hemat {BUNDLE_SAVINGS_LABEL} dibanding beli satuan
           </p>
           <p className="mb-6 text-sm text-brand-100">
-            Atau {PAID_MODULE_PRICE} per modul (dari {PAID_MODULE_ORIGINAL_PRICE}) kalau cuma mau ambil
-            yang paling relevan dulu. Harga dan pembelian ada di dalam Modules Hub.
+            Dari total {BUNDLE_ORIGINAL_PRICE} kalau dibeli satuan, jadi cukup {BUNDLE_PRICE} lewat
+            bundel. Atau {PAID_MODULE_PRICE} per modul (dari {PAID_MODULE_ORIGINAL_PRICE}) kalau cuma
+            mau ambil yang paling relevan dulu. Harga dan pembelian ada di dalam Modules Hub.
           </p>
           <button
             type="button"
