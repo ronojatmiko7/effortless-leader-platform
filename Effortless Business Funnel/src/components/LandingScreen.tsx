@@ -21,7 +21,7 @@ const WHAT_YOU_GET = [
 ]
 
 const FOR_YOU = [
-  'Sudah punya 19-99 karyawan — dibawah atau diatas itu, masalahnya beda dan Cek Kebocoran ini belum relevan.',
+  'Sudah punya 19-99 karyawan — dibawah atau diatas itu, masalahnya beda dan asesmen cek kebocoran bisnis ini belum relevan.',
   'Omzet tahunan sudah di atas Rp5 miliar — cukup besar untuk mulai bocor tanpa Anda sadar di mana',
   'Capek jadi satu-satunya orang yang bisa jalanin bisnis dari A sampai Z',
   'Masih mau jadi orang tua yang antar-jemput anak sendiri, bukan CEO yang cuma transfer uang jajan dari mobil ke kantor',
@@ -67,7 +67,7 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
             Bisnis Anda Jalan Terus, Tapi Cuma Kalau Anda Ada?
           </p>
           <p className="mb-6 text-sm leading-relaxed text-slate-600 sm:text-base">
-            Cek Kebocoran gratis untuk pemilik bisnis 19–99 karyawan. 13 pertanyaan, 5 menit, dan
+            asesmen cek kebocoran bisnis ini gratis untuk pemilik bisnis 19–99 karyawan. 13 pertanyaan, 5 menit, dan
             Anda dapat peta persis di mana titik kebocoran sistem kerja bisnis Anda — sebelum itu
             makan waktu keluarga Anda juga.
           </p>
@@ -76,7 +76,7 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
             onClick={onStart}
             className="mx-auto flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-8 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-brand-700"
           >
-            Mulai Cek Kebocoran
+            Mulai Asesmen Cek Kebocoran Bisnis
             <ArrowRight className="h-5 w-5" />
           </button>
           <p className="mt-3 text-xs text-slate-400">Tanpa bayar. Tanpa kartu kredit. Hasilnya langsung Anda lihat.</p>
@@ -144,7 +144,7 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
             </div>
           </div>
           <p className="mt-5 text-xs text-slate-400">
-            Kalau Anda masuk kategori kedua, Cek Kebocoran ini kemungkinan besar belum relevan buat
+            Kalau Anda masuk kategori kedua, asesmen cek kebocoran bisnis ini kemungkinan besar belum relevan buat
             Anda sekarang — dan itu bukan masalah, cuma bukan waktunya.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
 
         {/* What's being measured */}
         <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <h2 className="mb-4 text-lg font-bold text-slate-900">Cek Kebocoran Ini Mengukur 3 Hal</h2>
+          <h2 className="mb-4 text-lg font-bold text-slate-900">Asesmen Cek Kebocoran Bisnis Ini Mengukur 3 Area</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {DOMAINS.map((domain) => (
               <div key={domain.name}>
@@ -185,7 +185,7 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
           <h2 className="mb-2 text-lg font-bold text-slate-900">Data Anda Aman</h2>
           <p className="flex items-start gap-2 text-sm leading-relaxed text-slate-600">
             <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
-            Kami cuma pakai nama, WhatsApp, dan email Anda buat kirim hasil Cek Kebocoran — bukan
+            Kami cuma pakai nama, WhatsApp, dan email Anda buat kirim hasil asesmen cek kebocoran bisnis — bukan
             buat spam, bukan dijual ke pihak lain. Anda bisa lihat hasilnya sekarang juga, tanpa
             perlu jadwalkan apa pun dulu.
           </p>
@@ -194,14 +194,14 @@ export default function LandingScreen({ onStart }: LandingScreenProps) {
         {/* Final CTA */}
         <div className="rounded-2xl bg-brand-600 p-6 text-center shadow-sm sm:p-8">
           <h2 className="mb-4 text-lg font-bold text-white sm:text-xl">
-            Butuh 5 Menit Buat Cek Kebocoran Bisnis Anda
+            Butuh 5 Menit Buat Asesmen Cek Kebocoran Bisnis Anda
           </h2>
           <button
             type="button"
             onClick={onStart}
             className="mx-auto flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-3.5 text-base font-semibold text-brand-700 shadow-sm transition hover:bg-brand-50"
           >
-            Mulai Cek Kebocoran
+            Mulai Asesmen Cek Kebocoran Bisnis
             <ArrowRight className="h-5 w-5" />
           </button>
         </div>
