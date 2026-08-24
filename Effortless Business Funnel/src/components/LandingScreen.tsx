@@ -37,7 +37,7 @@ const NOT_FOR_YOU = [
 const HOW_IT_WORKS = [
   { step: '1', title: 'Jawab 13 pertanyaan', body: 'Tentang cara kerja bisnis Anda sehari-hari, bukan teori manajemen.' },
   { step: '2', title: 'Lihat laporan instan', body: 'Skor per domain, titik kebocoran, dan kenapa itu penting.' },
-  { step: '3', title: 'Dapat rekomendasi', body: 'Modul spesifik yang paling pas buat kondisi bisnis Anda sekarang.' },
+  { step: '3', title: 'Dapat rekomendasi', body: 'Rekomendasi solusi untuk kondisi bisnis Anda sekarang.' },
 ]
 
 const DOMAINS = [
