@@ -9,6 +9,7 @@ import {
   Lightbulb,
   NotebookPen,
   Map,
+  FileDown,
 } from 'lucide-react'
 import type { Card } from '../types/card'
 
@@ -225,6 +226,18 @@ export const chapter2Cards: Card[] = [
         placeholder: 'Contoh: Supaya bisa buka cabang kedua tahun depan',
       },
     ],
+  },
+  {
+    id: 'c2-card-worksheet',
+    type: 'worksheet',
+    icon: FileDown,
+    eyebrow: 'Alat bantu praktis',
+    title: 'Lembar Pembuat Target (KPI Cascading)',
+    body: [
+      'Anda baru saja belajar peta cascading-nya. Unduh lembar kerja ini untuk memecah target besar bisnis Anda menjadi aktivitas harian yang jelas (Lead metric) untuk tim Anda.',
+    ],
+    downloadUrl: '/downloads/kpi-cascading-template.pdf',
+    buttonText: 'Unduh PDF - Template KPI',
   },
   {
     id: 'c2-card-17',

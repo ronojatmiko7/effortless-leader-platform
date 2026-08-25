@@ -9,6 +9,7 @@ import {
   MessageSquareWarning,
   Truck,
   Compass,
+  FileDown,
 } from 'lucide-react'
 import type { Card } from '../types/card'
 
@@ -215,6 +216,19 @@ export const chapter2Cards: Card[] = [
         placeholder: 'Contoh: Rekap komplain di WhatsApp admin, belum pernah dihitung resmi',
       },
     ],
+  },
+  {
+    id: 'c2-card-worksheet',
+    type: 'worksheet',
+    icon: FileDown,
+    eyebrow: 'Alat bantu praktis',
+    title: 'Lembar Cek Kesehatan Bisnis (Diagnosis IPO)',
+    body: [
+      'Anda baru saja belajar peta 3 Level-nya: Output, Proses, dan Input. Berhenti menebak — unduh lembar kerja ini.',
+      'Isinya pertanyaan sederhana untuk menemukan di Level mana kebocoran operasional Anda yang sebenarnya.',
+    ],
+    downloadUrl: '/downloads/cek-kesehatan-bisnis-ipo.pdf',
+    buttonText: 'Unduh PDF - Cek Kesehatan Bisnis',
   },
   {
     id: 'c2-card-17',
