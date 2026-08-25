@@ -6,6 +6,7 @@ import {
   ClipboardList,
   NotebookPen,
   Route,
+  FileDown,
 } from 'lucide-react'
 import type { Card } from '../types/card'
 
@@ -169,6 +170,19 @@ export const chapter3Cards: Card[] = [
         placeholder: 'Contoh: Sales ke Gudang (konfirmasi stok), Produksi ke Pengiriman (barang siap kirim)',
       },
     ],
+  },
+  {
+    id: 'c3-card-worksheet',
+    type: 'worksheet',
+    icon: FileDown,
+    eyebrow: 'Alat bantu praktis',
+    title: 'Kanvas Peta Proses 4 Tingkat',
+    body: [
+      'Anda baru saja memetakan proses utama bisnis Anda di kepala. Unduh kanvas cetak ini untuk menggambarnya beneran — kotak dan panah, per departemen, sampai ke L2, L3, dan L4.',
+      'Cukup kertas dan pena. Ini alat bantu visual yang nggak bisa digantikan kolom teks biasa.',
+    ],
+    downloadUrl: '/downloads/kanvas-peta-proses-4-tingkat.pdf',
+    buttonText: 'Unduh PDF - Kanvas Peta Proses',
   },
   {
     id: 'c3-card-13',

@@ -8,6 +8,7 @@ import {
   MessageSquare,
   ShieldCheck,
   Target,
+  FileDown,
 } from 'lucide-react'
 import type { Card } from '../types/card'
 
@@ -202,6 +203,19 @@ export const chapter6Cards: Card[] = [
           'Misalnya: sesi coaching teknis 3x seminggu bersama supervisor senior selama 3 minggu, panduan tertulis disiapkan minggu ini, check-in pertama Jumat depan untuk lihat progres awal — target: bisa kerja mandiri sesuai standar dalam 4 minggu...',
       },
     ],
+  },
+  {
+    id: 'c6-card-worksheet',
+    type: 'worksheet',
+    icon: FileDown,
+    eyebrow: 'Alat bantu praktis',
+    title: 'Formulir PIP (Performance Improvement Plan) Siap Pakai',
+    body: [
+      'Kalau Tangga #3 relevan buat kasus Anda, unduh formulir siap pakai ini — target terukur, jadwal check-in, dukungan yang disediakan, konsekuensi eksplisit, sampai kolom tanda tangan kedua pihak.',
+      'Dokumen ini yang membuat PIP jadi kontrak yang bisa dipertanggungjawabkan, bukan cuma percakapan yang bisa diabaikan.',
+    ],
+    downloadUrl: '/downloads/formulir-pip.pdf',
+    buttonText: 'Unduh PDF - Formulir PIP',
   },
   {
     id: 'c6-card-15',

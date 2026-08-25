@@ -9,6 +9,7 @@ import {
   ListChecks,
   NotebookPen,
   ArrowRight,
+  FileDown,
 } from 'lucide-react'
 import type { Card } from '../types/card'
 
@@ -228,6 +229,18 @@ export const chapter6Cards: Card[] = [
           'Misalnya: saya akan ngobrol empat mata dulu, dengar keluhan spesifiknya, kaitkan ke lensa dari Bab 3, baru tentukan responsnya...',
       },
     ],
+  },
+  {
+    id: 'c6-card-worksheet',
+    type: 'worksheet',
+    icon: FileDown,
+    eyebrow: 'Alat bantu praktis',
+    title: 'Kartu Lapangan: Diagnosis Resistensi & Respons Cepat',
+    body: [
+      'Unduh kartu satu halaman ini — empat lensa resistensi, tanda yang kedengaran, pertanyaan pembuka, dan respons yang tepat untuk masing-masing. Simpan di HP untuk dilirik cepat saat ngobrol langsung dengan orang yang resisten.',
+    ],
+    downloadUrl: '/downloads/kartu-diagnosis-resistensi.pdf',
+    buttonText: 'Unduh PDF - Kartu Lapangan',
   },
   {
     id: 'c6-card-17',

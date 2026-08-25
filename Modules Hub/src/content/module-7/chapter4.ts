@@ -8,6 +8,7 @@ import {
   BookOpen,
   Star,
   ArrowRight,
+  FileDown,
 } from 'lucide-react'
 import type { Card } from '../types/card'
 
@@ -188,6 +189,19 @@ export const chapter4Cards: Card[] = [
           'Misalnya: pelaporan keuangan cukup di level Dasar karena ada staf admin yang handle itu, supervisor ini hanya memeriksa output-nya. Atau: semua kompetensi di peran ini dibutuhkan minimal di level Berkembang karena bekerja mandiri dari hari pertama...',
       },
     ],
+  },
+  {
+    id: 'c4-card-worksheet',
+    type: 'worksheet',
+    icon: FileDown,
+    eyebrow: 'Alat bantu praktis',
+    title: 'Kamus Anchor Kemahiran Lintas Kompetensi',
+    body: [
+      'Menulis anchor perilaku dari nol itu bagian paling berat di bab ini. Unduh kamus referensi ini — anchor Dasar/Berkembang/Mahir/Ahli untuk 12 kompetensi umum SME, siap disesuaikan ke peran Anda.',
+      'Simpan untuk dipakai lagi tiap kali Anda memodelkan peran baru — bukan cuma untuk peran yang Anda bawa hari ini.',
+    ],
+    downloadUrl: '/downloads/kamus-anchor-kemahiran.pdf',
+    buttonText: 'Unduh PDF - Kamus Anchor Kemahiran',
   },
   {
     id: 'c4-card-14',
