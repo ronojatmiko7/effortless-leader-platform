@@ -1,5 +1,19 @@
 import { useState } from 'react'
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, Lock, Sparkles, XCircle } from 'lucide-react'
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarClock,
+  CheckCircle2,
+  Clock,
+  Gauge,
+  Layers,
+  Lock,
+  PenLine,
+  Sparkles,
+  Target,
+  Wallet,
+  XCircle,
+} from 'lucide-react'
 import { MODULES_HUB_URL } from '../config/modulesHubConfig'
 import { allModules, module1 } from '../data/moduleMapping'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
@@ -82,6 +96,57 @@ const BELIEF_SHIFTS: { myth: string; fact: string; module?: number }[] = [
   {
     myth: 'Kalau saya nggak pegang kendali penuh, ini bukan bisnis saya lagi.',
     fact: '"Effortless" di sini bukan berarti bisnis lepas kendali. Ini soal lepas dari kerja otot dan heroik pribadi sehari-hari. Kendali strategis tetap di tangan Anda.',
+  },
+]
+
+// Fitur / Kelebihan / Manfaat for the app itself, distinct from BELIEF_SHIFTS
+// (which handles mindset) and the module catalog below (which handles
+// content). Each entry grounded in a real, already-built product feature:
+// the card-deck chapter format, WorkbookContext's per-business exercises,
+// the diagnostic-driven recommendedModules already used elsewhere on this
+// screen, HubHome's progress ring/continue-learning card, the pricing
+// constants above, and the self-paced (no fixed-schedule) access model.
+const FEATURE_HIGHLIGHTS: {
+  icon: typeof Layers
+  feature: string
+  advantage: string
+  benefit: string
+}[] = [
+  {
+    icon: Layers,
+    feature: 'Tiap modul dipecah jadi kartu-kartu ringkas per bab, bukan video panjang atau bab buku yang harus ditamatkan sekali duduk.',
+    advantage: 'Bisa dibuka dan ditutup kapan saja tanpa kehilangan alur, cocok buat waktu yang sering terpotong rapat atau telepon.',
+    benefit: 'Anda tetap belajar konsisten tanpa harus korbankan jam kerja atau waktu keluarga buat "duduk khusus belajar".',
+  },
+  {
+    icon: PenLine,
+    feature: 'Tiap bab disertai latihan kerja yang Anda isi pakai data dan kondisi bisnis Anda sendiri.',
+    advantage: 'Bukan studi kasus bisnis orang lain yang masih harus diterjemahkan dulu ke situasi Anda.',
+    benefit: 'Begitu satu bab selesai, Anda sudah punya draft nyata yang siap dipakai, bukan sekadar catatan teori.',
+  },
+  {
+    icon: Target,
+    feature: 'Modul yang disarankan langsung diambil dari titik kebocoran spesifik di laporan Cek Kebocoran Anda.',
+    advantage: 'Anda tidak perlu menebak dari 9 modul, mana yang harus dibuka duluan.',
+    benefit: 'Waktu belajar Anda langsung ke masalah yang paling terasa sekarang, bukan habis di modul yang belum relevan.',
+  },
+  {
+    icon: Gauge,
+    feature: 'Dashboard menyimpan progres tiap modul dan menandai persis di bab mana Anda terakhir berhenti.',
+    advantage: 'Tidak perlu mengingat-ingat atau mencari ulang bab yang belum selesai tiap kali buka aplikasi.',
+    benefit: 'Momentum belajar tetap jalan walau Anda cuma sempat buka aplikasi 10 menit di sela kerja.',
+  },
+  {
+    icon: Wallet,
+    feature: 'Modul 1 gratis selamanya, modul 2-9 Rp199rb per modul (dari Rp499rb) atau Rp999rb sekaligus untuk 8 modul.',
+    advantage: 'Anda bisa mencoba dulu sebelum mengeluarkan uang, dan harga modul lanjutan jauh di bawah training atau seminar sejenis.',
+    benefit: 'Risiko keuangan buat mulai membenahi bisnis jadi kecil, bahkan bisa dicicil per modul sesuai prioritas.',
+  },
+  {
+    icon: CalendarClock,
+    feature: 'Tidak ada jadwal kelas atau webinar yang mengikat, akses modul kapan saja begitu dibuka.',
+    advantage: 'Tidak perlu menyesuaikan waktu belajar dengan jadwal orang lain.',
+    benefit: 'Anda yang tetap pegang kendali atas waktu, bukan aplikasi ini yang menentukan jadwal Anda.',
   },
 ]
 
@@ -185,7 +250,38 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
           </div>
         </section>
 
-        {/* 6. Full catalog */}
+        {/* 6. Fitur, Kelebihan & Manfaat (Features / Advantages / Benefits) */}
+        <section className="mb-8">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-brand-600">
+            Fitur, Kelebihan &amp; Manfaat
+          </p>
+          <h2 className="mb-4 text-lg font-bold text-slate-900">
+            Bukan Cuma Aplikasi Belajar, Ini yang Bikin Bedanya buat Anda
+          </h2>
+          <div className="space-y-3">
+            {FEATURE_HIGHLIGHTS.map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.feature} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                  <div className="mb-2 flex items-start gap-2">
+                    <Icon className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                    <p className="text-sm font-semibold text-slate-800">{item.feature}</p>
+                  </div>
+                  <div className="space-y-1 pl-6 text-xs leading-relaxed text-slate-500">
+                    <p>
+                      <span className="font-semibold text-slate-600">Kelebihannya:</span> {item.advantage}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-brand-600">Artinya buat Anda:</span> {item.benefit}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
+        {/* 7. Full catalog */}
         <section className="mb-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-600">
             Semua 9 Modul Effortless System
@@ -216,7 +312,7 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
           </div>
         </section>
 
-        {/* 7. Recommended modules as the solution to their findings */}
+        {/* 8. Recommended modules as the solution to their findings */}
         {recommendedModules.length > 0 && (
           <section className="mb-8">
             <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-brand-600">
@@ -272,7 +368,7 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
           </section>
         )}
 
-        {/* 8. Pricing / CTA */}
+        {/* 9. Pricing / CTA */}
         <div className="rounded-2xl bg-brand-600 p-6 text-center shadow-sm sm:p-8">
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-100">
             Modul 1 Gratis Selamanya
