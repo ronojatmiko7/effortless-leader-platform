@@ -19,6 +19,7 @@ import { allModules, module1 } from '../data/moduleMapping'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import masterCover from '../assets/covers/master-cover.png'
 import Logo from './Logo'
+import TestimonialsSection from './TestimonialsSection'
 import type { DiagnosticResult, FlaggedQuestion } from '../types/diagnostic'
 import type { Lead } from '../types/lead'
 
@@ -367,6 +368,10 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
             </div>
           </section>
         )}
+
+        {/* 8.5. Testimonials — renders nothing until there's at least one
+            approved testimonial, see TestimonialsSection.tsx */}
+        <TestimonialsSection />
 
         {/* 9. Pricing / CTA */}
         <div className="rounded-2xl bg-brand-600 p-6 text-center shadow-sm sm:p-8">

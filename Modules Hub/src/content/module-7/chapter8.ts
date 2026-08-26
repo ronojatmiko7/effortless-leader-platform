@@ -334,6 +334,23 @@ export const chapter8Cards: Card[] = [
     downloadButtonText: 'Cetak / Simpan Laporan Ini',
   },
   {
+    id: 'review-request-module-7',
+    type: 'review-request',
+    eyebrow: 'Sebelum Anda Pergi',
+    title: 'Boleh Minta Waktu Sebentar?',
+    sentimentPrompt: 'Gimana rasanya baru saja menyelesaikan modul ini?',
+    positiveLabel: 'Senang, worth it!',
+    negativeLabel: 'Kurang greget',
+    testimonialPromptLabel: 'Mau cerita sedikit soal pengalaman Anda?',
+    testimonialPlaceholder:
+      'Contoh: Bagian yang paling kena buat saya adalah waktu bahas...',
+    privateFeedbackPrompt: 'Boleh cerita apa yang bikin kurang greget?',
+    privateFeedbackPlaceholder:
+      'Jujur aja — bagian mana yang terasa membosankan, membingungkan, atau kurang berguna?',
+    thanksMessagePositive: 'Makasih banyak sudah luangin waktu cerita. Ini bantu kami banget.',
+    thanksMessageNegative: 'Makasih sudah jujur. Ini yang bikin modul berikutnya lebih baik lagi.',
+  },
+  {
     id: 'c8-card-13',
     type: 'info',
     icon: CheckCircle,

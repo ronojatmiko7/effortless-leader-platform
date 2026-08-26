@@ -1,3 +1,5 @@
+import { SUBMIT_TESTIMONIAL_URL } from '../config/paymentConfig'
+
 type SetFieldValue = (cardId: string, fieldId: string, value: string) => void
 
 export interface TestimonialData {
@@ -9,29 +11,74 @@ export interface PrivateFeedbackData {
   comment: string
 }
 
-/**
- * Drop-in point for a future backend call (e.g. an API that emails the
- * business owner or writes to a CRM). There is no backend today — this only
- * logs to the console and persists to the visitor's own browser via
- * useWorkbookStore. The business owner never actually sees this data until
- * a real implementation replaces this stub.
- */
-export function submitTestimonial(cardId: string, data: TestimonialData, setFieldValue: SetFieldValue) {
-  console.log('[submitTestimonial] stub — replace with a real backend call:', data)
+// Posts to the real submit-testimonial Edge Function (PerfOS Supabase —
+// see paymentConfig.ts). Positive-sentiment submissions land in the
+// `testimonials` table unapproved, waiting for Bro Rono to approve/feature
+// them in the admin dashboard before they can ever show up publicly (see
+// list-public-testimonials). Also mirrors the value into the visitor's own
+// workbook (useWorkbookStore), same as before, purely for in-session UI
+// state — that was never the actual delivery mechanism.
+//
+// Fire-and-forget on failure: a flaky network shouldn't block the visitor
+// from seeing the thank-you screen. Errors are logged, not surfaced.
+export async function submitTestimonial(
+  cardId: string,
+  data: TestimonialData,
+  setFieldValue: SetFieldValue,
+  context: { email: string | null; moduleNumber: number },
+) {
   setFieldValue(cardId, 'rating', String(data.rating))
   setFieldValue(cardId, 'comment', data.comment)
+
+  if (!context.email) {
+    console.error('[submitTestimonial] no customer email on file — submission not sent')
+    return
+  }
+
+  try {
+    await fetch(SUBMIT_TESTIMONIAL_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: context.email,
+        moduleNumber: context.moduleNumber,
+        sentiment: 'positive',
+        rating: data.rating,
+        comment: data.comment,
+      }),
+    })
+  } catch (err) {
+    console.error('[submitTestimonial] failed to reach backend:', err)
+  }
 }
 
-/**
- * Drop-in point for a future backend call. Same caveat as submitTestimonial:
- * today this data never reaches the business owner, it only lives in
- * localStorage on the visitor's device.
- */
-export function submitPrivateFeedback(
+// Same shape as submitTestimonial but lands in `private_feedback` — never
+// shown publicly, only visible via the admin dashboard.
+export async function submitPrivateFeedback(
   cardId: string,
   data: PrivateFeedbackData,
   setFieldValue: SetFieldValue,
+  context: { email: string | null; moduleNumber: number },
 ) {
-  console.log('[submitPrivateFeedback] stub — replace with a real backend call:', data)
   setFieldValue(cardId, 'comment', data.comment)
+
+  if (!context.email) {
+    console.error('[submitPrivateFeedback] no customer email on file — submission not sent')
+    return
+  }
+
+  try {
+    await fetch(SUBMIT_TESTIMONIAL_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: context.email,
+        moduleNumber: context.moduleNumber,
+        sentiment: 'negative',
+        comment: data.comment,
+      }),
+    })
+  } catch (err) {
+    console.error('[submitPrivateFeedback] failed to reach backend:', err)
+  }
 }

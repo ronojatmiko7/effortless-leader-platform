@@ -25,6 +25,7 @@ const variants = {
 }
 
 interface RenderCtx {
+  moduleNumber: number
   isCorrectlyAnswered: boolean
   onCorrect: () => void
   yesNoSelection: 'yes' | 'no' | undefined
@@ -59,7 +60,7 @@ function renderCard(card: Card, ctx: RenderCtx) {
     case 'report':
       return <ReportCard card={card} />
     case 'review-request':
-      return <ReviewRequestCard card={card} />
+      return <ReviewRequestCard card={card} moduleNumber={ctx.moduleNumber} />
     case 'assessment-question':
       return (
         <AssessmentQuestionCard card={card} selected={ctx.assessmentSelection} onSelect={ctx.onAssessmentSelect} />
@@ -77,11 +78,12 @@ function renderCard(card: Card, ctx: RenderCtx) {
 
 interface DeckViewerProps {
   cards: Card[]
+  moduleNumber: number
   onCtaNavigate?: (href: string) => void
   onDeckComplete?: () => void
 }
 
-export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: DeckViewerProps) {
+export default function DeckViewer({ cards, moduleNumber, onCtaNavigate, onDeckComplete }: DeckViewerProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(1)
   const [correctlyAnsweredIds, setCorrectlyAnsweredIds] = useState<Set<string>>(new Set())
@@ -217,6 +219,7 @@ export default function DeckViewer({ cards, onCtaNavigate, onDeckComplete }: Dec
             className="w-full rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8 print:rounded-none print:border-0 print:p-0 print:shadow-none"
           >
             {renderCard(card, {
+              moduleNumber,
               isCorrectlyAnswered: correctlyAnsweredIds.has(card.id),
               onCorrect: handleCorrect,
               yesNoSelection,

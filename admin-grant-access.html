@@ -78,6 +78,10 @@
   .pill.failed, .pill.expired { background: #fee2e2; color: #b91c1c; }
   .pill.manual { background: #e0e7ff; color: #4338ca; }
   .pill.xendit { background: #e0f2fe; color: #0369a1; }
+  .pill.approved { background: #dcfce7; color: #15803d; }
+  .pill.unapproved { background: #fef9c3; color: #854d0e; }
+  .pill.featured { background: #e0e7ff; color: #4338ca; }
+  .stars { color: #f59e0b; letter-spacing: 1px; }
   .muted { color: #94a3b8; }
   .table-wrap { overflow-x: auto; }
   .edit-input { min-width: 110px; }
@@ -170,6 +174,45 @@
       <div class="empty" id="leadsEmpty" style="display:none;">Belum ada data.</div>
     </div>
   </div>
+
+  <div class="card">
+    <h2>Testimonials <span class="muted" id="testimonialsCount"></span></h2>
+    <p class="muted" style="font-size:11.5px;margin:-6px 0 10px;">
+      Baru muncul di landing page / Modules Hub setelah di-Approve. Feature = dipin di atas.
+    </p>
+    <div class="row">
+      <input type="text" id="testimonialsSearch" class="search-box" placeholder="Cari email/komentar..." />
+    </div>
+    <div class="table-wrap" style="margin-top:12px;">
+      <table id="testimonialsTable">
+        <thead>
+          <tr>
+            <th>Rating</th><th>Komentar</th><th>Modul</th><th>Email</th><th>Status</th><th>Dibuat</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="testimonialsBody"></tbody>
+      </table>
+      <div class="empty" id="testimonialsEmpty" style="display:none;">Belum ada testimoni.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Feedback Privat <span class="muted" id="feedbackCount"></span></h2>
+    <p class="muted" style="font-size:11.5px;margin:-6px 0 10px;">
+      Dari peserta yang jawab "kurang greget" — tidak pernah tampil publik, buat perbaikan modul saja.
+    </p>
+    <div class="table-wrap" style="margin-top:12px;">
+      <table id="feedbackTable">
+        <thead>
+          <tr>
+            <th>Modul</th><th>Komentar</th><th>Email</th><th>Dibuat</th>
+          </tr>
+        </thead>
+        <tbody id="feedbackBody"></tbody>
+      </table>
+      <div class="empty" id="feedbackEmpty" style="display:none;">Belum ada feedback.</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -190,7 +233,7 @@
   const STATUS_OPTIONS = ['pending', 'paid', 'failed', 'expired']
 
   const secretInput = document.getElementById('secret')
-  let state = { purchases: [], leads: [], editingId: null }
+  let state = { purchases: [], leads: [], testimonials: [], privateFeedback: [], editingId: null }
 
   try {
     const saved = window.localStorage.getItem(SECRET_STORAGE_KEY)
@@ -232,12 +275,19 @@
     if (!secret()) { errEl.textContent = 'Masukkan admin secret dulu.'; errEl.className = 'err'; return }
     document.getElementById('loadDataBtn').disabled = true
     try {
-      const data = await callFn('list-access', {})
+      const [data, tData] = await Promise.all([
+        callFn('list-access', {}),
+        callFn('list-testimonials', {}),
+      ])
       rememberSecret()
       state.purchases = data.purchases || []
       state.leads = data.leads || []
+      state.testimonials = tData.testimonials || []
+      state.privateFeedback = tData.privateFeedback || []
       renderPurchases()
       renderLeads()
+      renderTestimonials()
+      renderFeedback()
     } catch (err) {
       errEl.textContent = 'Gagal memuat data: ' + err.message
       errEl.className = 'err'
@@ -317,10 +367,78 @@
     `).join('')
   }
 
+  function stars(n) {
+    const r = Math.max(0, Math.min(5, Number(n) || 0))
+    return `<span class="stars">${'\u2605'.repeat(r)}${'\u2606'.repeat(5 - r)}</span>`
+  }
+
+  function testimonialRowView(t) {
+    const statusPill = t.approved ? '<span class="pill approved">Approved</span>' : '<span class="pill unapproved">Belum di-review</span>'
+    const featuredPill = t.featured ? ' <span class="pill featured">Featured</span>' : ''
+    return `
+      <td>${stars(t.rating)}</td>
+      <td style="max-width:320px;">${esc(t.comment)}</td>
+      <td>${t.module_number ? 'Modul ' + esc(t.module_number) : '<span class="muted">—</span>'}</td>
+      <td>${esc(t.customer_email)}</td>
+      <td>${statusPill}${featuredPill}</td>
+      <td>${fmtDate(t.created_at)}</td>
+      <td class="actions-cell">
+        <button class="${t.approved ? 'ghost' : 'primary'}" data-action="toggle-approved" data-id="${t.id}">${t.approved ? 'Unapprove' : 'Approve'}</button>
+        <button class="ghost" data-action="toggle-featured" data-id="${t.id}">${t.featured ? 'Unfeature' : 'Feature'}</button>
+      </td>
+    `
+  }
+
+  function renderTestimonials() {
+    const tbody = document.getElementById('testimonialsBody')
+    const query = document.getElementById('testimonialsSearch').value.trim().toLowerCase()
+    const rows = state.testimonials.filter((t) =>
+      !query || (t.customer_email || '').toLowerCase().includes(query) || (t.comment || '').toLowerCase().includes(query),
+    )
+    document.getElementById('testimonialsCount').textContent = `(${rows.length} dari ${state.testimonials.length})`
+    document.getElementById('testimonialsEmpty').style.display = state.testimonials.length === 0 ? 'block' : 'none'
+    tbody.innerHTML = rows.map((t) => `<tr data-row-id="${t.id}">${testimonialRowView(t)}</tr>`).join('')
+  }
+
+  function renderFeedback() {
+    const tbody = document.getElementById('feedbackBody')
+    document.getElementById('feedbackCount').textContent = `(${state.privateFeedback.length})`
+    document.getElementById('feedbackEmpty').style.display = state.privateFeedback.length === 0 ? 'block' : 'none'
+    tbody.innerHTML = state.privateFeedback.map((f) => `
+      <tr>
+        <td>${f.module_number ? 'Modul ' + esc(f.module_number) : '<span class="muted">—</span>'}</td>
+        <td style="max-width:360px;">${esc(f.comment)}</td>
+        <td>${esc(f.customer_email)}</td>
+        <td>${fmtDate(f.created_at)}</td>
+      </tr>
+    `).join('')
+  }
+
   document.getElementById('loadDataBtn').addEventListener('click', loadData)
   document.getElementById('refreshBtn').addEventListener('click', loadData)
   document.getElementById('purchasesSearch').addEventListener('input', renderPurchases)
   document.getElementById('leadsSearch').addEventListener('input', renderLeads)
+  document.getElementById('testimonialsSearch').addEventListener('input', renderTestimonials)
+
+  document.getElementById('testimonialsBody').addEventListener('click', async (event) => {
+    const btn = event.target.closest('button[data-action]')
+    if (!btn) return
+    const id = btn.dataset.id
+    const action = btn.dataset.action
+    const t = state.testimonials.find((x) => x.id === id)
+    if (!t) return
+
+    const updates = action === 'toggle-approved' ? { approved: !t.approved } : { featured: !t.featured }
+    btn.disabled = true
+    try {
+      await callFn('update-testimonial', { id, ...updates })
+      Object.assign(t, updates)
+      renderTestimonials()
+    } catch (err) {
+      alert('Gagal update: ' + err.message)
+      btn.disabled = false
+    }
+  })
 
   document.getElementById('grantBtn').addEventListener('click', async () => {
     const resultEl = document.getElementById('grantResult')

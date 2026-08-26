@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import {
   CheckCircle2,
   ChevronRight,
@@ -21,6 +21,7 @@ import {
   BUNDLE_PRICE_DISCOUNTED_IDR,
   BUNDLE_PRICE_ORIGINAL_IDR,
   FREE_LAUNCH_MODE,
+  LIST_PUBLIC_TESTIMONIALS_URL,
   MODULE_PRICE_DISCOUNTED_IDR,
   MODULE_PRICE_ORIGINAL_IDR,
   formatIdr,
@@ -100,6 +101,23 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
   const displayName = member.name.trim().length > 0 ? member.name : 'Member Area'
   const hasBundleOrCoaching =
     purchasedProducts.includes('bundle-all') || purchasedProducts.includes('coaching-package')
+
+  // Trust badge next to the bundle promo — pulled live from the same
+  // approved-only testimonials backend as the funnel's TestimonialsSection.
+  // Stays hidden (count 0) until at least one testimonial is approved.
+  const [ratingBadge, setRatingBadge] = useState<{ avgRating: number; count: number } | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    fetch(LIST_PUBLIC_TESTIMONIALS_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled && data.count > 0) setRatingBadge({ avgRating: data.avgRating, count: data.count })
+      })
+      .catch(() => {})
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const openProfileEdit = () => {
     setProfileDraft(member)
@@ -237,6 +255,12 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
                 {FREE_LAUNCH_MODE ? 'Peluncuran terbatas' : 'Hemat paling banyak'}
               </p>
               <h2 className="text-base font-bold text-slate-900 sm:text-lg">Bundle 8 Modul (Modul 2-9)</h2>
+              {ratingBadge && (
+                <p className="mt-1 text-xs font-semibold text-amber-600">
+                  {'★'.repeat(Math.round(ratingBadge.avgRating))}{'☆'.repeat(5 - Math.round(ratingBadge.avgRating))}{' '}
+                  {ratingBadge.avgRating.toFixed(1)}/5 dari {ratingBadge.count} peserta
+                </p>
+              )}
               <p className="mt-1 text-xs text-slate-500">
                 {FREE_LAUNCH_MODE ? (
                   'Semua modul terbuka gratis untuk semua peserta selama masa peluncuran ini.'

@@ -70,6 +70,7 @@ function ModuleShell({
       <DeckViewer
         key={currentChapter.id}
         cards={currentChapter.cards}
+        moduleNumber={moduleNumber}
         onCtaNavigate={handleCtaNavigate}
         onDeckComplete={handleDeckComplete}
       />

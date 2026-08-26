@@ -19,6 +19,8 @@ export const FREE_LAUNCH_MODE = true
 
 export const CREATE_CHECKOUT_URL = `${SUPABASE_FUNCTIONS_BASE}/create-checkout`
 export const CHECK_ACCESS_URL = `${SUPABASE_FUNCTIONS_BASE}/check-access`
+export const SUBMIT_TESTIMONIAL_URL = `${SUPABASE_FUNCTIONS_BASE}/submit-testimonial`
+export const LIST_PUBLIC_TESTIMONIALS_URL = `${SUPABASE_FUNCTIONS_BASE}/list-public-testimonials`
 
 // Display-only pricing for Buy buttons. The backend (create-checkout's own
 // PRODUCTS map) is the real source of truth for what's actually charged —
