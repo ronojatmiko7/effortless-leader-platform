@@ -2,6 +2,7 @@ import { ArrowLeft, Award, CheckCircle2, ChevronRight, Lock } from 'lucide-react
 import type { ChapterMeta } from '../content/module-1/chapters'
 import { useProgressStore } from '../progress/ProgressContext'
 import BuyButton from './BuyButton'
+import ConsultantStickyBar from './ConsultantStickyBar'
 import { MODULE_PRICE_DISCOUNTED_IDR, MODULE_PRICE_ORIGINAL_IDR } from '../config/paymentConfig'
 
 interface ModuleHomeProps {
@@ -39,7 +40,7 @@ export default function ModuleHome({
   const completedCount = realChapters.filter((chapter) => isChapterComplete(chapter.id)).length
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-8 sm:py-12">
+    <div className="min-h-screen bg-slate-50 px-4 pb-28 pt-8 sm:pb-32 sm:pt-12">
       <div className="mx-auto flex w-full max-w-lg flex-col gap-6">
         <button
           type="button"
@@ -168,6 +169,7 @@ export default function ModuleHome({
           })}
         </div>
       </div>
+      <ConsultantStickyBar />
     </div>
   )
 }

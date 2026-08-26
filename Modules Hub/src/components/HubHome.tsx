@@ -16,6 +16,7 @@ import { loadMemberProfile, saveMemberProfile, type MemberProfile } from '../acc
 import type { CompletedChapters } from '../progress/ProgressContext'
 import Logo from './Logo'
 import BuyButton from './BuyButton'
+import ConsultantStickyBar from './ConsultantStickyBar'
 import {
   BUNDLE_PRICE_DISCOUNTED_IDR,
   BUNDLE_PRICE_ORIGINAL_IDR,
@@ -139,7 +140,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
   const noResults = normalizedQuery.length > 0 && sections.length === 0
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-8 sm:py-12">
+    <div className="min-h-screen bg-slate-50 px-4 pb-28 pt-8 sm:pb-32 sm:pt-12">
       <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
         <header className="flex flex-col items-center text-center">
           <Logo size="sm" />
@@ -343,6 +344,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
           </div>
         )}
       </div>
+      <ConsultantStickyBar />
     </div>
   )
 }
