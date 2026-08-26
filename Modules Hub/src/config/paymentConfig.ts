@@ -26,7 +26,6 @@ export const FREE_LAUNCH_CUTOFF = new Date('2026-09-01T00:00:00+07:00')
 export const FREE_LAUNCH_END_DISPLAY = 'Senin, 31 Agustus 2026'
 export const FREE_LAUNCH_MODE = Date.now() < FREE_LAUNCH_CUTOFF.getTime()
 
-export const CREATE_CHECKOUT_URL = `${SUPABASE_FUNCTIONS_BASE}/create-checkout`
 export const CHECK_ACCESS_URL = `${SUPABASE_FUNCTIONS_BASE}/check-access`
 
 // Scalev checkout pages, one per sellable product. Each is a static URL
@@ -54,9 +53,10 @@ export const SCALEV_CHECKOUT_URLS: Record<string, string> = {
 export const SUBMIT_TESTIMONIAL_URL = `${SUPABASE_FUNCTIONS_BASE}/submit-testimonial`
 export const LIST_PUBLIC_TESTIMONIALS_URL = `${SUPABASE_FUNCTIONS_BASE}/list-public-testimonials`
 
-// Display-only pricing for Buy buttons. The backend (create-checkout's own
-// PRODUCTS map) is the real source of truth for what's actually charged —
-// keep these two in sync by hand until there's a single shared config.
+// Display-only pricing for Buy buttons. The real source of truth for what's
+// actually charged is whatever's configured in the Scalev dashboard for
+// each checkout page — keep these two in sync by hand until there's a
+// single shared config.
 // Rp199rb/module, Rp999rb bundle, Module 1 free — confirmed by Bro Rono,
 // see funnel-launch-checklist.md section 5.
 export const MODULE_PRICE_ORIGINAL_IDR = 499_000
