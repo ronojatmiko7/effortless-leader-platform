@@ -30,13 +30,25 @@ interface ProgramScreenProps {
   onBack: () => void
 }
 
-// Routes into the (currently free, unlocked-for-beta) Modules Hub. This is
-// the only place in the funnel that opens the Hub now — the report's
-// "Belajar Memperbaiki Sendiri" card sends people here first instead of
-// straight out to the Hub, so the 9-module catalog and pricing get a fair
-// look before anyone leaves the funnel.
-function openModulesHub() {
-  window.open(MODULES_HUB_URL, '_blank', 'noopener,noreferrer')
+// Routes into the Modules Hub. This is the only place in the funnel that
+// opens the Hub now — the report's "Belajar Memperbaiki Sendiri" card
+// sends people here first instead of straight out to the Hub, so the
+// 9-module catalog and pricing get a fair look before anyone leaves the
+// funnel.
+//
+// Forwards the lead's name/email/whatsapp (already captured by
+// LeadCaptureForm earlier in this same session — see App.tsx's
+// handleLeadCaptured) as URL query params, so the Hub's register gate
+// (Modules Hub's App.tsx RegisterGate / RegisterScreen.tsx, added Aug 26
+// 2026) can pre-fill instead of asking twice. The two apps are separate
+// origins/deployments, so this query-string handoff is the only way to
+// carry it across — nothing is shared via localStorage or cookies.
+function openModulesHub(lead: Lead) {
+  const url = new URL(MODULES_HUB_URL)
+  if (lead.name) url.searchParams.set('name', lead.name)
+  if (lead.email) url.searchParams.set('email', lead.email)
+  if (lead.whatsapp) url.searchParams.set('whatsapp', lead.whatsapp)
+  window.open(url.toString(), '_blank', 'noopener,noreferrer')
 }
 
 // Same convention as ReportScreen.tsx's findingDescription: anchor strings
@@ -158,7 +170,7 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
   const recommendedModules = allModules.filter((mod) => result.recommendedModules.includes(mod.module))
 
   const handleOpenHub = () => {
-    openModulesHub()
+    openModulesHub(lead)
     setHubClicked(true)
   }
 

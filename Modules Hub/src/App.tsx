@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import DeckViewer from './components/DeckViewer'
 import ModuleHome from './components/ModuleHome'
 import HubHome from './components/HubHome'
+import RegisterScreen from './components/RegisterScreen'
 import { WorkbookProvider } from './workbook/WorkbookContext'
 import { ProgressProvider, useProgressStore } from './progress/ProgressContext'
 import { AccessProvider } from './access/AccessContext'
+import { loadMemberProfile, type MemberProfile } from './access/memberProfile'
 import { modules } from './data/modules'
 
 type View =
@@ -89,6 +91,40 @@ function ModuleShell({
   )
 }
 
+// Reads the funnel handoff (ProgramScreen.tsx's openModulesHub appends
+// ?name=&email=&whatsapp= when it opens the Hub) so RegisterScreen can be
+// pre-filled instead of asking someone to retype what they already told
+// the funnel's lead form. Empty on a direct/bookmarked visit.
+function readQueryProfile(): MemberProfile {
+  try {
+    const params = new URLSearchParams(window.location.search)
+    return {
+      name: params.get('name') ?? '',
+      email: params.get('email') ?? '',
+      whatsapp: params.get('whatsapp') ?? '',
+    }
+  } catch {
+    return { name: '', email: '', whatsapp: '' }
+  }
+}
+
+// The whole-Hub gate (Bro Rono's Aug 26 2026 decision: register blocks
+// entry to everything, including the previously-open Module 1 — not just
+// the paid-unlock moment). Skips straight through for a returning
+// browser that already has a saved member profile (memberProfile.ts),
+// so this only shows once per device. Lives inside AccessProvider (see
+// App() below) because RegisterScreen needs useAccess()'s
+// setCustomerEmail to also arm the purchase-lookup identity on submit.
+function RegisterGate({ children }: { children: ReactNode }) {
+  const [isRegistered, setIsRegistered] = useState(() => loadMemberProfile().email.trim().length > 0)
+
+  if (!isRegistered) {
+    return <RegisterScreen initialProfile={readQueryProfile()} onRegistered={() => setIsRegistered(true)} />
+  }
+
+  return <>{children}</>
+}
+
 function AppShell() {
   const [view, setView] = useState<View>({ level: 'hub' })
 
@@ -141,7 +177,9 @@ function AppShell() {
 function App() {
   return (
     <AccessProvider>
-      <AppShell />
+      <RegisterGate>
+        <AppShell />
+      </RegisterGate>
     </AccessProvider>
   )
 }
