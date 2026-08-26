@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import LandingScreen from './components/LandingScreen'
 import QuizScreen from './components/QuizScreen'
 import ReportScreen from './components/ReportScreen'
@@ -15,6 +15,16 @@ function App() {
   const [screen, setScreen] = useState<Screen>('landing')
   const [lead, setLead] = useState<Lead | null>(null)
   const [result, setResult] = useState<DiagnosticResult | null>(null)
+  // Bug fix (Aug 26): handleLeadCaptured and handleQuizComplete fire
+  // back-to-back synchronously (QuizScreen's handleLeadSubmit calls
+  // onLeadCaptured then onComplete in the same event). setLead()'s update
+  // isn't visible yet when handleQuizComplete's closure reads `lead`, so
+  // `if (lead)` was always false and submitDiagnosticResponses never ran —
+  // for anyone. A ref updates synchronously, so leadRef.current is always
+  // current by the time handleQuizComplete reads it. `lead` state is kept
+  // as-is for rendering (ReportScreen/ProgramScreen), since by the time
+  // those render the state update has flushed.
+  const leadRef = useRef<Lead | null>(null)
 
   const handleStart = () => {
     trackCustomEvent('QuizStarted')
@@ -23,6 +33,7 @@ function App() {
   }
 
   const handleLeadCaptured = (capturedLead: Lead) => {
+    leadRef.current = capturedLead
     setLead(capturedLead)
     submitLead(capturedLead)
     trackEvent('Lead', { content_name: 'Asesmen 13 Titik Kebocoran Bisnis' })
@@ -31,7 +42,7 @@ function App() {
   const handleQuizComplete = (answers: Record<number, number>) => {
     const computed = computeDiagnosticResult(answers)
     setResult(computed)
-    if (lead) submitDiagnosticResponses(lead, computed)
+    if (leadRef.current) submitDiagnosticResponses(leadRef.current, computed)
     trackCustomEvent('QuizCompleted', { averageMaturity: computed.averageMaturity })
     setScreen('report')
     window.scrollTo({ top: 0 })
