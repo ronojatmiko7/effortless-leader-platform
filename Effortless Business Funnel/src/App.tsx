@@ -5,6 +5,7 @@ import ReportScreen from './components/ReportScreen'
 import ProgramScreen from './components/ProgramScreen'
 import { computeDiagnosticResult } from './lib/scoring'
 import { submitDiagnosticResponses, submitLead } from './lib/submitLead'
+import { trackEvent, trackCustomEvent } from './lib/pixel'
 import type { DiagnosticResult } from './types/diagnostic'
 import type { Lead } from './types/lead'
 
@@ -16,6 +17,7 @@ function App() {
   const [result, setResult] = useState<DiagnosticResult | null>(null)
 
   const handleStart = () => {
+    trackCustomEvent('QuizStarted')
     setScreen('quiz')
     window.scrollTo({ top: 0 })
   }
@@ -23,12 +25,14 @@ function App() {
   const handleLeadCaptured = (capturedLead: Lead) => {
     setLead(capturedLead)
     submitLead(capturedLead)
+    trackEvent('Lead', { content_name: 'Asesmen 13 Titik Kebocoran Bisnis' })
   }
 
   const handleQuizComplete = (answers: Record<number, number>) => {
     const computed = computeDiagnosticResult(answers)
     setResult(computed)
     if (lead) submitDiagnosticResponses(lead, computed)
+    trackCustomEvent('QuizCompleted', { averageMaturity: computed.averageMaturity })
     setScreen('report')
     window.scrollTo({ top: 0 })
   }
