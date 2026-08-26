@@ -19,6 +19,29 @@ export const FREE_LAUNCH_MODE = true
 
 export const CREATE_CHECKOUT_URL = `${SUPABASE_FUNCTIONS_BASE}/create-checkout`
 export const CHECK_ACCESS_URL = `${SUPABASE_FUNCTIONS_BASE}/check-access`
+
+// Scalev checkout pages, one per sellable product. Each is a static URL
+// built in the Scalev dashboard (Sales Page -> Checkout Page, per
+// dev.scalev.com/docs/sell-one-time-software-with-scalev) -- NOT created
+// dynamically by this app, unlike the old Xendit create-checkout flow.
+// Scalev's own checkout page collects the customer's email; our side only
+// needs to know where to send them. The payment webhook
+// (Edge Function scalev-webhook) is what actually grants access afterward.
+//
+// Fill each in once its Scalev checkout page exists. BuyButton shows a
+// "Segera hadir" disabled state for any product still mapped to ''.
+export const SCALEV_CHECKOUT_URLS: Record<string, string> = {
+  'module-2': '',
+  'module-3': '',
+  'module-4': '',
+  'module-5': '',
+  'module-6': '',
+  'module-7': '',
+  'module-8': '',
+  'module-9': '',
+  'bundle-all': '',
+  'coaching-package': '',
+}
 export const SUBMIT_TESTIMONIAL_URL = `${SUPABASE_FUNCTIONS_BASE}/submit-testimonial`
 export const LIST_PUBLIC_TESTIMONIALS_URL = `${SUPABASE_FUNCTIONS_BASE}/list-public-testimonials`
 
