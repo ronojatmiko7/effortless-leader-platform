@@ -1,9 +1,12 @@
-import { ArrowLeft, Award, CheckCircle2, ChevronRight, Flag, Lock } from 'lucide-react'
+import { ArrowLeft, Award, CheckCircle2, ChevronRight, Lock } from 'lucide-react'
 import type { ChapterMeta } from '../content/module-1/chapters'
 import { useProgressStore } from '../progress/ProgressContext'
+import BuyButton from './BuyButton'
+import { MODULE_PRICE_DISCOUNTED_IDR, MODULE_PRICE_ORIGINAL_IDR } from '../config/paymentConfig'
 
 interface ModuleHomeProps {
   moduleTitle: string
+  moduleNumber: number
   coverImage: string
   chapters: ChapterMeta[]
   onSelectChapter: (chapterId: string) => void
@@ -20,12 +23,13 @@ function chapterLabel(chapter: ChapterMeta) {
 
 export default function ModuleHome({
   moduleTitle,
+  moduleNumber,
   coverImage,
   chapters,
   onSelectChapter,
   onBackToHub,
 }: ModuleHomeProps) {
-  const { isChapterComplete, isChapterUnlocked } = useProgressStore()
+  const { isChapterComplete, isChapterUnlocked, isChapterLockedByPurchase } = useProgressStore()
 
   // The intro/outro entries are real chapters in the list (10 total: intro,
   // Bab 1-8, outro) but deliberately don't count toward the "X dari 8 bab
@@ -70,73 +74,96 @@ export default function ModuleHome({
           {chapters.map((chapter, index) => {
             const completed = isChapterComplete(chapter.id)
             const unlocked = isChapterUnlocked(chapter.id)
+            const lockedByPurchase = isChapterLockedByPurchase(chapter.id)
             const previousChapter = index > 0 ? chapters[index - 1] : null
 
             return (
-              <button
+              <div
                 key={chapter.id}
-                type="button"
-                disabled={!unlocked}
-                onClick={() => unlocked && onSelectChapter(chapter.id)}
-                className={`flex items-start gap-4 rounded-2xl border p-4 text-left transition sm:p-5 ${
+                className={`flex flex-col gap-3 rounded-2xl border p-4 text-left transition sm:p-5 ${
                   completed
-                    ? 'border-emerald-200 bg-emerald-50 hover:bg-emerald-100'
+                    ? 'border-emerald-200 bg-emerald-50'
                     : unlocked
-                      ? 'cursor-pointer border-slate-200 bg-white shadow-sm hover:border-brand-300 hover:bg-brand-50'
-                      : 'cursor-not-allowed border-slate-100 bg-slate-100 opacity-60'
+                      ? 'border-slate-200 bg-white shadow-sm'
+                      : lockedByPurchase
+                        ? 'border-brand-200 bg-brand-50/40'
+                        : 'border-slate-100 bg-slate-100 opacity-60'
                 }`}
               >
-                <div
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
-                    completed
-                      ? 'bg-emerald-600 text-white'
-                      : unlocked
-                        ? 'bg-brand-100 text-brand-700'
-                        : 'bg-slate-200 text-slate-400'
+                <button
+                  type="button"
+                  disabled={!unlocked}
+                  onClick={() => unlocked && onSelectChapter(chapter.id)}
+                  className={`flex items-start gap-4 text-left ${
+                    unlocked ? 'cursor-pointer' : 'cursor-not-allowed'
                   }`}
                 >
-                  {completed ? (
-                    <CheckCircle2 className="h-5 w-5" />
-                  ) : unlocked ? (
-                    chapter.kind === 'intro' ? (
-                      <Flag className="h-4 w-4" />
-                    ) : chapter.kind === 'outro' ? (
-                      <Award className="h-4 w-4" />
-                    ) : (
-                      chapter.number
-                    )
-                  ) : (
-                    <Lock className="h-4 w-4" />
-                  )}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                    {chapterLabel(chapter)}
-                  </p>
-                  <h2
-                    className={`text-base font-bold sm:text-lg ${unlocked ? 'text-slate-900' : 'text-slate-500'}`}
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
+                      completed
+                        ? 'bg-emerald-600 text-white'
+                        : unlocked
+                          ? 'bg-brand-100 text-brand-700'
+                          : 'bg-slate-200 text-slate-400'
+                    }`}
                   >
-                    {chapter.title}
-                  </h2>
-                  <p
-                    className={`mt-1 text-sm leading-relaxed ${unlocked ? 'text-slate-600' : 'text-slate-400'}`}
-                  >
-                    {chapter.description}
-                  </p>
-                  <p className="mt-2 text-xs font-semibold">
                     {completed ? (
-                      <span className="text-emerald-700">Selesai — klik untuk membuka lagi</span>
+                      <CheckCircle2 className="h-5 w-5" />
                     ) : unlocked ? (
-                      <span className="text-brand-600">Terbuka · Lanjutkan</span>
+                      chapter.kind === 'intro' ? (
+                        <Award className="h-4 w-4" />
+                      ) : chapter.kind === 'outro' ? (
+                        <Award className="h-4 w-4" />
+                      ) : (
+                        chapter.number
+                      )
                     ) : (
-                      <span className="text-slate-400">
-                        Selesaikan {previousChapter ? chapterLabel(previousChapter) : 'bab sebelumnya'} dulu
-                      </span>
+                      <Lock className="h-4 w-4" />
                     )}
-                  </p>
-                </div>
-                {unlocked && <ChevronRight className="mt-1 h-5 w-5 shrink-0 text-slate-300" />}
-              </button>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                      {chapterLabel(chapter)}
+                    </p>
+                    <h2
+                      className={`text-base font-bold sm:text-lg ${unlocked ? 'text-slate-900' : 'text-slate-500'}`}
+                    >
+                      {chapter.title}
+                    </h2>
+                    <p
+                      className={`mt-1 text-sm leading-relaxed ${unlocked ? 'text-slate-600' : 'text-slate-400'}`}
+                    >
+                      {chapter.description}
+                    </p>
+                    <p className="mt-2 text-xs font-semibold">
+                      {completed ? (
+                        <span className="text-emerald-700">Selesai — klik untuk membuka lagi</span>
+                      ) : unlocked ? (
+                        <span className="text-brand-600">Terbuka · Lanjutkan</span>
+                      ) : lockedByPurchase ? (
+                        <span className="text-brand-600">Beli modul ini untuk melanjutkan</span>
+                      ) : (
+                        <span className="text-slate-400">
+                          Selesaikan {previousChapter ? chapterLabel(previousChapter) : 'bab sebelumnya'} dulu
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  {unlocked && <ChevronRight className="mt-1 h-5 w-5 shrink-0 text-slate-300" />}
+                </button>
+
+                {/* Purchase-gated (not sequentially-gated) chapter: offer the
+                    buy CTA right here instead of a dead end. */}
+                {lockedByPurchase && (
+                  <BuyButton
+                    product={`module-${moduleNumber}`}
+                    label={moduleTitle}
+                    amountIdr={MODULE_PRICE_DISCOUNTED_IDR}
+                    originalAmountIdr={MODULE_PRICE_ORIGINAL_IDR}
+                    className="border-t border-brand-100 pt-3"
+                  />
+                )}
+              </div>
             )
           })}
         </div>

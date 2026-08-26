@@ -11,24 +11,23 @@ import {
   X,
 } from 'lucide-react'
 import { modules, type ModuleMeta } from '../data/modules'
-import { hasModuleAccess } from '../access/moduleAccess'
+import { useAccess } from '../access/AccessContext'
 import { loadMemberProfile, saveMemberProfile, type MemberProfile } from '../access/memberProfile'
 import type { CompletedChapters } from '../progress/ProgressContext'
 import Logo from './Logo'
+import BuyButton from './BuyButton'
+import {
+  BUNDLE_PRICE_DISCOUNTED_IDR,
+  BUNDLE_PRICE_ORIGINAL_IDR,
+  FREE_LAUNCH_MODE,
+  MODULE_PRICE_DISCOUNTED_IDR,
+  MODULE_PRICE_ORIGINAL_IDR,
+  formatIdr,
+} from '../config/paymentConfig'
 
 interface HubHomeProps {
   onSelectModule: (moduleId: string) => void
 }
-
-// TODO: replace with real per-module pricing once the entitlement/purchase
-// backend lands (see funnel-launch-checklist.md section 4-5). Module 1 is
-// always free; Modules 2-9 are Rp499rb slashed to Rp199rb standalone, or the
-// 8-module bundle is Rp3.992rb slashed to Rp999rb (bundle price/UI not shown
-// here yet — no checkout page exists for it). Anchor price shown alongside
-// the discounted one (anchoring bias) rather than just the flat discounted
-// number, per Bro Rono's pricing decision (Aug 24, 2026).
-const MODULE_PRICE_ORIGINAL = 'Rp499rb'
-const MODULE_PRICE_DISCOUNTED = 'Rp199rb'
 
 // Groups modules into a learning-path narrative for the hub page only.
 // Doesn't touch chapter unlock order, access rules, or module content.
@@ -61,29 +60,32 @@ function readCompletedCount(module: ModuleMeta): number {
 
 interface ModuleProgress {
   module: ModuleMeta
-  unlocked: boolean
+  fullAccess: boolean
   completed: number
   total: number
   pct: number
 }
 
-function buildProgress(): ModuleProgress[] {
+// Bab 1 of every module previews free (see moduleAccess.ts), so a module
+// card is ALWAYS enterable now — `fullAccess` only controls the badge/cover
+// styling, not whether clicking works. See PAYMENT_GATEWAY_INTEGRATION_PLAN.md
+// section 2.0.
+function buildProgress(hasFullModuleAccess: (moduleNumber: number) => boolean): ModuleProgress[] {
   return modules.map((module) => {
-    const unlocked = hasModuleAccess(module.number)
-    const completed = unlocked ? readCompletedCount(module) : 0
+    const fullAccess = hasFullModuleAccess(module.number)
+    const completed = readCompletedCount(module)
     const total = realChapters(module).length
-    return { module, unlocked, completed, total, pct: total > 0 ? Math.round((completed / total) * 100) : 0 }
+    return { module, fullAccess, completed, total, pct: total > 0 ? Math.round((completed / total) * 100) : 0 }
   })
 }
 
-// Continue-learning target: first unlocked module that's genuinely partway
-// through (started but not finished). Returns null when nothing is in
+// Continue-learning target: first module that's genuinely partway through
+// (started but not finished) — regardless of full-access, since Bab 1 alone
+// can put a module "in progress" now. Returns null when nothing is in
 // progress — the card is meant to resume a module, not prompt a fresh
-// start, so there's no "not started yet" fallback. Hub-only convenience —
-// this links to the module's own chapter list (ModuleHome), it doesn't
-// jump straight into a chapter deck.
+// start.
 function findContinueTarget(items: ModuleProgress[]): ModuleProgress | null {
-  return items.find((item) => item.unlocked && item.completed > 0 && item.completed < item.total) ?? null
+  return items.find((item) => item.completed > 0 && item.completed < item.total) ?? null
 }
 
 export default function HubHome({ onSelectModule }: HubHomeProps) {
@@ -91,9 +93,12 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
   const [member, setMember] = useState<MemberProfile>(() => loadMemberProfile())
   const [isEditingProfile, setIsEditingProfile] = useState(false)
   const [profileDraft, setProfileDraft] = useState<MemberProfile>(member)
-  const items = buildProgress()
-  const unlockedCount = items.filter((item) => item.unlocked).length
+  const { hasFullModuleAccess, purchasedProducts, setCustomerEmail } = useAccess()
+  const items = buildProgress(hasFullModuleAccess)
+  const ownedCount = items.filter((item) => item.fullAccess).length
   const displayName = member.name.trim().length > 0 ? member.name : 'Member Area'
+  const hasBundleOrCoaching =
+    purchasedProducts.includes('bundle-all') || purchasedProducts.includes('coaching-package')
 
   const openProfileEdit = () => {
     setProfileDraft(member)
@@ -107,6 +112,13 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
     saveMemberProfile(profileDraft)
     setMember(profileDraft)
     setIsEditingProfile(false)
+    // The member profile's email doubles as the purchase-lookup identity
+    // (see access/customerIdentity.ts) — saving it here also re-checks
+    // access, so someone who already paid sees their modules unlock the
+    // moment they fill this in, with no separate "login" step.
+    if (profileDraft.email.trim().length > 0) {
+      setCustomerEmail(profileDraft.email)
+    }
   }
   const totalCompleted = items.reduce((sum, item) => sum + item.completed, 0)
   const totalChapters = items.reduce((sum, item) => sum + item.total, 0)
@@ -137,9 +149,10 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
         </header>
 
         {/* Member area — name/email/WhatsApp are saved locally in the
-            browser (see access/memberProfile.ts), there's no real account
-            behind this yet so there's no password field. Modules-owned
-            count is real, computed from hasModuleAccess. */}
+            browser (see access/memberProfile.ts). Email is also what
+            unlocks purchased modules (see access/customerIdentity.ts) —
+            there's still no password, "logging in" is just typing the
+            email you paid with. */}
         <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
@@ -148,7 +161,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
             <div className="min-w-0 flex-1">
               <p className="text-sm font-bold text-slate-900">{displayName}</p>
               <p className="text-xs text-slate-500">
-                {unlockedCount} dari {items.length} modul dimiliki
+                {ownedCount} dari {items.length} modul dimiliki
               </p>
             </div>
             <button
@@ -174,7 +187,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
                 />
               </label>
               <label className="flex flex-col gap-1 text-xs font-semibold text-slate-500">
-                Email
+                Email {'(dipakai untuk mengecek modul yang sudah dibeli)'}
                 <input
                   type="email"
                   value={profileDraft.email}
@@ -211,6 +224,38 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
             </form>
           )}
         </div>
+
+        {/* Bundle promo — hidden once the customer already owns everything
+            (bundle or a coaching-package entitlement). Individual-module
+            buying happens inline on ModuleHome once someone hits a
+            paywalled chapter; this is the "just buy it all" shortcut. */}
+        {!hasBundleOrCoaching && (
+          <div className="flex flex-col gap-3 rounded-2xl border border-brand-200 bg-brand-50 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
+                {FREE_LAUNCH_MODE ? 'Peluncuran terbatas' : 'Hemat paling banyak'}
+              </p>
+              <h2 className="text-base font-bold text-slate-900 sm:text-lg">Bundle 8 Modul (Modul 2-9)</h2>
+              <p className="mt-1 text-xs text-slate-500">
+                {FREE_LAUNCH_MODE ? (
+                  'Semua modul terbuka gratis untuk semua peserta selama masa peluncuran ini.'
+                ) : (
+                  <>
+                    Buka semua modul sekaligus, hemat{' '}
+                    {formatIdr(MODULE_PRICE_DISCOUNTED_IDR * 8 - BUNDLE_PRICE_DISCOUNTED_IDR)} dibanding beli satuan.
+                  </>
+                )}
+              </p>
+            </div>
+            <BuyButton
+              product="bundle-all"
+              label="Bundle 8 Modul"
+              amountIdr={BUNDLE_PRICE_DISCOUNTED_IDR}
+              originalAmountIdr={BUNDLE_PRICE_ORIGINAL_IDR}
+              className="sm:w-64"
+            />
+          </div>
+        )}
 
         {/* Search */}
         <div className="relative">
@@ -311,28 +356,25 @@ function ModuleCard({
   sectionName: string
   onSelectModule: (moduleId: string) => void
 }) {
-  const { module, unlocked, completed, total, pct } = item
-  const isComplete = unlocked && total > 0 && completed === total
+  const { module, fullAccess, completed, total, pct } = item
+  const isComplete = fullAccess && total > 0 && completed === total
 
   return (
     <button
       type="button"
-      disabled={!unlocked}
-      onClick={() => unlocked && onSelectModule(module.id)}
-      className={`group flex flex-col overflow-hidden rounded-2xl border text-left transition ${
-        unlocked
-          ? 'cursor-pointer border-slate-200 bg-white shadow-sm hover:-translate-y-0.5 hover:shadow-lg'
-          : 'cursor-not-allowed border-slate-200 bg-white shadow-sm'
-      }`}
+      onClick={() => onSelectModule(module.id)}
+      className="group flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
     >
       {/* Cover art — sized to the image's own 4:3 ratio (1448x1086) so the
           full branded title-card (logo, MODUL N pill, title, illustration)
           shows uncropped at any card width, instead of being forced into a
-          fixed h-32/h-36 slot. */}
-      <div className={`relative aspect-[4/3] w-full overflow-hidden ${unlocked ? '' : 'grayscale'}`}>
+          fixed h-32/h-36 slot. Grayscale/lock badge now just signals
+          "not fully unlocked yet" — the card is still clickable, since
+          Bab 1 always previews free. */}
+      <div className={`relative aspect-[4/3] w-full overflow-hidden ${fullAccess ? '' : 'grayscale'}`}>
         <img src={module.coverImage} alt={module.title} className="h-full w-full object-cover" />
 
-        {!unlocked && (
+        {!fullAccess && (
           <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40">
             <Lock className="h-6 w-6 text-white" />
           </div>
@@ -350,16 +392,16 @@ function ModuleCard({
           <p className="text-[11px] font-semibold italic text-slate-400">
             {sectionName} &middot; Modul {module.number}
           </p>
-          <h2 className={`mt-0.5 text-base font-bold sm:text-lg ${unlocked ? 'text-slate-900' : 'text-slate-700'}`}>
+          <h2 className={`mt-0.5 text-base font-bold sm:text-lg ${fullAccess ? 'text-slate-900' : 'text-slate-700'}`}>
             {module.title}
           </h2>
-          <p className={`mt-1 line-clamp-2 text-sm leading-relaxed ${unlocked ? 'text-slate-600' : 'text-slate-500'}`}>
+          <p className={`mt-1 line-clamp-2 text-sm leading-relaxed ${fullAccess ? 'text-slate-600' : 'text-slate-500'}`}>
             {module.description}
           </p>
         </div>
 
         <div className="mt-auto flex flex-col gap-2">
-          {unlocked && (
+          {(fullAccess || completed > 0) && (
             <div className="flex flex-col gap-1">
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
                 <div className="h-full rounded-full bg-brand-500 transition-all" style={{ width: `${pct}%` }} />
@@ -372,15 +414,15 @@ function ModuleCard({
 
           <span
             className={`inline-flex items-center justify-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-bold ${
-              !unlocked ? 'bg-brand-500 text-white shadow-sm' : isComplete ? 'bg-brand-50 text-brand-700' : 'bg-slate-900 text-white'
+              !fullAccess ? 'bg-brand-500 text-white shadow-sm' : isComplete ? 'bg-brand-50 text-brand-700' : 'bg-slate-900 text-white'
             }`}
           >
-            {!unlocked ? (
+            {!fullAccess ? (
               <>
                 <ShoppingBag className="h-3.5 w-3.5" />
-                Buka modul ini &middot;{' '}
-                <span className="line-through opacity-60">{MODULE_PRICE_ORIGINAL}</span>{' '}
-                {MODULE_PRICE_DISCOUNTED}
+                Bab 1 gratis &middot;{' '}
+                <span className="line-through opacity-60">{formatIdr(MODULE_PRICE_ORIGINAL_IDR)}</span>{' '}
+                {formatIdr(MODULE_PRICE_DISCOUNTED_IDR)}
               </>
             ) : isComplete ? (
               <>

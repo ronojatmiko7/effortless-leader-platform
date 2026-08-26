@@ -4,8 +4,8 @@ import ModuleHome from './components/ModuleHome'
 import HubHome from './components/HubHome'
 import { WorkbookProvider } from './workbook/WorkbookContext'
 import { ProgressProvider, useProgressStore } from './progress/ProgressContext'
+import { AccessProvider } from './access/AccessContext'
 import { modules } from './data/modules'
-import { hasModuleAccess } from './access/moduleAccess'
 
 type View =
   | { level: 'hub' }
@@ -16,12 +16,14 @@ const chapterHref = (chapterId: string) => `#${chapterId}`
 
 function ModuleShell({
   moduleId,
+  moduleNumber,
   view,
   onBackToHub,
   onSelectChapter,
   onDeckComplete,
 }: {
   moduleId: string
+  moduleNumber: number
   view: View
   onBackToHub: () => void
   onSelectChapter: (chapterId: string) => void
@@ -38,6 +40,7 @@ function ModuleShell({
       return (
         <ModuleHome
           moduleTitle={module.title}
+          moduleNumber={moduleNumber}
           coverImage={module.coverImage}
           chapters={module.chapters}
           onSelectChapter={onSelectChapter}
@@ -76,6 +79,7 @@ function ModuleShell({
   return (
     <ModuleHome
       moduleTitle={module.title}
+      moduleNumber={moduleNumber}
       coverImage={module.coverImage}
       chapters={module.chapters}
       onSelectChapter={onSelectChapter}
@@ -84,12 +88,17 @@ function ModuleShell({
   )
 }
 
-function App() {
+function AppShell() {
   const [view, setView] = useState<View>({ level: 'hub' })
 
+  // Entry into a module is no longer gated at all — Bab 1 (and the intro)
+  // preview free for everyone, so the only reason to bail here is an
+  // unknown module id. The actual paywall lives per-chapter now, inside
+  // ProgressContext's isChapterUnlocked/isChapterLockedByPurchase (see
+  // PAYMENT_GATEWAY_INTEGRATION_PLAN.md section 2.0).
   const handleSelectModule = (moduleId: string) => {
     const module = modules.find((candidate) => candidate.id === moduleId)
-    if (!module || !hasModuleAccess(module.number)) return
+    if (!module) return
     setView({ level: 'module-home', moduleId })
   }
 
@@ -100,7 +109,7 @@ function App() {
   }
 
   const module = modules.find((candidate) => candidate.id === view.moduleId)
-  if (!module || !hasModuleAccess(module.number)) {
+  if (!module) {
     return <HubHome onSelectModule={handleSelectModule} />
   }
 
@@ -114,13 +123,10 @@ function App() {
 
   return (
     <WorkbookProvider key={module.id} moduleId={module.id}>
-      <ProgressProvider
-        key={module.id}
-        moduleId={module.id}
-        chapterIds={module.chapters.map((chapter) => chapter.id)}
-      >
+      <ProgressProvider key={module.id} moduleId={module.id} moduleNumber={module.number} chapters={module.chapters}>
         <ModuleShell
           moduleId={module.id}
+          moduleNumber={module.number}
           view={view}
           onBackToHub={handleBackToHub}
           onSelectChapter={handleSelectChapter}
@@ -128,6 +134,14 @@ function App() {
         />
       </ProgressProvider>
     </WorkbookProvider>
+  )
+}
+
+function App() {
+  return (
+    <AccessProvider>
+      <AppShell />
+    </AccessProvider>
   )
 }
 

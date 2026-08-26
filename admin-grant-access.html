@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<title>Admin Dashboard — Effortless Business (internal only)</title>
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0f172a;
+    padding: 24px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  h1 { font-size: 20px; margin: 0; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  .card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .warn {
+    font-size: 12px;
+    color: #92400e;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 8px 10px;
+    line-height: 1.5;
+  }
+  label { display: block; font-size: 12px; font-weight: 700; color: #64748b; margin-top: 12px; margin-bottom: 4px; }
+  input, select, textarea {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    background: white;
+  }
+  input:focus, select:focus, textarea:focus { border-color: #fb923c; box-shadow: 0 0 0 3px rgba(251,146,60,0.15); }
+  button {
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12.5px;
+    cursor: pointer;
+    padding: 8px 16px;
+  }
+  button.primary { background: #ea580c; color: white; }
+  button.primary:hover:not(:disabled) { background: #c2410c; }
+  button.ghost { background: #f1f5f9; color: #334155; }
+  button.ghost:hover:not(:disabled) { background: #e2e8f0; }
+  button.danger { background: #fef2f2; color: #b91c1c; }
+  button.danger:hover:not(:disabled) { background: #fee2e2; }
+  button:disabled { opacity: 0.55; cursor: not-allowed; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .grant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .grant-grid > div { grid-column: span 1; }
+  .full { grid-column: 1 / -1; }
+  #grantResult, #dataError { margin-top: 10px; font-size: 12.5px; font-weight: 600; white-space: pre-wrap; word-break: break-word; }
+  .ok { color: #15803d; }
+  .err { color: #b91c1c; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  th { color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.02em; }
+  tr:hover td { background: #fafafa; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+  .pill.paid { background: #dcfce7; color: #15803d; }
+  .pill.pending { background: #fef9c3; color: #854d0e; }
+  .pill.failed, .pill.expired { background: #fee2e2; color: #b91c1c; }
+  .pill.manual { background: #e0e7ff; color: #4338ca; }
+  .pill.xendit { background: #e0f2fe; color: #0369a1; }
+  .muted { color: #94a3b8; }
+  .table-wrap { overflow-x: auto; }
+  .edit-input { min-width: 110px; }
+  .search-box { max-width: 280px; }
+  .actions-cell { white-space: nowrap; display: flex; gap: 6px; }
+  .empty { padding: 20px; text-align: center; color: #94a3b8; font-size: 12.5px; }
+  details summary { cursor: pointer; color: #ea580c; font-weight: 700; font-size: 11.5px; }
+  pre.diag { white-space: pre-wrap; font-size: 11px; background: #f8fafc; border-radius: 8px; padding: 8px; margin-top: 6px; max-width: 360px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Admin Dashboard — Effortless Business</h1>
+  <div class="warn">
+    Internal tool only. Don't deploy this publicly or share the admin secret.
+    Everything here talks directly to the <code>purchases</code> and <code>leads</code>
+    tables on PerfOS via admin-only Edge Functions.
+  </div>
+
+  <div class="card">
+    <h2>Admin secret</h2>
+    <input type="password" id="secret" placeholder="ADMIN_GRANT_SECRET" autocomplete="off" />
+    <div class="row" style="margin-top:10px;">
+      <button class="primary" id="loadDataBtn">Load data</button>
+      <span class="muted" style="font-size:11.5px;">Saved in this browser after first successful use.</span>
+    </div>
+    <div id="dataError"></div>
+  </div>
+
+  <div class="card">
+    <h2>Grant access (permanent, free)</h2>
+    <div class="grant-grid">
+      <div><label for="gEmail">Customer email</label><input type="email" id="gEmail" placeholder="nama@email.com" /></div>
+      <div><label for="gWhatsapp">WhatsApp (optional)</label><input type="tel" id="gWhatsapp" placeholder="08xxxxxxxxxx" /></div>
+      <div><label for="gProduct">Grant</label>
+        <select id="gProduct">
+          <option value="bundle-all">Bundle — semua modul (2-9)</option>
+          <option value="module-2">Modul 2</option>
+          <option value="module-3">Modul 3</option>
+          <option value="module-4">Modul 4</option>
+          <option value="module-5">Modul 5</option>
+          <option value="module-6">Modul 6</option>
+          <option value="module-7">Modul 7</option>
+          <option value="module-8">Modul 8</option>
+          <option value="module-9">Modul 9</option>
+          <option value="coaching-package">Coaching package</option>
+        </select>
+      </div>
+      <div class="full"><label for="gNote">Note</label><textarea id="gNote" rows="2" placeholder="e.g. Beta reviewer, partner comp"></textarea></div>
+    </div>
+    <div class="row" style="margin-top:14px;">
+      <button class="primary" id="grantBtn">Grant access</button>
+    </div>
+    <div id="grantResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>Purchases <span class="muted" id="purchasesCount"></span></h2>
+    <div class="row">
+      <input type="text" id="purchasesSearch" class="search-box" placeholder="Cari email..." />
+      <button class="ghost" id="refreshBtn">Refresh</button>
+    </div>
+    <div class="table-wrap" style="margin-top:12px;">
+      <table id="purchasesTable">
+        <thead>
+          <tr>
+            <th>Email</th><th>WhatsApp</th><th>Product</th><th>Status</th><th>Source</th><th>Note</th><th>Dibuat</th><th>Dibayar</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="purchasesBody"></tbody>
+      </table>
+      <div class="empty" id="purchasesEmpty" style="display:none;">Belum ada data. Klik "Load data" di atas.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Leads <span class="muted" id="leadsCount"></span></h2>
+    <div class="row">
+      <input type="text" id="leadsSearch" class="search-box" placeholder="Cari nama/email..." />
+    </div>
+    <div class="table-wrap" style="margin-top:12px;">
+      <table id="leadsTable">
+        <thead>
+          <tr>
+            <th>Nama</th><th>Email</th><th>WhatsApp</th><th>Bisnis</th><th>Karyawan</th><th>Omzet</th><th>Diagnosis</th><th>Dibuat</th>
+          </tr>
+        </thead>
+        <tbody id="leadsBody"></tbody>
+      </table>
+      <div class="empty" id="leadsEmpty" style="display:none;">Belum ada data.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Points at the admin-only Edge Functions on the PerfOS Supabase
+  // project (see PAYMENT_GATEWAY_INTEGRATION_PLAN.md / payment-gateway-plan
+  // memory). All of these are gated by the same ADMIN_GRANT_SECRET —
+  // single-operator tool, no login system, see grant-access/index.ts's
+  // comment for the reasoning.
+  const BASE_URL = 'https://edodmmedehuuemnnmdri.supabase.co/functions/v1'
+  const SECRET_STORAGE_KEY = 'admin-grant-secret'
+
+  const PRODUCT_LABELS = {
+    'module-2': 'Modul 2', 'module-3': 'Modul 3', 'module-4': 'Modul 4', 'module-5': 'Modul 5',
+    'module-6': 'Modul 6', 'module-7': 'Modul 7', 'module-8': 'Modul 8', 'module-9': 'Modul 9',
+    'bundle-all': 'Bundle (2-9)', 'coaching-package': 'Coaching package',
+  }
+  const PRODUCT_OPTIONS = Object.keys(PRODUCT_LABELS)
+  const STATUS_OPTIONS = ['pending', 'paid', 'failed', 'expired']
+
+  const secretInput = document.getElementById('secret')
+  let state = { purchases: [], leads: [], editingId: null }
+
+  try {
+    const saved = window.localStorage.getItem(SECRET_STORAGE_KEY)
+    if (saved) secretInput.value = saved
+  } catch (e) { /* private mode etc. */ }
+
+  function secret() { return secretInput.value.trim() }
+  function rememberSecret() {
+    try { window.localStorage.setItem(SECRET_STORAGE_KEY, secret()) } catch (e) { /* ignore */ }
+  }
+  function esc(s) {
+    return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+  }
+  function fmtDate(iso) {
+    if (!iso) return '—'
+    const d = new Date(iso)
+    return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
+  }
+
+  async function callFn(name, body) {
+    const res = await fetch(BASE_URL + '/' + name, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + secret() },
+      body: JSON.stringify(body || {}),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      const msg = res.status === 401
+        ? 'Admin secret salah, atau belum di-set di Supabase (Edge Functions -> Manage secrets).'
+        : (data.error || res.status) + (data.detail ? ': ' + data.detail : '')
+      throw new Error(msg)
+    }
+    return data
+  }
+
+  async function loadData() {
+    const errEl = document.getElementById('dataError')
+    errEl.textContent = ''
+    if (!secret()) { errEl.textContent = 'Masukkan admin secret dulu.'; errEl.className = 'err'; return }
+    document.getElementById('loadDataBtn').disabled = true
+    try {
+      const data = await callFn('list-access', {})
+      rememberSecret()
+      state.purchases = data.purchases || []
+      state.leads = data.leads || []
+      renderPurchases()
+      renderLeads()
+    } catch (err) {
+      errEl.textContent = 'Gagal memuat data: ' + err.message
+      errEl.className = 'err'
+    } finally {
+      document.getElementById('loadDataBtn').disabled = false
+    }
+  }
+
+  function purchaseRowView(p) {
+    const statusClass = p.status
+    const sourceClass = p.source
+    return `
+      <td>${esc(p.customer_email)}</td>
+      <td>${esc(p.customer_whatsapp) || '<span class="muted">—</span>'}</td>
+      <td>${esc(PRODUCT_LABELS[p.product] || p.product)}</td>
+      <td><span class="pill ${statusClass}">${esc(p.status)}</span></td>
+      <td><span class="pill ${sourceClass}">${esc(p.source)}</span></td>
+      <td>${esc(p.note) || '<span class="muted">—</span>'}</td>
+      <td>${fmtDate(p.created_at)}</td>
+      <td>${fmtDate(p.paid_at)}</td>
+      <td class="actions-cell">
+        <button class="ghost" data-action="edit" data-id="${p.id}">Edit</button>
+        <button class="danger" data-action="revoke" data-id="${p.id}">Revoke</button>
+      </td>
+    `
+  }
+
+  function purchaseRowEdit(p) {
+    const productOptions = PRODUCT_OPTIONS.map((v) => `<option value="${v}" ${v === p.product ? 'selected' : ''}>${PRODUCT_LABELS[v]}</option>`).join('')
+    const statusOptions = STATUS_OPTIONS.map((v) => `<option value="${v}" ${v === p.status ? 'selected' : ''}>${v}</option>`).join('')
+    return `
+      <td><input class="edit-input" data-field="customer_email" value="${esc(p.customer_email)}" /></td>
+      <td><input class="edit-input" data-field="customer_whatsapp" value="${esc(p.customer_whatsapp || '')}" /></td>
+      <td><select class="edit-input" data-field="product">${productOptions}</select></td>
+      <td><select class="edit-input" data-field="status">${statusOptions}</select></td>
+      <td><span class="pill ${p.source}">${esc(p.source)}</span></td>
+      <td><input class="edit-input" data-field="note" value="${esc(p.note || '')}" /></td>
+      <td>${fmtDate(p.created_at)}</td>
+      <td>${fmtDate(p.paid_at)}</td>
+      <td class="actions-cell">
+        <button class="primary" data-action="save" data-id="${p.id}">Save</button>
+        <button class="ghost" data-action="cancel" data-id="${p.id}">Cancel</button>
+      </td>
+    `
+  }
+
+  function renderPurchases() {
+    const tbody = document.getElementById('purchasesBody')
+    const query = document.getElementById('purchasesSearch').value.trim().toLowerCase()
+    const rows = state.purchases.filter((p) => !query || (p.customer_email || '').toLowerCase().includes(query))
+    document.getElementById('purchasesCount').textContent = `(${rows.length} dari ${state.purchases.length})`
+    document.getElementById('purchasesEmpty').style.display = state.purchases.length === 0 ? 'block' : 'none'
+    tbody.innerHTML = rows.map((p) => `<tr data-row-id="${p.id}">${state.editingId === p.id ? purchaseRowEdit(p) : purchaseRowView(p)}</tr>`).join('')
+  }
+
+  function renderLeads() {
+    const tbody = document.getElementById('leadsBody')
+    const query = document.getElementById('leadsSearch').value.trim().toLowerCase()
+    const rows = state.leads.filter((l) =>
+      !query || (l.name || '').toLowerCase().includes(query) || (l.email || '').toLowerCase().includes(query),
+    )
+    document.getElementById('leadsCount').textContent = `(${rows.length} dari ${state.leads.length})`
+    document.getElementById('leadsEmpty').style.display = state.leads.length === 0 ? 'block' : 'none'
+    tbody.innerHTML = rows.map((l) => `
+      <tr>
+        <td>${esc(l.name) || '<span class="muted">—</span>'}</td>
+        <td>${esc(l.email)}</td>
+        <td>${esc(l.whatsapp) || '<span class="muted">—</span>'}</td>
+        <td>${esc(l.business_name) || '<span class="muted">—</span>'}</td>
+        <td>${esc(l.employee_count) || '<span class="muted">—</span>'}</td>
+        <td>${esc(l.annual_revenue) || '<span class="muted">—</span>'}</td>
+        <td>${l.diagnostic_result
+          ? `<details><summary>Lihat</summary><pre class="diag">${esc(JSON.stringify(l.diagnostic_result, null, 1))}</pre></details>`
+          : '<span class="muted">belum</span>'}</td>
+        <td>${fmtDate(l.created_at)}</td>
+      </tr>
+    `).join('')
+  }
+
+  document.getElementById('loadDataBtn').addEventListener('click', loadData)
+  document.getElementById('refreshBtn').addEventListener('click', loadData)
+  document.getElementById('purchasesSearch').addEventListener('input', renderPurchases)
+  document.getElementById('leadsSearch').addEventListener('input', renderLeads)
+
+  document.getElementById('grantBtn').addEventListener('click', async () => {
+    const resultEl = document.getElementById('grantResult')
+    const email = document.getElementById('gEmail').value.trim()
+    const whatsapp = document.getElementById('gWhatsapp').value.trim()
+    const product = document.getElementById('gProduct').value
+    const note = document.getElementById('gNote').value.trim()
+    if (!secret()) { resultEl.textContent = 'Masukkan admin secret dulu.'; resultEl.className = 'err'; return }
+    if (!email) { resultEl.textContent = 'Masukkan email customer.'; resultEl.className = 'err'; return }
+
+    document.getElementById('grantBtn').disabled = true
+    resultEl.textContent = 'Mengirim...'
+    resultEl.className = ''
+    try {
+      await callFn('grant-access', { email, whatsapp: whatsapp || undefined, product, note: note || undefined })
+      rememberSecret()
+      resultEl.textContent = `Berhasil! ${email} sekarang punya akses ke ${PRODUCT_LABELS[product]}.`
+      resultEl.className = 'ok'
+      document.getElementById('gEmail').value = ''
+      document.getElementById('gWhatsapp').value = ''
+      document.getElementById('gNote').value = ''
+      loadData()
+    } catch (err) {
+      resultEl.textContent = 'Gagal: ' + err.message
+      resultEl.className = 'err'
+    } finally {
+      document.getElementById('grantBtn').disabled = false
+    }
+  })
+
+  document.getElementById('purchasesBody').addEventListener('click', async (event) => {
+    const btn = event.target.closest('button[data-action]')
+    if (!btn) return
+    const id = btn.dataset.id
+    const action = btn.dataset.action
+
+    if (action === 'edit') {
+      state.editingId = id
+      renderPurchases()
+      return
+    }
+    if (action === 'cancel') {
+      state.editingId = null
+      renderPurchases()
+      return
+    }
+    if (action === 'revoke') {
+      const p = state.purchases.find((x) => x.id === id)
+      if (!confirm(`Yakin revoke akses "${PRODUCT_LABELS[p?.product] || p?.product}" untuk ${p?.customer_email}? Ini permanen.`)) return
+      try {
+        await callFn('revoke-access', { id })
+        state.purchases = state.purchases.filter((x) => x.id !== id)
+        renderPurchases()
+      } catch (err) {
+        alert('Gagal revoke: ' + err.message)
+      }
+      return
+    }
+    if (action === 'save') {
+      const row = document.querySelector(`tr[data-row-id="${id}"]`)
+      const fields = {}
+      row.querySelectorAll('[data-field]').forEach((el) => { fields[el.dataset.field] = el.value.trim() })
+      try {
+        await callFn('update-access', { id, ...fields })
+        const idx = state.purchases.findIndex((x) => x.id === id)
+        if (idx >= 0) state.purchases[idx] = { ...state.purchases[idx], ...fields }
+        state.editingId = null
+        renderPurchases()
+      } catch (err) {
+        alert('Gagal simpan: ' + err.message)
+      }
+      return
+    }
+  })
+</script>
+</body>
+</html>
