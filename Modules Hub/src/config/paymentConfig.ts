@@ -6,16 +6,25 @@
 // SUPABASE_FUNCTIONS_BASE if the backend ever moves to a different project.
 const SUPABASE_FUNCTIONS_BASE = 'https://edodmmedehuuemnnmdri.supabase.co/functions/v1'
 
-// TEMPORARY: everything is free while the Xendit business account is
-// still in verification (submitted Aug 26 2026, ~14-day review). While
-// true, AccessContext.tsx short-circuits every module to unlocked without
-// calling check-access, and BuyButton.tsx shows a "free during launch"
-// badge instead of a real checkout CTA. Flip to false once Xendit is
-// approved AND the 3 Supabase secrets (XENDIT_SECRET_KEY,
-// XENDIT_WEBHOOK_TOKEN, ADMIN_GRANT_SECRET) are set — the real
-// create-checkout/xendit-webhook/check-access flow is already built and
-// takes over automatically.
-export const FREE_LAUNCH_MODE = true
+// TEMPORARY: everything is free during the launch window, hardcoded to end
+// 31 August 2026 (WIB / Asia-Jakarta) -- confirmed by Bro Rono Aug 26 2026.
+// FREE_LAUNCH_MODE is computed from the current time, not a hand-flipped
+// boolean, so it turns itself off automatically the moment the cutoff
+// passes -- no redeploy needed. It's re-evaluated fresh every time this
+// module loads (page load / navigation), so a browser tab already open
+// when the cutoff passes will pick it up on its next reload, not live.
+//
+// While true, AccessContext.tsx short-circuits every module to unlocked
+// without calling check-access, and BuyButton.tsx shows a "free during
+// launch" badge instead of a real checkout CTA. Once it flips to false,
+// BuyButton switches to the Scalev checkout links in SCALEV_CHECKOUT_URLS
+// below -- if those aren't filled in yet by the cutoff, modules will show
+// as locked with no way to buy (a "Segera Hadir" badge), not an error, but
+// worth having Scalev ready before this date. See scalev-payment-
+// integration.md (project memory) for the Scalev setup checklist.
+export const FREE_LAUNCH_CUTOFF = new Date('2026-09-01T00:00:00+07:00')
+export const FREE_LAUNCH_END_DISPLAY = 'Senin, 31 Agustus 2026'
+export const FREE_LAUNCH_MODE = Date.now() < FREE_LAUNCH_CUTOFF.getTime()
 
 export const CREATE_CHECKOUT_URL = `${SUPABASE_FUNCTIONS_BASE}/create-checkout`
 export const CHECK_ACCESS_URL = `${SUPABASE_FUNCTIONS_BASE}/check-access`

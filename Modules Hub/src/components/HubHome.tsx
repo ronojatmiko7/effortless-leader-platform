@@ -17,6 +17,7 @@ import type { CompletedChapters } from '../progress/ProgressContext'
 import Logo from './Logo'
 import BuyButton from './BuyButton'
 import ConsultantStickyBar from './ConsultantStickyBar'
+import FreeLaunchBanner from './FreeLaunchBanner'
 import {
   BUNDLE_PRICE_DISCOUNTED_IDR,
   BUNDLE_PRICE_ORIGINAL_IDR,
@@ -166,6 +167,8 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
           <h1 className="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">Semua Modul Anda</h1>
           <p className="mt-2 text-sm text-slate-500">Pilih modul untuk lanjut belajar.</p>
         </header>
+
+        <FreeLaunchBanner />
 
         {/* Member area — name/email/WhatsApp are saved locally in the
             browser (see access/memberProfile.ts). Email is also what

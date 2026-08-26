@@ -3,6 +3,7 @@ import type { ChapterMeta } from '../content/module-1/chapters'
 import { useProgressStore } from '../progress/ProgressContext'
 import BuyButton from './BuyButton'
 import ConsultantStickyBar from './ConsultantStickyBar'
+import FreeLaunchBanner from './FreeLaunchBanner'
 import { MODULE_PRICE_DISCOUNTED_IDR, MODULE_PRICE_ORIGINAL_IDR } from '../config/paymentConfig'
 
 interface ModuleHomeProps {
@@ -70,6 +71,8 @@ export default function ModuleHome({
             />
           </div>
         </header>
+
+        <FreeLaunchBanner />
 
         <div className="flex flex-col gap-3">
           {chapters.map((chapter, index) => {

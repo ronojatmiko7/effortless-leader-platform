@@ -20,6 +20,7 @@ import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import masterCover from '../assets/covers/master-cover.png'
 import Logo from './Logo'
 import TestimonialsSection from './TestimonialsSection'
+import { FREE_LAUNCH_END_DISPLAY, FREE_LAUNCH_MODE } from '../config/freeLaunchConfig'
 import type { DiagnosticResult, FlaggedQuestion } from '../types/diagnostic'
 import type { Lead } from '../types/lead'
 
@@ -179,6 +180,15 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
             Kembali ke Laporan
           </button>
         </div>
+
+        {FREE_LAUNCH_MODE && (
+          <div className="mb-8 flex items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center text-xs font-semibold text-amber-800 sm:text-sm">
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <span>
+              Semua modul GRATIS sampai {FREE_LAUNCH_END_DISPLAY} — mulai 1 September, Modul 2-9 berbayar.
+            </span>
+          </div>
+        )}
 
         {/* 1-4. Hero: headline, subheadline, cover, app description */}
         <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -340,8 +350,10 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
                         <p className="text-sm font-bold text-slate-900">{mod.moduleName}</p>
                       </div>
                       <div className="shrink-0 text-right">
-                        {mod.module === module1.module ? (
-                          <span className="text-xs font-bold text-brand-600">Gratis</span>
+                        {mod.module === module1.module || FREE_LAUNCH_MODE ? (
+                          <span className="text-xs font-bold text-brand-600">
+                            {mod.module === module1.module ? 'Gratis' : 'Gratis (Peluncuran)'}
+                          </span>
                         ) : (
                           <div className="flex items-baseline gap-1.5">
                             <span className="text-xs text-slate-400 line-through">
@@ -376,22 +388,26 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
         {/* 9. Pricing / CTA */}
         <div className="rounded-2xl bg-brand-600 p-6 text-center shadow-sm sm:p-8">
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-brand-100">
-            Modul 1 Gratis Selamanya
+            {FREE_LAUNCH_MODE ? 'Peluncuran Terbatas' : 'Modul 1 Gratis Selamanya'}
           </p>
           <h2 className="mb-4 text-lg font-bold text-white sm:text-xl">
-            Mau Lebih Hemat? Beli Bundling 8 Modul Sekaligus
+            {FREE_LAUNCH_MODE ? 'Semua 9 Modul GRATIS Sampai ' + FREE_LAUNCH_END_DISPLAY : 'Mau Lebih Hemat? Beli Bundling 8 Modul Sekaligus'}
           </h2>
-          <div className="mb-2 flex items-baseline justify-center gap-2">
-            <span className="text-sm text-brand-200 line-through">{BUNDLE_ORIGINAL_PRICE}</span>
-            <span className="text-3xl font-bold text-white">{BUNDLE_PRICE}</span>
-          </div>
-          <p className="mb-5 text-xs font-semibold text-brand-100">
-            Hemat {BUNDLE_SAVINGS_LABEL} dibanding beli satuan
-          </p>
+          {!FREE_LAUNCH_MODE && (
+            <div className="mb-2 flex items-baseline justify-center gap-2">
+              <span className="text-sm text-brand-200 line-through">{BUNDLE_ORIGINAL_PRICE}</span>
+              <span className="text-3xl font-bold text-white">{BUNDLE_PRICE}</span>
+            </div>
+          )}
+          {!FREE_LAUNCH_MODE && (
+            <p className="mb-5 text-xs font-semibold text-brand-100">
+              Hemat {BUNDLE_SAVINGS_LABEL} dibanding beli satuan
+            </p>
+          )}
           <p className="mb-6 text-sm text-brand-100">
-            Dari total {BUNDLE_ORIGINAL_PRICE} kalau dibeli satuan, jadi cukup {BUNDLE_PRICE} lewat
-            bundel. Atau {PAID_MODULE_PRICE} per modul (dari {PAID_MODULE_ORIGINAL_PRICE}) kalau cuma
-            mau ambil yang paling relevan dulu. Harga dan pembelian ada di dalam Modules Hub.
+            {FREE_LAUNCH_MODE
+              ? `Semua modul, termasuk Modul 2-9, terbuka gratis untuk semua peserta sampai ${FREE_LAUNCH_END_DISPLAY}. Mulai 1 September, harganya ${PAID_MODULE_PRICE} per modul (dari ${PAID_MODULE_ORIGINAL_PRICE}) atau ${BUNDLE_PRICE} untuk bundel 8 modul (dari ${BUNDLE_ORIGINAL_PRICE}) — jadi manfaatkan sekarang selagi gratis.`
+              : `Dari total ${BUNDLE_ORIGINAL_PRICE} kalau dibeli satuan, jadi cukup ${BUNDLE_PRICE} lewat bundel. Atau ${PAID_MODULE_PRICE} per modul (dari ${PAID_MODULE_ORIGINAL_PRICE}) kalau cuma mau ambil yang paling relevan dulu. Harga dan pembelian ada di dalam Modules Hub.`}
           </p>
           <button
             type="button"
