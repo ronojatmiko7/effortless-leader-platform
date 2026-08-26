@@ -1,12 +1,14 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import DeckViewer from './components/DeckViewer'
 import ModuleHome from './components/ModuleHome'
 import HubHome from './components/HubHome'
 import RegisterScreen from './components/RegisterScreen'
+import Logo from './components/Logo'
 import { WorkbookProvider } from './workbook/WorkbookContext'
 import { ProgressProvider, useProgressStore } from './progress/ProgressContext'
-import { AccessProvider } from './access/AccessContext'
-import { loadMemberProfile, type MemberProfile } from './access/memberProfile'
+import { AccessProvider, useAccess } from './access/AccessContext'
+import { loadMemberProfile, saveMemberProfile, type MemberProfile } from './access/memberProfile'
+import { verifyMagicLink } from './access/magicLinkApi'
 import { modules } from './data/modules'
 
 type View =
@@ -108,18 +110,79 @@ function readQueryProfile(): MemberProfile {
   }
 }
 
-// The whole-Hub gate (Bro Rono's Aug 26 2026 decision: register blocks
-// entry to everything, including the previously-open Module 1 — not just
-// the paid-unlock moment). Skips straight through for a returning
-// browser that already has a saved member profile (memberProfile.ts),
-// so this only shows once per device. Lives inside AccessProvider (see
-// App() below) because RegisterScreen needs useAccess()'s
-// setCustomerEmail to also arm the purchase-lookup identity on submit.
-function RegisterGate({ children }: { children: ReactNode }) {
-  const [isRegistered, setIsRegistered] = useState(() => loadMemberProfile().email.trim().length > 0)
+function GateChecking() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-slate-50 px-4">
+      <Logo size="sm" />
+      <p className="text-sm text-slate-400">Memeriksa link masuk...</p>
+    </div>
+  )
+}
 
-  if (!isRegistered) {
-    return <RegisterScreen initialProfile={readQueryProfile()} onRegistered={() => setIsRegistered(true)} />
+type GateStatus = 'checking' | 'registered' | 'unregistered'
+
+// The whole-Hub gate (Bro Rono's Aug 26 2026 decision, later upgraded the
+// same day to real magic-link verification instead of a trusted typed-in
+// email): register blocks entry to everything, including the
+// previously-open Module 1 — not just the paid-unlock moment. Skips
+// straight through for a returning browser that already has a saved
+// member profile (memberProfile.ts), so RegisterScreen only shows once
+// per device — until it sees a fresh ?magic=TOKEN, which it verifies
+// server-side (verify-magic-link) before saving anything locally. Lives
+// inside AccessProvider (see App() below) because both the verified-link
+// path and RegisterScreen's own submit path need useAccess()'s
+// setCustomerEmail to also arm the purchase-lookup identity.
+function RegisterGate({ children }: { children: ReactNode }) {
+  const [status, setStatus] = useState<GateStatus>('checking')
+  const [linkError, setLinkError] = useState<string | null>(null)
+  const { setCustomerEmail } = useAccess()
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function run() {
+      const params = new URLSearchParams(window.location.search)
+      const token = params.get('magic')
+
+      if (token) {
+        const result = await verifyMagicLink(token)
+        // One-time token either way — strip it from the URL so a refresh
+        // doesn't try to replay it (it would just fail the second time,
+        // but this avoids the confusing error).
+        params.delete('magic')
+        const query = params.toString()
+        window.history.replaceState({}, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
+
+        if (cancelled) return
+
+        if (result.ok && result.profile) {
+          saveMemberProfile(result.profile)
+          await setCustomerEmail(result.profile.email)
+          setStatus('registered')
+        } else {
+          setLinkError('Link sudah kedaluwarsa atau sudah dipakai. Silakan minta link baru.')
+          setStatus('unregistered')
+        }
+        return
+      }
+
+      const existing = loadMemberProfile()
+      setStatus(existing.email.trim().length > 0 ? 'registered' : 'unregistered')
+    }
+
+    run()
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (status === 'checking') {
+    return <GateChecking />
+  }
+
+  if (status === 'unregistered') {
+    return <RegisterScreen initialProfile={readQueryProfile()} errorMessage={linkError} />
   }
 
   return <>{children}</>

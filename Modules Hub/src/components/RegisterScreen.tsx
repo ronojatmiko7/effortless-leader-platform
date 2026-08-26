@@ -1,43 +1,81 @@
 import { useState, type FormEvent } from 'react'
-import { ShieldCheck } from 'lucide-react'
+import { Mail, ShieldCheck } from 'lucide-react'
 import Logo from './Logo'
-import { useAccess } from '../access/AccessContext'
-import { saveMemberProfile, type MemberProfile } from '../access/memberProfile'
-import { registerMember } from '../access/registerApi'
+import type { MemberProfile } from '../access/memberProfile'
+import { requestMagicLink } from '../access/magicLinkApi'
 
 interface RegisterScreenProps {
   initialProfile: MemberProfile
-  onRegistered: () => void
+  errorMessage?: string | null
 }
 
-// The front door of the Hub (App.tsx's RegisterGate renders this before
-// anything else until a member profile is saved locally — Bro Rono's
-// Aug 26 2026 decision: gate the whole Hub, not just the paid-unlock
-// moment). Pre-filled from the funnel's ProgramScreen via URL query
-// params when someone arrives through "Buka Modules Hub" (see
-// ProgramScreen.tsx's openModulesHub) — most people just confirm instead
-// of retyping what they already told the funnel's lead form. A direct or
-// bookmarked visit arrives with empty params and gets a blank form.
-export default function RegisterScreen({ initialProfile, onRegistered }: RegisterScreenProps) {
+type Stage = 'form' | 'sent'
+
+// The front door of the Hub (App.tsx's RegisterGate renders this until a
+// magic-link click verifies a browser — Bro Rono's Aug 26 2026 decision:
+// real email verification, not just a trusted typed-in email, gates the
+// whole Hub including the previously-open Module 1). Pre-filled from the
+// funnel's ProgramScreen via URL query params when someone arrives
+// through "Buka Modules Hub" — most people just confirm instead of
+// retyping what they already told the funnel's lead form.
+//
+// Submitting sends a magic-link email (request-magic-link Edge Function)
+// and stops here — it does NOT admit anyone. RegisterGate is what
+// actually admits someone, on the follow-up page load when they click
+// the link in their inbox (?magic=TOKEN).
+export default function RegisterScreen({ initialProfile, errorMessage }: RegisterScreenProps) {
   const [draft, setDraft] = useState<MemberProfile>(initialProfile)
+  const [stage, setStage] = useState<Stage>('form')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { setCustomerEmail } = useAccess()
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const canSubmit = draft.name.trim().length > 0 && draft.email.trim().length > 3
 
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault()
+  const sendLink = async () => {
     if (!canSubmit || isSubmitting) return
     setIsSubmitting(true)
+    setSubmitError(null)
     const profile: MemberProfile = {
       name: draft.name.trim(),
       email: draft.email.trim(),
       whatsapp: draft.whatsapp.trim(),
     }
-    saveMemberProfile(profile)
-    await setCustomerEmail(profile.email)
-    void registerMember(profile)
-    onRegistered()
+    const result = await requestMagicLink(profile)
+    setIsSubmitting(false)
+    if (result.ok) {
+      setStage('sent')
+    } else {
+      setSubmitError('Gagal mengirim link. Coba lagi sebentar lagi.')
+    }
+  }
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    void sendLink()
+  }
+
+  if (stage === 'sent') {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 py-10">
+        <div className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+            <Mail className="h-6 w-6" />
+          </div>
+          <h1 className="mt-4 text-lg font-bold text-slate-900">Cek Email Anda</h1>
+          <p className="mt-2 text-sm text-slate-500">
+            Kami sudah kirim link masuk ke <span className="font-semibold text-slate-700">{draft.email}</span>. Klik
+            link di email itu untuk masuk ke Modules Hub. Link berlaku 30 menit dan hanya bisa dipakai sekali.
+          </p>
+          <button
+            type="button"
+            onClick={() => setStage('form')}
+            className="mt-4 text-xs font-bold text-brand-600 hover:underline"
+          >
+            Salah email? Ubah &amp; kirim ulang
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -48,14 +86,19 @@ export default function RegisterScreen({ initialProfile, onRegistered }: Registe
           <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-600">Effortless System</p>
           <h1 className="mt-1 text-2xl font-bold text-slate-900">Selamat Datang</h1>
           <p className="mt-2 text-sm text-slate-500">
-            Isi data di bawah untuk masuk ke Modules Hub — dipakai untuk menyimpan progres belajar Anda dan
-            mengecek modul yang sudah dibeli.
+            Isi data di bawah, kami kirim link masuk ke email Anda — tanpa password.
           </p>
         </div>
 
+        {(errorMessage || submitError) && (
+          <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-800">
+            {submitError ?? errorMessage}
+          </div>
+        )}
+
         <form
           onSubmit={handleSubmit}
-          className="mt-6 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+          className="mt-4 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
         >
           <label className="flex flex-col gap-1 text-xs font-semibold text-slate-500">
             Nama
@@ -95,7 +138,7 @@ export default function RegisterScreen({ initialProfile, onRegistered }: Registe
             disabled={!canSubmit || isSubmitting}
             className="mt-2 rounded-full bg-brand-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isSubmitting ? 'Memproses...' : 'Masuk ke Modules Hub'}
+            {isSubmitting ? 'Mengirim...' : 'Kirim Magic Link'}
           </button>
 
           <p className="flex items-start gap-1.5 text-[11px] leading-snug text-slate-400">
