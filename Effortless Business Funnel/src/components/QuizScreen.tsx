@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowLeft, Sparkles } from 'lucide-react'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import LeadCaptureForm from './LeadCaptureForm'
 import QuestionCard from './QuestionCard'
@@ -18,21 +18,39 @@ const variants = {
   exit: (direction: number) => ({ x: direction > 0 ? -80 : 80, opacity: 0 }),
 }
 
+// Auto-advance delay after tapping an option: long enough to see the
+// selection highlight (so it reads as "confirmed, moving on" instead of
+// the card yanking away instantly), short enough to not feel laggy.
+const AUTO_ADVANCE_DELAY_MS = 300
+
 // Lead capture happens AFTER the 13 questions, not before — visitors start
 // answering immediately (no upfront ask), then unlock their personalized
 // result by handing over contact info once they've already invested the
-// 5 minutes. See EL_LANDING_PAGE_DRAFT.md / project memory for the reasoning.
+// time. See EL_LANDING_PAGE_DRAFT.md / project memory for the reasoning.
+//
+// Aug 2026: questions now have 2 options and auto-advance on tap (no
+// separate "Lanjut" button) — see project memory (meta-ads-asesmen-campaign)
+// for why: cold ad traffic was producing real clicks but zero completed
+// leads, and cutting every question to one decisive tap was the fix aimed
+// at that. "Kembali" stays as a manual back affordance since a binary
+// option means a mis-tap fully flips the answer instead of just nudging it.
 export default function QuizScreen({ onLeadCaptured, onComplete }: QuizScreenProps) {
   const [phase, setPhase] = useState<'questions' | 'lead'>('questions')
   const [questionIndex, setQuestionIndex] = useState(0)
   const [direction, setDirection] = useState(1)
   const [answers, setAnswers] = useState<Record<number, number>>({})
+  const advanceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const totalQuestions = diagnosticQuestions.length
   const currentQuestion = diagnosticQuestions[questionIndex]
   const isLastQuestion = questionIndex === totalQuestions - 1
-  const hasAnswered = answers[currentQuestion?.id] !== undefined
   const isFirstQuestion = questionIndex === 0
+
+  useEffect(() => {
+    return () => {
+      if (advanceTimeoutRef.current) clearTimeout(advanceTimeoutRef.current)
+    }
+  }, [])
 
   const handleLeadSubmit = (lead: Lead) => {
     onLeadCaptured(lead)
@@ -41,20 +59,23 @@ export default function QuizScreen({ onLeadCaptured, onComplete }: QuizScreenPro
 
   const handleSelect = (score: number) => {
     setAnswers((prev) => ({ ...prev, [currentQuestion.id]: score }))
-  }
 
-  const goNext = () => {
-    if (!hasAnswered) return
-    if (isLastQuestion) {
+    // Re-selecting (e.g. after using "Kembali" to change an earlier
+    // answer) should still auto-advance forward from wherever this
+    // question is, using isLastQuestion/questionIndex captured now.
+    if (advanceTimeoutRef.current) clearTimeout(advanceTimeoutRef.current)
+    advanceTimeoutRef.current = setTimeout(() => {
       setDirection(1)
-      setPhase('lead')
-      return
-    }
-    setDirection(1)
-    setQuestionIndex((i) => i + 1)
+      if (isLastQuestion) {
+        setPhase('lead')
+      } else {
+        setQuestionIndex((i) => i + 1)
+      }
+    }, AUTO_ADVANCE_DELAY_MS)
   }
 
   const goBack = () => {
+    if (advanceTimeoutRef.current) clearTimeout(advanceTimeoutRef.current)
     if (phase === 'lead') {
       setDirection(-1)
       setPhase('questions')
@@ -121,36 +142,16 @@ export default function QuizScreen({ onLeadCaptured, onComplete }: QuizScreenPro
         </AnimatePresence>
       </main>
 
-      {phase === 'questions' && (
+      {phase === 'questions' && !isFirstQuestion && (
         <footer className="mx-auto w-full max-w-lg px-5 pb-8 pt-2">
-          <div className="flex items-center gap-3">
-            {!isFirstQuestion && (
-              <button
-                type="button"
-                onClick={goBack}
-                className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
-              >
-                <ArrowLeft className="h-5 w-5" />
-                Kembali
-              </button>
-            )}
-            <AnimatePresence mode="wait">
-              {hasAnswered && (
-                <motion.button
-                  key={isLastQuestion ? 'finish' : 'next'}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  type="button"
-                  onClick={goNext}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-brand-700"
-                >
-                  {isLastQuestion ? 'Lihat Hasil Saya' : 'Lanjut'}
-                  <ArrowRight className="h-5 w-5" />
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </div>
+          <button
+            type="button"
+            onClick={goBack}
+            className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            Kembali
+          </button>
         </footer>
       )}
 

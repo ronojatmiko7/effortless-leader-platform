@@ -51,13 +51,13 @@ function openModulesHub(lead: Lead) {
   window.open(url.toString(), '_blank', 'noopener,noreferrer')
 }
 
-// Same convention as ReportScreen.tsx's findingDescription: anchor strings
-// are stored as "N = <description>" (verbatim from the source BARS scale),
-// strip the leading "N = " since the score is shown separately elsewhere.
+// Same convention as ReportScreen.tsx's findingDescription: each option's
+// label is already a plain-language description (Aug 2026 simplified
+// quiz), so this just finds the option matching their chosen score.
 function findingDescription(questionId: number, score: number): string {
   const question = diagnosticQuestions.find((q) => q.id === questionId)
-  const anchor = question?.anchors[score - 1]
-  return anchor ? anchor.replace(/^\d+\s*=\s*/, '') : ''
+  const option = question?.options.find((o) => o.score === score)
+  return option?.label ?? ''
 }
 
 const PAID_MODULE_PRICE = 'Rp199rb'

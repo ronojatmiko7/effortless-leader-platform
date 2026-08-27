@@ -1,12 +1,19 @@
 export type DiagnosticSection = 'Output' | 'Proses' | 'Input'
 
+export interface DiagnosticOption {
+  /** Plain-language description of the situation this option represents. */
+  label: string
+  /** 1-4 scale, same convention as the old BARS anchors: <=2 trips the red-flag threshold in scoring.ts. */
+  score: number
+}
+
 export interface DiagnosticQuestion {
   id: number
   section: DiagnosticSection
   area: string
   question: string
-  /** Score 1-4 BARS anchor text, verbatim from the source diagnostic tool. */
-  anchors: [string, string, string, string]
+  /** Exactly 2 options (simplified from the original 4-option BARS scale, Aug 2026). */
+  options: [DiagnosticOption, DiagnosticOption]
 }
 
 export interface ServiceModuleMapping {

@@ -14,6 +14,8 @@ const SECTION_LABEL: Record<DiagnosticQuestion['section'], string> = {
   Input: 'Domain Input (Bahan Baku)',
 }
 
+const OPTION_LETTER = ['A', 'B']
+
 export default function QuestionCard({
   question,
   questionNumber,
@@ -32,33 +34,35 @@ export default function QuestionCard({
         </span>
       </div>
 
-      <h2 className="mb-6 text-xl font-bold leading-snug text-slate-900 sm:text-2xl">
+      <h2 className="mb-8 text-xl font-bold leading-snug text-slate-900 sm:text-2xl">
         {question.question}
       </h2>
 
-      <div className="space-y-2.5">
-        {question.anchors.map((anchor, index) => {
-          const score = index + 1
-          const isSelected = selectedScore === score
+      {/* Only 2 options now — tap targets are large since auto-advance
+          means there's no separate "confirm" step, so the tap itself
+          needs to feel decisive and easy to hit correctly. */}
+      <div className="space-y-3">
+        {question.options.map((option, index) => {
+          const isSelected = selectedScore === option.score
           return (
             <button
-              key={score}
+              key={option.score}
               type="button"
-              onClick={() => onSelect(score)}
-              className={`flex w-full items-start gap-3 rounded-xl border p-3.5 text-left transition ${
+              onClick={() => onSelect(option.score)}
+              className={`flex w-full items-center gap-4 rounded-2xl border p-5 text-left transition ${
                 isSelected
                   ? 'border-brand-500 bg-brand-50 ring-2 ring-brand-200'
-                  : 'border-slate-200 hover:border-brand-300 hover:bg-brand-50/40'
+                  : 'border-slate-200 hover:border-brand-300 hover:bg-brand-50/40 active:bg-brand-50/60'
               }`}
             >
               <span
-                className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
                   isSelected ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-500'
                 }`}
               >
-                {score}
+                {OPTION_LETTER[index]}
               </span>
-              <span className="text-sm leading-snug text-slate-700">{anchor.replace(/^\d\s*=\s*/, '')}</span>
+              <span className="text-base font-medium leading-snug text-slate-800">{option.label}</span>
             </button>
           )
         })}
