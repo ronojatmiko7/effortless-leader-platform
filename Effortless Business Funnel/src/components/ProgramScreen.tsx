@@ -210,7 +210,7 @@ export default function ProgramScreen({ lead, result, onBack }: ProgramScreenPro
               Effortless System
             </p>
             <h1 className="mb-3 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
-              Perbaiki Titik Kebocoran Bisnis Anda, Tanpa Nonton Video Berjam-Jam atau Baca Buku Setebal
+              Pelajari Cara Memperbaiki Titik Kebocoran Bisnis Anda, Tanpa Nonton Video Berjam-Jam atau Baca Buku Setebal
               Bata
             </h1>
             <p className="mb-0 flex items-start justify-center gap-1.5 text-sm font-semibold text-brand-700 sm:text-base">
