@@ -37,12 +37,18 @@ function describeError(code: string | undefined): string {
 // The front door of the Hub (App.tsx's RegisterGate renders this until a
 // magic-link click verifies a browser — Bro Rono's Aug 26 2026 decision:
 // real email verification, not just a trusted typed-in email, gates the
-// whole Hub including the previously-open Module 1). Name and WhatsApp
-// are no longer asked here — they're carried silently from
+// whole Hub including the previously-open Module 1). Name and email are
+// both collected here. Name used to be carried silently from
 // initialProfile (the funnel's ProgramScreen handoff via URL query
-// params, already captured by LeadCaptureForm) since asking again would
-// just be re-collecting what we already have. Only email is shown/
-// editable, since that's the one thing the magic link actually needs.
+// params) and never shown -- but the Aug 27 direct-app-launch Meta
+// campaign sends cold traffic straight to this screen with no query
+// params at all, so that silent carry-through produced hub_members rows
+// with a real email but an empty name -- no name means no usable social
+// proof/testimonial attribution. initialProfile.name (when present) is
+// still used to pre-fill the field so funnel handoffs don't have to
+// retype it; a direct-campaign visitor with no prefill just fills it in
+// themselves. WhatsApp is still carried silently (not shown) since it's
+// not needed for this specific gap.
 //
 // Aug 27 2026: rewritten from a bare "enter your email" utility screen
 // into an actual landing pitch, because this is now also the direct
@@ -58,19 +64,20 @@ function describeError(code: string | undefined): string {
 // actually admits someone, on the follow-up page load when they click
 // the link in their inbox (?magic=TOKEN).
 export default function RegisterScreen({ initialProfile, errorMessage }: RegisterScreenProps) {
+  const [name, setName] = useState(initialProfile.name)
   const [email, setEmail] = useState(initialProfile.email)
   const [stage, setStage] = useState<Stage>('form')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  const canSubmit = email.trim().length > 3
+  const canSubmit = name.trim().length > 1 && email.trim().length > 3
 
   const sendLink = async () => {
     if (!canSubmit || isSubmitting) return
     setIsSubmitting(true)
     setSubmitError(null)
     const profile: MemberProfile = {
-      name: initialProfile.name,
+      name: name.trim(),
       email: email.trim(),
       whatsapp: initialProfile.whatsapp,
     }
@@ -99,6 +106,9 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
           <p className="mt-2 text-sm text-slate-500">
             Kami sudah kirim link masuk ke <span className="font-semibold text-slate-700">{email}</span>. Klik link
             di email itu untuk masuk ke Modules Hub. Link berlaku 30 menit dan hanya bisa dipakai sekali.
+          </p>
+          <p className="mt-2 text-xs text-slate-400">
+            Tidak muncul di kotak masuk dalam 1-2 menit? Cek folder Spam atau Promosi — kadang link masuk ke sana.
           </p>
           <p className="mt-3 text-xs font-semibold text-amber-700">
             Jangan tunggu terlalu lama — semua modul gratis hanya sampai {FREE_LAUNCH_END_DISPLAY}.
@@ -156,6 +166,18 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
           onSubmit={handleSubmit}
           className="mt-4 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
         >
+          <label className="flex flex-col gap-1 text-xs font-semibold text-slate-500">
+            Nama
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="Nama Anda"
+              className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-normal text-slate-700 outline-none focus:border-brand-300 focus:ring-2 focus:ring-brand-100"
+            />
+          </label>
+
           <label className="flex flex-col gap-1 text-xs font-semibold text-slate-500">
             Email
             <input
