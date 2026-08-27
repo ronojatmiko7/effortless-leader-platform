@@ -25,6 +25,17 @@ function App() {
   // as-is for rendering (ReportScreen/ProgramScreen), since by the time
   // those render the state update has flushed.
   const leadRef = useRef<Lead | null>(null)
+  // Bug fix (Aug 27): submitLead() and submitDiagnosticResponses() both hit
+  // the same submit-lead Edge Function. Firing them in the same tick (as
+  // above) meant two concurrent cold starts of that function — observed in
+  // Supabase logs as one request's internal `leads` insert getting a 401
+  // from PostgREST while the other got 201, i.e. one of the two rows
+  // silently failing to write (confirmed via query_logs: the newest test's
+  // row had diagnostic_result: null despite the client-side flow completing
+  // fine). Sequencing the second call to wait for the first to settle
+  // avoids the concurrent-boot race without blocking the UI (setScreen
+  // still happens immediately below).
+  const leadSubmitRef = useRef<Promise<void> | null>(null)
 
   const handleStart = () => {
     trackCustomEvent('QuizStarted')
@@ -35,14 +46,21 @@ function App() {
   const handleLeadCaptured = (capturedLead: Lead) => {
     leadRef.current = capturedLead
     setLead(capturedLead)
-    submitLead(capturedLead)
+    leadSubmitRef.current = submitLead(capturedLead)
     trackEvent('Lead', { content_name: 'Asesmen 13 Titik Kebocoran Bisnis' })
   }
 
   const handleQuizComplete = (answers: Record<number, number>) => {
     const computed = computeDiagnosticResult(answers)
     setResult(computed)
-    if (leadRef.current) submitDiagnosticResponses(leadRef.current, computed)
+    if (leadRef.current) {
+      const capturedLead = leadRef.current
+      const priorSubmit = leadSubmitRef.current
+      void (async () => {
+        if (priorSubmit) await priorSubmit
+        await submitDiagnosticResponses(capturedLead, computed)
+      })()
+    }
     trackCustomEvent('QuizCompleted', { averageMaturity: computed.averageMaturity })
     setScreen('report')
     window.scrollTo({ top: 0 })
