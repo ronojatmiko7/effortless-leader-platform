@@ -1,8 +1,11 @@
 import { useState, type FormEvent } from 'react'
-import { Mail, ShieldCheck } from 'lucide-react'
+import { Mail, ShieldCheck, Check } from 'lucide-react'
 import Logo from './Logo'
+import FreeLaunchBanner from './FreeLaunchBanner'
 import type { MemberProfile } from '../access/memberProfile'
 import { requestMagicLink } from '../access/magicLinkApi'
+import { modules } from '../data/modules'
+import { FREE_LAUNCH_END_DISPLAY } from '../config/paymentConfig'
 
 interface RegisterScreenProps {
   initialProfile: MemberProfile
@@ -40,6 +43,15 @@ function describeError(code: string | undefined): string {
 // params, already captured by LeadCaptureForm) since asking again would
 // just be re-collecting what we already have. Only email is shown/
 // editable, since that's the one thing the magic link actually needs.
+//
+// Aug 27 2026: rewritten from a bare "enter your email" utility screen
+// into an actual landing pitch, because this is now also the direct
+// destination for a new Meta campaign that skips the diagnostic quiz
+// entirely (see meta-ads-asesmen-campaign / funnel-launch-checklist
+// project memory) — cold ad traffic landing here previously saw zero
+// reason to hand over an email. Full hub stays open (Bro Rono's call,
+// not narrowed to Module 1 only); urgency carries the load instead via
+// the reused FreeLaunchBanner + an explicit deadline line under the CTA.
 //
 // Submitting sends a magic-link email (request-magic-link Edge Function)
 // and stops here — it does NOT admit anyone. RegisterGate is what
@@ -88,6 +100,9 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
             Kami sudah kirim link masuk ke <span className="font-semibold text-slate-700">{email}</span>. Klik link
             di email itu untuk masuk ke Modules Hub. Link berlaku 30 menit dan hanya bisa dipakai sekali.
           </p>
+          <p className="mt-3 text-xs font-semibold text-amber-700">
+            Jangan tunggu terlalu lama — semua modul gratis hanya sampai {FREE_LAUNCH_END_DISPLAY}.
+          </p>
           <button
             type="button"
             onClick={() => setStage('form')}
@@ -101,15 +116,34 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 py-10">
-      <div className="w-full max-w-sm">
+    <div className="flex min-h-screen flex-col items-center bg-slate-50 px-4 py-10">
+      <div className="w-full max-w-md">
         <div className="flex flex-col items-center text-center">
-          <Logo size="sm" />
+          <Logo size="md" />
           <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-brand-600">Effortless System</p>
-          <h1 className="mt-1 text-2xl font-bold text-slate-900">Selamat Datang</h1>
-          <p className="mt-2 text-sm text-slate-500">
-            Masukkan email Anda, kami kirim link masuk ke Modules Hub — tanpa password.
+          <h1 className="mt-2 text-2xl font-extrabold leading-tight text-slate-900 sm:text-3xl">
+            Bisnis Jalan Terus, Tanpa Anda Harus Selalu Turun Tangan
+          </h1>
+          <p className="mt-3 text-sm leading-relaxed text-slate-500">
+            9 modul praktis untuk membangun sistem, KPI, SOP, dan tim yang benar-benar berjalan — supaya Anda bisa
+            pulang tepat waktu tanpa bisnis ikut berantakan.
           </p>
+        </div>
+
+        <div className="mt-5">
+          <FreeLaunchBanner />
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-400">Yang Anda dapatkan, gratis</p>
+          <ul className="grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2">
+            {modules.map((module) => (
+              <li key={module.id} className="flex items-start gap-2 text-left text-xs text-slate-600 sm:text-sm">
+                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-500" />
+                <span>{module.title}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {(errorMessage || submitError) && (
@@ -139,12 +173,16 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
             disabled={!canSubmit || isSubmitting}
             className="mt-2 rounded-full bg-brand-500 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isSubmitting ? 'Mengirim...' : 'Kirim Magic Link'}
+            {isSubmitting ? 'Mengirim...' : 'Klaim Akses Gratis Sekarang'}
           </button>
+
+          <p className="text-center text-[11px] font-semibold text-amber-700">
+            Gratis hanya sampai {FREE_LAUNCH_END_DISPLAY} — setelah itu Modul 2-9 berbayar.
+          </p>
 
           <p className="flex items-start gap-1.5 text-[11px] leading-snug text-slate-400">
             <ShieldCheck className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-            Email Anda hanya dipakai untuk masuk ke Modules Hub, bukan untuk hal lain.
+            Tanpa password. Email Anda hanya dipakai untuk masuk ke Modules Hub, bukan untuk hal lain.
           </p>
         </form>
       </div>
