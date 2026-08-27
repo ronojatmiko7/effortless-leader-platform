@@ -88,6 +88,24 @@
   .cta-btn:hover{background:var(--brand-50);}
   .note{margin-top:24px; padding:12px 16px; border:1px dashed var(--slate-300); border-radius:10px; font-size:12px; color:var(--slate-400); text-align:center;}
 </style>
+<!-- Meta Pixel Code (reused from the funnel's dedicated pixel — see
+         Modules Hub/src/lib/pixel.ts and meta-ads-direct-app-campaign.md) -->
+<script>
+!function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1377499773961301');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1377499773961301&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div class="wrap">

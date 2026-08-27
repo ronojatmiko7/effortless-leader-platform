@@ -9,6 +9,7 @@ import { ProgressProvider, useProgressStore } from './progress/ProgressContext'
 import { AccessProvider, useAccess } from './access/AccessContext'
 import { loadMemberProfile, saveMemberProfile, type MemberProfile } from './access/memberProfile'
 import { verifyMagicLink } from './access/magicLinkApi'
+import { trackEvent } from './lib/pixel'
 import { modules } from './data/modules'
 
 type View =
@@ -158,6 +159,11 @@ function RegisterGate({ children }: { children: ReactNode }) {
         if (result.ok && result.profile) {
           saveMemberProfile(result.profile)
           await setCustomerEmail(result.profile.email)
+          // Fires once per actual magic-link verification (a genuine new
+          // sign-in/registration moment) -- NOT on the "existing saved
+          // profile found" branch below, which would refire Lead on every
+          // repeat visit from an already-registered browser.
+          trackEvent('Lead', { content_name: 'Modules Hub Registration' })
           setStatus('registered')
         } else {
           setLinkError('Link sudah kedaluwarsa atau sudah dipakai. Silakan minta link baru.')
