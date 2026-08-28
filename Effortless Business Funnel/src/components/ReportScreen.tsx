@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, BookOpen, Calendar, RotateCcw } from 'lucide-react'
+import { ArrowRight, BookOpen, Calendar, RotateCcw, TrendingUp, Users, Workflow } from 'lucide-react'
 import { CALENDLY_DIAGNOSTIC_CALL_URL } from '../config/schedulingConfig'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import { matchesIcp } from '../lib/icpMatch'
@@ -18,6 +18,14 @@ const SECTION_LABEL: Record<DiagnosticSection, string> = {
   Output: 'Output (Hasil)',
   Proses: 'Proses (Sistem Kerja)',
   Input: 'Input (Bahan Baku)',
+}
+
+// Same icon choices as LandingScreen's illustrative score-mockup card, now
+// wired to the visitor's own real domainAverages instead of example numbers.
+const SECTION_ICON: Record<DiagnosticSection, typeof TrendingUp> = {
+  Output: TrendingUp,
+  Proses: Workflow,
+  Input: Users,
 }
 
 const SECTION_ORDER: DiagnosticSection[] = ['Output', 'Proses', 'Input']
@@ -128,25 +136,41 @@ export default function ReportScreen({ lead, result, onRestart, onViewProgram }:
         </section>
 
         {/* 2. Analisis per Domain */}
-        <section className="mb-8">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-brand-600">
+        <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-brand-600">
             2. Analisis per Domain
           </p>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <h2 className="mb-5 text-lg font-bold text-slate-900">Skor Kematangan per Domain</h2>
+          <div className="space-y-5">
             {SECTION_ORDER.map((section) => {
               const avg = domainAverages[section]
               const isHealthy = avg >= 2.5
+              const pct = Math.max(0, Math.min(100, (avg / 4) * 100))
+              const Icon = SECTION_ICON[section]
               return (
-                <div key={section} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                  <p className="text-xs font-semibold text-slate-500">{SECTION_LABEL[section]}</p>
-                  <p className="mt-1 text-2xl font-bold text-slate-900">{avg.toFixed(1)}</p>
-                  <p
-                    className={`mt-1 text-xs font-semibold ${
-                      isHealthy ? 'text-emerald-600' : 'text-amber-600'
-                    }`}
-                  >
-                    {isHealthy ? 'Cukup Stabil' : 'Perlu Perhatian'}
-                  </p>
+                <div key={section}>
+                  <div className="mb-1.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                    <span className="flex items-center gap-2 text-sm font-bold text-slate-900">
+                      <Icon className="h-4 w-4 text-brand-600" />
+                      {SECTION_LABEL[section]}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <strong className="text-sm font-bold text-slate-900">{avg.toFixed(1)} / 4.0</strong>
+                      <span
+                        className={`text-xs font-semibold ${isHealthy ? 'text-emerald-600' : 'text-amber-600'}`}
+                      >
+                        {isHealthy ? 'Cukup Stabil' : 'Perlu Perhatian'}
+                      </span>
+                    </span>
+                  </div>
+                  <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-100">
+                    <div
+                      className={`h-full rounded-full transition-[width] ${
+                        isHealthy ? 'bg-emerald-500' : 'bg-amber-500'
+                      }`}
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
                 </div>
               )
             })}
