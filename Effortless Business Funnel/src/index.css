@@ -16,6 +16,17 @@
   --color-brand-900: #702305;
 
   --font-sans: 'Sora', ui-sans-serif, system-ui, sans-serif;
+
+  /* Added for the LandingScreen editorial redesign (Aug 28) — warm paper/ink
+     neutrals + a serif display font, layered on top of the existing brand-*
+     scale rather than replacing it, so QuizScreen/ReportScreen/ProgramScreen
+     are untouched. See landing-page-style-guide.md for the source system. */
+  --color-paper: #fffbf5;
+  --color-ink: #1c1917;
+  --color-line: #eae2d6;
+  --color-brand-tint: #ffedd5;
+  --color-brand-soft: #fff7ed;
+  --font-display: 'Fraunces', Georgia, serif;
 }
 
 html {
