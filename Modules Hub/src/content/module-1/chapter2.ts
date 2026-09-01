@@ -222,7 +222,7 @@ export const chapter2Cards: Card[] = [
     type: 'worksheet',
     icon: FileDown,
     eyebrow: 'Alat bantu praktis',
-    title: 'Lembar Cek Kesehatan Bisnis (Diagnosis IPO)',
+    title: 'Lembar Cek Kesehatan Bisnis (Diagnosis Output-Proses-Input)',
     body: [
       'Anda baru saja belajar peta 3 Level-nya: Output, Proses, dan Input. Berhenti menebak — unduh lembar kerja ini.',
       'Isinya pertanyaan sederhana untuk menemukan di Level mana kebocoran operasional Anda yang sebenarnya.',
