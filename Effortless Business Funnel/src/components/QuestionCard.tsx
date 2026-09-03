@@ -14,7 +14,7 @@ const SECTION_LABEL: Record<DiagnosticQuestion['section'], string> = {
   Input: 'Domain Input (Bahan Baku)',
 }
 
-const OPTION_LETTER = ['A', 'B']
+const OPTION_LETTER = ['A', 'B', 'C', 'D']
 
 export default function QuestionCard({
   question,
@@ -38,9 +38,10 @@ export default function QuestionCard({
         {question.question}
       </h2>
 
-      {/* Only 2 options now — tap targets are large since auto-advance
-          means there's no separate "confirm" step, so the tap itself
-          needs to feel decisive and easy to hit correctly. */}
+      {/* Back to 4 options (Sep 2026 revert) — tap targets stay large
+          since auto-advance means there's no separate "confirm" step, so
+          the tap itself still needs to feel decisive and easy to hit
+          correctly, even with more choices on screen. */}
       <div className="space-y-3">
         {question.options.map((option, index) => {
           const isSelected = selectedScore === option.score

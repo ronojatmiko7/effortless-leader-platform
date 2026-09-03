@@ -28,12 +28,16 @@ const AUTO_ADVANCE_DELAY_MS = 300
 // result by handing over contact info once they've already invested the
 // time. See EL_LANDING_PAGE_DRAFT.md / project memory for the reasoning.
 //
-// Aug 2026: questions now have 2 options and auto-advance on tap (no
-// separate "Lanjut" button) — see project memory (meta-ads-asesmen-campaign)
-// for why: cold ad traffic was producing real clicks but zero completed
-// leads, and cutting every question to one decisive tap was the fix aimed
-// at that. "Kembali" stays as a manual back affordance since a binary
-// option means a mis-tap fully flips the answer instead of just nudging it.
+// Aug 2026: questions moved to auto-advance on tap (no separate "Lanjut"
+// button) — see project memory (meta-ads-asesmen-campaign) for why: cold
+// ad traffic was producing real clicks but zero completed leads, and
+// cutting every question to one decisive tap was the fix aimed at that.
+// Sep 2026: option count reverted from 2 back to 4 (this quiz is now the
+// bonus that follows the "13 Titik Kebocoran" ebook, not a standalone
+// cold-traffic funnel, so the extra granularity is worth it again) — see
+// diagnosticQuestions.ts. Auto-advance and "Kembali" both stay as-is; a
+// mis-tap among 4 options nudges the answer rather than fully flipping it,
+// so "Kembali" remains the manual correction path either way.
 export default function QuizScreen({ onLeadCaptured, onComplete }: QuizScreenProps) {
   const [phase, setPhase] = useState<'questions' | 'lead'>('questions')
   const [questionIndex, setQuestionIndex] = useState(0)

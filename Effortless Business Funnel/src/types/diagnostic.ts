@@ -12,8 +12,8 @@ export interface DiagnosticQuestion {
   section: DiagnosticSection
   area: string
   question: string
-  /** Exactly 2 options (simplified from the original 4-option BARS scale, Aug 2026). */
-  options: [DiagnosticOption, DiagnosticOption]
+  /** Exactly 4 options (reverted from the Aug 2026 2-option simplification, Sep 2026 — see diagnosticQuestions.ts). */
+  options: [DiagnosticOption, DiagnosticOption, DiagnosticOption, DiagnosticOption]
 }
 
 export interface ServiceModuleMapping {
