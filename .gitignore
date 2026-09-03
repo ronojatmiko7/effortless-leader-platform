@@ -34,3 +34,6 @@ Thumbs.db
 
 # Test / coverage
 coverage/
+
+# Stale git lock artifacts (see project memory)
+_to_delete/
