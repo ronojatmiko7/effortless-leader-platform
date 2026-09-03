@@ -255,7 +255,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
           <div className="flex flex-col gap-3 rounded-2xl border border-brand-200 bg-brand-50 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-5">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-                {FREE_LAUNCH_MODE ? 'Peluncuran terbatas' : 'Hemat paling banyak'}
+                {FREE_LAUNCH_MODE ? 'Akses gratis' : 'Hemat paling banyak'}
               </p>
               <h2 className="text-base font-bold text-slate-900 sm:text-lg">Bundle 8 Modul (Modul 2-9)</h2>
               {ratingBadge && (
@@ -266,7 +266,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
               )}
               <p className="mt-1 text-xs text-slate-500">
                 {FREE_LAUNCH_MODE ? (
-                  'Semua modul terbuka gratis untuk semua peserta selama masa peluncuran ini.'
+                  'Semua modul terbuka gratis untuk semua peserta saat ini.'
                 ) : (
                   <>
                     Buka semua modul sekaligus, hemat{' '}

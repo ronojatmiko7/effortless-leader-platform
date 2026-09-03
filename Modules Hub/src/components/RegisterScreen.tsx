@@ -5,7 +5,6 @@ import FreeLaunchBanner from './FreeLaunchBanner'
 import type { MemberProfile } from '../access/memberProfile'
 import { requestMagicLink } from '../access/magicLinkApi'
 import { modules } from '../data/modules'
-import { FREE_LAUNCH_END_DISPLAY } from '../config/paymentConfig'
 
 interface RegisterScreenProps {
   initialProfile: MemberProfile
@@ -111,7 +110,7 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
             Tidak muncul di kotak masuk dalam 1-2 menit? Cek folder Spam atau Promosi — kadang link masuk ke sana.
           </p>
           <p className="mt-3 text-xs font-semibold text-amber-700">
-            Jangan tunggu terlalu lama — semua modul gratis hanya sampai {FREE_LAUNCH_END_DISPLAY}.
+            Semua modul gratis untuk Anda — tidak perlu kartu kredit.
           </p>
           <button
             type="button"
@@ -199,7 +198,7 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
           </button>
 
           <p className="text-center text-[11px] font-semibold text-amber-700">
-            Gratis hanya sampai {FREE_LAUNCH_END_DISPLAY} — setelah itu Modul 2-9 berbayar.
+            Semua 9 modul gratis untuk Anda, tanpa kartu kredit.
           </p>
 
           <p className="flex items-start gap-1.5 text-[11px] leading-snug text-slate-400">

@@ -6,25 +6,24 @@
 // SUPABASE_FUNCTIONS_BASE if the backend ever moves to a different project.
 const SUPABASE_FUNCTIONS_BASE = 'https://edodmmedehuuemnnmdri.supabase.co/functions/v1'
 
-// TEMPORARY: everything is free during the launch window, hardcoded to end
-// 31 August 2026 (WIB / Asia-Jakarta) -- confirmed by Bro Rono Aug 26 2026.
-// FREE_LAUNCH_MODE is computed from the current time, not a hand-flipped
-// boolean, so it turns itself off automatically the moment the cutoff
-// passes -- no redeploy needed. It's re-evaluated fresh every time this
-// module loads (page load / navigation), so a browser tab already open
-// when the cutoff passes will pick it up on its next reload, not live.
+// Everything is free -- a manual switch now, not a date-based one (the
+// original hardcoded 31 Aug 2026 cutoff already passed and started
+// silently locking modules with no working checkout behind them, since
+// SCALEV_CHECKOUT_URLS below was never filled in -- caught and fixed Sep
+// 2026). Bro Rono's call: keep the whole Hub free, with email registration
+// still required, until there's enough social proof (testimonials) to
+// justify turning paywalls back on -- flip this to `false` by hand when
+// that time comes. No cutoff to maintain or forget about.
 //
 // While true, AccessContext.tsx short-circuits every module to unlocked
-// without calling check-access, and BuyButton.tsx shows a "free during
-// launch" badge instead of a real checkout CTA. Once it flips to false,
-// BuyButton switches to the Scalev checkout links in SCALEV_CHECKOUT_URLS
-// below -- if those aren't filled in yet by the cutoff, modules will show
-// as locked with no way to buy (a "Segera Hadir" badge), not an error, but
-// worth having Scalev ready before this date. See scalev-payment-
-// integration.md (project memory) for the Scalev setup checklist.
-export const FREE_LAUNCH_CUTOFF = new Date('2026-09-01T00:00:00+07:00')
-export const FREE_LAUNCH_END_DISPLAY = 'Senin, 31 Agustus 2026'
-export const FREE_LAUNCH_MODE = Date.now() < FREE_LAUNCH_CUTOFF.getTime()
+// without calling check-access, and BuyButton.tsx shows a "free" badge
+// instead of a real checkout CTA. Once flipped to false, BuyButton
+// switches to the Scalev checkout links in SCALEV_CHECKOUT_URLS below --
+// make sure those are actually filled in before flipping this off, or
+// modules will show as locked with no way to buy (a "Segera Hadir" badge,
+// not an error). See scalev-payment-integration.md (project memory) for
+// the Scalev setup checklist.
+export const FREE_LAUNCH_MODE = true
 
 export const CHECK_ACCESS_URL = `${SUPABASE_FUNCTIONS_BASE}/check-access`
 
