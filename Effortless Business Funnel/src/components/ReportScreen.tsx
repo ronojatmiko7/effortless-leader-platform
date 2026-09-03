@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight, BookOpen, Calendar, RotateCcw, TrendingUp, Users, Workflow } from 'lucide-react'
 import { CALENDLY_DIAGNOSTIC_CALL_URL } from '../config/schedulingConfig'
+import { MODULES_HUB_URL } from '../config/modulesHubConfig'
 import { diagnosticQuestions } from '../data/diagnosticQuestions'
 import { matchesIcp } from '../lib/icpMatch'
 import Logo from './Logo'
@@ -11,7 +12,6 @@ interface ReportScreenProps {
   lead: Lead
   result: DiagnosticResult
   onRestart: () => void
-  onViewProgram: () => void
 }
 
 const SECTION_LABEL: Record<DiagnosticSection, string> = {
@@ -51,8 +51,27 @@ function bookDiagnosticCall(lead: Lead) {
   window.open(`${CALENDLY_DIAGNOSTIC_CALL_URL}?${params.toString()}`, '_blank', 'noopener,noreferrer')
 }
 
-export default function ReportScreen({ lead, result, onRestart, onViewProgram }: ReportScreenProps) {
+// Sep 2026: opens the Modules Hub straight from the report — the
+// ProgramScreen pitch/catalog screen that used to sit in between was
+// deleted (see project memory) so "Belajar Memperbaiki Sendiri" is now one
+// tap, not two. Moved here from the old ProgramScreen.tsx, same behavior:
+// forwards the lead's name/email/whatsapp (already captured by
+// LeadCaptureForm earlier in this session) as URL query params so the
+// Hub's register gate (Modules Hub's RegisterScreen.tsx) can pre-fill
+// instead of asking twice. The two apps are separate origins/deployments,
+// so this query-string handoff is the only way to carry it across —
+// nothing is shared via localStorage or cookies.
+function openModulesHub(lead: Lead) {
+  const url = new URL(MODULES_HUB_URL)
+  if (lead.name) url.searchParams.set('name', lead.name)
+  if (lead.email) url.searchParams.set('email', lead.email)
+  if (lead.whatsapp) url.searchParams.set('whatsapp', lead.whatsapp)
+  window.open(url.toString(), '_blank', 'noopener,noreferrer')
+}
+
+export default function ReportScreen({ lead, result, onRestart }: ReportScreenProps) {
   const [bookingClicked, setBookingClicked] = useState(false)
+  const [hubClicked, setHubClicked] = useState(false)
 
   const { redFlagCount, averageMaturity, domainAverages, flaggedQuestions, answers } = result
   const isSystemic = redFlagCount > 3
@@ -229,12 +248,20 @@ export default function ReportScreen({ lead, result, onRestart, onViewProgram }:
               <p className="mb-3 text-xs font-semibold text-emerald-600">Modul pertama gratis.</p>
               <button
                 type="button"
-                onClick={onViewProgram}
+                onClick={() => {
+                  openModulesHub(lead)
+                  setHubClicked(true)
+                }}
                 className="flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
               >
-                Lihat Modul Saya
+                Buka Modules Hub
                 <ArrowRight className="h-4 w-4" />
               </button>
+              {hubClicked && (
+                <p className="mt-2 text-center text-xs text-slate-400">
+                  Modules Hub terbuka di tab baru.
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col rounded-xl border border-slate-200 p-5">

@@ -2,14 +2,18 @@ import { useRef, useState } from 'react'
 import LandingScreen from './components/LandingScreen'
 import QuizScreen from './components/QuizScreen'
 import ReportScreen from './components/ReportScreen'
-import ProgramScreen from './components/ProgramScreen'
 import { computeDiagnosticResult } from './lib/scoring'
 import { submitDiagnosticResponses, submitLead } from './lib/submitLead'
 import { trackEvent, trackCustomEvent } from './lib/pixel'
 import type { DiagnosticResult } from './types/diagnostic'
 import type { Lead } from './types/lead'
 
-type Screen = 'landing' | 'quiz' | 'report' | 'program'
+// Sep 2026: the 'program' screen (ProgramScreen.tsx — a pitch/catalog page
+// that used to sit between the report and the real Modules Hub) was
+// deleted. ReportScreen's "Belajar Memperbaiki Sendiri" card now opens the
+// Hub directly (see openModulesHub() in ReportScreen.tsx) — see project
+// memory for why.
+type Screen = 'landing' | 'quiz' | 'report'
 
 function App() {
   const [screen, setScreen] = useState<Screen>('landing')
@@ -22,8 +26,8 @@ function App() {
   // `if (lead)` was always false and submitDiagnosticResponses never ran —
   // for anyone. A ref updates synchronously, so leadRef.current is always
   // current by the time handleQuizComplete reads it. `lead` state is kept
-  // as-is for rendering (ReportScreen/ProgramScreen), since by the time
-  // those render the state update has flushed.
+  // as-is for rendering (ReportScreen), since by the time that renders the
+  // state update has flushed.
   const leadRef = useRef<Lead | null>(null)
   // Bug fix (Aug 27): submitLead() and submitDiagnosticResponses() both hit
   // the same submit-lead Edge Function. Firing them in the same tick (as
@@ -72,24 +76,8 @@ function App() {
     window.scrollTo({ top: 0 })
   }
 
-  const handleViewProgram = () => {
-    setScreen('program')
-    window.scrollTo({ top: 0 })
-  }
-
-  const handleBackToReport = () => {
-    setScreen('report')
-    window.scrollTo({ top: 0 })
-  }
-
-  if (screen === 'program' && lead && result) {
-    return <ProgramScreen lead={lead} result={result} onBack={handleBackToReport} />
-  }
-
   if (screen === 'report' && lead && result) {
-    return (
-      <ReportScreen lead={lead} result={result} onRestart={handleRestart} onViewProgram={handleViewProgram} />
-    )
+    return <ReportScreen lead={lead} result={result} onRestart={handleRestart} />
   }
 
   if (screen === 'quiz') {
