@@ -266,7 +266,7 @@ export default function HubHome({ onSelectModule }: HubHomeProps) {
               )}
               <p className="mt-1 text-xs text-slate-500">
                 {FREE_LAUNCH_MODE ? (
-                  'Semua modul terbuka gratis untuk semua peserta saat ini.'
+                  '100% gratis hingga 30 September 2026.'
                 ) : (
                   <>
                     Buka semua modul sekaligus, hemat{' '}

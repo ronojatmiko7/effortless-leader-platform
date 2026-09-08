@@ -245,7 +245,7 @@ export default function ReportScreen({ lead, result, onRestart }: ReportScreenPr
                 Akses modul pembelajaran yang relevan dengan temuan di atas. Anda yang pegang
                 kendali, jalan dengan kecepatan Anda sendiri.
               </p>
-              <p className="mb-3 text-xs font-semibold text-emerald-600">Modul pertama gratis.</p>
+              <p className="mb-3 text-xs font-semibold text-emerald-600">100% gratis hingga 30 September 2026.</p>
               <button
                 type="button"
                 onClick={() => {

@@ -11,7 +11,7 @@ export default function FreeLaunchBanner() {
   return (
     <div className="flex items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-center text-xs font-semibold text-amber-800 sm:text-sm">
       <Sparkles className="h-4 w-4 shrink-0" />
-      <span>Semua modul GRATIS untuk semua peserta saat ini.</span>
+      <span>100% GRATIS hingga 30 September 2026.</span>
     </div>
   )
 }

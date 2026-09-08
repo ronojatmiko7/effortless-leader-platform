@@ -110,7 +110,7 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
             Tidak muncul di kotak masuk dalam 1-2 menit? Cek folder Spam atau Promosi — kadang link masuk ke sana.
           </p>
           <p className="mt-3 text-xs font-semibold text-amber-700">
-            Semua modul gratis untuk Anda — tidak perlu kartu kredit.
+            100% gratis hingga 30 September 2026 — tidak perlu kartu kredit.
           </p>
           <button
             type="button"
@@ -198,7 +198,7 @@ export default function RegisterScreen({ initialProfile, errorMessage }: Registe
           </button>
 
           <p className="text-center text-[11px] font-semibold text-amber-700">
-            Semua 9 modul gratis untuk Anda, tanpa kartu kredit.
+            100% gratis hingga 30 September 2026, tanpa kartu kredit.
           </p>
 
           <p className="flex items-start gap-1.5 text-[11px] leading-snug text-slate-400">
