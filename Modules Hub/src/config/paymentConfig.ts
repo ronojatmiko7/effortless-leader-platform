@@ -23,6 +23,13 @@ const SUPABASE_FUNCTIONS_BASE = 'https://edodmmedehuuemnnmdri.supabase.co/functi
 // modules will show as locked with no way to buy (a "Segera Hadir" badge,
 // not an error). See scalev-payment-integration.md (project memory) for
 // the Scalev setup checklist.
+//
+// Oct 11 2026: free window publicly announced as running until 31 Oct 2026
+// (banner/register/HubHome copy + public/promo.html countdown). The copy is
+// date-stamped but this switch is still MANUAL -- it does NOT flip itself on
+// 1 Nov. promo.html's countdown IS date-driven and will show prices on its
+// own after 31 Oct, so flip this (and the funnel's freeLaunchConfig.ts) or
+// extend the dates at the same time.
 export const FREE_LAUNCH_MODE = true
 
 export const CHECK_ACCESS_URL = `${SUPABASE_FUNCTIONS_BASE}/check-access`
